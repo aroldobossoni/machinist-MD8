@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aroldobossoni.github.io/machinist-MD8/sitemap.xml
+

@@ -78,10 +78,9 @@ docs/data/
 
 ## Próximos passos
 
-1. Expandir todos os arquivos com todas as opções do BIOS_MENU_MAP.md
-2. Criar script Python para gerar JSON automaticamente
-3. Adicionar validação de schema (JSON Schema)
-4. Adicionar campos opcionais (possibleValues, warnings, etc.)
+1. Criar script Python para gerar JSON automaticamente
+2. Adicionar validação de schema (JSON Schema)
+3. Adicionar campos opcionais (possibleValues, warnings, etc.)
 
 ---
 
