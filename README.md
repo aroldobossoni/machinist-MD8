@@ -90,21 +90,49 @@ A BIOS da Machinist MD8 está organizada em 6 menus principais:
 Para informações detalhadas sobre cada opção e submenu, consulte:
 - [BIOS_MENU_MAP.md](BIOS_MENU_MAP.md) - Mapa completo com todas as opções
 
-## Licença
+## 🌐 Wiki Online
 
-Este projeto é mantido para fins de documentação e referência.
+Acesse a documentação interativa online:
+**https://aroldobossoni.github.io/selfhost/machinist-MD8/**
 
-## Contribuições
+### Recursos da Wiki:
+- 📊 Tabela completa com todas as opções da BIOS
+- 🔍 Filtros por menu e nível de risco
+- 🌓 Tema claro/escuro
+- 🤖 Integração com Google AI para explicações detalhadas
+- 📱 Layout responsivo para mobile
 
-Para contribuir com a documentação:
-1. Verifique a precisão das informações
-2. Adicione screenshots se necessário
-3. Mantenha a estrutura organizada
-4. Documente todas as alterações
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para:
+- Padrões de descrição técnica
+- Critérios de classificação de risco
+- Como editar arquivos JSON
+- Processo de Pull Request
+- Validação de dados
+
+**Áreas prioritárias para contribuição:**
+- Melhorar descrições técnicas existentes
+- Adicionar informações sobre compatibilidade de hardware
+- Corrigir classificações de risco
+- Tradução para inglês
+- Melhorias na interface web
+
+## 📜 Licença
+
+Este projeto é mantido para fins de documentação e referência. Uso livre para fins educacionais e técnicos.
+
+## 💝 Apoie o Projeto
+
+Se esta documentação foi útil, considere apoiar o projeto:
+- 🇧🇷 **PIX:** `a8c39b1e-00e3-4e68-96de-71d4c488f338`
+- ₿ **Bitcoin:** `33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ`
+
+Os fundos ajudam a cobrir custos de IA para gerar e manter esta documentação completa.
 
 ---
 
-**Última Atualização:** 09/11/2025
+**Última Atualização:** 11/11/2025
 **Versão da Documentação:** 1.0
 **Fonte:** Screenshots da BIOS (78 imagens)
 

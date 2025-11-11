@@ -4,17 +4,17 @@
     "submenu": null,
     "option": "Administrator Password",
     "defaultValue": "(Set/Change)",
-    "description": "Define ou altera a senha de administrador da BIOS.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "description": "Define ou altera a senha de administrador da BIOS. Quando configurada, a senha é solicitada apenas ao entrar na BIOS Setup. Não bloqueia o boot do sistema. Se esquecida, requer reset de CMOS (remover bateria ou jumper) para recuperar acesso. Mínimo 3 caracteres, máximo 20 caracteres.",
+    "risk": "high",
+    "riskReason": "Senha esquecida bloqueia acesso à BIOS; requer reset físico (CMOS clear) para recuperar"
   },
   {
     "menu": "Security",
     "submenu": null,
     "option": "User Password",
     "defaultValue": "(Set/Change)",
-    "description": "Define ou altera a senha de usuário da BIOS.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "description": "Define ou altera a senha de usuário da BIOS. Quando configurada, a senha é solicitada ANTES do boot do sistema operacional (power-on password). Usuário tem privilégios de administrador dentro da BIOS Setup. Se esquecida, impede boot completo do sistema. Mínimo 3 caracteres, máximo 20 caracteres.",
+    "risk": "high",
+    "riskReason": "Senha esquecida impede boot do sistema; requer reset físico (CMOS clear) para recuperar"
   }
 ]

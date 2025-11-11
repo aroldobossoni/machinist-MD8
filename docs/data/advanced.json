@@ -4,9 +4,9 @@
     "submenu": "ACPI Settings",
     "option": "Enable ACPI Auto Configuration",
     "defaultValue": "[Disabled]",
-    "description": "Permite que a BIOS configure automaticamente as tabelas ACPI do sistema operacional.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Permite que a BIOS configure automaticamente as tabelas ACPI (Advanced Configuration and Power Interface) do sistema operacional. Quando habilitado, a BIOS ajusta automaticamente configurações de energia, gerenciamento térmico e recursos de hardware. Desabilitado (padrão) permite controle manual. Habilitar pode resolver problemas de gerenciamento de energia, mas pode causar incompatibilidades com alguns sistemas operacionais antigos.",
+    "risk": "low",
+    "riskReason": "Configuração automática pode causar incompatibilidade com sistemas operacionais antigos ou configurações customizadas"
   },
   {
     "menu": "Advanced",
@@ -31,9 +31,9 @@
     "submenu": "NCT5532D Super IO Configuration > Serial Port 1 Configuration",
     "option": "Serial Port",
     "defaultValue": "[Enabled]",
-    "description": "Habilita ou desabilita a porta serial 1.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Habilita ou desabilita a porta serial COM1 (RS-232). Usada para console serial, debugging remoto, e comunicação com equipamentos industriais. Desabilitar pode afetar sistemas que dependem de console serial para troubleshooting ou acesso remoto via serial-over-LAN.",
+    "risk": "low",
+    "riskReason": "Desabilitar pode afetar console serial para troubleshooting e acesso remoto"
   },
   {
     "menu": "Advanced",
@@ -49,9 +49,9 @@
     "submenu": "Hardware Monitor > Pc Health Status",
     "option": "Smart Fan Function",
     "defaultValue": "[Enabled]",
-    "description": "Habilita controle automático de velocidade dos coolers baseado em temperatura.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Habilita controle automático de velocidade dos coolers baseado em temperatura (PWM). Desabilitar faz coolers operarem em velocidade fixa (máxima ou mínima). Desabilitar sem configuração adequada pode causar superaquecimento (se velocidade baixa) ou ruído excessivo (se velocidade alta). Recomendado: Enabled para balanceamento automático.",
+    "risk": "low",
+    "riskReason": "Desabilitar sem configuração adequada pode causar superaquecimento ou ruído excessivo"
   },
   {
     "menu": "Advanced",
@@ -112,18 +112,18 @@
     "submenu": "CSM Configuration",
     "option": "CSM Support",
     "defaultValue": "[Enabled]",
-    "description": "Compatibility Support Module. Permite boot de sistemas legados (não-UEFI).",
-    "risk": "low",
-    "riskReason": "Mudança pode impedir boot de sistemas legados"
+    "description": "Compatibility Support Module permite boot de sistemas operacionais legados (MBR/DOS) em firmware UEFI. Desabilitar força boot apenas UEFI/GPT. Windows instalado em MBR não iniciará se desabilitado. Necessário para dual boot com OSes antigos ou instalações legacy. Mudança incorreta pode impedir boot de sistemas já instalados.",
+    "risk": "high",
+    "riskReason": "Desabilitar impede boot de Windows/Linux instalados em modo MBR/Legacy; pode causar não-boot"
   },
   {
     "menu": "Advanced",
     "submenu": "CSM Configuration",
     "option": "Boot option filter",
     "defaultValue": "[UEFI and Legacy]",
-    "description": "Define quais tipos de boot são permitidos.",
-    "risk": "low",
-    "riskReason": "Mudança pode afetar ordem de boot"
+    "description": "Define quais tipos de boot são permitidos: UEFI only, Legacy only, ou ambos. Restringir a apenas UEFI pode impedir boot de instalações legacy existentes. Restringir a apenas Legacy desabilita recursos UEFI como Secure Boot e boot rápido.",
+    "risk": "high",
+    "riskReason": "Mudança pode impedir boot de sistemas instalados em modo diferente do selecionado"
   },
   {
     "menu": "Advanced",
@@ -148,27 +148,27 @@
     "submenu": "CSM Configuration",
     "option": "Storage",
     "defaultValue": "[Legacy]",
-    "description": "Modo de boot de armazenamento (Legacy ou UEFI).",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "description": "Modo de boot de armazenamento: Legacy (MBR) ou UEFI (GPT). Mudar de Legacy para UEFI pode impedir boot de discos MBR. Mudar de UEFI para Legacy pode impedir boot de discos GPT. Deve corresponder ao tipo de partição do disco de boot.",
+    "risk": "high",
+    "riskReason": "Mudança incompatível com tipo de partição do disco impede boot do sistema"
   },
   {
     "menu": "Advanced",
     "submenu": "CSM Configuration",
     "option": "Video",
     "defaultValue": "[Legacy]",
-    "description": "Modo de inicialização de vídeo (Legacy ou UEFI).",
+    "description": "Modo de inicialização de vídeo: Legacy (VGA BIOS) ou UEFI (GOP). Legacy necessário para GPUs antigas sem suporte UEFI. UEFI necessário para Secure Boot e boot rápido. Mudança pode causar tela preta durante boot se GPU não suportar modo selecionado.",
     "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "riskReason": "Modo incompatível com GPU pode causar tela preta durante boot"
   },
   {
     "menu": "Advanced",
     "submenu": "USB Configuration",
     "option": "Legacy USB Support",
     "defaultValue": "[Enabled]",
-    "description": "Suporte para dispositivos USB legados. Necessário para alguns teclados/mouses antigos.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Habilita suporte para dispositivos USB legados durante boot e na BIOS. Necessário para teclados/mouses USB antigos funcionarem na BIOS Setup. Desabilitar pode impedir uso de teclado/mouse durante configuração da BIOS, especialmente em sistemas sem PS/2. Recomendado: Enabled para máxima compatibilidade.",
+    "risk": "low",
+    "riskReason": "Desabilitar pode impedir uso de teclado/mouse USB durante boot e configuração da BIOS"
   },
   {
     "menu": "Advanced",
@@ -193,9 +193,9 @@
     "submenu": "USB Configuration",
     "option": "USB Mass Storage Driver Support",
     "defaultValue": "[Enabled]",
-    "description": "Habilita suporte para dispositivos de armazenamento USB.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Habilita suporte para dispositivos de armazenamento USB (pen drives, HDs externos) durante boot e na BIOS. Necessário para boot via USB e instalação de sistemas operacionais. Desabilitar impede uso de dispositivos USB como mídia de boot e pode afetar instalação de OS.",
+    "risk": "low",
+    "riskReason": "Desabilitar impede boot via USB e uso de dispositivos USB como mídia de instalação"
   },
   {
     "menu": "Advanced",
@@ -274,9 +274,9 @@
     "submenu": "PCI Subsystem Settings",
     "option": "Above 4G Decoding",
     "defaultValue": "[Disabled]",
-    "description": "Permite que dispositivos PCIe acessem mais de 4GB de memória. Necessário para GPUs modernas com muita VRAM.",
-    "risk": "low",
-    "riskReason": "Sistemas antigos podem não suportar; pode causar boot failure"
+    "description": "Permite que dispositivos PCIe sejam mapeados acima do limite de 4GB de endereçamento, necessário para GPUs modernas com >4GB VRAM e para sistemas com muitos dispositivos PCIe. Requer SO 64-bit e suporte UEFI. Essencial para GPU passthrough em virtualização. Incompatível com boot legacy/MBR. Habilitar em sistema legacy pode causar falha de boot.",
+    "risk": "high",
+    "riskReason": "Incompatível com boot legacy/MBR; habilitar em sistema legacy pode impedir boot"
   },
   {
     "menu": "Advanced",
@@ -292,9 +292,9 @@
     "submenu": "PCI Subsystem Settings",
     "option": "SR-IOV Support",
     "defaultValue": "[Disabled]",
-    "description": "Suporte para Single Root I/O Virtualization.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "description": "Single Root I/O Virtualization permite que múltiplas VMs compartilhem um único dispositivo físico PCIe (ex: placa de rede, GPU). Necessário para virtualização de rede de alta performance e GPU virtualization. Desabilitar quebra funcionalidades de virtualização que dependem de SR-IOV. Requer VT-d habilitado e suporte do hardware.",
+    "risk": "high",
+    "riskReason": "Desabilitar quebra virtualização de rede/GPU que depende de SR-IOV; requer VT-d"
   },
   {
     "menu": "Advanced",

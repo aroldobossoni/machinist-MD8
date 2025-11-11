@@ -4,9 +4,9 @@
     "submenu": "Processor Configuration",
     "option": "Hyper-Threading [ALL]",
     "defaultValue": "[Enable]",
-    "description": "Habilita Hyper-Threading em todos os cores do processador. Melhora performance em aplicações multi-threaded.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Habilita Hyper-Threading Technology (HTT) em todos os cores do processador, permitindo que cada core físico execute dois threads simultaneamente. Melhora significativamente performance em aplicações multi-threaded e multitarefa. Desabilitar reduz performance em ~30-40% em workloads paralelos, mas pode melhorar performance single-threaded em alguns casos raros. Recomendado: Enable para maioria dos casos de uso.",
+    "risk": "low",
+    "riskReason": "Desabilitar reduz performance multi-threaded em ~30-40%; pode afetar aplicações paralelas"
   },
   {
     "menu": "IntelRCSetup",
@@ -31,27 +31,27 @@
     "submenu": "Processor Configuration",
     "option": "Execute Disable Bit",
     "defaultValue": "[Enable]",
-    "description": "Proteção contra execução de código malicioso (DEP/NX bit).",
-    "risk": "none",
-    "riskReason": null
+    "description": "NX bit (No-Execute) / DEP (Data Execution Prevention) protege contra execução de código malicioso em áreas de memória marcadas como dados. Desabilitar remove proteção crítica contra exploits de buffer overflow e malware. Windows DEP e Linux NX dependem desta opção. Desabilitar expõe sistema a vulnerabilidades graves de segurança. Deve permanecer habilitado em produção.",
+    "risk": "high",
+    "riskReason": "Desabilitar remove proteção DEP/NX; expõe sistema a exploits de buffer overflow e malware"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Processor Configuration",
     "option": "Enable Intel TXT Support",
     "defaultValue": "[Disable]",
-    "description": "Habilita suporte para Intel Trusted Execution Technology.",
+    "description": "Intel Trusted Execution Technology (TXT) fornece verificação de integridade do sistema durante boot e proteção contra rootkits de baixo nível. Requer TPM (Trusted Platform Module) e suporte do sistema operacional. Habilitar sem TPM ou suporte do OS pode causar problemas de boot ou incompatibilidade. Usado principalmente em ambientes corporativos com requisitos de segurança rigorosos.",
     "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "riskReason": "Habilitar sem TPM ou suporte do OS pode causar problemas de boot ou incompatibilidade"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Processor Configuration",
     "option": "VMX",
     "defaultValue": "[Enable]",
-    "description": "Intel Virtualization Technology (VT-x). Permite que o processador execute múltiplas máquinas virtuais.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Intel Virtualization Technology (VT-x) permite que o processador execute múltiplas máquinas virtuais simultaneamente. Desabilitar quebra completamente funcionalidades de virtualização: Hyper-V, VMware, VirtualBox, KVM, WSL2, Docker Desktop, containers. Essencial para servidores virtualizados e desenvolvimento. Desabilitar em sistema que usa VMs impede boot de máquinas virtuais.",
+    "risk": "high",
+    "riskReason": "Desabilitar quebra completamente VMs, Hyper-V, WSL2, Docker, containers; impede virtualização"
   },
   {
     "menu": "IntelRCSetup",
@@ -67,9 +67,9 @@
     "submenu": "Processor Configuration",
     "option": "Lock Chipset",
     "defaultValue": "[Enable]",
-    "description": "Bloqueia configurações do chipset para segurança.",
-    "risk": "low",
-    "riskReason": "Mudança pode afetar segurança do sistema"
+    "description": "Bloqueia modificação de configurações críticas do chipset após POST para segurança. Desabilitar permite alteração de configurações sensíveis do chipset durante runtime, aumentando risco de ataques de firmware e modificação não autorizada. Recomendado: Enable para segurança em produção. Desabilitar apenas para debugging avançado.",
+    "risk": "high",
+    "riskReason": "Desabilitar permite modificação não autorizada de configurações críticas do chipset; risco de segurança"
   },
   {
     "menu": "IntelRCSetup",
@@ -103,9 +103,9 @@
     "submenu": "Processor Configuration",
     "option": "Hardware Prefetcher",
     "defaultValue": "[Enable]",
-    "description": "Prefetching de hardware para melhor performance.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Prefetcher de hardware prevê e carrega dados na cache L2 antes que sejam solicitados, melhorando performance em workloads sequenciais. Desabilitar pode reduzir performance em até 10-15% em aplicações que acessam memória sequencialmente. Pode melhorar performance em alguns workloads aleatórios específicos, mas geralmente reduz performance geral.",
+    "risk": "low",
+    "riskReason": "Desabilitar pode reduzir performance em até 10-15% em workloads sequenciais"
   },
   {
     "menu": "IntelRCSetup",
@@ -166,18 +166,18 @@
     "submenu": "Processor Configuration",
     "option": "X2APIC",
     "defaultValue": "[Disable]",
-    "description": "Advanced Programmable Interrupt Controller versão 2.",
+    "description": "Advanced Programmable Interrupt Controller versão 2 (x2APIC) suporta até 64.000 processadores lógicos vs 256 do APIC tradicional. Necessário para sistemas com muitos cores/threads e para virtualização avançada. Desabilitar pode limitar escalabilidade em sistemas com muitos cores. Habilitar pode causar incompatibilidade com sistemas operacionais antigos ou hypervisors que não suportam x2APIC.",
     "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "riskReason": "Habilitar pode causar incompatibilidade com OSes antigos ou hypervisors sem suporte x2APIC"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Processor Configuration",
     "option": "AES-NI",
     "defaultValue": "[Enable]",
-    "description": "AES New Instructions. Acelera criptografia AES.",
-    "risk": "none",
-    "riskReason": null
+    "description": "AES New Instructions são instruções de hardware dedicadas para acelerar criptografia AES (Advanced Encryption Standard). Desabilitar reduz drasticamente performance de operações criptográficas (até 10x mais lento), afetando SSL/TLS, VPNs, criptografia de disco (BitLocker, LUKS), e aplicações que usam AES. Essencial para segurança e performance em servidores e sistemas que usam criptografia.",
+    "risk": "low",
+    "riskReason": "Desabilitar reduz performance de criptografia AES em até 10x; afeta SSL/TLS, VPNs, BitLocker"
   },
   {
     "menu": "IntelRCSetup",
@@ -247,18 +247,18 @@
     "submenu": "Advanced Power Management Configuration > CPU P State Control",
     "option": "EIST (P-states)",
     "defaultValue": "[Enable]",
-    "description": "Enhanced Intel SpeedStep. Estados de performance do processador.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Enhanced Intel SpeedStep Technology permite que o processador ajuste dinamicamente frequência e voltagem baseado na carga de trabalho (P-states). Desabilitar força CPU a operar sempre na frequência máxima, aumentando consumo de energia e temperatura desnecessariamente. Essencial para laptops e servidores que priorizam eficiência energética. Desabilitar apenas para benchmarking ou quando overclocking extremo.",
+    "risk": "low",
+    "riskReason": "Desabilitar aumenta consumo de energia e temperatura; reduz eficiência energética"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Advanced Power Management Configuration > CPU P State Control",
     "option": "Turbo Mode",
     "defaultValue": "[Enable]",
-    "description": "Habilita o modo Turbo Boost do processador, permitindo que os cores operem acima da frequência base quando há headroom térmico.",
-    "risk": "none",
-    "riskReason": null
+    "description": "Intel Turbo Boost Technology permite que cores individuais operem acima da frequência base quando há headroom térmico e elétrico disponível. Desabilitar limita CPU à frequência base, reduzindo performance single-threaded e multi-threaded em até 20-40% dependendo do modelo. Essencial para performance máxima. Desabilitar apenas se causar instabilidade ou para reduzir temperatura máxima.",
+    "risk": "low",
+    "riskReason": "Desabilitar reduz performance em até 20-40%; limita CPU à frequência base"
   },
   {
     "menu": "IntelRCSetup",
@@ -355,18 +355,18 @@
     "submenu": "Common RefCode Configuration",
     "option": "MMIOHBase",
     "defaultValue": "[56T]",
-    "description": "Base de MMIO High.",
+    "description": "Define a base de endereçamento MMIO (Memory-Mapped I/O) High para dispositivos PCIe acima de 4GB. Valor em hexadecimals (T = Terabytes). Alterar incorretamente pode causar conflitos de endereçamento, falha de inicialização de dispositivos PCIe, ou boot failure completo. Requer conhecimento avançado de arquitetura de memória. Não alterar a menos que necessário para configurações específicas de servidor.",
     "risk": "high",
-    "riskReason": "Configuração incorreta impede boot ou causa conflitos de hardware"
+    "riskReason": "Valor incorreto causa conflitos de endereçamento PCIe, falha de boot ou dispositivos não inicializam"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Common RefCode Configuration",
     "option": "MMIO High Size",
     "defaultValue": "[256G]",
-    "description": "Tamanho de MMIO High.",
+    "description": "Define o tamanho da região MMIO High disponível para dispositivos PCIe acima de 4GB. Valor em gigabytes. Deve ser suficiente para acomodar todos os dispositivos PCIe do sistema. Valor muito pequeno pode impedir inicialização de GPUs modernas ou múltiplos dispositivos PCIe. Valor muito grande pode causar conflitos ou reduzir memória disponível para o sistema operacional.",
     "risk": "high",
-    "riskReason": "Valor incompatível causa falha de boot ou instabilidade"
+    "riskReason": "Valor incompatível impede inicialização de dispositivos PCIe ou causa falha de boot"
   },
   {
     "menu": "IntelRCSetup",
@@ -391,18 +391,18 @@
     "submenu": "Common RefCode Configuration",
     "option": "Numa",
     "defaultValue": "[Enable]",
-    "description": "Habilita Non-Uniform Memory Access.",
+    "description": "Non-Uniform Memory Access habilita sistema operacional a otimizar acesso à memória em sistemas multi-socket, onde memória local ao socket é mais rápida que memória remota. Desabilitar em sistemas multi-socket reduz performance significativamente (até 30-50%) em workloads que dependem de acesso eficiente à memória. Em sistemas single-socket tem impacto mínimo. Recomendado: Enable em sistemas multi-socket.",
     "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "riskReason": "Desabilitar em sistemas multi-socket reduz performance em até 30-50% em workloads intensivos de memória"
   },
   {
     "menu": "IntelRCSetup",
     "submenu": "Memory Configuration",
     "option": "Memory Frequency",
     "defaultValue": "[Auto]",
-    "description": "Define a frequência de operação da memória RAM. Alterar manualmente pode causar instabilidade se não compatível com o hardware.",
+    "description": "Define a frequência de operação da memória RAM. Auto detecta automaticamente a frequência máxima suportada pelo módulo e CPU. Overclock manual pode causar instabilidade, corrupção de dados, crashes, ou em casos extremos, danos físicos aos módulos. Requer conhecimento de timings, voltagem e compatibilidade. Valores incorretos podem impedir POST ou causar boot loops.",
     "risk": "high",
-    "riskReason": "Overclock incorreto causa crashes, corrupção de dados ou danos físicos"
+    "riskReason": "Overclock incorreto causa crashes, corrupção de dados, boot loops ou danos físicos aos módulos"
   },
   {
     "menu": "IntelRCSetup",
@@ -427,8 +427,8 @@
     "submenu": "Memory Configuration",
     "option": "Memory Type",
     "defaultValue": "[UDIMMs and RDIMMs]",
-    "description": "Tipo de memória suportada.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
+    "description": "Define o tipo de módulos de memória suportados: UDIMM (Unbuffered, desktop), RDIMM (Registered, servidor), ou ambos. Configurar apenas UDIMM em servidor com RDIMMs instalados impede detecção da memória. Configurar apenas RDIMM em desktop com UDIMMs impede detecção. Deve corresponder ao tipo físico dos módulos instalados. Mudança incorreta pode causar não-detecção de memória ou boot failure.",
+    "risk": "high",
+    "riskReason": "Tipo incompatível com módulos instalados impede detecção de memória ou causa boot failure"
   }
 ]

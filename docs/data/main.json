@@ -4,7 +4,7 @@
     "submenu": null,
     "option": "System Language",
     "defaultValue": "[English]",
-    "description": "Define o idioma da interface da BIOS.",
+    "description": "Define o idioma da interface da BIOS/UEFI. Alterar não afeta o funcionamento do sistema, apenas a exibição dos menus e mensagens durante a configuração da BIOS.",
     "risk": "none",
     "riskReason": null
   },
@@ -13,7 +13,7 @@
     "submenu": null,
     "option": "System Date",
     "defaultValue": "[MM/DD/YYYY]",
-    "description": "Define a data do sistema.",
+    "description": "Define a data do sistema (RTC - Real-Time Clock). Usada pelo sistema operacional e aplicações para timestamp de arquivos e logs. Data incorreta pode causar problemas em certificados SSL/TLS e sincronização de arquivos.",
     "risk": "none",
     "riskReason": null
   },
@@ -22,7 +22,7 @@
     "submenu": null,
     "option": "System Time",
     "defaultValue": "[HH:MM:SS]",
-    "description": "Define a hora do sistema.",
+    "description": "Define a hora do sistema (RTC - Real-Time Clock). Usada pelo sistema operacional e aplicações para timestamp de arquivos e logs. Hora incorreta pode causar problemas em certificados SSL/TLS e sincronização de arquivos.",
     "risk": "none",
     "riskReason": null
   }
