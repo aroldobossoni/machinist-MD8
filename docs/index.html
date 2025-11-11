@@ -111,6 +111,18 @@
             font-size: 1.2rem;
         }
 
+        .donation-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        .donation-btn:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
         /* Breadcrumbs */
         .breadcrumbs {
             margin-bottom: 1.5rem;
@@ -350,6 +362,162 @@
             transform: translateY(-1px);
         }
 
+        /* Donation Modal */
+        .donation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .donation-modal.show {
+            display: flex;
+        }
+
+        .donation-content {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .donation-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .donation-close:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .donation-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .donation-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .donation-method {
+            background-color: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .donation-method h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .donation-method-icon {
+            font-size: 1.3rem;
+        }
+
+        .donation-code {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .donation-code:hover {
+            border-color: var(--accent-color);
+            background-color: var(--bg-tertiary);
+        }
+
+        .donation-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            margin-top: 0.75rem;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .copy-btn.copied {
+            background-color: var(--success-color);
+        }
+
+        .donation-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .theme-toggle {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .theme-toggle-btn span:not(.theme-icon) {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -361,6 +529,10 @@
                 <p>Documentação completa de todas as opções da BIOS</p>
             </div>
             <div class="theme-toggle">
+                <button class="theme-toggle-btn donation-btn" id="donationBtn" title="Apoie este projeto">
+                    <span class="theme-icon">💝</span>
+                    <span>Apoiar</span>
+                </button>
                 <button class="theme-toggle-btn" id="promptTemplateBtn" title="Editar template da pergunta padrão">
                     <span class="theme-icon">✏️</span>
                     <span>Editar pergunta feita para a IA</span>
@@ -422,6 +594,54 @@
                     <!-- Populated by JavaScript -->
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div class="donation-modal" id="donationModal">
+        <div class="donation-content">
+            <button class="donation-close" onclick="closeDonationModal()">×</button>
+            
+            <div class="donation-header">
+                <h2>💝 Apoie este projeto</h2>
+                <p>Ajude a cobrir os custos de IA para gerar e manter esta documentação completa</p>
+            </div>
+
+            <div class="donation-method">
+                <h3><span class="donation-method-icon">🇧🇷</span> PIX</h3>
+                <div class="donation-qr" style="text-align: center; margin-bottom: 1rem;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=a8c39b1e-00e3-4e68-96de-71d4c488f338" 
+                         alt="QR Code PIX" 
+                         style="border-radius: 8px; border: 4px solid var(--bg-primary); max-width: 200px;">
+                </div>
+                <div class="donation-label">Chave PIX:</div>
+                <div class="donation-code" id="pixCode" onclick="copyToClipboard('pixCode', 'pixCopyBtn')">
+                    a8c39b1e-00e3-4e68-96de-71d4c488f338
+                </div>
+                <button class="copy-btn" id="pixCopyBtn" onclick="copyToClipboard('pixCode', 'pixCopyBtn')">
+                    📋 Copiar chave PIX
+                </button>
+            </div>
+
+            <div class="donation-method">
+                <h3><span class="donation-method-icon">₿</span> Bitcoin</h3>
+                <div class="donation-qr" style="text-align: center; margin-bottom: 1rem;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ" 
+                         alt="QR Code Bitcoin" 
+                         style="border-radius: 8px; border: 4px solid var(--bg-primary); max-width: 200px;">
+                </div>
+                <div class="donation-label">Endereço BTC:</div>
+                <div class="donation-code" id="btcCode" onclick="copyToClipboard('btcCode', 'btcCopyBtn')">
+                    33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ
+                </div>
+                <button class="copy-btn" id="btcCopyBtn" onclick="copyToClipboard('btcCode', 'btcCopyBtn')">
+                    📋 Copiar endereço Bitcoin
+                </button>
+            </div>
+
+            <div class="donation-note">
+                💙 Qualquer valor é apreciado e ajuda a manter o projeto ativo!
+            </div>
         </div>
     </div>
 
@@ -801,6 +1021,55 @@
 
         // Event listener para botão de editar template
         document.getElementById('promptTemplateBtn').addEventListener('click', editPromptTemplate);
+
+        // Donation modal
+        function openDonationModal() {
+            document.getElementById('donationModal').classList.add('show');
+        }
+
+        function closeDonationModal() {
+            document.getElementById('donationModal').classList.remove('show');
+        }
+
+        function copyToClipboard(codeId, btnId) {
+            const codeElement = document.getElementById(codeId);
+            const btnElement = document.getElementById(btnId);
+            const text = codeElement.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Feedback visual
+                const originalText = btnElement.textContent;
+                btnElement.textContent = '✅ Copiado!';
+                btnElement.classList.add('copied');
+
+                setTimeout(() => {
+                    btnElement.textContent = originalText;
+                    btnElement.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Erro ao copiar. Selecione manualmente o texto.');
+            });
+        }
+
+        // Event listener para botão de doação
+        document.getElementById('donationBtn').addEventListener('click', openDonationModal);
+
+        // Fechar modal ao clicar fora
+        document.getElementById('donationModal').addEventListener('click', (e) => {
+            if (e.target.id === 'donationModal') {
+                closeDonationModal();
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('donationModal');
+                if (modal.classList.contains('show')) {
+                    closeDonationModal();
+                }
+            }
+        });
 
         // Initialize
         initTheme();
