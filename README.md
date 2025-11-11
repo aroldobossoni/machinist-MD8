@@ -4,7 +4,7 @@ Documentação completa e interativa da BIOS da placa mãe Machinist MD8.
 
 ## 🌐 Acesse Online
 
-**https://aroldobossoni.github.io/selfhost/machinist-MD8/**
+**https://aroldobossoni.github.io/machinist-MD8/**
 
 ### Recursos
 - 📊 Tabela completa com todas as opções da BIOS

@@ -217,33 +217,26 @@
             white-space: nowrap;
         }
 
-        /* Coluna 1: Sessão/Opção - ajusta ao conteúdo */
+        /* Colunas com dimensionamento automático e inteligente */
         th:first-child {
-            width: 20%;
-            min-width: 200px;
+            min-width: 180px;
         }
 
-        /* Coluna 2: Valor Padrão - compacta */
         th:nth-child(2) {
-            width: 1%; /* Mínimo possível, expande conforme conteúdo */
+            min-width: 100px;
             white-space: nowrap;
         }
 
-        /* Coluna 3: Descrição - expande ao máximo */
         th:nth-child(3) {
-            width: auto; /* Pega todo espaço restante */
             min-width: 300px;
         }
 
-        /* Coluna 4: Risco - compacta */
         th:nth-child(4) {
-            width: 1%; /* Mínimo possível */
-            white-space: nowrap;
+            min-width: 120px;
         }
 
-        /* Coluna 5: Ações - compacta */
         th:nth-child(5) {
-            width: 1%; /* Mínimo possível */
+            min-width: 80px;
             white-space: nowrap;
         }
 
@@ -267,13 +260,16 @@
 
         /* Ajustes específicos para células */
         td:nth-child(2), /* Valor Padrão */
-        td:nth-child(4), /* Risco */
         td:nth-child(5)  /* Ações */ {
             white-space: nowrap;
         }
 
-        td:nth-child(3) { /* Descrição */
-            width: auto;
+        /* Descrição e Risco: permitem quebra de linha */
+        td:nth-child(3), /* Descrição */
+        td:nth-child(4)  /* Risco */ {
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Menu Hierarchy */
@@ -344,6 +340,13 @@
             color: var(--text-tertiary);
             line-height: 1.4;
             font-style: italic;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .risk-badge {
+            white-space: nowrap;
         }
 
         /* AI Button */
@@ -679,10 +682,6 @@
                 min-width: 0;
                 padding: 0.4rem 0.75rem;
                 font-size: 0.8rem;
-            }
-
-            .theme-toggle-btn span:not(.theme-icon) {
-                display: none;
             }
 
             .breadcrumbs {
