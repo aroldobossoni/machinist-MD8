@@ -387,10 +387,12 @@
             max-width: 500px;
             max-height: 95vh;
             width: 100%;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow);
             position: relative;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .donation-close {
@@ -418,29 +420,29 @@
 
         .donation-header {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .donation-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
         }
 
         .donation-header p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .donation-method {
             background-color: var(--bg-tertiary);
             border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .donation-method h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -500,7 +502,7 @@
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-tertiary);
-            margin-top: 1rem;
+            margin-top: 0.75rem;
             font-style: italic;
         }
 
@@ -611,10 +613,10 @@
 
             <div class="donation-method">
                 <h3><span class="donation-method-icon">🇧🇷</span> PIX</h3>
-                <div class="donation-qr" style="text-align: center; margin-bottom: 1rem;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=a8c39b1e-00e3-4e68-96de-71d4c488f338" 
+                <div class="donation-qr" style="text-align: center; margin-bottom: 0.75rem;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=a8c39b1e-00e3-4e68-96de-71d4c488f338" 
                          alt="QR Code PIX" 
-                         style="border-radius: 8px; border: 4px solid var(--bg-primary); max-width: 200px;">
+                         style="border-radius: 8px; border: 3px solid var(--bg-primary); max-width: 160px;">
                 </div>
                 <div class="donation-label">Chave PIX:</div>
                 <div class="donation-code" id="pixCode" onclick="copyToClipboard('pixCode', 'pixCopyBtn')">
@@ -630,10 +632,10 @@
 
             <div class="donation-method">
                 <h3><span class="donation-method-icon">₿</span> Bitcoin</h3>
-                <div class="donation-qr" style="text-align: center; margin-bottom: 1rem;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ" 
+                <div class="donation-qr" style="text-align: center; margin-bottom: 0.75rem;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=bitcoin:33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ" 
                          alt="QR Code Bitcoin" 
-                         style="border-radius: 8px; border: 4px solid var(--bg-primary); max-width: 200px;">
+                         style="border-radius: 8px; border: 3px solid var(--bg-primary); max-width: 160px;">
                 </div>
                 <div class="donation-label">Endereço BTC:</div>
                 <div class="donation-code" id="btcCode" onclick="copyToClipboard('btcCode', 'btcCopyBtn')">
