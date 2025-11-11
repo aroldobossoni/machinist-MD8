@@ -105,44 +105,30 @@ Se encontrou uma opção da BIOS que não está documentada:
 
 **NÃO contribua:**
 - ❌ Informações especulativas ou não verificadas
-- ❌ Opiniões pessoais sem base técnica
 - ❌ Mudanças de formatação desnecessárias
 - ❌ Dados sensíveis (MACs, IPs, etc.)
 
 ### 6. Processo de Pull Request
 
-1. **Fork** o repositório
-2. **Clone** seu fork localmente
-3. **Crie um branch** para sua mudança:
+1. **Clone** seu fork localmente
+2. **Crie um branch** para sua mudança:
    ```bash
    git checkout -b improve-description-vt-d
    ```
-4. **Faça suas alterações** nos arquivos JSON
-5. **Valide o JSON**: Use um linter JSON ou validador online
-6. **Teste localmente**:
+3. **Faça suas alterações** nos arquivos JSON
+4. **Valide o JSON**: Use um linter JSON ou validador online
+5. **Teste localmente**:
+6. **Commit** com mensagem descritiva e completa:
    ```bash
-   cd docs
-   python -m http.server 8000
+   git commit -m "docs: improve Above 4G Decoding description and reclassify risk" 
    ```
-   Acesse `http://localhost:8000` e verifique se as mudanças aparecem corretamente
-
-7. **Commit** com mensagem descritiva:
-   ```bash
-   git commit -m "docs: improve Above 4G Decoding description and reclassify risk"
-   ```
-
-8. **Push** para seu fork:
-   ```bash
-   git push origin improve-description-vt-d
-   ```
-
-9. **Abra um Pull Request** com:
+7. **Abra um Pull Request** com:
    - Título claro
    - Descrição do que foi alterado
    - Justificativa técnica para mudanças de risco
    - Fontes de referência (se aplicável)
 
-### 7. Padrão de Mensagens de Commit
+### 6. Padrão de Mensagens de Commit
 
 Use conventional commits:
 
@@ -173,8 +159,8 @@ Para garantir precisão técnica, consulte:
 - [PCIe Base Specification](https://pcisig.com/specifications)
 
 **Comunidades:**
-- [r/homelab](https://reddit.com/r/homelab) - Discussões sobre hardware de servidor
-- [ServeTheHome Forums](https://forums.servethehome.com/) - Comunidade técnica
+- [r/homelab](https://reddit.com/r/homelab) - Discussões sobre homelab
+- [ServeTheHome Forums](https://forums.servethehome.com/) - Comunidade técnica de servidores
 
 ### 9. Validação de JSON
 
@@ -220,18 +206,8 @@ Toda contribuição é valiosa! Seja uma correção de typo, uma descrição mel
 
 ---
 
-## 🚀 Quick Start para Contribuidores
-
-1. Fork e clone o repositório
-2. Edite os arquivos JSON em `docs/data/`
-3. Valide o JSON com linter
-4. Teste localmente com `python -m http.server 8000` em `docs/`
-5. Commit com mensagem descritiva
-6. Abra Pull Request com justificativa técnica
-
 **Qualquer dúvida, abra uma issue!** 💬
 
 ---
 
 **Última atualização:** 2024-11-11
-

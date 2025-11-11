@@ -783,6 +783,5 @@ Aptio Setup Utility
 
 ---
 
-**Fonte:** 78 screenshots da BIOS Machinist MD8  
-**Data:** 09/11/2025  
+**Data:** 11/11/2025  
 **BIOS Version:** M94X8 3.00 x64 (Build: 10/12/2024)
