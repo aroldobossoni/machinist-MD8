@@ -385,10 +385,12 @@
             background-color: var(--bg-secondary);
             border-radius: 12px;
             max-width: 500px;
+            max-height: 95vh;
             width: 100%;
             padding: 2rem;
             box-shadow: var(--shadow);
             position: relative;
+            overflow-y: auto;
         }
 
         .donation-close {
@@ -621,6 +623,9 @@
                 <button class="copy-btn" id="pixCopyBtn" onclick="copyToClipboard('pixCode', 'pixCopyBtn')">
                     📋 Copiar chave PIX
                 </button>
+                <button class="copy-btn" onclick="openPixApp()" style="margin-top: 0.5rem; background-color: var(--success-color);">
+                    📱 Abrir app PIX
+                </button>
             </div>
 
             <div class="donation-method">
@@ -636,6 +641,9 @@
                 </div>
                 <button class="copy-btn" id="btcCopyBtn" onclick="copyToClipboard('btcCode', 'btcCopyBtn')">
                     📋 Copiar endereço Bitcoin
+                </button>
+                <button class="copy-btn" onclick="openBitcoinApp()" style="margin-top: 0.5rem; background-color: var(--warning-color); color: #000;">
+                    📱 Abrir carteira Bitcoin
                 </button>
             </div>
 
@@ -1049,6 +1057,44 @@
             }).catch(err => {
                 alert('Erro ao copiar. Selecione manualmente o texto.');
             });
+        }
+
+        function openPixApp() {
+            const pixKey = 'a8c39b1e-00e3-4e68-96de-71d4c488f338';
+            
+            // Tentar abrir app de banco via deep link
+            // Formato: pix://chave ou intent Android
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Tentar deep link PIX (alguns apps suportam)
+                window.location.href = `pix://${pixKey}`;
+                
+                // Fallback: copiar chave
+                setTimeout(() => {
+                    copyToClipboard('pixCode', 'pixCopyBtn');
+                    alert('Se o app não abriu, a chave foi copiada. Cole no seu app de banco.');
+                }, 1000);
+            } else {
+                // Desktop: apenas copiar
+                copyToClipboard('pixCode', 'pixCopyBtn');
+                alert('Chave PIX copiada! Cole no app do seu banco no celular.');
+            }
+        }
+
+        function openBitcoinApp() {
+            const btcAddress = '33RDVhf2DrhSmGk4huDo6xbbcY5hdP3caJ';
+            
+            // URI BIP21 para abrir carteira Bitcoin
+            const bitcoinUri = `bitcoin:${btcAddress}`;
+            
+            // Tentar abrir carteira
+            window.location.href = bitcoinUri;
+            
+            // Fallback: copiar endereço
+            setTimeout(() => {
+                copyToClipboard('btcCode', 'btcCopyBtn');
+            }, 1000);
         }
 
         // Event listener para botão de doação
