@@ -1,0 +1,29 @@
+[
+  {
+    "menu": "Main",
+    "submenu": null,
+    "option": "System Language",
+    "defaultValue": "[English]",
+    "description": "Define o idioma da interface da BIOS.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Main",
+    "submenu": null,
+    "option": "System Date",
+    "defaultValue": "[MM/DD/YYYY]",
+    "description": "Define a data do sistema.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Main",
+    "submenu": null,
+    "option": "System Time",
+    "defaultValue": "[HH:MM:SS]",
+    "description": "Define a hora do sistema.",
+    "risk": "none",
+    "riskReason": null
+  }
+]

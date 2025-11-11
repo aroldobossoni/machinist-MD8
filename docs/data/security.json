@@ -1,0 +1,20 @@
+[
+  {
+    "menu": "Security",
+    "submenu": null,
+    "option": "Administrator Password",
+    "defaultValue": "(Set/Change)",
+    "description": "Define ou altera a senha de administrador da BIOS.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Security",
+    "submenu": null,
+    "option": "User Password",
+    "defaultValue": "(Set/Change)",
+    "description": "Define ou altera a senha de usuário da BIOS.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  }
+]

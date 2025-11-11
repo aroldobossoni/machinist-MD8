@@ -1,0 +1,434 @@
+[
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Hyper-Threading [ALL]",
+    "defaultValue": "[Enable]",
+    "description": "Habilita Hyper-Threading em todos os cores do processador. Melhora performance em aplicações multi-threaded.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Check CPU BIST Result",
+    "defaultValue": "[Disabled]",
+    "description": "Verifica resultado do Built-In Self-Test da CPU.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Monitor/Mwait",
+    "defaultValue": "[Enable]",
+    "description": "Habilita instruções MONITOR/MWAIT para gerenciamento de energia.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Execute Disable Bit",
+    "defaultValue": "[Enable]",
+    "description": "Proteção contra execução de código malicioso (DEP/NX bit).",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Enable Intel TXT Support",
+    "defaultValue": "[Disable]",
+    "description": "Habilita suporte para Intel Trusted Execution Technology.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "VMX",
+    "defaultValue": "[Enable]",
+    "description": "Intel Virtualization Technology (VT-x). Permite que o processador execute múltiplas máquinas virtuais.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Enable SMX",
+    "defaultValue": "[Disable]",
+    "description": "Habilita Intel Safer Mode Extensions.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Lock Chipset",
+    "defaultValue": "[Enable]",
+    "description": "Bloqueia configurações do chipset para segurança.",
+    "risk": "low",
+    "riskReason": "Mudança pode afetar segurança do sistema"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "MSR Lock Control",
+    "defaultValue": "[Enable]",
+    "description": "Bloqueia Model-Specific Registers para segurança.",
+    "risk": "high",
+    "riskReason": "Desabilitar remove proteção de segurança; permite ataques de ring 0"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "PPIN Control",
+    "defaultValue": "[Unlock/Enable]",
+    "description": "Controle do Protected Processor Identification Number.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "DEBUG INTERFACE",
+    "defaultValue": "[Disable]",
+    "description": "Interface de debug do processador. Deve permanecer desabilitada em produção.",
+    "risk": "high",
+    "riskReason": "Habilitar expõe interface de debug; grave risco de segurança"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Hardware Prefetcher",
+    "defaultValue": "[Enable]",
+    "description": "Prefetching de hardware para melhor performance.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Adjacent Cache Prefetch",
+    "defaultValue": "[Enable]",
+    "description": "Prefetching de cache adjacente.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "DCU Streamer Prefetcher",
+    "defaultValue": "[Enable]",
+    "description": "Prefetcher de streamer DCU.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "DCU IP Prefetcher",
+    "defaultValue": "[Enable]",
+    "description": "Prefetcher de IP DCU.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "DCU Mode",
+    "defaultValue": "[32KB 8Way Without ECC]",
+    "description": "Modo do Data Cache Unit.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Direct Cache Access (DCA)",
+    "defaultValue": "[Auto]",
+    "description": "Acesso direto ao cache para melhor performance de I/O.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "DCA Prefetch Delay",
+    "defaultValue": "32",
+    "description": "Atraso de prefetch para DCA.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "X2APIC",
+    "defaultValue": "[Disable]",
+    "description": "Advanced Programmable Interrupt Controller versão 2.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "AES-NI",
+    "defaultValue": "[Enable]",
+    "description": "AES New Instructions. Acelera criptografia AES.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Down Stream PECI",
+    "defaultValue": "[Enable]",
+    "description": "Platform Environment Control Interface downstream.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "SMM Save State",
+    "defaultValue": "[Disable]",
+    "description": "Salva estado do System Management Mode.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Processor Configuration",
+    "option": "Targeted Smi",
+    "defaultValue": "[Disable]",
+    "description": "System Management Interrupt direcionado.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration",
+    "option": "Power Technology",
+    "defaultValue": "[Custom]",
+    "description": "Tecnologia de gerenciamento de energia.",
+    "risk": "low",
+    "riskReason": "Pode afetar gerenciamento de energia"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration",
+    "option": "Config TDP",
+    "defaultValue": "[Disable]",
+    "description": "Configuração de TDP (Thermal Design Power).",
+    "risk": "high",
+    "riskReason": "Alterar TDP pode causar superaquecimento ou throttling excessivo"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration",
+    "option": "IOTG Setting",
+    "defaultValue": "[Disable]",
+    "description": "Configuração IOTG (Internet of Things Gateway).",
+    "risk": "low",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration",
+    "option": "Uncore CLR Freq OVRD",
+    "defaultValue": "[Auto]",
+    "description": "Override de frequência do Uncore.",
+    "risk": "high",
+    "riskReason": "Override incorreto causa instabilidade do sistema e possível corrupção"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "EIST (P-states)",
+    "defaultValue": "[Enable]",
+    "description": "Enhanced Intel SpeedStep. Estados de performance do processador.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "Turbo Mode",
+    "defaultValue": "[Enable]",
+    "description": "Habilita o modo Turbo Boost do processador, permitindo que os cores operem acima da frequência base quando há headroom térmico.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "P-state coordination",
+    "defaultValue": "[HW_ALL]",
+    "description": "Coordenação de estados P entre cores.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "SPD",
+    "defaultValue": "[Disable]",
+    "description": "Speed Step P-State Demotion.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "PL2_SAFETY_NET_ENABLE",
+    "defaultValue": "[Enable]",
+    "description": "Habilita rede de segurança PL2.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU P State Control",
+    "option": "Boot performance mode",
+    "defaultValue": "[Max Performance]",
+    "description": "Modo de performance durante o boot.",
+    "risk": "low",
+    "riskReason": "Mudança pode afetar ordem de boot"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU HWPM State Control",
+    "option": "Enable CPU HWPM",
+    "defaultValue": "[Disable]",
+    "description": "Habilita Hardware Power Management da CPU.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU HWPM State Control",
+    "option": "Enable CPU Autonomous Cstate",
+    "defaultValue": "[Disable]",
+    "description": "Habilita estados C autônomos da CPU.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU C State Control",
+    "option": "Package C State limit",
+    "defaultValue": "[C0/C1 state]",
+    "description": "Limite de estado C do pacote do processador.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU C State Control",
+    "option": "CPU C3 report",
+    "defaultValue": "[Enable]",
+    "description": "Reporta estado C3 da CPU ao sistema operacional.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU C State Control",
+    "option": "CPU C6 report",
+    "defaultValue": "[Enable]",
+    "description": "Reporta estado C6 da CPU ao sistema operacional.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Advanced Power Management Configuration > CPU T State Control",
+    "option": "ACPI T-States",
+    "defaultValue": "[Enable]",
+    "description": "Estados de throttling ACPI.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Common RefCode Configuration",
+    "option": "MMIOHBase",
+    "defaultValue": "[56T]",
+    "description": "Base de MMIO High.",
+    "risk": "high",
+    "riskReason": "Configuração incorreta impede boot ou causa conflitos de hardware"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Common RefCode Configuration",
+    "option": "MMIO High Size",
+    "defaultValue": "[256G]",
+    "description": "Tamanho de MMIO High.",
+    "risk": "high",
+    "riskReason": "Valor incompatível causa falha de boot ou instabilidade"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Common RefCode Configuration",
+    "option": "Isoc Mode",
+    "defaultValue": "[Auto]",
+    "description": "Modo Isoc.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Common RefCode Configuration",
+    "option": "MeSeg Mode",
+    "defaultValue": "[Auto]",
+    "description": "Modo MeSeg.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Common RefCode Configuration",
+    "option": "Numa",
+    "defaultValue": "[Enable]",
+    "description": "Habilita Non-Uniform Memory Access.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Memory Configuration",
+    "option": "Memory Frequency",
+    "defaultValue": "[Auto]",
+    "description": "Define a frequência de operação da memória RAM. Alterar manualmente pode causar instabilidade se não compatível com o hardware.",
+    "risk": "high",
+    "riskReason": "Overclock incorreto causa crashes, corrupção de dados ou danos físicos"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Memory Configuration",
+    "option": "Enforce POR",
+    "defaultValue": "[Disabled]",
+    "description": "Força Power-On Reset.",
+    "risk": "high",
+    "riskReason": "Pode causar loops de boot ou falha completa de inicialização"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Memory Configuration",
+    "option": "PPR Type",
+    "defaultValue": "[PPR Disabled]",
+    "description": "Tipo de Post Package Repair.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "IntelRCSetup",
+    "submenu": "Memory Configuration",
+    "option": "Memory Type",
+    "defaultValue": "[UDIMMs and RDIMMs]",
+    "description": "Tipo de memória suportada.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  }
+]

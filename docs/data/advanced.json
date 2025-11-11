@@ -1,0 +1,380 @@
+[
+  {
+    "menu": "Advanced",
+    "submenu": "ACPI Settings",
+    "option": "Enable ACPI Auto Configuration",
+    "defaultValue": "[Disabled]",
+    "description": "Permite que a BIOS configure automaticamente as tabelas ACPI do sistema operacional.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "ACPI Settings",
+    "option": "Enable Hibernation",
+    "defaultValue": "[Enabled]",
+    "description": "Controla se o sistema operacional pode usar o modo de hibernação (S4). Requer espaço em disco igual ao tamanho da RAM instalada.",
+    "risk": "low",
+    "riskReason": "Requer espaço em disco; falha pode causar perda de dados"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "ACPI Settings",
+    "option": "Lock Legacy Resources",
+    "defaultValue": "[Disabled]",
+    "description": "Bloqueia recursos legados para evitar conflitos com dispositivos modernos.",
+    "risk": "low",
+    "riskReason": "Pode causar incompatibilidade com hardware legado"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "NCT5532D Super IO Configuration > Serial Port 1 Configuration",
+    "option": "Serial Port",
+    "defaultValue": "[Enabled]",
+    "description": "Habilita ou desabilita a porta serial 1.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "NCT5532D Super IO Configuration > Serial Port 1 Configuration",
+    "option": "Change Settings",
+    "defaultValue": "[Auto]",
+    "description": "Define configurações automáticas ou manuais para a porta serial.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode impedir comunicação serial"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Hardware Monitor > Pc Health Status",
+    "option": "Smart Fan Function",
+    "defaultValue": "[Enabled]",
+    "description": "Habilita controle automático de velocidade dos coolers baseado em temperatura.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
+    "option": "Cpu Fan Mode",
+    "defaultValue": "[SmartFan TM IV Mode]",
+    "description": "Define o modo de controle do cooler da CPU.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar resfriamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
+    "option": "CPU Fan Full Speed Temp",
+    "defaultValue": "70",
+    "description": "Temperatura em que o cooler da CPU opera em velocidade máxima.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar resfriamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
+    "option": "CPU Fan Start Temp Value",
+    "defaultValue": "35",
+    "description": "Temperatura mínima para iniciar o cooler da CPU.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar resfriamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
+    "option": "CPU Fan Start PWM Value",
+    "defaultValue": "120",
+    "description": "Valor PWM inicial do cooler da CPU.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar resfriamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "RTC Wakeup Configuration",
+    "option": "Wakeup By RTC",
+    "defaultValue": "[Disabled]",
+    "description": "Permite que o sistema seja acordado por alarme do relógio em tempo real (RTC).",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "Network Stack Configuration",
+    "option": "Network Stack",
+    "defaultValue": "[Disabled]",
+    "description": "Habilita a pilha de rede UEFI para boot via rede (PXE).",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "CSM Support",
+    "defaultValue": "[Enabled]",
+    "description": "Compatibility Support Module. Permite boot de sistemas legados (não-UEFI).",
+    "risk": "low",
+    "riskReason": "Mudança pode impedir boot de sistemas legados"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "Boot option filter",
+    "defaultValue": "[UEFI and Legacy]",
+    "description": "Define quais tipos de boot são permitidos.",
+    "risk": "low",
+    "riskReason": "Mudança pode afetar ordem de boot"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "Option ROM execution",
+    "defaultValue": "[Do not launch]",
+    "description": "Controla a execução de ROMs de opção de dispositivos PCI.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "Network",
+    "defaultValue": "[Legacy]",
+    "description": "Modo de boot de rede (Legacy ou UEFI).",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "Storage",
+    "defaultValue": "[Legacy]",
+    "description": "Modo de boot de armazenamento (Legacy ou UEFI).",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "CSM Configuration",
+    "option": "Video",
+    "defaultValue": "[Legacy]",
+    "description": "Modo de inicialização de vídeo (Legacy ou UEFI).",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "Legacy USB Support",
+    "defaultValue": "[Enabled]",
+    "description": "Suporte para dispositivos USB legados. Necessário para alguns teclados/mouses antigos.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "XHCI Hand-off",
+    "defaultValue": "[Enabled]",
+    "description": "Transfere controle do USB 3.0 do BIOS para o sistema operacional. Recomendado: Enabled para Windows 10/11 e Linux moderno.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "EHCI Hand-off",
+    "defaultValue": "[Disabled]",
+    "description": "Transfere controle do USB 2.0 do BIOS para o sistema operacional.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "USB Mass Storage Driver Support",
+    "defaultValue": "[Enabled]",
+    "description": "Habilita suporte para dispositivos de armazenamento USB.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "USB transfer time-out",
+    "defaultValue": "[20 sec]",
+    "description": "Timeout para transferências USB.",
+    "risk": "low",
+    "riskReason": "Pode afetar funcionamento de dispositivos USB"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "Device reset time-out",
+    "defaultValue": "[20 sec]",
+    "description": "Timeout para reset de dispositivos USB.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "USB Configuration",
+    "option": "Device power-up delay",
+    "defaultValue": "[Auto]",
+    "description": "Atraso na inicialização de dispositivos USB.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "PCI Latency Timer",
+    "defaultValue": "[32 PCI Bus Clocks]",
+    "description": "Timer de latência do barramento PCI.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "PCI-X Latency Timer",
+    "defaultValue": "[64 PCI Bus Clocks]",
+    "description": "Timer de latência do barramento PCI-X.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "VGA Palette Snoop",
+    "defaultValue": "[Disabled]",
+    "description": "Habilita snooping da paleta VGA para compatibilidade com placas antigas.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "PERR# Generation",
+    "defaultValue": "[Disabled]",
+    "description": "Geração de sinal de erro de paridade PCI.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "SERR# Generation",
+    "defaultValue": "[Disabled]",
+    "description": "Geração de sinal de erro de sistema PCI.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "Above 4G Decoding",
+    "defaultValue": "[Disabled]",
+    "description": "Permite que dispositivos PCIe acessem mais de 4GB de memória. Necessário para GPUs modernas com muita VRAM.",
+    "risk": "low",
+    "riskReason": "Sistemas antigos podem não suportar; pode causar boot failure"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "Re-Size BAR Support",
+    "defaultValue": "[Disabled]",
+    "description": "Suporte para redimensionamento de BAR (Base Address Register) em GPUs modernas.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "SR-IOV Support",
+    "defaultValue": "[Disabled]",
+    "description": "Suporte para Single Root I/O Virtualization.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings",
+    "option": "BME DMA Mitigation",
+    "defaultValue": "[Disabled]",
+    "description": "Mitigação de segurança para DMA (Direct Memory Access).",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Relaxed Ordering",
+    "defaultValue": "[Disabled]",
+    "description": "Permite ordenação relaxada de transações PCIe.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Extended Tag",
+    "defaultValue": "[Disabled]",
+    "description": "Habilita tags estendidos para transações PCIe.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "No Snoop",
+    "defaultValue": "[Enabled]",
+    "description": "Desabilita snooping de cache para melhor performance em alguns cenários.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Maximum Payload",
+    "defaultValue": "[Auto]",
+    "description": "Tamanho máximo de payload para transações PCIe.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Extended Synch",
+    "defaultValue": "[Disabled]",
+    "description": "Sincronização estendida para links PCIe.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Link Training Retry",
+    "defaultValue": "5",
+    "description": "Número de tentativas de treinamento de link PCIe.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Link Training Timeout (uS)",
+    "defaultValue": "1000",
+    "description": "Timeout para treinamento de link PCIe em microsegundos.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar funcionamento"
+  },
+  {
+    "menu": "Advanced",
+    "submenu": "PCI Subsystem Settings > PCI Express Settings",
+    "option": "Restore PCIE Registers",
+    "defaultValue": "[Disabled]",
+    "description": "Restaura registradores PCIe ao reiniciar.",
+    "risk": "low",
+    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
+  }
+]

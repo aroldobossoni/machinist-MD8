@@ -1,0 +1,56 @@
+[
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #1",
+    "defaultValue": "[Device Name]",
+    "description": "Primeira opção de boot. Selecione o dispositivo de armazenamento para boot primário.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #2",
+    "defaultValue": "[Device Name]",
+    "description": "Segunda opção de boot. Dispositivo alternativo caso o primeiro falhe.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #3",
+    "defaultValue": "[Device Name]",
+    "description": "Terceira opção de boot. Dispositivo alternativo adicional.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #4",
+    "defaultValue": "[Device Name]",
+    "description": "Quarta opção de boot.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #5",
+    "defaultValue": "[Device Name]",
+    "description": "Quinta opção de boot.",
+    "risk": "none",
+    "riskReason": null
+  },
+  {
+    "menu": "Boot",
+    "submenu": null,
+    "option": "Boot Option #6",
+    "defaultValue": "[Device Name]",
+    "description": "Sexta opção de boot.",
+    "risk": "none",
+    "riskReason": null
+  }
+]

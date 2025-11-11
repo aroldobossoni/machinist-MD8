@@ -1,0 +1,31 @@
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary Files
+*.tmp
+*.bak
+*.log
+
+# Documentation Build Files
+*.pdf
+
+# Backup Files
+*.backup
+*~backup
+
+# System Files
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
+
+# BIOS Screenshots
+fotos/

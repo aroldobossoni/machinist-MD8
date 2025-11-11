@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machinist MD8 BIOS Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-tertiary: #808080;
+            --border-color: #404040;
+            --accent-color: #4da6ff;
+            --accent-hover: #66b3ff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tema claro */
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e8e8e8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-tertiary: #6a6a6a;
+            --border-color: #d0d0d0;
+            --accent-color: #0066cc;
+            --accent-hover: #0052a3;
+            --success-color: #1e7e34;
+            --warning-color: #d39e00;
+            --danger-color: #bd2130;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            color: var(--text-secondary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-toggle-btn {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--border-color);
+        }
+
+        .theme-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs .separator {
+            margin: 0 0.5rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Table */
+        .table-wrapper {
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+            table-layout: auto; /* Permite dimensionamento dinâmico */
+        }
+
+        thead {
+            background-color: var(--bg-tertiary);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        /* Coluna 1: Sessão/Opção - ajusta ao conteúdo */
+        th:first-child {
+            width: 20%;
+            min-width: 200px;
+        }
+
+        /* Coluna 2: Valor Padrão - compacta */
+        th:nth-child(2) {
+            width: 1%; /* Mínimo possível, expande conforme conteúdo */
+            white-space: nowrap;
+        }
+
+        /* Coluna 3: Descrição - expande ao máximo */
+        th:nth-child(3) {
+            width: auto; /* Pega todo espaço restante */
+            min-width: 300px;
+        }
+
+        /* Coluna 4: Risco - compacta */
+        th:nth-child(4) {
+            width: 1%; /* Mínimo possível */
+            white-space: nowrap;
+        }
+
+        /* Coluna 5: Ações - compacta */
+        th:nth-child(5) {
+            width: 1%; /* Mínimo possível */
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        tbody tr.hidden {
+            display: none;
+        }
+
+        td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+
+        /* Ajustes específicos para células */
+        td:nth-child(2), /* Valor Padrão */
+        td:nth-child(4), /* Risco */
+        td:nth-child(5)  /* Ações */ {
+            white-space: nowrap;
+        }
+
+        td:nth-child(3) { /* Descrição */
+            width: auto;
+        }
+
+        /* Menu Hierarchy */
+        .menu-path {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-path .separator {
+            margin: 0 0.25rem;
+            color: var(--text-tertiary);
+        }
+
+        .option-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        /* Default Value */
+        .default-value {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-color);
+        }
+
+        /* Description */
+        .description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Risk Badge */
+        .risk-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .risk-none {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: var(--success-color);
+        }
+
+        .risk-low {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: var(--warning-color);
+        }
+
+        .risk-high {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: var(--danger-color);
+        }
+
+        .risk-reason {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* AI Button */
+        .ai-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .ai-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <h1>🖥️ Machinist MD8 BIOS Wiki</h1>
+                <p>Documentação completa de todas as opções da BIOS</p>
+            </div>
+            <div class="theme-toggle">
+                <button class="theme-toggle-btn" id="promptTemplateBtn" title="Editar template da pergunta padrão">
+                    <span class="theme-icon">✏️</span>
+                    <span>Editar pergunta feita para a IA</span>
+                </button>
+                <button class="theme-toggle-btn" id="themeToggle" title="Alternar tema">
+                    <span class="theme-icon" id="themeIcon">🌙</span>
+                    <span id="themeLabel">Tema Escuro</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" id="breadcrumbs">
+            <a href="#" onclick="filterByMenu('all'); return false;">Início</a>
+        </nav>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label>Menu</label>
+                <select id="menuFilter">
+                    <option value="all">Todos</option>
+                    <option value="Main">Main</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="IntelRCSetup">IntelRCSetup</option>
+                    <option value="Security">Security</option>
+                    <option value="Boot">Boot</option>
+                    <option value="Save & Exit">Save & Exit</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Buscar opção</label>
+                <input type="text" id="searchFilter" placeholder="Digite o nome da opção...">
+            </div>
+            <div class="filter-group">
+                <label>Risco</label>
+                <select id="riskFilter">
+                    <option value="all">Todos</option>
+                    <option value="none">Nenhum</option>
+                    <option value="low">Baixo</option>
+                    <option value="high">Alto</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sessão / Opção</th>
+                        <th>Valor Padrão</th>
+                        <th>Descrição</th>
+                        <th>Risco</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // BIOS Options Data (will be populated from JSON)
+        let biosOptions = [];
+        let filteredOptions = [];
+
+        // Current filters
+        let currentFilters = {
+            menu: 'all',
+            search: '',
+            risk: 'all'
+        };
+
+        // Load BIOS options from JSON
+        async function loadBIOSOptions() {
+            try {
+                // Carregar índice de arquivos
+                const indexResponse = await fetch('data/index.json');
+                if (!indexResponse.ok) {
+                    throw new Error('Erro ao carregar index.json');
+                }
+                
+                const index = await indexResponse.json();
+                
+                // Carregar todos os arquivos de dados em paralelo
+                const dataPromises = index.dataFiles.map(fileInfo => 
+                    fetch(`data/${fileInfo.file}`).then(r => r.json())
+                );
+                
+                const dataArrays = await Promise.all(dataPromises);
+                
+                // Mesclar todos os arrays em um único array
+                biosOptions = dataArrays.flat();
+                filteredOptions = [...biosOptions];
+                
+                renderTable();
+            } catch (error) {
+                console.error('Erro ao carregar opções:', error);
+                // Fallback: usar dados de exemplo
+                biosOptions = getExampleData();
+                filteredOptions = [...biosOptions];
+                renderTable();
+            }
+        }
+
+        // Example data (fallback)
+        function getExampleData() {
+            return [
+                {
+                    menu: 'Advanced',
+                    submenu: 'ACPI Settings',
+                    option: 'Enable ACPI Auto Configuration',
+                    defaultValue: '[Disabled]',
+                    description: 'Permite que a BIOS configure automaticamente as tabelas ACPI do sistema operacional.',
+                    risk: 'none'
+                },
+                {
+                    menu: 'Advanced',
+                    submenu: 'ACPI Settings',
+                    option: 'Enable Hibernation',
+                    defaultValue: '[Enabled]',
+                    description: 'Controla se o sistema operacional pode usar o modo de hibernação (S4). Requer espaço em disco igual ao tamanho da RAM instalada.',
+                    risk: 'low'
+                },
+                {
+                    menu: 'Advanced',
+                    submenu: 'PCI Subsystem Settings',
+                    option: 'Above 4G Decoding',
+                    defaultValue: '[Disabled]',
+                    description: 'Permite que dispositivos PCIe acessem mais de 4GB de memória. Necessário para GPUs modernas com muita VRAM.',
+                    risk: 'low'
+                },
+                {
+                    menu: 'Advanced',
+                    submenu: 'USB Configuration',
+                    option: 'XHCI Hand-off',
+                    defaultValue: '[Enabled]',
+                    description: 'Transfere controle do USB 3.0 do BIOS para o sistema operacional. Recomendado: Enabled para Windows 10/11 e Linux moderno.',
+                    risk: 'none'
+                },
+                {
+                    menu: 'IntelRCSetup',
+                    submenu: 'Processor Configuration',
+                    option: 'Hyper-Threading [ALL]',
+                    defaultValue: '[Enable]',
+                    description: 'Habilita Hyper-Threading em todos os cores do processador. Melhora performance em aplicações multi-threaded.',
+                    risk: 'none'
+                },
+                {
+                    menu: 'IntelRCSetup',
+                    submenu: 'Memory Configuration',
+                    option: 'Memory Frequency',
+                    defaultValue: '[Auto]',
+                    description: 'Define a frequência de operação da memória RAM. Alterar manualmente pode causar instabilidade se não compatível com o hardware.',
+                    risk: 'high'
+                }
+            ];
+        }
+
+        // Render table
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            filteredOptions.forEach((option, index) => {
+                const tr = document.createElement('tr');
+                tr.dataset.menu = option.menu;
+                tr.dataset.risk = option.risk;
+                tr.dataset.option = option.option.toLowerCase();
+
+                const menuPath = option.submenu 
+                    ? `${option.menu} <span class="separator">›</span> ${option.submenu}`
+                    : option.menu;
+
+                // Build risk cell HTML
+                let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
+                if (option.riskReason) {
+                    riskHtml += `<div class="risk-reason">${option.riskReason}</div>`;
+                }
+
+                tr.innerHTML = `
+                    <td>
+                        <div class="menu-path">${menuPath}</div>
+                        <div class="option-name">${option.option}</div>
+                    </td>
+                    <td>
+                        <span class="default-value">${option.defaultValue || 'N/A'}</span>
+                    </td>
+                    <td>
+                        <div class="description">${option.description || 'Sem descrição disponível.'}</div>
+                    </td>
+                    <td>
+                        ${riskHtml}
+                    </td>
+                    <td>
+                        <button class="ai-btn" data-option="${escapeHtml(option.option)}" data-menu-path="${escapeHtml(menuPath)}" data-default-value="${escapeHtml(option.defaultValue || 'N/A')}">
+                            🔍✨ IA
+                        </button>
+                    </td>
+                `;
+
+                // Add event listener to button
+                const button = tr.querySelector('.ai-btn');
+                button.addEventListener('click', function() {
+                    const optionName = this.dataset.option;
+                    const menuPathValue = this.dataset.menuPath;
+                    const defaultValue = this.dataset.defaultValue;
+                    openGoogleAIDirectly(optionName, menuPathValue, defaultValue);
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getRiskLabel(risk) {
+            const labels = {
+                'none': 'Nenhum',
+                'low': 'Baixo',
+                'high': 'Alto'
+            };
+            return labels[risk] || 'Nenhum';
+        }
+
+        // Filter functions
+        function applyFilters() {
+            filteredOptions = biosOptions.filter(option => {
+                // Menu filter
+                if (currentFilters.menu !== 'all' && option.menu !== currentFilters.menu) {
+                    return false;
+                }
+
+                // Search filter
+                if (currentFilters.search) {
+                    const searchLower = currentFilters.search.toLowerCase();
+                    const searchText = `${option.menu} ${option.submenu || ''} ${option.option}`.toLowerCase();
+                    if (!searchText.includes(searchLower)) {
+                        return false;
+                    }
+                }
+
+                // Risk filter
+                if (currentFilters.risk !== 'all' && option.risk !== currentFilters.risk) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            renderTable();
+            updateBreadcrumbs();
+        }
+
+        function filterByMenu(menu) {
+            currentFilters.menu = menu;
+            document.getElementById('menuFilter').value = menu;
+            applyFilters();
+        }
+
+        // Event listeners
+        document.getElementById('menuFilter').addEventListener('change', (e) => {
+            currentFilters.menu = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('searchFilter').addEventListener('input', (e) => {
+            currentFilters.search = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('riskFilter').addEventListener('change', (e) => {
+            currentFilters.risk = e.target.value;
+            applyFilters();
+        });
+
+        // Breadcrumbs
+        function updateBreadcrumbs() {
+            const breadcrumbs = document.getElementById('breadcrumbs');
+            let html = '<a href="#" onclick="filterByMenu(\'all\'); return false;">Início</a>';
+
+            if (currentFilters.menu !== 'all') {
+                html += ` <span class="separator">›</span> <span>${currentFilters.menu}</span>`;
+            }
+
+            breadcrumbs.innerHTML = html;
+        }
+
+        // Google AI - Popup direto
+        
+        // Template padrão de pergunta
+        let promptTemplate = 'Explique em 25 palavras o que é a opção "{option}" na BIOS da placa mãe Machinist MD8.';
+
+        function openGoogleAIDirectly(optionName, menuPath, defaultValue) {
+            // Gerar pergunta usando template
+            const prompt = promptTemplate.replace('{option}', optionName)
+                                        .replace('{menu}', menuPath)
+                                        .replace('{default}', defaultValue);
+            const encodedPrompt = encodeURIComponent(prompt);
+            const url = `https://www.google.com/search?q=${encodedPrompt}&newwindow=1&udm=50`;
+            
+            // Detectar se é dispositivo móvel
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                           || window.innerWidth <= 768;
+            
+            let width, height, features;
+            
+            if (isMobile) {
+                // Em mobile: usar quase toda a tela
+                width = Math.floor(screen.width * 0.95);
+                height = Math.floor(screen.height * 0.95);
+                
+                features = [
+                    `width=${width}`,
+                    `height=${height}`,
+                    'resizable=yes',
+                    'scrollbars=yes',
+                    'location=yes'
+                ].join(',');
+            } else {
+                // Em desktop: 30% da largura, altura total
+                width = Math.floor(screen.width * 0.3);
+                height = screen.availHeight;
+                
+                // Largura mínima de 400px
+                if (width < 400) {
+                    width = 400;
+                }
+                
+                features = [
+                    `width=${width}`,
+                    `height=${height}`,
+                    'resizable=yes',
+                    'scrollbars=yes'
+                ].join(',');
+            }
+            
+            // Abrir janela popup
+            const popup = window.open(url, 'GoogleSearchAI', features);
+            
+            if (popup) {
+                popup.focus();
+            } else {
+                // Popup bloqueada, abrir em nova aba
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+
+        // Theme management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            let theme;
+            if (savedTheme) {
+                // Usar tema salvo
+                theme = savedTheme;
+            } else if (prefersDark) {
+                // Usar tema escuro se o sistema preferir
+                theme = 'dark';
+            } else {
+                // Usar tema claro por padrão
+                theme = 'light';
+            }
+            
+            setTheme(theme);
+        }
+
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            
+            if (theme === 'light') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Tema Claro';
+            } else {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeLabel.textContent = 'Tema Escuro';
+            }
+            
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        // Event listener para botão de tema
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+        // Detectar mudança de tema do sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Prompt template management
+        function loadPromptTemplate() {
+            const saved = localStorage.getItem('promptTemplate');
+            if (saved) {
+                promptTemplate = saved;
+            }
+        }
+
+        function editPromptTemplate() {
+            const currentTemplate = promptTemplate;
+            const newTemplate = prompt(
+                'Edite o template da pergunta para a IA:\n\n' +
+                'Variáveis disponíveis:\n' +
+                '{option} - Nome da opção\n' +
+                '{menu} - Caminho do menu\n' +
+                '{default} - Valor padrão\n\n' +
+                'Template atual:',
+                currentTemplate
+            );
+
+            if (newTemplate !== null && newTemplate.trim() !== '') {
+                promptTemplate = newTemplate.trim();
+                localStorage.setItem('promptTemplate', promptTemplate);
+                alert('Template atualizado com sucesso!');
+            }
+        }
+
+        // Event listener para botão de editar template
+        document.getElementById('promptTemplateBtn').addEventListener('click', editPromptTemplate);
+
+        // Initialize
+        initTheme();
+        loadPromptTemplate();
+        loadBIOSOptions();
+    </script>
+</body>
+</html>
