@@ -918,15 +918,6 @@
                 <label>Buscar opção</label>
                 <input type="text" id="searchFilter" placeholder="Digite o nome da opção...">
             </div>
-            <div class="filter-group">
-                <label>Risco</label>
-                <select id="riskFilter">
-                    <option value="all">Todos</option>
-                    <option value="none">Nenhum</option>
-                    <option value="low">Baixo</option>
-                    <option value="high">Alto</option>
-                </select>
-            </div>
         </div>
 
         <!-- Table -->
@@ -1155,7 +1146,6 @@
             filteredOptions.forEach((option, index) => {
                 const tr = document.createElement('tr');
                 tr.dataset.menu = option.menu;
-                tr.dataset.risk = option.risk;
                 tr.dataset.option = option.option.toLowerCase();
 
                 // Menu path para exibição (com HTML)
@@ -1230,7 +1220,6 @@
                 const card = document.createElement('div');
                 card.className = 'mobile-card';
                 card.dataset.menu = option.menu;
-                card.dataset.risk = option.risk;
                 card.dataset.option = option.option.toLowerCase();
 
                 const menuPath = option.submenu 
@@ -1334,10 +1323,6 @@
                     }
                 }
 
-                // Risk filter
-                if (currentFilters.risk !== 'all' && option.risk !== currentFilters.risk) {
-                    return false;
-                }
 
                 return true;
             });
@@ -1364,10 +1349,6 @@
             applyFilters();
         });
 
-        document.getElementById('riskFilter').addEventListener('change', (e) => {
-            currentFilters.risk = e.target.value;
-            applyFilters();
-        });
 
         // Breadcrumbs
         function updateBreadcrumbs() {
