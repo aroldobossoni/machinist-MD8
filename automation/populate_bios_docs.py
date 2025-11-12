@@ -96,6 +96,18 @@ def input_with_timeout(prompt, timeout=10, default='s'):
     return result[0]
 
 
+def format_eta(seconds):
+    """Formata segundos em string compacta hh:mm:ss."""
+    seconds = max(0, int(round(seconds)))
+    hours, remainder = divmod(seconds, 3600)
+    minutes, secs = divmod(remainder, 60)
+    if hours > 0:
+        return f"{hours:02d}h{minutes:02d}m"
+    if minutes > 0:
+        return f"{minutes:02d}m{secs:02d}s"
+    return f"{secs:02d}s"
+
+
 def load_hierarchical_json(file_path):
     """Carrega JSON hierárquico"""
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -557,9 +569,18 @@ def main():
         errors = progress.get('errors', []) if progress else []
         
         try:
+            session_start = time.time()
             for idx, option in enumerate(pending_options, 1):
                 print("\n" + "=" * 60)
-                print(f"OPÇÃO #{idx}/{len(pending_options)}: {option['option']}")
+                if idx == 1:
+                    eta_label = "[ETA calculando...] "
+                else:
+                    elapsed = time.time() - session_start
+                    avg_time = elapsed / (idx - 1)
+                    remaining = len(pending_options) - (idx - 1)
+                    eta_seconds = avg_time * remaining
+                    eta_label = f"[ETA {format_eta(eta_seconds)}] "
+                print(f"{eta_label}OPÇÃO #{idx}/{len(pending_options)}: {option['option']}")
                 print("=" * 60)
                 print(f"Arquivo: {option['file']}")
                 print(f"Menu: {option['menu']}")
