@@ -1331,6 +1331,22 @@
                     return false;
                 }
 
+                // Risk filter (baseado em palavras-chave no riskReason)
+                if (currentFilters.risk !== 'all') {
+                    const riskText = (option.riskReason || '').toLowerCase();
+                    const riskMap = {
+                        'critical': 'certamente',
+                        'high': 'alto',
+                        'medium': 'médio',
+                        'low': 'baixo',
+                        'none': 'nenhum'
+                    };
+                    const keyword = riskMap[currentFilters.risk];
+                    if (!riskText.includes(keyword)) {
+                        return false;
+                    }
+                }
+
                 // Search filter
                 if (currentFilters.search) {
                     const searchLower = currentFilters.search.toLowerCase();
@@ -1339,7 +1355,6 @@
                         return false;
                     }
                 }
-
 
                 return true;
             });
