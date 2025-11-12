@@ -1,6 +1,7 @@
 # Arquivos gerados automaticamente
 progress.json
 errors.log
+browser_state.json
 *.png
 *.html
 
