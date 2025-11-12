@@ -81,6 +81,7 @@
             --success-color: #28a745;
             --warning-color: #ffc107;
             --danger-color: #dc3545;
+            --purple-color: #9c27b0;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
@@ -98,6 +99,7 @@
             --success-color: #1e7e34;
             --warning-color: #d39e00;
             --danger-color: #bd2130;
+            --purple-color: #7b1fa2;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
@@ -420,6 +422,31 @@
 
         .risk-reason.risk-none {
             color: var(--text-tertiary);
+        }
+
+        /* Risk Keywords Highlighting */
+        .risk-keyword {
+            font-weight: 600;
+        }
+
+        .risk-keyword.risk-critical {
+            color: var(--purple-color);
+        }
+
+        .risk-keyword.risk-high {
+            color: var(--danger-color);
+        }
+
+        .risk-keyword.risk-medium {
+            color: var(--warning-color);
+        }
+
+        .risk-keyword.risk-low {
+            color: var(--warning-color);
+        }
+
+        .risk-keyword.risk-none {
+            color: var(--success-color);
         }
 
         /* Sources / Referências */
@@ -1181,8 +1208,7 @@
                 // Build risk cell HTML
                 let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
                 if (option.riskReason) {
-                    const riskColorClass = getRiskColorClass(option.riskReason);
-                    riskHtml += `<div class="risk-reason ${riskColorClass}">${option.riskReason}</div>`;
+                    riskHtml += `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
                 }
 
                 // Build sources HTML
@@ -1249,8 +1275,7 @@
                 // Build risk HTML
                 let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
                 if (option.riskReason) {
-                    const riskColorClass = getRiskColorClass(option.riskReason);
-                    riskHtml += `<div class="risk-reason ${riskColorClass}">${option.riskReason}</div>`;
+                    riskHtml += `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
                 }
 
                 // Build sources HTML
@@ -1315,16 +1340,23 @@
             return labels[risk] || 'Nenhum';
         }
 
-        function getRiskColorClass(riskReasonText) {
-            if (!riskReasonText) return 'risk-none';
-            const lower = riskReasonText.toLowerCase();
-            if (lower.includes('alto') || lower.includes('certamente')) 
-                return 'risk-high';
-            if (lower.includes('médio') || lower.includes('medio')) 
-                return 'risk-medium';
-            if (lower.includes('baixo')) 
-                return 'risk-low';
-            return 'risk-none';
+        function highlightRiskKeywords(text) {
+            if (!text) return text;
+
+            const keywords = {
+                'CERTAMENTE': 'critical',
+                'ALTO': 'high',
+                'MÉDIO': 'medium',
+                'BAIXO': 'low',
+                'NENHUM': 'none'
+            };
+
+            let result = text;
+            for (const [keyword, colorClass] of Object.entries(keywords)) {
+                const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                result = result.replace(regex, `<span class="risk-keyword risk-${colorClass}">$&</span>`);
+            }
+            return result;
         }
 
         // Filter functions
@@ -1394,7 +1426,7 @@
         // Google AI - Popup direto
         
         // Template padrão de pergunta
-        let promptTemplate = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NEHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))';
+        let promptTemplate = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))';
 
         function openGoogleAIDirectly(optionName, menuPath, defaultValue) {
             // Gerar pergunta usando template
