@@ -105,16 +105,35 @@ class BIOSTreeParser:
         """Constrói estrutura hierárquica da árvore"""
         root = {'type': 'root', 'children': []}
         stack = [(0, root)]  # (indent_level, node)
+        last_tree_level = 0  # Rastreia o último nível com caracteres de árvore
+        last_tree_spaces = 0  # Rastreia os espaços da última linha com árvore
         
         for line in self.tree_lines:
             if not line.strip():
                 continue
             
-            indent = self.get_indent_level(line)
             item = self.parse_line(line)
             
             if not item:
                 continue
+            
+            # Verifica se a linha tem caracteres de árvore
+            has_tree_chars = any(c in line for c in '│├└')
+            leading_spaces = len(line) - len(line.lstrip())
+            
+            if has_tree_chars:
+                # Linha com caracteres de árvore: usa contagem de caracteres
+                indent = self.get_indent_level(line)
+                last_tree_level = indent
+                last_tree_spaces = leading_spaces
+            else:
+                # Linha só com espaços: calcula nível relativo ao último contexto de árvore
+                # Cada 2 espaços adicionais = +1 nível
+                spaces_above_tree = leading_spaces - last_tree_spaces
+                if spaces_above_tree > 0:
+                    indent = last_tree_level + (spaces_above_tree // 2)
+                else:
+                    indent = last_tree_level
             
             # Encontra o pai correto baseado na indentação
             while len(stack) > 1 and stack[-1][0] >= indent:

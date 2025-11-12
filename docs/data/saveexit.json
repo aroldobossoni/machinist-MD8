@@ -5,129 +5,132 @@
     {
       "type": "section",
       "name": "Save Options",
-      "children": []
-    },
-    {
-      "type": "option",
-      "name": "Save Changes and Exit",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Discard Changes and Exit",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Save Changes and Reset",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Discard Changes and Reset",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Save Changes",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Discard Changes",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "children": [
+        {
+          "type": "option",
+          "name": "Save Changes and Exit",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Discard Changes and Exit",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Save Changes and Reset",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Discard Changes and Reset",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Save Changes",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Discard Changes",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        }
+      ]
     },
     {
       "type": "section",
       "name": "Default Options",
-      "children": []
-    },
-    {
-      "type": "option",
-      "name": "Restore Defaults",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Save as User Defaults",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
-    },
-    {
-      "type": "option",
-      "name": "Restore User Defaults",
-      "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "children": [
+        {
+          "type": "option",
+          "name": "Restore Defaults",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Save as User Defaults",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        },
+        {
+          "type": "option",
+          "name": "Restore User Defaults",
+          "defaultValue": null,
+          "description": "",
+          "riskReason": "",
+          "sources": []
+        }
+      ]
     },
     {
       "type": "section",
       "name": "Boot Override",
-      "children": []
-    },
-    {
-      "type": "info",
-      "name": "UEFI: Built-in EFI Shell",
-      "content": "UEFI: Built-in EFI Shell"
-    },
-    {
-      "type": "info",
-      "name": "UEFI OS (Detected OS Device)",
-      "content": "UEFI OS (Detected OS Device)"
-    },
-    {
-      "type": "info",
-      "name": "sSATA P0: (Detected Device)",
-      "content": "sSATA P0: (Detected Device)"
-    },
-    {
-      "type": "info",
-      "name": "sSATA P1: (Detected Device)",
-      "content": "sSATA P1: (Detected Device)"
-    },
-    {
-      "type": "info",
-      "name": "sSATA P2: (Detected Device)",
-      "content": "sSATA P2: (Detected Device)"
-    },
-    {
-      "type": "info",
-      "name": "sSATA P3: (Detected Device)",
-      "content": "sSATA P3: (Detected Device)"
-    },
-    {
-      "type": "info",
-      "name": "SATA0 P0: (Detected Device)",
-      "content": "SATA0 P0: (Detected Device)"
-    },
-    {
-      "type": "info",
-      "name": "SATA0 P1: (Detected Device)",
-      "content": "SATA0 P1: (Detected Device)"
+      "children": [
+        {
+          "type": "info",
+          "name": "UEFI: Built-in EFI Shell",
+          "content": "UEFI: Built-in EFI Shell"
+        },
+        {
+          "type": "info",
+          "name": "UEFI OS (Detected OS Device)",
+          "content": "UEFI OS (Detected OS Device)"
+        },
+        {
+          "type": "info",
+          "name": "sSATA P0: (Detected Device)",
+          "content": "sSATA P0: (Detected Device)"
+        },
+        {
+          "type": "info",
+          "name": "sSATA P1: (Detected Device)",
+          "content": "sSATA P1: (Detected Device)"
+        },
+        {
+          "type": "info",
+          "name": "sSATA P2: (Detected Device)",
+          "content": "sSATA P2: (Detected Device)"
+        },
+        {
+          "type": "info",
+          "name": "sSATA P3: (Detected Device)",
+          "content": "sSATA P3: (Detected Device)"
+        },
+        {
+          "type": "info",
+          "name": "SATA0 P0: (Detected Device)",
+          "content": "SATA0 P0: (Detected Device)"
+        },
+        {
+          "type": "info",
+          "name": "SATA0 P1: (Detected Device)",
+          "content": "SATA0 P1: (Detected Device)"
+        }
+      ]
     }
   ]
 }
