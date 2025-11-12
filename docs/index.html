@@ -1399,8 +1399,7 @@
         function openGoogleAIDirectly(optionName, menuPath, defaultValue) {
             // Gerar pergunta usando template
             const prompt = promptTemplate.replace('{option}', optionName)
-                                        .replace('{menu}', menuPath)
-                                        .replace('{default}', defaultValue);
+                                        .replace('{menu}', menuPath);
             const encodedPrompt = encodeURIComponent(prompt);
             const url = `https://www.google.com/search?q=${encodedPrompt}&newwindow=1&udm=50`;
             

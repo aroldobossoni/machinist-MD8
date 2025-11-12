@@ -1,6 +1,11 @@
 # setup_venv.ps1
 # Script PowerShell para configurar ambiente virtual
 
+# Configurar encoding UTF-8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+
 Write-Host "=== BIOS Documentation Automation - Setup ===" -ForegroundColor Cyan
 Write-Host ""
 

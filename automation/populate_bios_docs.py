@@ -1,12 +1,19 @@
 # populate_bios_docs.py
 # Script principal para popular documentação BIOS usando Google AI Mode
+# -*- coding: utf-8 -*-
 
 import json
+import sys
+import io
 import time
 import random
 import re
-import sys
 import argparse
+
+# Configurar encoding UTF-8 para stdout/stderr no Windows
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 from pathlib import Path
 from urllib.parse import quote_plus
 from datetime import datetime
@@ -22,13 +29,15 @@ BATCH_SIZE = 20
 BATCH_PAUSE_MIN = 60
 BATCH_PAUSE_MAX = 90
 
+# Caminhos relativos ao diretório raiz do projeto (um nível acima de automation/)
+BASE_DIR = Path(__file__).parent.parent
 JSON_FILES = [
-    'docs/data/main.json',
-    'docs/data/advanced.json',
-    'docs/data/intelrcsetup.json',
-    'docs/data/security.json',
-    'docs/data/boot.json',
-    'docs/data/saveexit.json'
+    BASE_DIR / 'docs/data/main.json',
+    BASE_DIR / 'docs/data/advanced.json',
+    BASE_DIR / 'docs/data/intelrcsetup.json',
+    BASE_DIR / 'docs/data/security.json',
+    BASE_DIR / 'docs/data/boot.json',
+    BASE_DIR / 'docs/data/saveexit.json'
 ]
 
 AUTOMATION_DIR = Path(__file__).parent
@@ -231,57 +240,90 @@ def parse_ai_response(full_text):
     if not full_text:
         return None
     
-    # Normalizar texto (preservar quebras de linha para melhor parsing)
-    text = full_text.strip()
+    # Limpar texto: remover textos da UI do Google
+    text = full_text
     
-    # Encontrar índice de "DESCRIÇÃO"
-    desc_markers = ['DESCRIÇÃO(', 'DESCRIÇÃO:', 'descrição(', 'descrição:']
-    desc_idx = -1
-    desc_marker_len = 0
+    # Remover textos antes da resposta real (tudo antes de "DESCRIÇÃO")
+    desc_start = text.find('DESCRIÇÃO')
+    if desc_start == -1:
+        desc_start = text.lower().find('descrição')
     
-    for marker in desc_markers:
-        idx_lower = text.lower().find(marker.lower())
-        if idx_lower != -1:
-            desc_idx = idx_lower + len(marker)
-            desc_marker_len = len(marker)
+    if desc_start != -1:
+        text = text[desc_start:]
+    
+    # Remover textos após a resposta (texto de rodapé do Google)
+    end_markers = [
+        'A IA pode cometer erros',
+        'Agradecemos a colaboração',
+        ' sites BIOS',  # Quando começa a aparecer links
+        'Mostrar tudo',
+        'Dispensar'
+    ]
+    
+    for marker in end_markers:
+        idx = text.find(marker)
+        if idx != -1:
+            text = text[:idx]
             break
     
-    if desc_idx == -1:
+    # Normalizar: remover bullets (•) e normalizar espaços
+    text = text.replace('•', '')
+    text = ' '.join(text.split())
+    
+    # Extrair DESCRIÇÃO - captura até encontrar "RISCO"
+    # Padrão: DESCRIÇÃO (texto dentro de parênteses): CONTEÚDO_AQUI RISCO
+    desc_pattern = r'DESCRIÇÃO\s*\([^)]+\)\s*:\s*(.+?)(?=\s+RISCO\s*\(|$)'
+    desc_match = re.search(desc_pattern, text, re.IGNORECASE)
+    
+    if not desc_match:
+        print(f"[DEBUG] Nao encontrou DESCRIÇAO no texto limpo")
+        print(f"[DEBUG] Primeiros 200 chars: {text[:200]}")
         return None
     
-    # Encontrar índice de "RISCO"
-    risk_markers = ['RISCO:', 'risco:']
-    risk_idx = -1
-    risk_marker_len = 0
+    description = desc_match.group(1).strip()
     
-    for marker in risk_markers:
-        idx_lower = text.lower().find(marker.lower(), desc_idx)
-        if idx_lower != -1:
-            risk_idx = idx_lower + len(marker)
-            risk_marker_len = len(marker)
-            break
+    # Extrair RISCO - captura até encontrar "GRAU DE RISCO"
+    risk_pattern = r'RISCO\s*\([^)]+\)\s*:\s*(.+?)(?=\s+GRAU\s+DE\s+RISCO|$)'
+    risk_match = re.search(risk_pattern, text, re.IGNORECASE)
     
-    if risk_idx == -1:
-        return None
+    risk_text = ""
+    if risk_match:
+        risk_text = risk_match.group(1).strip()
     
-    # Extrair DESCRIÇÃO (entre DESCRIÇÃO e RISCO)
-    description = text[desc_idx:risk_idx - risk_marker_len].strip()
+    # Extrair GRAU DE RISCO - pode ter dois formatos:
+    # 1. "GRAU DE RISCO: BAIXO (explicação)"
+    # 2. "GRAU DE RISCO: BAIXO"
+    grade_pattern = r'GRAU\s+DE\s+RISCO\s*:\s*(\w+)(?:\s*\(([^)]+)\))?'
+    grade_match = re.search(grade_pattern, text, re.IGNORECASE)
     
-    # Limpar marcadores extras e parênteses iniciais
-    description = re.sub(r'^\([^)]*\)\s*', '', description)  # Remove "(para que serve, o que faz)"
-    description = re.sub(r'^\w+:\s*', '', description)  # Remove qualquer "label:" restante
-    description = description.strip()
+    grade_text = ""
+    if grade_match:
+        # Pegar o grau (BAIXO, MÉDIO, ALTO, etc)
+        grade_level = grade_match.group(1).strip().upper()
+        # Pegar explicação opcional entre parênteses
+        grade_explanation = grade_match.group(2).strip() if grade_match.group(2) else ""
+        
+        if grade_explanation:
+            grade_text = f"{grade_level} ({grade_explanation})"
+        else:
+            grade_text = grade_level
     
-    # Extrair RISCO completo (até fim do texto)
-    risk_reason = text[risk_idx:].strip()
+    # Combinar GRAU DE RISCO e RISCO em riskReason
+    risk_reason = ""
+    if grade_text:
+        risk_reason = f"GRAU DE RISCO: {grade_text}"
+        if risk_text:
+            risk_reason += f". RISCO: {risk_text}"
+    elif risk_text:
+        risk_reason = f"RISCO: {risk_text}"
     
-    # Garantir que começa com "RISCO:"
-    if not risk_reason.lower().startswith('risco'):
-        risk_reason = 'RISCO: ' + risk_reason
+    # Limpar espaços extras e normalizar
+    description = ' '.join(description.split())
+    risk_reason = ' '.join(risk_reason.split())
     
-    # Limpar espaços múltiplos e quebras de linha excessivas
-    description = re.sub(r'\s+', ' ', description)
-    risk_reason = re.sub(r'\s+', ' ', risk_reason)
+    # Limitar tamanho se necessário (remover se ficar muito longo)
+    if len(description) > 500:
+        description = description[:497] + '...'
     
     return {
         'description': description,
@@ -330,10 +372,11 @@ def update_json_option(json_tree, json_path, updates):
 
 def save_json_files(all_jsons):
     """Salva todos os JSONs modificados"""
-    for file_path, json_data in all_jsons.items():
+    for file_path_str, json_data in all_jsons.items():
+        file_path = Path(file_path_str)
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(json_data, f, ensure_ascii=False, indent=2)
-        print(f"[OK] Salvo: {file_path}")
+        print(f"[OK] Salvo: {file_path.relative_to(BASE_DIR)}")
 
 
 def save_progress(data):
@@ -386,10 +429,10 @@ def main():
     for json_file in JSON_FILES:
         file_path = Path(json_file)
         if file_path.exists():
-            all_jsons[json_file] = load_hierarchical_json(file_path)
-            print(f"  ✓ {json_file}")
+            all_jsons[str(json_file)] = load_hierarchical_json(file_path)
+            print(f"  [OK] {file_path.relative_to(BASE_DIR)}")
         else:
-            print(f"  ✗ {json_file} (não encontrado)")
+            print(f"  [ERRO] {file_path.relative_to(BASE_DIR)} (nao encontrado)")
     
     # Extrair opções pendentes
     print("\n[2/8] Extraindo opções com description vazio...")
@@ -411,10 +454,23 @@ def main():
         if last:
             print(f"  Retomando de: {last.get('file')} > {last.get('option')}")
             # Filtrar opções já processadas
+            found_last = False
             for opt in all_options:
-                if opt['file'] == last.get('file') and opt['option'] == last.get('option'):
-                    break
                 processed.add((opt['file'], opt['option']))
+                if opt['file'] == last.get('file') and opt['option'] == last.get('option'):
+                    found_last = True
+                    break
+            
+            if not found_last:
+                print(f"  [AVISO] Opcao '{last.get('option')}' nao encontrada na lista atual")
+                print(f"  [AVISO] Progresso pode estar desatualizado ou arquivos foram modificados")
+                choice = input("  Continuar do inicio? [S]im / [N]ao (sair): ").lower()
+                if choice == 's' or choice == 'sim':
+                    processed = set()
+                    print(f"  [INFO] Progresso resetado, iniciando do zero")
+                else:
+                    print(f"  [INFO] Operacao cancelada")
+                    return
     
     # Filtrar opções já processadas
     pending_options = [opt for opt in all_options if (opt['file'], opt['option']) not in processed]
@@ -467,6 +523,9 @@ def main():
                     choice = input("[r]etry / [s]kip / [q]uit: ").lower()
                     if choice == 'r':
                         response = fetch_google_ai_response(prompt, page)
+                        if not response:
+                            print(f"[ERRO] Retry também falhou")
+                            continue
                     elif choice == 'q':
                         break
                     else:

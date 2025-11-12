@@ -4,6 +4,38 @@ Script Python para popular automaticamente campos `description`, `riskReason` e 
 
 ## Setup
 
+### Configurar encoding UTF-8 (importante para Windows)
+
+**Opção 1: Configuração temporária (apenas para sessão atual)**
+
+```powershell
+cd automation
+.\set_utf8.ps1
+```
+
+**Opção 2: Configuração permanente no PowerShell**
+
+Adiciona UTF-8 ao perfil do PowerShell para aplicar automaticamente em todas as sessões:
+
+```powershell
+cd automation
+.\configure_utf8_permanent.ps1
+```
+
+Depois, feche e reabra o PowerShell ou execute: `. $PROFILE`
+
+**Opção 3: Configuração no sistema operacional (requer admin)**
+
+Configura UTF-8 como codificação padrão do Windows (recomendado para desenvolvimento):
+
+```powershell
+# Execute PowerShell como Administrador
+cd automation
+.\configure_windows_utf8.ps1
+```
+
+**Nota:** A opção 3 requer reinicialização do Windows para aplicar completamente. As opções 1 e 2 são suficientes para uso dos scripts Python.
+
 ### Criar ambiente virtual (recomendado)
 
 **Opção 1: Usar script de setup automático**

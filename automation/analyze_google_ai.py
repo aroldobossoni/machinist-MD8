@@ -1,5 +1,14 @@
 # analyze_google_ai.py
 # Script para analisar estrutura HTML do Google AI Mode
+# -*- coding: utf-8 -*-
+
+import sys
+import io
+
+# Configurar encoding UTF-8 para stdout/stderr no Windows
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 from playwright.sync_api import sync_playwright
 import time
