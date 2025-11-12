@@ -168,6 +168,9 @@ def fetch_google_ai_response(prompt, page, retry_count=3):
                 print(f"[AVISO] Erro ao usar seletor CSS: {e}, usando fallback")
             
             # Fallback: extrair de todo HTML se seletor CSS falhou
+            html = None
+            soup = None
+            
             if not response_text or len(response_text) < 50:
                 html = page.content()
                 soup = BeautifulSoup(html, 'html.parser')
@@ -183,26 +186,23 @@ def fetch_google_ai_response(prompt, page, retry_count=3):
                 
                 print(f"[OK] Resposta extraida via fallback")
             
-            # Buscar links de referência (fontes) no HTML completo
-            if not sources:
+            # Buscar links de referência (fontes) - reusar html/soup se já existe
+            if not html:
                 html = page.content()
                 soup = BeautifulSoup(html, 'html.parser')
-                for link in soup.find_all('a', href=True):
-                    href = link.get('href', '')
-                    if (href.startswith('http') and 
-                        'google.com' not in href and 
-                        'youtube.com' not in href and
-                        len(href) < 200):
-                        sources.append(href)
+            
+            for link in soup.find_all('a', href=True):
+                href = link.get('href', '')
+                if (href.startswith('http') and 
+                    'google.com' not in href and 
+                    'youtube.com' not in href and
+                    len(href) < 200):
+                    sources.append(href)
             
             if response_text:
-                # Limpar texto extraído
-                lines = [line.strip() for line in response_text.split('\n') if line.strip()]
-                response_text = '\n'.join(lines)
-                
                 return {
                     'full_text': response_text.strip(),
-                    'sources': list(set(sources))[:5]  # Limitar a 5 fontes únicas
+                    'sources': list(set(sources))[:5]
                 }
             
             # Se não encontrou resposta, tentar novamente
@@ -402,11 +402,10 @@ def main():
             # Filtrar opções já processadas
             found_last = False
             for opt in all_options:
+                processed.add((opt['file'], opt['option']))
                 if opt['file'] == last.get('file') and opt['option'] == last.get('option'):
                     found_last = True
-                    processed.add((opt['file'], opt['option']))  # Adicionar a última também
                     break
-                processed.add((opt['file'], opt['option']))  # Adicionar apenas opções anteriores
             
             if not found_last:
                 print(f"  [AVISO] Opcao '{last.get('option')}' nao encontrada na lista atual")
@@ -596,4 +595,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
