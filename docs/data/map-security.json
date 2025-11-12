@@ -1,0 +1,61 @@
+{
+  "type": "submenu",
+  "name": "Security",
+  "children": [
+    {
+      "type": "section",
+      "name": "Password Description",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "If ONLY the Administrator's password is set, then this only limits",
+      "content": "If ONLY the Administrator's password is set, then this only limits"
+    },
+    {
+      "type": "section",
+      "name": "access to Setup and is only asked for when entering Setup.",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "If ONLY the User's password is set, then this is a power on password",
+      "content": "If ONLY the User's password is set, then this is a power on password"
+    },
+    {
+      "type": "section",
+      "name": "and must be entered to boot or enter Setup. In Setup the User will",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "have Administrator rights.",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "Password Length Range",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "Minimum length: 3",
+      "content": "Minimum length: 3"
+    },
+    {
+      "type": "info",
+      "name": "Maximum length: 20",
+      "content": "Maximum length: 20"
+    },
+    {
+      "type": "option",
+      "name": "Administrator Password",
+      "defaultValue": null
+    },
+    {
+      "type": "option",
+      "name": "User Password",
+      "defaultValue": null
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "type": "submenu",
+  "name": "Advanced",
+  "children": [
+    {
+      "type": "submenu",
+      "name": "ACPI Settings",
+      "children": [
+        {
+          "type": "option",
+          "name": "Enable ACPI Auto Configuration",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "Enable Hibernation",
+          "defaultValue": "[Enabled]"
+        },
+        {
+          "type": "option",
+          "name": "Lock Legacy Resources",
+          "defaultValue": "[Disabled]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "NCT5532D Super IO Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "Super IO Chip: NCT5532D",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Serial Port 1 Configuration",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Serial Port",
+          "defaultValue": "[Enabled]"
+        },
+        {
+          "type": "option",
+          "name": "Device Settings",
+          "defaultValue": "IO=3F8h; IRQ=4;"
+        },
+        {
+          "type": "option",
+          "name": "Change Settings",
+          "defaultValue": "[Auto]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Hardware Monitor",
+      "children": [
+        {
+          "type": "section",
+          "name": "Pc Health Status",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Smart Fan Function",
+          "defaultValue": "[Enabled]"
+        },
+        {
+          "type": "submenu",
+          "name": "Smart Fan Mode Configuration",
+          "children": [
+            {
+              "type": "option",
+              "name": "Cpu Fan Mode",
+              "defaultValue": "[SmartFan TM IV Mode]"
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Full Speed Temp",
+              "defaultValue": "70"
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Start Temp Value",
+              "defaultValue": "35"
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Start PWM Value",
+              "defaultValue": "120"
+            },
+            {
+              "type": "section",
+              "name": "Smart Fan IV mode",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "T1:35 Duty:100/255",
+              "content": "T1:35 Duty:100/255"
+            },
+            {
+              "type": "info",
+              "name": "T2:45 Duty:160/255",
+              "content": "T2:45 Duty:160/255"
+            },
+            {
+              "type": "info",
+              "name": "T3:55 Duty:200/255",
+              "content": "T3:55 Duty:200/255"
+            },
+            {
+              "type": "info",
+              "name": "T4:65 Duty:230/255",
+              "content": "T4:65 Duty:230/255"
+            },
+            {
+              "type": "info",
+              "name": "Critical:70 Duty:100%",
+              "content": "Critical:70 Duty:100%"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "Sensors (readings)",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "CPU Temperature: (current value)",
+          "content": "CPU Temperature: (current value)"
+        },
+        {
+          "type": "info",
+          "name": "CPU Fan1 Speed: (current RPM)",
+          "content": "CPU Fan1 Speed: (current RPM)"
+        },
+        {
+          "type": "info",
+          "name": "CPU Fan2 Speed: (current RPM)",
+          "content": "CPU Fan2 Speed: (current RPM)"
+        },
+        {
+          "type": "info",
+          "name": "VDIMM: (current voltage)",
+          "content": "VDIMM: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "+12V: (current voltage)",
+          "content": "+12V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VCC3V: (current voltage)",
+          "content": "VCC3V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VSB3V: (current voltage)",
+          "content": "VSB3V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VBAT: (current voltage)",
+          "content": "VBAT: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VTT: (current voltage)",
+          "content": "VTT: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "AVCC: (current voltage)",
+          "content": "AVCC: (current voltage)"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "RTC Wakeup Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "Wakeup By RTC",
+          "defaultValue": "[Disabled]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "iSCSI Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "iSCSI Initiator Name: (IQN)",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Add an Attempt",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Delete Attempts",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Change Attempt Order",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Realtek PCIe GBE Family Controller 1",
+      "children": [
+        {
+          "type": "section",
+          "name": "Driver Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Driver Name: Realtek UEFI UNDI Driver",
+          "content": "Driver Name: Realtek UEFI UNDI Driver"
+        },
+        {
+          "type": "info",
+          "name": "Driver Version: X.XXX",
+          "content": "Driver Version: X.XXX"
+        },
+        {
+          "type": "info",
+          "name": "Driver Released Date: (Date)",
+          "content": "Driver Released Date: (Date)"
+        },
+        {
+          "type": "section",
+          "name": "Device Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Device Name: Realtek PCIe GBE Family",
+          "content": "Device Name: Realtek PCIe GBE Family"
+        },
+        {
+          "type": "info",
+          "name": "PCI Slot: XX:XX:XX",
+          "content": "PCI Slot: XX:XX:XX"
+        },
+        {
+          "type": "info",
+          "name": "MAC Address: XX:XX:XX:XX:XX:XX",
+          "content": "MAC Address: XX:XX:XX:XX:XX:XX"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Realtek PCIe GBE Family Controller 2",
+      "children": [
+        {
+          "type": "section",
+          "name": "Driver Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Driver Name: Realtek UEFI UNDI Driver",
+          "content": "Driver Name: Realtek UEFI UNDI Driver"
+        },
+        {
+          "type": "info",
+          "name": "Driver Version: X.XXX",
+          "content": "Driver Version: X.XXX"
+        },
+        {
+          "type": "info",
+          "name": "Driver Released Date: (Date)",
+          "content": "Driver Released Date: (Date)"
+        },
+        {
+          "type": "section",
+          "name": "Device Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Device Name: Realtek PCIe GBE Family",
+          "content": "Device Name: Realtek PCIe GBE Family"
+        },
+        {
+          "type": "info",
+          "name": "PCI Slot: XX:XX:XX",
+          "content": "PCI Slot: XX:XX:XX"
+        },
+        {
+          "type": "info",
+          "name": "MAC Address: XX:XX:XX:XX:XX:XX",
+          "content": "MAC Address: XX:XX:XX:XX:XX:XX"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "PCI Subsystem Settings",
+      "children": [
+        {
+          "type": "section",
+          "name": "PCI Bus Driver Version: (version)",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "PCI Devices Common Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "PCI Latency Timer",
+          "defaultValue": "[32 PCI Bus Clocks]"
+        },
+        {
+          "type": "option",
+          "name": "PCI-X Latency Timer",
+          "defaultValue": "[64 PCI Bus Clocks]"
+        },
+        {
+          "type": "option",
+          "name": "VGA Palette Snoop",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "PERR# Generation",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "SERR# Generation",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "Above 4G Decoding",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "Re-Size BAR Support",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "SR-IOV Support",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "BME DMA Mitigation",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "submenu",
+          "name": "PCI Express Settings",
+          "children": [
+            {
+              "type": "section",
+              "name": "PCI Express Device Register Settings",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Relaxed Ordering",
+              "defaultValue": "[Disabled]"
+            },
+            {
+              "type": "option",
+              "name": "Extended Tag",
+              "defaultValue": "[Disabled]"
+            },
+            {
+              "type": "option",
+              "name": "No Snoop",
+              "defaultValue": "[Enabled]"
+            },
+            {
+              "type": "option",
+              "name": "Maximum Payload",
+              "defaultValue": "[Auto]"
+            },
+            {
+              "type": "section",
+              "name": "PCI Express Link Register Settings",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Extended Synch",
+              "defaultValue": "[Disabled]"
+            },
+            {
+              "type": "option",
+              "name": "Link Training Retry",
+              "defaultValue": "[5]"
+            },
+            {
+              "type": "option",
+              "name": "Link Training Timeout (uS)",
+              "defaultValue": "[1000]"
+            },
+            {
+              "type": "option",
+              "name": "Restore PCIE Registers",
+              "defaultValue": "[Disabled]"
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "PCI Express GEN 2 Settings",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "PCI Express GEN2 Device Register Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Completion Timeout",
+          "defaultValue": "[Default]"
+        },
+        {
+          "type": "option",
+          "name": "ARI Forwarding",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "AtomicOp Requester Enable",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "AtomicOp Egress Blocking",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "IDO Request Enable",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "IDO Completion Enable",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "LTR Mechanism Enable",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "End-End TLP Prefix Blocking",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "section",
+          "name": "PCI Express GEN2 Link Register Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Clock Power Management",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "Compliance SOS",
+          "defaultValue": "[Disabled]"
+        },
+        {
+          "type": "option",
+          "name": "Hardware Autonomous Width",
+          "defaultValue": "[Enabled]"
+        },
+        {
+          "type": "option",
+          "name": "Hardware Autonomous Speed",
+          "defaultValue": "[Enabled]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Network Stack Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "Network Stack",
+          "defaultValue": "[Disabled]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "CSM Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "CSM Support",
+          "defaultValue": "[Enabled]"
+        },
+        {
+          "type": "option",
+          "name": "Boot option filter",
+          "defaultValue": "[UEFI and Legacy]"
+        },
+        {
+          "type": "option",
+          "name": "Option ROM execution",
+          "defaultValue": "[Do not launch]"
+        },
+        {
+          "type": "option",
+          "name": "Network",
+          "defaultValue": "[Legacy]"
+        },
+        {
+          "type": "option",
+          "name": "Storage",
+          "defaultValue": "[Legacy]"
+        },
+        {
+          "type": "option",
+          "name": "Video",
+          "defaultValue": "[Legacy]"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "NVMe Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "NVMe controller and Drive information",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "(displays connected NVMe devices)",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "USB Configuration",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "USB Information",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "USB Module Version: 11",
+      "content": "USB Module Version: 11"
+    },
+    {
+      "type": "info",
+      "name": "USB Controllers: 2 EHCIs, 1 XHCI",
+      "content": "USB Controllers: 2 EHCIs, 1 XHCI"
+    },
+    {
+      "type": "info",
+      "name": "USB Devices: (detected devices)",
+      "content": "USB Devices: (detected devices)"
+    },
+    {
+      "type": "option",
+      "name": "Legacy USB Support",
+      "defaultValue": "[Enabled]"
+    },
+    {
+      "type": "option",
+      "name": "XHCI Hand-off",
+      "defaultValue": "[Enabled]"
+    },
+    {
+      "type": "option",
+      "name": "EHCI Hand-off",
+      "defaultValue": "[Disabled]"
+    },
+    {
+      "type": "option",
+      "name": "USB Mass Storage Driver Support",
+      "defaultValue": "[Enabled]"
+    },
+    {
+      "type": "section",
+      "name": "USB hardware delays and time-outs",
+      "children": []
+    },
+    {
+      "type": "option",
+      "name": "USB transfer time-out",
+      "defaultValue": "[20 sec]"
+    },
+    {
+      "type": "option",
+      "name": "Device reset time-out",
+      "defaultValue": "[20 sec]"
+    },
+    {
+      "type": "option",
+      "name": "Device power-up delay",
+      "defaultValue": "[Auto]"
+    }
+  ]
+}
