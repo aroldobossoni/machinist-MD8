@@ -236,50 +236,80 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
 
 
 def parse_ai_response(full_text):
-    """Parse da resposta da IA extraindo DESCRIÇÃO e RISCO+GRAU"""
+    """Parse da resposta da IA extraindo DESCRIÇÃO e RISCO+GRAU (v2: linha por linha)"""
     if not full_text:
         return None
     
-    # Remover textos antes de "DESCRIÇÃO"
-    desc_start = full_text.find('DESCRIÇÃO')
-    if desc_start == -1:
-        return None
+    lines = full_text.split('\n')
     
-    # Remover textos após "A IA pode cometer erros"
-    end_idx = full_text.find('A IA pode cometer erros')
-    if end_idx == -1:
-        end_idx = len(full_text)
+    description = ""
+    risk_text = ""
+    grade_text = ""
     
-    text = full_text[desc_start:end_idx].strip()
+    current_section = None
     
-    # Extrair DESCRIÇÃO (aceita com ou sem parênteses)
-    desc_pattern = r'DESCRIÇÃO(?:\s*\([^)]+\))?\s*:\s*([^\n]+(?:\n(?!RISCO)[^\n]+)*)'
-    desc_match = re.search(desc_pattern, text, re.IGNORECASE)
-
-    if not desc_match:
-        return None
+    for line in lines:
+        line = line.strip()
+        
+        # Identifica seções
+        if line.startswith('DESCRIÇÃO'):
+            current_section = 'description'
+            # Pega o texto após os dois pontos
+            if ':' in line:
+                content = line.split(':', 1)[1].strip()
+                description = content
+            continue
+        
+        elif line.startswith('RISCO'):
+            current_section = 'risk'
+            # Pega o texto após os dois pontos, removendo prompts entre parênteses
+            if ':' in line:
+                content = line.split(':', 1)[1].strip()
+                # Remove parênteses de prompt no início
+                content = re.sub(r'^\([^)]+\)\s*', '', content)
+                risk_text = content
+            continue
+        
+        elif line.startswith('GRAU DE RISCO') or line.startswith('GRAU'):
+            current_section = 'grade'
+            # Pega o texto após os dois pontos
+            if ':' in line:
+                content = line.split(':', 1)[1].strip()
+                grade_text = content
+            continue
+        
+        elif line.startswith('A IA pode cometer'):
+            # Fim da resposta útil
+            break
+        
+        # Continua acumulando texto da seção atual
+        elif current_section and line:
+            if current_section == 'description':
+                description += ' ' + line
+            elif current_section == 'risk':
+                # Não acumula linhas adicionais no risk se começarem com parênteses de prompt
+                if not line.startswith('('):
+                    risk_text += ' ' + line
+            elif current_section == 'grade':
+                grade_text += ' ' + line
     
-    description = desc_match.group(1).strip()
-    
-    # Extrair RISCO (aceita com ou sem parênteses)
-    risk_pattern = r'RISCO(?:\s*\([^)]+\))?\s*:\s*([^\n]+(?:\n(?!GRAU\s+DE\s+RISCO)[^\n]+)*)'
-    risk_match = re.search(risk_pattern, text, re.IGNORECASE)
-    
-    risk_text = risk_match.group(1).strip() if risk_match else ""
-    
-    # Extrair GRAU DE RISCO (linha após "GRAU DE RISCO:")
-    grade_pattern = r'GRAU\s+DE\s+RISCO\s*:\s*([^\n]+(?:\n(?!A\s+IA)[^\n]+)*)'
-    grade_match = re.search(grade_pattern, text, re.IGNORECASE)
-    
-    grade_text = grade_match.group(1).strip() if grade_match else ""
-    
-    # Limpar espaços extras
-    description = ' '.join(description.split())
-    risk_text = ' '.join(risk_text.split())
-    grade_text = ' '.join(grade_text.split())
+    # Limpar textos
+    description = ' '.join(description.split()).strip()
+    risk_text = ' '.join(risk_text.split()).strip()
+    risk_text = risk_text.lstrip(')').lstrip()  # Remove ") " do início (prompt residual)
+    risk_text = risk_text.rstrip('.')
+    grade_text = ' '.join(grade_text.split()).strip()
+    grade_text = grade_text.rstrip('.')
     
     # Montar riskReason
-    risk_reason = f"{grade_text}. {risk_text}" if grade_text and risk_text else (grade_text or risk_text)
+    if grade_text and risk_text:
+        risk_reason = f"{grade_text}. {risk_text}"
+    elif grade_text:
+        risk_reason = grade_text
+    else:
+        risk_reason = risk_text
+    
+    risk_reason = ' '.join(risk_reason.split()).strip()  # Limpa espaços duplos
     
     return {
         'description': description,
