@@ -360,13 +360,18 @@ def update_json_option(json_tree, json_path, updates):
     return json_tree
 
 
+def save_json_file(file_path_str, json_data):
+    """Salva um único arquivo JSON"""
+    file_path = Path(file_path_str)
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=2)
+    print(f"[SAVE] {file_path.relative_to(BASE_DIR)}")
+
+
 def save_json_files(all_jsons):
     """Salva todos os JSONs modificados"""
     for file_path_str, json_data in all_jsons.items():
-        file_path = Path(file_path_str)
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
-        print(f"[OK] Salvo: {file_path.relative_to(BASE_DIR)}")
+        save_json_file(file_path_str, json_data)
 
 
 def save_progress(data):
@@ -599,6 +604,9 @@ def main():
                     updates
                 )
                 
+                # Salvar arquivo JSON imediatamente
+                save_json_file(option['file'], all_jsons[option['file']])
+                
                 # Salvar progresso
                 total_processed += 1
                 progress_data = {
@@ -636,9 +644,8 @@ def main():
             context.close()
             browser.close()
     
-    # Salvar todos os JSONs
-    print("\n[6/8] Salvando JSONs modificados...")
-    save_json_files(all_jsons)
+    # JSONs já foram salvos incrementalmente
+    print("\n[6/8] JSONs salvos incrementalmente (após cada opção)")
     
     # Relatório final
     print("\n" + "=" * 60)
