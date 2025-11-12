@@ -67,12 +67,14 @@ def beep_alert():
     """Emite alerta sonoro"""
     if SOUND_AVAILABLE:
         try:
-            # Beep de 800Hz por 500ms (Windows)
-            winsound.Beep(800, 500)
-        except:
-            print('\a')  # Fallback: beep do sistema
+            pattern = [(1400, 700), (900, 500), (1400, 700)]
+            for freq, duration in pattern:
+                winsound.Beep(freq, duration)
+                time.sleep(0.1)
+        except Exception:
+            print('\a' * 3)
     else:
-        print('\a')  # Fallback: beep do sistema
+        print('\a' * 3)
 
 
 def input_with_timeout(prompt, timeout=10, default='s'):
@@ -577,7 +579,7 @@ def main():
                 else:
                     elapsed = time.time() - session_start
                     avg_time = elapsed / (idx - 1)
-                    remaining = len(pending_options) - idx
+                    remaining = len(pending_options) - (idx - 1)
                     eta_seconds = avg_time * remaining
                     eta_label = f"[ETA {format_eta(eta_seconds)}] "
                 print(f"{eta_label}OPÇÃO #{idx}/{len(pending_options)}: {option['option']}")
