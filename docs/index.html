@@ -1125,8 +1125,14 @@
                 tr.dataset.risk = option.risk;
                 tr.dataset.option = option.option.toLowerCase();
 
-                const menuPath = option.submenu 
+                // Menu path para exibição (com HTML)
+                const menuPathHTML = option.submenu 
                     ? `${option.menu} <span class="separator">›</span> ${option.submenu}`
+                    : option.menu;
+                
+                // Menu path para dados (sem HTML, texto puro)
+                const menuPathText = option.submenu 
+                    ? `${option.menu} › ${option.submenu}`
                     : option.menu;
 
                 // Build risk cell HTML
@@ -1137,7 +1143,7 @@
 
                 tr.innerHTML = `
                     <td>
-                        <div class="menu-path">${menuPath}</div>
+                        <div class="menu-path">${menuPathHTML}</div>
                         <div class="option-name">${option.option}</div>
                     </td>
                     <td>
@@ -1150,7 +1156,7 @@
                         ${riskHtml}
                     </td>
                     <td>
-                        <button class="ai-btn" data-option="${escapeHtml(option.option)}" data-menu-path="${escapeHtml(menuPath)}" data-default-value="${escapeHtml(option.defaultValue || 'N/A')}">
+                        <button class="ai-btn" data-option="${escapeHtml(option.option)}" data-menu-path="${escapeHtml(menuPathText)}" data-default-value="${escapeHtml(option.defaultValue || 'N/A')}">
                             🔍✨ IA
                         </button>
                     </td>

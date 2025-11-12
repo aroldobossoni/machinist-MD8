@@ -46,6 +46,7 @@ Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para padrões técnicos e processo d
 - Correções de classificação de risco
 - Tradução para inglês
 - Melhorias na interface web
+- Melhorar aparencia da caixa de pergunta a IA
 
 ## 💝 Apoie
 
