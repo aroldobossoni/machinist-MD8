@@ -204,7 +204,7 @@ Potential areas for expansion:
 ### File Roles
 - `README.md` - User-facing documentation
 - `AGENTS.md` - This file, for AI agents
-- `BIOS_MENU_MAP.md` - Complete BIOS structure
+- `BIOS_MENU_MAP.md` - Complete BIOS structure, está verificado e completo
 - `fotos/*.jpg` - Source screenshots
 
 ### Key Commands
