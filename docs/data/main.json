@@ -72,7 +72,7 @@
       "name": "System Date",
       "defaultValue": "[MM/DD/YYYY]",
       "description": "Define a data do relógio de tempo real (RTC) do sistema. Crucial para o funcionamento do sistema operacional e aplicativos, não afeta o POST.",
-      "riskReason": "NENHUM.. Nenhum. Mudar a data não impede o POST ou o boot do sistema.",
+      "riskReason": "NENHUM Mudar a data não impede o POST ou o boot do sistema.",
       "sources": [
         "https://manuals.plus/giada/ib3-281-3-5-inch-sbc-embedded-motherboard-manual"
       ]

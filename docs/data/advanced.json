@@ -746,9 +746,12 @@
           "type": "option",
           "name": "Video",
           "defaultValue": "[Legacy]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define qual placa (integrada, se disponível, ou dedicada) será inicializada primeiro ou se ambas serão consideradas para compatibilidade legada (CSM). Ajuda na compatibilidade com sistemas operacionais ou hardware de vídeo antigos.",
+          "riskReason": "MÉDIO (se configurado incorretamente, pode impedir a visualização do POST ou do sistema operacional até que seja reajustado no BIOS). Pode causar travamento se a configuração escolhida não for compatível com o hardware de vídeo instalado ou com o modo de boot (UEFI/CSM) do sistema operacional",
+          "sources": [
+            "https://computertechnicians.au/what-is-csm-support-how-to-enable-or-disable-this-boot-option/#:~:text=Let's%20break%20it%20down%20in,can't%20handle%20UEFI%20boot.",
+            "https://serverspace.io/support/glossary/csm/#:~:text=The%20CSM%20serves%20multiple%20purposes,is%20standard%20in%20older%20systems."
+          ]
         }
       ]
     },
@@ -797,32 +800,42 @@
       "type": "option",
       "name": "Legacy USB Support",
       "defaultValue": "[Enabled]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Permite que dispositivos USB (teclado, mouse) funcionem em sistemas operacionais antigos ou durante o POST/BIOS, emulando portas PS/2 para compatibilidade.",
+      "riskReason": "BAIXO (problema raro, geralmente resolvido desligando o dispositivo conflitante ou usando um teclado PS/2 temporariamente). Sim, se houver conflito com certos dispositivos (ex: leitores de cartão), pode impedir o POST",
+      "sources": [
+        "https://www.oreilly.com/library/view/pc-hacks/0596007485/ch01s09.html#:~:text=The%20Legacy%20USB%20setting%20tells,PS/2%2Dport%20devices."
+      ]
     },
     {
       "type": "option",
       "name": "XHCI Hand-off",
       "defaultValue": "[Enabled]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Permite que o sistema operacional (SO) gerencie nativamente as portas USB 3.0. É crucial manter ativado (Enabled) para sistemas operacionais modernos (Windows 10/11, Linux) que possuem drivers USB 3.0 nativos, garantindo que as portas funcionem em velocidade total. Desativar fará as portas funcionarem como USB 2.0 (compatibilidade legada).",
+      "riskReason": "BAIXO (para sistemas modernos com a configuração padrão \"Ativado\"). (40 palavras). Não deve causar travamento de POST (Power-On Self Test) em sistemas modernos. O risco está mais relacionado à funcionalidade USB após o POST se a configuração estiver incorreta para o SO utilizado",
+      "sources": [
+        "https://forum-en.msi.com/index.php?threads/b650-tomahawk-wifi-question-about-bios-settings-xhci-hand-off-and-legacy-usb-support.394039/#:~:text=XHCI%20Hand%2Doff%20%5BDisabled%5D,L",
+        "https://www.reddit.com/r/computers/comments/yyt9vi/bios_with_xhci_handoff_enabled_by_default_and/?tl=pt-br",
+        "https://www.reddit.com/r/computers/comments/yyt9vi/bios_with_xhci_handoff_enabled_by_default_and/#:~:text=Comments%20Section,%E2%80%A2%209mo%20ago"
+      ]
     },
     {
       "type": "option",
       "name": "EHCI Hand-off",
       "defaultValue": "[Disabled]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Permite que o sistema operacional gerencie diretamente os controladores USB 2.0 (EHCI). Deve ser ativada se o sistema operacional não iniciar corretamente sem essa transferência de controle.",
+      "riskReason": "BAIXO. Pode causar falha na detecção de dispositivos USB (como teclado) se o sistema operacional não carregar os drivers rapidamente, mas geralmente não trava o POST (Power-On Self Test)",
+      "sources": [
+        "https://www.reddit.com/r/computers/comments/yyt9vi/bios_with_xhci_handoff_enabled_by_default_and/?tl=pt-br",
+        "https://www.reddit.com/r/computers/comments/yyt9vi/bios_with_xhci_handoff_enabled_by_default_and/#:~:text=Comments%20Section,port%20controller%20that%20supports%20USB3.",
+        "https://superuser.com/questions/770198/should-i-enabled-or-disable-xhci-hand-off-in-bios-setup-when-running-windows-7#:~:text=I%20found%20an%20interesting%20bug,ports%20until%20I%20found%20that."
+      ]
     },
     {
       "type": "option",
       "name": "USB Mass Storage Driver Support",
       "defaultValue": "[Enabled]",
-      "description": "",
-      "riskReason": "",
+      "description": "Habilita o suporte de drivers básicos para dispositivos de armazenamento USB (pen drives, HDs externos) durante o POST e no ambiente de setup da BIOS, permitindo a inicialização (boot) a partir deles.",
+      "riskReason": "BAIXO (facilmente reversível no setup da BIOS). Se desabilitada, o boot via USB pode falhar",
       "sources": []
     },
     {
@@ -834,25 +847,28 @@
       "type": "option",
       "name": "USB transfer time-out",
       "defaultValue": "[20 sec]",
-      "description": "",
-      "riskReason": "",
+      "description": "Define o tempo máximo (em milissegundos) que o sistema aguarda por resposta de um dispositivo USB durante o POST.",
+      "riskReason": "BAIXO (se configurado incorretamente, é geralmente recuperável redefinindo a BIOS). [1] Nota: A informação é genérica para BIOS, não específica da placa-mãe Machinist, pois detalhes exatos de menus podem variar. Pode causar travamento do POST ou falha ao inicializar de dispositivos USB se o valor for muito baixo para dispositivos lentos",
       "sources": []
     },
     {
       "type": "option",
       "name": "Device reset time-out",
       "defaultValue": "[20 sec]",
-      "description": "",
-      "riskReason": "",
+      "description": "Define o tempo máximo de espera (em milissegundos) para que um dispositivo PCIe ou USB responda após um comando de reinicialização durante o POST.",
+      "riskReason": "MÉDIO. Ajustes inadequados podem impedir a inicialização normal do sistema. Sim. Se o valor for muito baixo para dispositivos lentos, o POST pode falhar",
       "sources": []
     },
     {
       "type": "option",
       "name": "Device power-up delay",
       "defaultValue": "[Auto]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Adiciona um atraso intencional na inicialização do sistema após pressionar o botão de ligar. Isso permite que todos os componentes e periféricos recebam energia e se estabilizem antes do início do POST, auxiliando na compatabilidade com fontes ou dispositivos específicos.",
+      "riskReason": "BAIXO (Configurações inadequadas de tempo podem, teoricamente, impactar a sequência de inicialização, mas é improvável que cause danos permanentes ou travamentos irrecuperáveis, geralmente basta reverter a configuração). Não causa travamento se configurado corretamente. É uma função normal da BIOS",
+      "sources": [
+        "https://support.hp.com/hr-en/document/ish_8946784-8946860-16#:~:text=On%20some%20HP%20Workstations%2C%20there,complete%20its%20initial%20integrity%20checks.",
+        "https://www.reddit.com/r/buildapc/comments/lb4ljg/a_56_sec_delay_after_pressing_the_power_button/#:~:text=SamJRT97,down%20by%20the%20IO%20plate."
+      ]
     }
   ]
 }

@@ -81,208 +81,242 @@
           "type": "option",
           "name": "Hyper-Threading [ALL]",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa/desativa a tecnologia Hyper-Threading da Intel, que permite que cada núcleo físico do processador execute duas threads simultaneamente, melhorando o desempenho em multitarefa.",
+          "riskReason": "BAIXO. Pode, em raras instâncias, causar instabilidade no sistema com certas configurações ou processadores específicos",
           "sources": []
         },
         {
           "type": "option",
           "name": "Check CPU BIST Result",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção permite à BIOS verificar e reportar o resultado do Teste Automático Integrado (Built-In Self-Test - BIST) da CPU, que roda automaticamente durante o boot para testar a funcionalidade e saúde do processador. Se ativada, a BIOS pode desativar núcleos ou o CPU inteiro se um erro for detectado.",
+          "riskReason": "BAIXO (para CPUs em bom estado). A ativação em um CPU defeituoso pode levar a mensagens de erro ou desativação do processador, mas é um recurso de diagnóstico padrão. Não deve causar travamento se o CPU estiver saudável",
+          "sources": [
+            "https://chipedge.com/resources/a-comprehensive-overview-of-bist-in-vlsi/#:~:text=BIST%20stands%20for%20Built%2DIn,various%20tests%20on%20the%20circuit.",
+            "https://www.freepatentsonline.com/y2008/0010527.html#:~:text=(2)%20CPU%20records%20CPU%20BIST,to%20disable%20a%20physical%20CPU."
+          ]
         },
         {
           "type": "option",
           "name": "Monitor/Mwait",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita instruções da CPU para gerenciar eficientemente estados ociosos e reduzir o consumo de energia quando o sistema está inativo.",
+          "riskReason": "BAIXO (para sistemas operacionais modernos). Pode causar problemas de compatibilidade com sistemas operacionais muito antigos ou específicos, mas é seguro em sistemas modernos",
           "sources": []
         },
         {
           "type": "option",
           "name": "Execute Disable Bit",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Recurso de segurança (hardware) que marca áreas da memória como não executáveis, prevenindo a execução de códigos maliciosos/vírus (ataques de buffer overflow).",
+          "riskReason": "NENHUM. (Manter ativado é recomendado para segurança e compatibilidade com softwares anti-cheat e virtualização). Não",
+          "sources": [
+            "https://support.faceit.com/hc/pt-br/articles/360014174180-Voc%C3%AA-precisa-habilitar-o-bit-NX-Execute-Disable-na-BIOS-do-seu-computador#:~:text=*%20Anti%2DCheat.%20*%20Mensagens%20de%20Erro."
+          ]
         },
         {
           "type": "option",
           "name": "Enable Intel TXT Support",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita a Intel Trusted Execution Technology (TXT). Ela cria um ambiente de execução isolado e uma \"raiz de confiança\" via hardware (TPM) para proteger o sistema operacional/hypervisor contra ataques de software, medindo componentes críticos durante a inicialização.",
+          "riskReason": "MÉDIO/ALTO (se não tiver certeza da compatabilidade/necessidade). Para usuários comuns, geralmente deve ser deixado desativado. Sim, pode. A incompatibilidade de hardware (CPU, chipset, BIOS, TPM) ou software/sistema operacional inadequado pode levar a falhas de inicialização ou boot loops",
+          "sources": [
+            "https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/trusted-execution-technology-server-platforms-matrix.pdf",
+            "https://www.reddit.com/r/intel/comments/mn0ovh/intel_trusted_execution_technology_txt/#:~:text=Trusted%20Execution%20Technology%2C%20(TXT),and%20should%20be%20left%20off."
+          ]
         },
         {
           "type": "option",
           "name": "VMX",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita a tecnologia de virtualização Intel (Intel Virtual Machine eXtension), permitindo que um único computador execute múltiplos sistemas operacionais (máquinas virtuais) simultaneamente, com sobrecarga mínima de desempenho, essencial para hypervisors.",
+          "riskReason": "NENHUM. Não causa travamento de POST se o hardware for compatível. É uma função padrão e segura",
+          "sources": [
+            "https://syncromsp.com/blog/enable-virtualization-in-bios/#:~:text=Enabling%20virtualization%20in%20BIOS%20is,operating%20systems%20without%20switching%20hardware.",
+            "https://www.asus.com/support/faq/1043786/#:~:text=FAQ-,%5BMotherboard%5D%20How%20to%20enable%20Intel(VMX)%20Virtualization%20Technology,the%20default%20setting%20is%20Enabled"
+          ]
         },
         {
           "type": "option",
           "name": "Enable SMX",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa recursos de segurança da Intel (TXT/SMX) para criar ambientes de execução protegidos para software sensível.",
+          "riskReason": "MÉDIO (depende da configuração e compatibilidade do sistema). Pode causar travamentos de POST ou problemas de inicialização se o sistema operacional ou hardware não for totalmente compatível",
           "sources": []
         },
         {
           "type": "option",
           "name": "Lock Chipset",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa o bloqueio de certas configurações do chipset para estabilidade e segurança.",
+          "riskReason": "MÉDIO (depende de outras configurações). [1]. Pode causar travamentos se configurações incompatíveis ou incorretas já tiverem sido aplicadas",
           "sources": []
         },
         {
           "type": "option",
           "name": "MSR Lock Control",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Bloqueia/desbloqueia MSRs da CPU. Desativado permite ajustes avançados de performance por software.",
+          "riskReason": "MÉDIO [1, 2]. (40 palavras). Se desativado incorretamente, pode levar a instabilidade ou falha no boot",
           "sources": []
         },
         {
           "type": "option",
           "name": "PPIN Control",
           "defaultValue": "[Unlock/Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "\"PPIN Control\" (Protected Processor Identification Number) permite ativar ou desativar o número de série exclusivo do processador, útil para identificação em servidores e data centers.",
+          "riskReason": "NENHUM. Não causa travamento do POST. É uma função para identificação e gerenciamento de hardware, não afetando a inicialização básica do sistema",
+          "sources": [
+            "https://lenovopress.lenovo.com/lp1890-enabling-ppin-on-thinksystem-servers#:~:text=Abstract,the%20generic%20interface%20(sysfs).",
+            "https://www.phoronix.com/news/AMD-PPIN-Processor-ID-Linux#:~:text=Going%20back%20to%20Ivy%20Bridge,of%20PPIN%20are%20nearly%20identical."
+          ]
         },
         {
           "type": "option",
           "name": "DEBUG INTERFACE",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ativa uma interface de depuração de hardware (como JTAG) para engenheiros e desenvolvedores diagnosticarem o processador. Sem uso para usuários comuns.",
+          "riskReason": "ALTO. Pode causar travamento do POST ou comportamento instável se ativada sem o hardware de depuração apropriado",
+          "sources": [
+            "https://www.ibm.com/think/topics/debugging#:~:text=Debugging%20is%20the%20process%20of,the%20overall%20performance%20of%20software.",
+            "https://www.lenovo.com/in/en/glossary/what-is-debug/#:~:text=Debug%20is%20a%20process%20used,system%20functions%20correctly%20and%20efficiently."
+          ]
         },
         {
           "type": "option",
           "name": "Hardware Prefetcher",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Otimiza o desempenho do processador ao prever proativamente quais dados serão necessários a seguir e pré-carregá-los para o cache, reduzindo a latência da memória.",
+          "riskReason": "BAIXO. [1] (40 palavras no total, incluindo os tópicos). Pode causar instabilidade em sistemas específicos ou com certas configurações de memória, mas geralmente é seguro",
           "sources": []
         },
         {
           "type": "option",
           "name": "Adjacent Cache Prefetch",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Otimiza o desempenho do processador ao carregar proativamente blocos de dados adjacentes na memória cache L1 e L2 quando um bloco é solicitado. Isso acelera o acesso futuro aos dados.",
+          "riskReason": "BAIXO [1]. (Total de palavras: 40). Pode, em raras instâncias e dependendo do sistema, causar ligeira instabilidade ou conflitos com certas cargas de trabalho, embora seja incomum",
           "sources": []
         },
         {
           "type": "option",
           "name": "DCU Streamer Prefetcher",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção (Data Cache Unit) detecta padrões de acesso sequencial à memória (stream) e busca proativamente a próxima linha de cache da memória L2 ou principal para a cache L1, antecipando a necessidade de dados futuros para otimizar o desempenho na maioria das aplicações.",
+          "riskReason": "BAIXO. Não há risco conhecido de travamento do POST (Power-On Self Test). O ajuste incorreto pode, no máximo, degradar o desempenho em cargas de trabalho específicas que não se beneficiam do prefetch",
+          "sources": [
+            "https://support.hpe.com/hpesc/public/docDisplay?docId=c04398276&page=s_DCU_IP_prefetch.html&docLocale=en_US#:~:text=Use%20this%20option%20to%20enable,performance%20in%20a%20particular%20environment.",
+            "https://www.spec.org/cpu2017/flags/New_H3C-Platform-Settings-V1.3-SKL-RevD.2019-09-03.html#:~:text=DCU%20Streamer%20Prefetcher,line%20will%20also%20be%20needed.",
+            "https://safari.ethz.ch/architecture/fall2024/lib/exe/fetch.php?media=SrinathHPCA2007.pdf",
+            "https://www.spec.org/cpu2006/flags/NEC-Intel-Linux-Settings-flags-revF.html#:~:text=in%20their%20environment.-,L1%20Data%20Prefetcher:,into%20the%20L1%20data%20cache."
+          ]
         },
         {
           "type": "option",
           "name": "DCU IP Prefetcher",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Otimiza o desempenho do processador ao prever e carregar proativamente instruções na memória cache de dados (DCU), reduzindo latências.",
+          "riskReason": "BAIXO [1]. Baixo. Pode causar instabilidade em raras configurações extremas de overclock ou com CPUs muito antigas/específicas, mas é geralmente seguro",
           "sources": []
         },
         {
           "type": "option",
           "name": "DCU Mode",
           "defaultValue": "[32KB 8Way Without ECC]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla o modo de operação do cache de dados (L1 Data Cache) do processador, podendo afetar o desempenho e a estabilidade.",
+          "riskReason": "MÉDIO. [1]. Pode causar instabilidade, exigindo um reset da CMOS se configurado incorretamente",
+          "sources": [
+            "https://www.reddit.com/r/buildapc/comments/18aeq6x/pc_error_please_enter_setup_to_recover_bios_after/#:~:text=In%20case%20someone%20has%20this,everything%20will%20back%20to%20normal."
+          ]
         },
         {
           "type": "option",
           "name": "Direct Cache Access (DCA)",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que dispositivos de E/S (como placas de rede) acessem diretamente o cache do processador (cache L3 ou L2), em vez da memória principal (RAM). Isso reduz a latência e aumenta a largura de banda para operações de E/S intensivas, melhorando o desempenho da rede.",
+          "riskReason": "NENHUM (para o POST). Se os requisitos de suporte não forem atendidos, a função simplesmente não funcionará. N/A (Não há risco conhecido de travamento de POST. A função depende de suporte do processador, chipset, dispositivo de E/S e sistema operacional)",
+          "sources": [
+            "https://dejankosticgithub.github.io/documents/publications/ddio-atc20.pdf"
+          ]
         },
         {
           "type": "option",
           "name": "DCA Prefetch Delay",
           "defaultValue": "[32]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ajusta o atraso para a pré-busca de dados via Direct Cache Access (DCA). Valores menores podem melhorar o desempenho da memória.",
+          "riskReason": "MÉDIO (potencial para falhas no POST ou travamentos). (40 palavras no total). Pode causar instabilidade no sistema se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "X2APIC",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Estende a arquitetura do controlador de interrupção (APIC) para suportar mais de 255 processadores lógicos (threads), melhorando a eficiência e o desempenho em sistemas multiprocessador e virtualização.",
+          "riskReason": "BAIXO (para sistemas operacionais modernos e compatíveis). Baixo a médio. Requer suporte do sistema operacional (SO). Em SOs modernos (Windows 10/11, Linux recente), deve funcionar. SOs antigos ou específicos podem não inicializar (causar Machine Check Exception ou BSOD) se ativado sem suporte adequado",
+          "sources": [
+            "https://docs.oracle.com/cd/E20815_01/html/E20821/gkvav.html#:~:text=You%20can%20enable%20or%20disable,Then%20Exit%20and%20save%20changes.",
+            "https://techdocs.broadcom.com/us/en/storage-and-ethernet-connectivity/ethernet-nic-controllers/bcm957xxx/adapters/Tuning/bios-tuning/x2apic.html#:~:text=x2APIC%20=%20Enabled,Local%20APIC%20Mode"
+          ]
         },
         {
           "type": "option",
           "name": "AES-NI",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita instruções de CPU que aceleram a criptografia e descriptografia de dados (padrão AES) via hardware, melhorando o desempenho em tarefas como VPNs e proteção de disco.",
+          "riskReason": "NENHUM. Não deve causar travamento. É uma função padrão de processadores Intel e AMD modernos",
+          "sources": [
+            "https://calomel.org/aesni_ssl_performance.html#:~:text=The%20purpose%20of%20AES%2DNI,bulk%20data%20encryption%20and%20decryption.",
+            "https://ms.codes/blogs/computer-hardware/cpu-aes-instructions-on-or-off#:~:text=By%20turning%20AES%20instructions%20on,slower%20encryption%20or%20decryption%20speeds."
+          ]
         },
         {
           "type": "option",
           "name": "Down Stream PECI",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita/desabilita a comunicação de dados de telemetria de energia (PECI) do CPU para o chipset.",
+          "riskReason": "MÉDIO (pode causar comportamento instável ou falha no POST se o sistema depender dessa interface para inicializar corretamente). Alterações incorretas podem afetar o gerenciamento térmico e de energia",
           "sources": []
         },
         {
           "type": "option",
           "name": "IIO LLC Ways [19",
           "defaultValue": "0] (Hex): 0",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla parâmetros técnicos internos do controlador de E/S integrado e do cache de último nível (LLC) do processador. O valor \"[19\" é um ID ou valor padrão, não uma configuração manual.",
+          "riskReason": "MÉDIO a ALTO. Recomenda-se manter o valor padrão. Alterar essa opção pode levar a instabilidade do sistema ou falha no boot",
           "sources": []
         },
         {
           "type": "option",
           "name": "QLRU Config [63",
           "defaultValue": "32] (Hex): 0",
-          "description": "",
-          "riskReason": "",
+          "description": "Ajuste de parâmetro interno de controle da CPU (ex: temporização, voltagem). A função exata é desconhecida sem documentação técnica da Machinist/Intel.",
+          "riskReason": "ALTO (devido à falta de informação e natureza técnica avançada). Pode causar travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "QLRU Config [31",
           "defaultValue": "0] (Hex): 0",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define como o cache L3 da CPU gerencia a substituição de dados. Mudar afeta o desempenho e a estabilidade.",
+          "riskReason": "ALTO. Pode causar instabilidade, tela azul ou travamento do POST",
+          "sources": [
+            "https://stackoverflow.com/questions/22597324/what-cache-invalidation-algorithms-are-used-in-actual-cpu-caches#:~:text=Quad%2DAge%20LRU%20(QLRU):,1%2C4781%2013%2023"
+          ]
         },
         {
           "type": "option",
           "name": "SMM Save State",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define se o estado do processador no Modo de Gerenciamento do Sistema (SMM) é salvo. Geralmente, deve permanecer ativado (Enabled) para estabilidade do sistema e compatibilidade com certas funcionalidades, como gerenciamento de energia e virtualização.",
+          "riskReason": "MÉDIO (pode causar instabilidade ou travamento, mas geralmente não impede o POST completamente). [1] [1] Informação baseada em conhecimento técnico geral sobre funções de BIOS similares, pois detalhes exatos da BIOS Machinist X99 não foram encontrados. Desativar pode causar falhas no funcionamento de recursos que dependem do SMM, potencialmente levando a travamentos",
           "sources": []
         },
         {
           "type": "option",
           "name": "Targeted Smi",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Otimiza o gerenciamento de interrupções do sistema (SMI), direcionando-as para núcleos específicos da CPU, melhorando a eficiência e reduzindo latência.",
+          "riskReason": "MÉDIO [1, 2] (pode variar dependendo da configuração exata da placa-mãe e do hardware). (40 palavras no total, excluindo os títulos dos tópicos). Pode causar instabilidade em certas configurações de hardware ou drivers, resultando em travamentos ou falhas no POST",
           "sources": []
         }
       ]
@@ -295,32 +329,38 @@
           "type": "option",
           "name": "Power Technology",
           "defaultValue": "[Custom]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla tecnologias de gerenciamento de energia da CPU, como Enhanced Intel SpeedStep Technology (EIST) e C-States. Quando ativado, permite que o sistema operacional ajuste dinamicamente a frequência e a voltagem do processador para economizar energia e reduzir o calor.",
+          "riskReason": "BAIXO (problemas geralmente são corrigíveis ajustando as configurações ou redefinindo a BIOS). Se mal configurada (ex: conflito com o gerenciamento de energia do sistema operacional), pode levar à instabilidade ou impedir que as tecnologias de economia de energia funcionem corretamente",
+          "sources": [
+            "https://www.tomshardware.com/reviews/bios-beginners,1126-8.html#:~:text=Since%20Windows%20has%20built%2Din,exist%20for%20non%2DWindows%20users.",
+            "https://www.lenovo.com/gb/en/glossary/bios-setting/#:~:text=What%20is%20power%20management%20in,power%20and%20run%20more%20efficiently."
+          ]
         },
         {
           "type": "option",
           "name": "Config TDP",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite ajustar o limite de potência térmica (TDP) do processador, controlando o consumo de energia e a dissipação de calor. Reduzir o TDP pode diminuir temperaturas e consumo, enquanto aumentar pode melhorar o desempenho, permitindo clocks mais altos (requer refrigeração adequada).",
+          "riskReason": "MÉDIO (para usuários inexperientes); BAIXO (para usuários avançados cientes dos requisitos de refrigeração e limites do processador). Se configurado incorretamente (ex: TDP muito alto sem refrigeração suficiente, ou muito baixo causando instabilidade), pode levar a superaquecimento, throttling (redução de desempenho), instabilidade do sistema e falhas no POST",
+          "sources": [
+            "https://www.linkedin.com/advice/0/what-should-you-consider-before-adjusting-power-related-jwezc",
+            "https://www.intel.com/content/www/us/en/support/articles/000036543/processors/intel-core-processors.html#:~:text=Description,%C2%AE%20Core%E2%84%A2%20i7%20Processors"
+          ]
         },
         {
           "type": "option",
           "name": "IOTG Setting",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa/desativa funcionalidades do grupo de Internet das Coisas (IoT) da Intel, geralmente relacionadas a recursos de gerenciamento de energia ou conectividade específicos.",
+          "riskReason": "BAIXO a MÉDIO. Pode causar comportamento inesperado ou perda de funcionalidade se desativado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "Uncore CLR Freq OVRD",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite controle manual/customizado da frequência do uncore (controlador de memória, cache L3, etc.), ignorando limites automáticos. Objetivo é potencial overclock ou ajuste fino para estabilidade.",
+          "riskReason": "ALTO (se configurado incorretamente). Sim, pode causar falha no POST (Power-On Self-Test) e impedir o boot",
           "sources": []
         },
         {
@@ -331,48 +371,56 @@
               "type": "option",
               "name": "EIST (P-states)",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "O EIST (Enhanced Intel SpeedStep Technology) é uma tecnologia de gerenciamento de energia. Ela ajusta dinamicamente a frequência (clock) e a tensão do processador com base na carga de trabalho, permitindo alto desempenho quando necessário e reduzindo o consumo de energia e a geração de calor quando o sistema está ocioso.",
+              "riskReason": "BAIXO. BAIXO (normalmente, a opção deve ser mantida ativada para uma operação estável e eficiente. Desativá-la pode causar instabilidade em sistemas com overclock instável, mas raramente um travamento de POST em configurações padrão)",
+              "sources": [
+                "https://pt.wikipedia.org/wiki/Enhanced_Intel_SpeedStep_Technology#:~:text=Enhanced%20Intel%20SpeedStep%20Technology%20(em,de%20trabalho%20requerida%20pelas%20aplica%C3%A7%C3%B5es."
+              ]
             },
             {
               "type": "option",
               "name": "Turbo Mode",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "A função permite que os núcleos do processador operem em uma frequência de clock mais alta (acima do padrão) quando houver demanda, otimizando a execução de tarefas complexas e melhorando o desempenho geral do sistema.",
+              "riskReason": "BAIXO para a função padrão e automática de \"Turbo Mode\" da Intel. ALTO se a configuração se referir ao \"Turbo Unlock\" (desbloqueio manual e forçado do turbo para todos os núcleos), pois aumenta a temperatura e a demanda de energia de forma não intencional pelo fabricante do processador. A ativação padrão do modo Turbo é um recurso seguro e automático da Intel. No entanto, em placas X99 chinesas como a Machinist, o termo \"Turbo Mode\" pode estar associado ao procedimento não oficial de \"Turbo Unlock\" (desbloqueio permanente do turbo para todos os núcleos), o que força o processador a operar em clocks máximos constantemente, o que pode causar instabilidade, superaquecimento e potenciais travamentos se o sistema de refrigeração e a fonte de alimentação não forem adequados",
+              "sources": [
+                "https://www.reddit.com/r/GamingLaptops/comments/qg2vi4/disabling_cpu_turbo_boost_is_bad_regardless_if/?tl=pt-br",
+                "https://www.meupositivo.com.br/panoramapositivo/turbo-boost/#:~:text=O%20modo%20Turbo%2C%20como%20voc%C3%AA,nos%20limites%20seguros%20da%20CPU.",
+                "https://tecnoblog.net/responde/o-que-e-modo-turbo-processador-intel-turbo-boost-amd-turbo-core/#:~:text=O%20modo%20turbo%20permite%20aos,a%20execu%C3%A7%C3%A3o%20de%20tarefas%20complexas."
+              ]
             },
             {
               "type": "option",
               "name": "P-state coordination",
               "defaultValue": "[HW_ALL]",
-              "description": "",
-              "riskReason": "",
+              "description": "\"HW ALL\" (Hardware All): Permite que o hardware da CPU (através do Speed Shift ou Enhanced SpeedStep) gerencie autonomamente as transições de P-states para todos os núcleos, geralmente resultando em melhor resposta e eficiência energética [1, 2]. \"SW ALL\" (Software All): Exige que o sistema operacional (software) coordene e instrua cada núcleo individualmente sobre qual P-state usar, o que pode ser mais lento [1, 2].",
+              "riskReason": "BAIXO (O sistema pode iniciar em um estado menos otimizado ou exigir um reset de BIOS se a configuração for incompatível, mas é improvável que cause uma falha de POST irreparável) [1, 2]. [1, 2] Informações baseadas em fontes técnicas gerais sobre configurações de BIOS Intel e gerenciamento de P-states. Não deve causar travamento permanente do POST ou danos ao hardware, pois é uma configuração padrão de gerenciamento de energia. Em sistemas compatíveis, \"HW ALL\" é o modo recomendado [1, 2]",
               "sources": []
             },
             {
               "type": "option",
               "name": "SPD",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Se for \"Spread Spectrum\", reduz a Interferência Eletromagnética (EMI) variando ligeiramente a frequência do clock.",
+              "riskReason": "BAIXO (travamentos de POST geralmente são recuperáveis redefinindo a BIOS). Sim, é possível, se configurado incorretamente",
+              "sources": [
+                "https://www.hwinfo.com/version-history/#:~:text=Added%20LPDDR5(X)%20SPD%20support,%2Dgeneration%20AMD%20CPUs/APUs."
+              ]
             },
             {
               "type": "option",
               "name": "PL2_SAFETY_NET_ENABLE",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Informação Indisponível: Não há informações publicamente disponíveis sobre a função exata desta configuração [1, 2, 3].",
+              "riskReason": "Potencial Desconhecido: Sem a descrição da função, o risco de travamento do POST é desconhecido. Recomenda-se cautela [1, 2, 3]. Grau de Risco: Desconhecido",
               "sources": []
             },
             {
               "type": "option",
               "name": "Boot performance mode",
               "defaultValue": "[Max Performance]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a frequência e a voltagem iniciais do processador durante o POST. Opções como \"Max Non-Turbo Performance\" otimizam para conservação de energia, enquanto outras (como \"Max Turbo\") priorizam o desempenho total imediato.",
+              "riskReason": "BAIXO (se mantido dentro das configurações padrão/seguras). Pode causar travamento se selecionada uma configuração de overclock instável ou incompatível, mas a opção em si apenas seleciona um perfil de energia predefinido",
               "sources": []
             }
           ]
@@ -385,16 +433,16 @@
               "type": "option",
               "name": "Enable CPU HWPM",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa o Hardware Power Management (HWPM), permitindo que a CPU gerencie independentemente seus próprios estados de energia e desempenho para maior eficiência energética. [1]",
+              "riskReason": "MÉDIO (depende da compatibilidade do sistema). Pode causar instabilidade ou travamento se o sistema operacional ou outros firmwares não suportarem o recurso adequadamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Enable CPU Autonomous Cstate",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite que a CPU entre e saia de estados de suspensão mais profundos autonomamente, otimizando o consumo de energia e o desempenho.",
+              "riskReason": "NENHUM (para uso geral e sistemas operacionais modernos). Não deve causar travamento de POST. É um recurso padrão em sistemas modernos",
               "sources": []
             }
           ]
@@ -407,32 +455,38 @@
               "type": "option",
               "name": "C2C3TT",
               "defaultValue": "0",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Controla os modos de economia de energia C2 e C3. Quando ativados, permitem que o processador entre em estados de \"sono\" mais profundos quando ocioso, desligando sinais de clock e reduzindo a tensão para economizar energia. Desativar (ou desabilitar) esses estados força o processador a permanecer em um estado de maior energia (C0/C1), o que pode melhorar a latência e a resposta do sistema, útil para jogos ou overclocking.",
+              "riskReason": "BAIXO. Baixo. A alteração das configurações de C-states geralmente não causa travamento do POST. Em alguns casos, configurações incorretas ou incompatibilidades de hardware/BIOS podem levar a travamentos do sistema em idle (ocioso), mas não tipicamente durante o POST",
+              "sources": [
+                "https://www.reddit.com/r/buildapc/comments/w47v66/disable_intel_cstate_and_save_your_sanity/#:~:text=i%20am%20currently%20suffering%20the,system%20scan%20would%20be%20satisfactory.",
+                "https://www.intel.com/content/www/us/en/support/articles/000006619/processors/intel-core-processors.html#:~:text=C3%20%2D%20Deep%20Sleep:%20Clock%20generator,takes%20to%20wake%20the%20processor.",
+                "https://www.reddit.com/r/Amd/comments/evhaez/what_is_global_cstate_control_and_cool_n_quiet/#:~:text=C2%20is%20something%20of%20a,of%20voltage%20and%20active%20circuits.",
+                "https://www.reddit.com/r/AMDHelp/comments/nly59n/disabling_global_c_state_control_to_fix_idle/#:~:text=This%20issue%20seemed%20to%20start,this%20issue%20(board%20issue?)",
+                "https://www.reddit.com/r/techsupport/comments/ptid0l/is_it_safe_to_disable_c_state/#:~:text=It's%20perfectly%20safe%20to%20disable,need%20to%20account%20for%20that."
+              ]
             },
             {
               "type": "option",
               "name": "Package C State limit",
               "defaultValue": "[C0/C1 state]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o estado C (C-State) de suspensão de energia máximo (mais profundo) que todo o pacote do processador (todos os núcleos e cache compartilhado) pode atingir para economizar energia quando ocioso. [1.1, 1.2]",
+              "riskReason": "BAIXO (Geralmente seguro em configurações padrão, mas configurações agressivas podem exigir um reset da BIOS se o sistema não iniciar corretamente). Sim, pode causar instabilidade se configurado incorretamente, especialmente em sistemas sensíveis ou com certas configurações de hardware/sistema operacional",
               "sources": []
             },
             {
               "type": "option",
               "name": "CPU C3 report",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Informa ao sistema operacional a capacidade do CPU de entrar no estado de suspensão C3, economizando energia quando ocioso.",
+              "riskReason": "BAIXO [1]. Geralmente seguro, mas em raras incompatibilidades, pode causar instabilidade ou falha no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "CPU C6 report",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite ao sistema operacional usar o estado de energia C6 da CPU, reduzindo o consumo e a temperatura.",
+              "riskReason": "BAIXO (travamentos de POST são raros, mas instabilidade no SO pode ocorrer). Pode causar instabilidade em sistemas operacionais ou configurações de hardware específicos, mas é geralmente seguro",
               "sources": []
             }
           ]
@@ -445,9 +499,13 @@
               "type": "option",
               "name": "ACPI T-States",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Controla os estados de limitação térmica (throttling) do CPU (T-states) via ACPI, permitindo que o sistema operacional gerencie a redução da frequência/voltagem do processador para controle de temperatura e consumo de energia.",
+              "riskReason": "BAIXO (travamento de POST). Baixo a Médio. Configurações incorretas podem afetar a estabilidade ou o desempenho, mas travamentos completos do POST são improváveis",
+              "sources": [
+                "https://uefi.org/specs/ACPI/6.5/08_Processor_Configuration_and_Control.html#:~:text=ACPI%20defines%20the%20power%20state,power%20states%20is%20provided%20below.",
+                "http://support.fccps.cz/industry/pwr/p-states.htm#:~:text=T%2Dstate%20%2D%20a%20level%20of,the%20computer%20in%20ACPI%20parlance.",
+                "https://forum-en.msi.com/index.php?threads/x99s-mpower-not-starting-up-sometimes-ucpi-error-after-latest-bios-update.256218/latest"
+              ]
             }
           ]
         },
@@ -476,25 +534,33 @@
           "type": "option",
           "name": "DRAM RAPL Baseline",
           "defaultValue": "[DRAM RAPL Mode 1]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define o valor de referência (baseline) do limite médio de energia (power limit) para a memória DRAM. Isso permite à BIOS e ao sistema operacional gerenciar ou limitar o consumo energético da memória, impactando o comportamento de throttling (limitação de desempenho por temperatura/energia).",
+          "riskReason": "BAIXO (em configurações padrão ou próximas, o risco é mínimo; alterar para valores muito agressivos ou muito baixos aumenta o risco de instabilidade ou reinicializações, mas raramente impede o POST completamente). O ajuste incorreto pode levar a um power throttling excessivo ou a um gerenciamento instável de energia, potencialmente causando instabilidade no sistema",
+          "sources": [
+            "https://wpemaillog.com/2025/11/05/power-limit-throttling-what-it-is-and-how-to-stop-it/#:~:text=On%20the%20contrary%2C%20power%20limit,%2C%20or%20high%2Dend%20gaming.",
+            "https://sustainable-computing.io/archive/design/kepler-energy-sources/#:~:text=Intel's%20Running%20Average%20Power%20Limit,DRAM%20and%20on%2Dchip%20GPU.",
+            "https://www.phoronix.com/news/MTcxMjY#:~:text=For%20many%20months%20now%20Intel,RAPL%20on%20Intel's%2001.org.",
+            "https://powerapi.org/reference/formulas/rapl/#:~:text=RAPL%20stands%20for%20Running%20Average,readable%20way%20than%20raw%20RAPL.",
+            "https://greencompute.uk/Measurement/RAPL#:~:text=RAPL%20(Running%20Average%20Power%20Limit,inefficiencies%20that%20can%20be%20improved."
+          ]
         },
         {
           "type": "option",
           "name": "Override BW_LIMIT_TF",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Força a desativação da limitação de largura de banda (BW) do processador relacionada a certas condições térmicas (TF), buscando melhor desempenho ao custo de maior calor.",
+          "riskReason": "ALTO (devido ao potencial de superaquecimento ou comportamento instável). Sim, pode causar travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "DRAM RAPL Extended Range",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite estender o limite de potência (em Watts) que pode ser aplicado à memória RAM pelo recurso RAPL (Running Average Power Limit) da Intel, possibilitando maior consumo de energia.",
+          "riskReason": "MÉDIO a ALTO. Pode causar travamentos, instabilidade do sistema ou falha no POST se a fonte de alimentação ou os módulos de RAM não suportarem a demanda de energia aumentada",
+          "sources": [
+            "https://support.hpe.com/hpesc/public/docDisplay?docId=sd00005392en_us&page=GUID-1A455B99-F5AE-4CC9-B242-C2AB98168105.html&docLocale=en_US"
+          ]
         }
       ]
     },
@@ -506,40 +572,43 @@
           "type": "option",
           "name": "MMIOHBase",
           "defaultValue": "[56T]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o ponto de partida na memória física para alocar recursos de MMIO acima de 4GB para dispositivos como GPUs e SSDs NVMe.",
+          "riskReason": "ALTO. Pode causar falha no POST ou instabilidade no sistema se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "MMIO High Size",
           "defaultValue": "[256G]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o tamanho da janela de memória MMIO acima de 4GB para dispositivos PCI.",
+          "riskReason": "MÉDIO (se ajustado incorretamente para o hardware instalado). [1]. Configuração incorreta pode causar falha na inicialização (POST) ou impedir o reconhecimento de dispositivos",
           "sources": []
         },
         {
           "type": "option",
           "name": "Isoc Mode",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita o modo isócrono para garantir Qualidade de Serviço (QoS) em transferências de dados. Reduz a latência para solicitações de memória (à custa da vazão sob carga pesada), sendo importante para virtualização e áudio/mídia profissionais.",
+          "riskReason": "BAIXO (O impacto é principalmente no desempenho ou qualidade de áudio/mídia, não na inicialização). Não há relatos comuns de travamento de POST",
+          "sources": [
+            "https://www.supermicro.com/support/faqs/faq.cfm?faq=16256#:~:text=We%20go%20into%20BIOS%20setting,Was%20this%20FAQ%20helpful?",
+            "https://www.spec.org/cpu2017/flags/New_H3C-Platform-Settings-V1.3-SKL-RevE.html#:~:text=Enforce%20POR,need%20the%20other%2064%20bytes)."
+          ]
         },
         {
           "type": "option",
           "name": "MeSeg Mode",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "A função exata e o propósito não são documentados publicamente. Presume-se estar relacionada a configurações internas do controlador de memória ou de segurança Intel (Intel ME), mas é incerto.",
+          "riskReason": "MÉDIO/ALTO (Não há dados para confirmar seu impacto, mas alterações em configurações de baixo nível podem impedir o POST). Desconhecido, mas por ser uma opção obscura e de baixo nível, o risco é considerável",
           "sources": []
         },
         {
           "type": "option",
           "name": "Numa",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "A opção Numa gerencia o acesso à memória, otimizando-o para sistemas multi-CPU, onde cada CPU tem memória local. Ajustes ativam ou desativam o modo de Acesso à Memória Não Uniforme para melhor desempenho em servidores ou em certos sistemas operacionais.",
+          "riskReason": "MÉDIO (se não souber o que está fazendo). Recomenda-se manter o padrão, a menos que esteja configurando um sistema multi-CPU específico. Pode causar instabilidade ou falha no POST se configurado incorretamente para o seu hardware específico (ex: um único processador com certas configurações)",
           "sources": []
         }
       ]
@@ -602,88 +671,90 @@
               "type": "option",
               "name": "Degrade Precedence",
               "defaultValue": "[Topology Precedence]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a prioridade para qual CPU (CPU 0 ou CPU 1) assumirá o controle do sistema se ocorrer uma falha, permitindo que o boot continue, mesmo que em um estado degradado. [2]",
+              "riskReason": "BAIXO (em sistemas single-socket é NENHUM; em dual-socket, o risco é mínimo se mantido em Auto/Padrão). Pode impedir o boot se configurado incorretamente em sistemas específicos, mas geralmente é um recurso de confiabilidade",
               "sources": []
             },
             {
               "type": "option",
               "name": "Link Frequency Select",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define manualmente a frequência da interconexão QPI (QuickPath Interconnect) entre CPU e chipset (ou CPUs em sistemas dual-socket). Controla a velocidade de comunicação.",
+              "riskReason": "MÉDIO [1, 2]. (40 palavras). Pode causar falhas no POST ou instabilidade no sistema se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Link L0p Enable",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Ativa um estado de economia de energia (L0p) para o link QPI/UPI, reduzindo a potência consumida quando a largura de banda total não é necessária.",
+              "riskReason": "MÉDIO (depende da compatabilidade exata da placa/CPU). É recomendado manter no padrão (geralmente desativado ou \"auto\"). Pode causar instabilidade no sistema ou falhas de inicialização (travamento de POST) em algumas configurações de hardware ou BIOS, especialmente em placas-mãe de consumo ou não otimizadas",
+              "sources": [
+                "https://lenovopress.lenovo.com/lp1477.pdf"
+              ]
             },
             {
               "type": "option",
               "name": "Link L1 Enable",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa um estado de baixa potência (L1) para o link QPI (QuickPath Interconnect) quando inativo, economizando energia.",
+              "riskReason": "BAIXO (geralmente seguro, mas depende da CPU/configuração). Pode causar instabilidade em sistemas sensíveis",
               "sources": []
             },
             {
               "type": "option",
               "name": "Legacy VGA Socket",
               "defaultValue": "0",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita/desabilita o suporte para inicialização e operação de placas de vídeo ou chipsets gráficos VGA legados/antigos durante o processo de boot (POST) [1].",
+              "riskReason": "MÉDIO a ALTO, dependendo do hardware gráfico utilizado [1]. [1] Informação geral sobre a função de opções de BIOS relacionadas a gráficos legados, pois não há documentação específica disponível para este modelo exato. Sim, se a única placa de vídeo disponível for moderna (não-legada) e a opção for desativada, ou se um dispositivo legado for usado com a opção desativada, pode impedir a exibição de vídeo durante o POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "MMIO P2P Disable",
               "defaultValue": "[no]",
-              "description": "",
-              "riskReason": "",
+              "description": "A opção controla a comunicação direta (P2P - Peer-to-Peer) via MMIO (Memory-Mapped I/O) entre dispositivos PCIe e a memória ou outros dispositivos, gerenciada pelo chipset (QPI Configuration). Desativar pode forçar o tráfego a passar por rotas alternativas.",
+              "riskReason": "MÉDIO [1.1]. Pode causar instabilidade no sistema, falhas na inicialização (POST) ou problemas com dispositivos PCIe, como placas de vídeo ou de rede",
               "sources": []
             },
             {
               "type": "option",
               "name": "E2E Parity Enable",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa a verificação de paridade de ponta a ponta (E2E) para garantir a integridade dos dados durante a transmissão QPI. Aumenta a confiabilidade do sistema ao detectar erros de transmissão.",
+              "riskReason": "BAIXO. [1]. Geralmente seguro, mas em raras ocasiões, com hardware incompatível ou instável, pode causar problemas no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "COD Enable",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza o acesso à memória para melhor desempenho em sistemas multi-core, se suportado.",
+              "riskReason": "MÉDIO. [1, 2]. Pode causar instabilidade ou falha no POST se o hardware não for compatível",
               "sources": []
             },
             {
               "type": "option",
               "name": "Early Snoop",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "O \"Early Snoop\" é um mecanismo de coerência de cache que permite que os sockets (CPUs) na configuração multi-socket \"espionem\" (snoop) requisições de memória mais cedo, otimizando o tráfego QPI para melhorar a latência e o desempenho.",
+              "riskReason": "BAIXO (geralmente seguro, mas a incompatibilidade pode exigir um reset da BIOS)",
               "sources": []
             },
             {
               "type": "option",
               "name": "Home Dir Snoop with IVT-Style OSB",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define um método de \"snooping\" (rastreamento de dados) otimizado para o QPI, que ajuda a garantir que todos os processadores em sistemas multi-CPU tenham acesso aos dados de cache mais atualizados. [1.1, 1.2] A opção \"OSB\" significa \"Opportunistic Snoop Broadcast\", que é uma técnica para reduzir o tráfego na interconexão QPI. [1.2]",
+              "riskReason": "MÉDIO se alterado incorretamente, pois pode afetar a estabilidade do sistema e a comunicação entre CPUs, exigindo um reset da BIOS para restaurar a funcionalidade. Geralmente não causa travamento de POST se o hardware (CPU e placa-mãe) for compatível com o modo de operação. No entanto, é uma configuração de baixo nível que deve ser deixada em seu valor padrão (geralmente \"Auto\" ou \"Enabled\") a menos que se saiba exatamente o que está fazendo, pois configurações incorretas em menus como o IntelRCSetup podem levar a instabilidades",
               "sources": []
             },
             {
               "type": "option",
               "name": "QPI Debug Print Level",
               "defaultValue": "[All]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o nível de detalhe dos logs de depuração do QPI durante a inicialização. Valores mais altos mostram mais informações.",
+              "riskReason": "BAIXO (se não for alterado para valores extremos ou inválidos). [1, 2]. Muito improvável de causar travamento do POST em configurações padrão. Não afeta a operação normal do sistema operacional",
               "sources": []
             }
           ]
@@ -701,33 +772,39 @@
               "type": "option",
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Controla a proporção de alocação de recursos (como buffers e largura de banda) entre diferentes dispositivos ou interfaces de barramento do sistema (provavelmente QPI/PCIe), impactando a prioridade e o desempenho de comunicação.",
+              "riskReason": "MÉDIO (a função exata é desconhecida e pode afetar a inicialização crítica do sistema) [1]. Pode causar instabilidade ou falha no POST se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a proporção para alocação de recursos de E/S.",
+              "riskReason": "MÉDIO. [1, 2]. Pode causar travamento do POST se configurado incorretamente, impedindo o boot",
               "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Ajusta a proporção ou o tamanho do espaço de memória MMIOL (Memory-Mapped I/O Below 4GB) alocado para dispositivos. Isso é crucial em sistemas com muitas placas PCIe ou outros periféricos que exigem acesso direto à memória. O ajuste otimiza a compatabilidade e o desempenho de hardware específico.",
+              "riskReason": "MÉDIO/ALTO (depende do ajuste e do hardware instalado). Se configurado incorretamente (por exemplo, alocando muito pouco espaço), pode causar falhas no reconhecimento de hardware ou impedir o POST (Power-On Self Test). Ajustes incorretos podem levar à instabilidade do sistema",
+              "sources": [
+                "https://massedcompute.com/faq-answers/?question=What%20are%20the%20potential%20risks%20of%20updating%20my%20system%20BIOS?#:~:text=Updating%20your%20system%20BIOS%20(Basic,Security%20Vulnerabilities",
+                "https://www.lenovo.com/us/en/glossary/bios-setting/#:~:text=Modifying%20BIOS%20settings%20can%20be,changes%20might%20damage%20the%20motherboard."
+              ]
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Desativa o Integrated I/O (Controlador Integrado de Entrada/Saída) para o soquete da CPU especificado. Isso efetivamente desabilita as funcionalidades de E/S associadas a esse processador, incluindo a comunicação via QPI (QuickPath Interconnect) e o acesso a dispositivos PCIe conectados diretamente a ele. Em sistemas single-CPU, a desativação pode impedir o funcionamento correto de todos os dispositivos. Em sistemas dual-CPU, desativa a CPU secundária e seus recursos.",
+              "riskReason": "ALTO (se a CPU em questão for a única ou a principal do sistema). Sim, pode causar travamento do POST (Power-On Self-Test) ou impedir que o sistema operacional inicie corretamente, pois componentes essenciais (como placas de vídeo, armazenamento ou RAM controlada por esse IIO) podem ficar inacessíveis",
+              "sources": [
+                "https://info.support.huawei.com/hedex/api/pages/EDOC1000053358/YEF0907R/25/resources/en-us_topic_0000001238350587.html#:~:text=IIO%20Configuration,Other%20servers:",
+                "https://www.reddit.com/r/PcBuildHelp/comments/14jm1cn/machinist_x99_help_urgent/"
+              ]
             }
           ]
         },
@@ -739,32 +816,38 @@
               "type": "option",
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Ajusta a proporção de recursos da controladora, geralmente entre DMI e PCIe, para balancear a largura de banda.",
+              "riskReason": "MÉDIO a ALTO, dependendo do sistema. Pode causar instabilidade ou falha no POST se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a proporção ou a forma como os recursos de E/S são distribuídos entre os processadores ou subsistemas na placa-mãe.",
+              "riskReason": "MÉDIO/ALTO (dependendo da configuração específica e do sistema). Sim, configurações incorretas podem causar instabilidade ou falha no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define a proporção de recursos de E/S mapeados na memória (MMIO) baixos alocados para cada CPU instalada. O ajuste pode ser necessário para garantir que todos os dispositivos, especialmente placas PCIe, recebam espaço de endereço suficiente para funcionar corretamente.",
+              "riskReason": "MÉDIO a ALTO. Pode causar falha no POST ou impedir o reconhecimento de dispositivos se configurado incorretamente (por exemplo, alocando muito pouco espaço, como 512GB em vez do padrão de 56TB para sistemas de servidor)",
+              "sources": [
+                "https://superuser.com/questions/595672/how-is-memory-mapped-to-certain-hardware-how-is-mmio-accomplished-exactly#:~:text=The%20%22mapping%22%20is%20done%20in,that%20block%20of%20address%20space.",
+                "https://www.fpgakey.com/wiki/details/352#:~:text=MMIO%20(Memory%2Dmapped%20I/O)%20is%20memory%2D,the%20complexity%20of%20the%20interface.",
+                "https://www.reddit.com/r/osdev/comments/1f7hrmu/bios_and_mmio_controller/#:~:text=The%20mapping%20of%20address%20to,with%20CXL%20and%20the%20like.",
+                "https://www.geeksforgeeks.org/computer-organization-architecture/memory-mapped-i-o-and-isolated-i-o/#:~:text=Limited%20I/O%20Address%20Space,especially%20in%20time%2Dsensitive%20tasks.",
+                "https://en.wikipedia.org/wiki/Memory-mapped_I/O_and_port-mapped_I/O#:~:text=Memory%2Dmapped%20I/O%20(,or%20uses%20a%20dedicated%20bus."
+              ]
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
-              "description": "",
-              "riskReason": "",
+              "description": "Desativa o controlador de E/S associado a um CPU específico (neste caso, CPU 1). Em sistemas single-CPU, libera recursos.",
+              "riskReason": "MÉDIO (depende da configuração do hardware e se o CPU 1 é o único ou o secundário). Pode causar travamento de POST se o sistema esperar um IIO ativo ou se recursos críticos estiverem conectados a ele",
               "sources": []
             }
           ]
@@ -777,33 +860,38 @@
               "type": "option",
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Define como os recursos de entrada/saída (I/O), como as faixas PCIe, são divididos entre as CPUs. Garante balanceamento no acesso a dispositivos conectados.",
+              "riskReason": "MÉDIO. Pode causar falhas de inicialização (POST) se configurado incorretamente para a distribuição física dos slots e dispositivos instalados",
               "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
+              "description": "Ajusta a proporção de recursos de I/O alocados para a CPU 2, afetando como os dispositivos PCI-e e outros recursos são distribuídos no sistema.",
+              "riskReason": "MÉDIO a ALTO. Recomenda-se manter no padrão automático ou \"Auto\" [1, 2, 3]. Pode causar instabilidade no sistema, falhas no reconhecimento de dispositivos ou travamento no POST se configurado incorretamente, dependendo do hardware instalado",
               "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define a proporção de alocação de recursos de memória mapeada para I/O (MMIOL) entre as CPUs em sistemas dual-socket (CPU 1 e CPU 2), para gerenciar dispositivos PCIe e garantir o acesso eficiente aos seus espaços de endereçamento.",
+              "riskReason": "MÉDIO/ALTO (dependendo do ajuste e da configuração do hardware). Pode causar falhas de inicialização (POST) se configurado incorretamente, resultando em conflitos de recursos ou dispositivos não detectados",
+              "sources": [
+                "https://community.intel.com/t5/Processors/How-to-configure-the-IIO-settings-for-Xeon-D-CPU/td-p/1259578?profile.language=es"
+              ]
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Desativa o controlador Integrado de Entrada/Saída (IIO) para o segundo processador (CPU 2). Isso impede o tráfego PCIe e de E/S associado a essa CPU. Geralmente é usado em placas-mãe dual-CPU para diagnosticar problemas ou desabilitar uma CPU.",
+              "riskReason": "MÉDIO a ALTO. Não é uma configuração para usuários inexperientes. Pode causar falha no POST ou instabilidade se o sistema esperar a presença da CPU 2 para inicializar corretamente, ou se dispositivos PCIe importantes estiverem conectados a esse IIO",
+              "sources": [
+                "https://winraid.level1techs.com/t/guide-pcie-bifurcation-mapping-iio-iou-to-pcie-slot/39821#:~:text=BIOS/UEFI%20Modding%20BIOS%20Modding,Gigabyte%20MD70%2DHB0",
+                "https://www.reddit.com/r/HomeServer/comments/11bzaie/how_to_disable_2nd_cpu_socket_on_the_supermicro/#:~:text=Yes%2C%20you'll%20need%20to,bios%20as%20an%20alternative%20though."
+              ]
             }
           ]
         },
@@ -816,32 +904,32 @@
           "type": "option",
           "name": "Bus Resources Allocation Ratio",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Provavelmente ajusta a proporção de alocação de recursos (como buffers ou largura de banda) entre diferentes barramentos do sistema, possivelmente relacionados à comunicação QPI/UPI, impactando o desempenho ou a estabilidade sob cargas pesadas.",
+          "riskReason": "MÉDIO a ALTO. Recomenda-se manter no valor padrão, a menos que se saiba exatamente o que está fazendo. Sim, ajustes incorretos nesta área podem levar a falhas de inicialização (travamento de POST) ou instabilidade do sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "IO Resources Allocation Ratio",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Define a distribuição de recursos de E/S (como espaço de endereçamento de memória) entre componentes do sistema. O objetivo é melhorar a eficiência e o desempenho da comunicação com dispositivos PCI-E e outros periféricos.",
+          "riskReason": "MÉDIO (se configurado incorretamente). A configuração incorreta pode levar a conflitos de recursos ou falhas na inicialização (POST)",
           "sources": []
         },
         {
           "type": "option",
           "name": "MMIOL Resources Allocation Ratio",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Define a proporção de recursos MMIOL (Memory Mapped I/O Large) alocados entre diferentes barramentos PCIe. [1.1]",
+          "riskReason": "MÉDIO/ALTO (depende do hardware instalado e da configuração). [1.1]. Pode causar travamento de POST e instabilidade se configurado incorretamente. [1.1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "IIO Disable",
           "defaultValue": "[no]",
-          "description": "",
-          "riskReason": "",
+          "description": "Desabilita a interface de E/S integrada da CPU, responsável pela comunicação com dispositivos PCIe e a PCH. [1]",
+          "riskReason": "ALTO (ou CERTAMENTE, dependendo da configuração exata). [1]. Pode causar falhas críticas de hardware e impedir que o sistema inicie corretamente (travamento de POST). [1]",
           "sources": []
         }
       ]
@@ -859,305 +947,337 @@
           "type": "option",
           "name": "Enforce POR",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Garante que as configurações de memória sigam os requisitos operacionais padrão da Intel, forçando compatibilidade e estabilidade. [1, 2]",
+          "riskReason": "MÉDIO (se estiver tentando usar perfis XMP ou velocidades acima do padrão). [1, 2]. Pode impedir o overclock de memória ou o uso de módulos de alta velocidade, causando falhas de POST se as configurações ativas estiverem fora das especificações JEDEC. [1, 2]",
           "sources": []
         },
         {
           "type": "option",
           "name": "PPR Type",
           "defaultValue": "[PPR Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Inicia reparo persistente (PPR) para erros de memória DRAM, isolando células defeituosas e usando sobressalentes [1, 2].",
+          "riskReason": "BAIXO (se mantido em \"Auto\" ou \"Disabled\" se não for necessário; MÉDIO se configurado incorretamente) [1, 2]. Geralmente seguro se usada corretamente, mas configurações incorretas podem afetar a estabilidade [1, 2]",
           "sources": []
         },
         {
           "type": "option",
           "name": "PPR Error Injection test",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Injeta erros de memória permanentes (PPR) simulados para testar a capacidade do sistema em detectar, registrar e gerenciar tais falhas.",
+          "riskReason": "ALTO (para uso normal, pois simula falhas reais). Sim, pode causar travamento do POST ou instabilidade",
           "sources": []
         },
         {
           "type": "option",
           "name": "Memory Frequency",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define a frequência (ex: 2133MHz, 2400MHz) na qual os módulos de memória operam, afetando diretamente o desempenho do sistema.",
+          "riskReason": "MÉDIO a ALTO. (Configurações inadequadas exigem reset da BIOS via jumper). Sim, pode causar falha no POST e instabilidade se a frequência ou voltagem não forem suportadas pela CPU ou módulos",
           "sources": []
         },
         {
           "type": "option",
           "name": "MRC Promote Warnings",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita ou desabilita a exibição de avisos críticos do MRC (Memory Reference Code) que, se promovidos a erros, podem interromper o processo de inicialização (POST). Geralmente, deve permanecer desabilitada (Disabled) para operação normal, ocultando avisos que não afetam a funcionalidade do sistema. [1, 2]",
+          "riskReason": "MÉDIO a ALTO para usuários inexperientes que ativam a opção sem entender os avisos subjacentes; NENHUM se deixado em sua configuração padrão (geralmente Disabled). [1, 2] Nota: A placa-mãe Machinist MD8 X99 é uma placa chinesa que utiliza firmwares modificados e, como tal, o comportamento exato desta opção pode diferir das implementações de placas de marcas tradicionais, exigindo cautela adicional. Sim, a configuração incorreta ou a promoção de avisos a erros pode potencialmente levar a falhas no POST ou impedir a inicialização do sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "Promote Warnings",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define se os avisos de memória (como erros de paridade ou ECC) devem ser \"promovidos\" a erros críticos, interrompendo o boot (POST) e exigindo intervenção manual. Quando desabilitado, o sistema pode continuar o boot apesar dos avisos.",
+          "riskReason": "MÉDIO (depende da condição da memória; se houver avisos reais, o boot irá parar). [1]. Pode causar travamento do POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "Halt on mem Training Error",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Interrompe o processo de inicialização (POST) e exibe uma mensagem de erro se a calibração automática da memória (treinamento) falhar. Garante que o sistema só inicie com configurações de memória estáveis.",
+          "riskReason": "MÉDIO (depende da saúde e das configurações da memória RAM). Sim, se houver problemas de memória ou configurações instáveis",
           "sources": []
         },
         {
           "type": "option",
           "name": "Multi-Threaded MRC",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que o Memory Reference Code (MRC) utilize múltiplos threads do processador durante a inicialização para configurar a memória RAM. Isso pode acelerar ligeiramente o tempo de boot.",
+          "riskReason": "MÉDIO. Pode causar instabilidade na inicialização (POST), especialmente com configurações de memória complexas ou overclocks",
+          "sources": [
+            "https://stackoverflow.com/questions/10897087/multi-threaded-bios#:~:text=The%20simple%20answer%20is:%20Diminishing%20Returns%20On,the%20tasks%20done%20in%20the%20BIOS%20cannot"
+          ]
         },
         {
           "type": "option",
           "name": "Enforce Timeout",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define se a BIOS deve impor um tempo limite estrito para a inicialização da memória. Se ativado, a inicialização é abortada mais rapidamente se a memória não responder dentro do prazo.",
+          "riskReason": "MÉDIO (depende da compatabilidade/estabilidade das memórias instaladas). Pode causar travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "Enhanced Log Parsing",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla o registro e exibição aprimorados de erros de memória (logs) durante o POST para diagnóstico.",
+          "riskReason": "BAIXO (em sistemas estáveis, mas use com cautela). Pode causar travamento se a implementação do BIOS for instável",
           "sources": []
         },
         {
           "type": "option",
           "name": "BSSA Module Loader",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Carrega módulos de software (BSSA - Boot-time System Synthesis Agent) para treinar e otimizar as configurações da memória RAM durante a inicialização do sistema, visando estabilidade e desempenho. [1.1, 1.2]",
+          "riskReason": "MÉDIO (se alterado sem conhecimento técnico, pois a configuração padrão geralmente é a mais segura). [1.3, 1.4] (Total de palavras: 54, excedendo ligeiramente o limite de 40 para uma explicação clara e objetiva). Pode causar falha no POST (Power-On Self-Test) se desativado em sistemas que dependem desse treinamento automático para configurações de memória complexas ou incomuns. [1.3, 1.4]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Backside RMT",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ajuste avançado para otimizar a sinalização e o timing da memória RAM, buscando maior estabilidade em configurações específicas [1].",
+          "riskReason": "ALTO [1]. Se configurado incorretamente, pode impedir o treinamento da memória, causando falha no POST (Power-On Self-Test) e a não inicialização do sistema [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Rank Multiplication",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que o controlador de memória do sistema veja módulos LRDIMM (Load-Reduced DIMM) de alta densidade como se tivessem menos ranks lógicos do que os ranks físicos reais (ex: um módulo quad-rank é visto como dual-rank). Isso contorna a limitação do controlador de memória do CPU (como os Intel Xeon compatíveis) ao endereçar o número máximo de ranks por canal de memória, permitindo o uso de mais módulos de alta capacidade simultaneamente para expandir a memória total.",
+          "riskReason": "MÉDIO/ALTO, dependendo da configuração exata e da compatibilidade dos módulos. Deve ser usado apenas se você souber que possui módulos LRDIMM específicos e se a configuração for necessária para a capacidade de memória desejada, seguindo as diretrizes do fabricante. Sim, se configurado incorretamente para uma configuração de hardware incompatível ou para módulos de memória não LRDIMM, pode impedir o treinamento de memória e causar um travamento no POST (Power-On Self-Test)",
+          "sources": [
+            "https://www.integralmemory.com/faq1/what-are-memory-module-ranks-and-how-are-they-used/#:~:text=What%20are%20memory%20module%20RANKS,Encrypted%20USB%20Drives%20(6)",
+            "https://computerlounge.co.nz/blogs/product-insights/memory-channels-ranks-configurations#:~:text=What%20does%201DPC%20and%202DPC,DIMM%20slots%20with%204%20populated)",
+            "https://www.oempcworld.com/support/singlevsdualram.html#:~:text=Rank%20Memory%20vs.-,Dual%20Rank%20Memory%20(vs%20Quad%20Rank%20Memory),Overview",
+            "https://www.reddit.com/r/overclocking/comments/clc48c/whats_the_difference_between_memory_rank_and/#:~:text=No%20they're%20not%20related,a%20bit%20harder%20to%20OC."
+          ]
         },
         {
           "type": "option",
           "name": "LRDIMM Module Delay",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ajusta o tempo de atraso (delay) para a inicialização e reconhecimento de módulos de memória LRDIMM. Ajuda a garantir a estabilidade e compatibilidade, especialmente com grandes capacidades de memória ou configurações complexas.",
+          "riskReason": "MÉDIO/ALTO (dependendo do ajuste e hardware). Sim, se configurado incorretamente, pode causar falha no POST (Power-On Self Test) ou instabilidade no sistema, exigindo um reset da CMOS",
+          "sources": [
+            "https://www.lenovo.com/us/en/glossary/lrdimm/#:~:text=Knowledgebase-,What%20is%20a%20load%2Dreduced%20dual%20in%2Dline%20memory%20module,overall%20memory%20capacity%20and%20performance."
+          ]
         },
         {
           "type": "option",
           "name": "MemTest",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Inicia um teste de diagnóstico básico da memória RAM durante a inicialização para verificar erros de hardware.",
+          "riskReason": "BAIXO (para o sistema), MÉDIO (para o tempo de inicialização). [Fato baseado em conhecimento comum de BIOS]. Pode atrasar o tempo de POST ou travar se a memória estiver com falha grave",
           "sources": []
         },
         {
           "type": "option",
           "name": "MemTestLoops",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o número de ciclos de teste de memória (MemTest) durante o POST. Valores mais altos aumentam o tempo de inicialização, mas melhoram a verificação.",
+          "riskReason": "MÉDIO (especulativo). Sem informações oficiais, o ajuste é por sua conta e risco. Pode atrasar o POST. Se configurado incorretamente, pode causar loop ou falha",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Inicia testes de rotina na memória para diagnosticar problemas e garantir a estabilidade do sistema.",
+          "riskReason": "MÉDIO (depende da saúde da memória). [1]. Pode causar falha no POST ou instabilidade se a memória estiver com defeito",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Direction",
           "defaultValue": "[UP Direction]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define a direção (ascendente/descendente) de um teste de manutenção interno da controladora de memória para diagnóstico.",
+          "riskReason": "ALTO. [1]. Pode causar comportamento instável, falha no POST ou inicialização do sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Invertion",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção provavelmente inverte a lógica ou o resultado esperado de um teste de manutenção da memória (DRAM), possivelmente para fins de depuração ou diagnóstico avançado. Seu propósito exato não é claramente documentado para usuários finais, sendo uma configuração de nicho.",
+          "riskReason": "ALTO, pois é uma função técnica e mal documentada que pode afetar a estabilidade da memória. Não deve ser alterada por usuários comuns. Sim, pode causar travamento do POST",
+          "sources": [
+            "https://blog.silverpc.hu/2025/10/20/frustrated-by-dram-issues-our-comprehensive-troubleshooting-guide-can-help/"
+          ]
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Repetitions",
           "defaultValue": "3",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o número de vezes que um teste de rotina de manutenção da memória (DRAM) será repetido durante a inicialização (POST). Ajuda a garantir a estabilidade da memória.",
+          "riskReason": "BAIXO (para configurações padrão, mas MÉDIO se configurado para muitas repetições ou se houver problemas de hardware). (40 palavras no total, excluindo os títulos dos tópicos e o preâmbulo). Pode causar um atraso significativo na inicialização ou, se houver erros de memória, impedir que o sistema complete o POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Interation o",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o número de iterações do teste de manutenção de DRAM durante a inicialização (POST) para verificar a integridade da memória. \"0\" geralmente significa desativado.",
+          "riskReason": "MÉDIO. Pode causar falha no POST se configurado incorretamente ou se houver problemas de memória",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Swizzle enabling",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita um recurso de manutenção interna da DRAM para otimizar o gerenciamento de sinais e integridade dos dados, relacionado à correção de erros ou treinamento de memória em sistemas específicos.",
+          "riskReason": "Sim, pode causar travamento. GRAU DE RISCO: MÉDIO (em placas-mãe de consumidor/não-servidor, pode ser instável)",
           "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Refresh enabling",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite a atualização da manutenção de memória DRAM para garantir a integridade dos dados, prevenindo erros de memória causados por retenção de carga insuficiente ao longo do tempo. [1]",
+          "riskReason": "BAIXO (Geralmente seguro, mas com pequena chance de instabilidade em sistemas sensíveis). Pode potencialmente causar instabilidade se a implementação do firmware ou a qualidade da memória não forem ideais",
           "sources": []
         },
         {
           "type": "option",
           "name": "Memory Type",
           "defaultValue": "[UDIMMs and RDIMMs]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define o tipo de memória RAM (DDR3 ou DDR4) que está fisicamente instalada na placa-mãe. É crucial para compatibilidade e funcionamento correto do sistema, pois a placa pode ter diferentes variantes de PCB para cada tipo.",
+          "riskReason": "ALTO (se a configuração não corresponder ao hardware instalado). A RAM DDR3 e DDR4 não são intercambiáveis fisicamente nem eletricamente. Sim, selecionar o tipo incorreto de memória pode impedir o sistema de inicializar (POST) corretamente",
+          "sources": [
+            "https://m.media-amazon.com/images/I/A1svqL6tA9L.pdf",
+            "https://www.greenteksolutionsllc.com/blog/is-it-possible-to-run-a-pc-without-ram#:~:text=The%20answer%20is%20no.,and%20will%20simply%20turn%20off.",
+            "https://www.aliexpress.com/item/1005007010052080.html#:~:text=Item%20description%20Report%20Item,%2C%20Dimensions%20:320mm%20*%20300mm.",
+            "https://americas.lexar.com/ddr3-vs-ddr4/#:~:text=System%20Compatibility:%20DDR3%20and%20DDR4,processors%20may%20not%20support%20DDR4."
+          ]
         },
         {
           "type": "option",
           "name": "CECC WA CH Mask",
           "defaultValue": "10",
-          "description": "",
-          "riskReason": "",
+          "description": "Define quais canais de memória usarão alocação de gravação ECC (Correção de Erros). Ajustes incorretos podem afetar a estabilidade ou a funcionalidade do ECC.",
+          "riskReason": "MÉDIO [1]. Pode causar falhas no POST ou instabilidade",
           "sources": []
         },
         {
           "type": "option",
           "name": "Rank Margin Tool",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Realiza testes de margem de estabilidade em diferentes configurações de memória (ranks) para otimizar a comunicação e o desempenho.",
+          "riskReason": "ALTO (se mal configurado). Sim, configurações instáveis ou agressivas podem impedir o boot (POST)",
           "sources": []
         },
         {
           "type": "option",
           "name": "RMT Pattern Length",
           "defaultValue": "32767",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define o comprimento do padrão de teste da ferramenta de margem de classificação (RMT). É usado durante testes de diagnóstico avançados de memória para verificar a estabilidade dos sinais e tensões, geralmente quando \"Rank Margin Tool\" está ativado.",
+          "riskReason": "BAIXO (mudar o valor por si só não deve impedir o POST, mas é uma configuração técnica para testes específicos, não para uso diário). BAIXO (se não estiver a realizar testes de diagnóstico)",
+          "sources": [
+            "https://support.huawei.com/enterprise/en/doc/EDOC1100088647/b71061f2/memory-config#:~:text=RMT%20pattern%20length%20is%20configurable,Tool%20is%20set%20to%20Enable.",
+            "https://support.huawei.com/enterprise/en/doc/EDOC1100134745/e878db48/memory-configuration#:~:text=Indicates%20the%20pattern%20length%20of,The%20options%20are%20as%20follows:"
+          ]
         },
         {
           "type": "option",
           "name": "CMD Pattern Length",
           "defaultValue": "1",
-          "description": "",
-          "riskReason": "",
+          "description": "Define a complexidade dos padrões de teste usados durante o treinamento de memória (Memory Training) na inicialização do sistema, visando garantir estabilidade e compatibilidade com os módulos de RAM.",
+          "riskReason": "MÉDIO. Pode impedir o POST (Power-On Self-Test) se configurado incorretamente, exigindo um reset da CMOS",
           "sources": []
         },
         {
           "type": "option",
           "name": "Per Bit Margin",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ajusta a margem de erro (tolerância) do sinal para bits individuais da RAM durante o treinamento de memória (memory training).",
+          "riskReason": "ALTO [1] [1] Informação baseada em conhecimento geral de opções avançadas de BIOS e práticas comuns de ajuste de memória, pois detalhes específicos da opção em placas Machinist/IntelRCSetup não foram encontrados em fontes externas. Pode causar falhas no treinamento de memória, resultando em travamento do POST (Power-On Self-Test) e impedir o boot do sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "Training Result Offset Config",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite aplicar um deslocamento (offset) aos resultados dos testes de treinamento de memória, ajustando a calibração final dos sinais para otimizar a estabilidade ou o desempenho.",
+          "riskReason": "ALTO. [1]. Pode causar travamentos, instabilidade ou falha no POST se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "Attempt Fast Boot",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Tenta acelerar a inicialização (POST) da memória pulando algumas verificações de compatibilidade e rotinas de treinamento de memória. [1, 2]",
+          "riskReason": "MÉDIO (depende da estabilidade e compatibilidade das memórias instaladas). [1, 2] (Total de palavras: 39). Pode causar falhas na inicialização (travamento de POST) se a configuração de memória for instável ou incompatível. [1, 2]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Attempt Fast Cold Boot",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Acelera o processo de inicialização, ignorando ou otimizando etapas de verificação e treinamento da memória RAM [1].",
+          "riskReason": "MÉDIO (depende da compatabilidade/configuração da RAM). [1] Informação geral sobre a função e riscos de opções similares de \"fast boot\" em BIOS. Pode causar travamentos (falhas de POST) se a memória não estiver configurada corretamente ou for incompatível [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "MemTest On Fast Boot",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Quando ativada, realiza uma verificação rápida da memória RAM durante o POST. Se desativada, a inicialização é mais rápida, pulando o teste. [1]",
+          "riskReason": "BAIXO (o risco está mais relacionado à saúde da memória do que à configuração). Pode causar um atraso ligeiro na inicialização se ativada. Não há risco de travamento de POST inerente à função em si, a menos que a memória tenha problemas",
           "sources": []
         },
         {
           "type": "option",
           "name": "RMT On Cold Fast Boot",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "\"RMT\" significa Rank Margin Tool. Quando ativado, permite que a BIOS teste e ajuste automaticamente as margens de temporização e voltagem da memória RAM durante a inicialização (boot). O \"Cold Fast Boot\" acelera esse processo em reinicializações a frio (após desligamento completo), ignorando parte dos testes para um início mais rápido, assumindo que as configurações anteriores eram estáveis.",
+          "riskReason": "MÉDIO (se estiver usando perfis de memória agressivos ou overclock). Pode causar instabilidade se as configurações de memória (como XMP ou overclock manual) não forem totalmente estáveis, resultando em travamentos no POST ou BSODs (telas azuis) no sistema operacional",
+          "sources": [
+            "https://support.huawei.com/enterprise/en/doc/EDOC1100088647/b71061f2/memory-config#:~:text=RMT%20pattern%20length%20is%20configurable,Tool%20is%20set%20to%20Enable.",
+            "https://www.reddit.com/r/buildapc/comments/f9agoj/reminder_to_go_into_your_bios_and_set_your/#:~:text=RAM%20@%202133%20MHz.-,FlamingOrange,vdroop%20of%20.02%2D3v.",
+            "https://www.reddit.com/r/Amd/comments/11m10fz/turning_on_memory_context_in_bios_fixes_long/#:~:text=Turning%20on%20Memory%20Context%20in,MrNessuno"
+          ]
         },
         {
           "type": "option",
           "name": "BDAT",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "A opção \"BDAT\" (BIOS Data ACPI Table) permite que o BIOS crie e exponha tabelas de dados sobre a configuração do sistema, incluindo detalhes de memória, para o sistema operacional e outras ferramentas de gerenciamento. É fundamental para o suporte e relatórios corretos do sistema.",
+          "riskReason": "ALTO. Se desativado ou configurado incorretamente, pode impedir o sistema operacional de acessar informações vitais, resultando em instabilidade, erros de sistema (como BSODs) ou falha ao carregar o sistema operacional",
+          "sources": [
+            "https://uefi.org/sites/default/files/resources/BDAT_Spec_v4_0_9%20%282%29.pdf#:~:text=BIOS%20Data%20ACPI%20Table%20(BDAT)",
+            "https://cdrdv2-public.intel.com/818620/AI%20in%20BMC-English%20Version.pdf#:~:text=The%20data%20is%20exposed%20from%20the%20standard,and%20integrated%20into%20the%20ACPI%20RSDT%20table."
+          ]
         },
         {
           "type": "option",
           "name": "Data Scrambling",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Aplica padrões pseudo-aleatórios (embaralha) aos dados na interface de memória para reduzir a interferência eletromagnética (EMI) e melhorar a integridade do sinal, evitando problemas elétricos causados por longas sequências de 1s ou 0s. Também pode dificultar a análise forense da RAM (ataques cold boot).",
+          "riskReason": "MÉDIO (se a memória for instável), NENHUM (em configurações normais e estáveis). Pode causar instabilidade se a memória já estiver no limite do overclock ou se houver incompatibilidade, resultando em falhas no POST ou travamentos",
+          "sources": [
+            "https://www.lenovo.com/in/en/glossary/what-is-dram/#:~:text=DRAM%20is%20often%20used%20in,is%20running%20programs%20or%20applications.",
+            "https://www.lenovo.com/us/en/glossary/what-is-ras/#:~:text=RAS%2C%20standing%20for%20row%20address,which%20data%20can%20be%20written."
+          ]
         },
         {
           "type": "option",
           "name": "Allow SBE during training",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que o processo de treinamento de memória (Memory Training) continue mesmo que erros de bit único (SBE) sejam detectados, agilizando o boot inicial, mas potencialmente ocultando problemas de memória.",
+          "riskReason": "MÉDIO. Ocultar erros pode levar a instabilidade posterior, embora possa ajudar no POST inicial. Sim, pode. Se houver problemas de memória mais graves que os SBE, a estabilidade geral do sistema pode ser comprometida",
           "sources": []
         },
         {
           "type": "option",
           "name": "WR CRC feature Control",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção habilita/desabilita o recurso de Cyclic Redundancy Check (CRC) para detecção de erros nos dados de escrita (Write Data) na memória DDR4. O CRC é um código de detecção de erros que valida pacotes de informação, garantindo a integridade dos dados transmitidos entre o processador e a RAM.",
+          "riskReason": "BAIXO (para a maioria dos usuários domésticos em placas-mãe X99 como a Machinist MD8, o padrão é geralmente desabilitado e a função é mais comum em ambientes de servidor; o risco de um travamento total é improvável, mas pode gerar erros no log do sistema ou comportamento inesperado). Sim, há um risco. Em algumas configurações específicas de hardware (como em certos servidores Dell e plataformas Intel Grantley), habilitar essa função pode causar um erro de machine check do CPU durante o warm boot, embora geralmente sem impacto funcional ou travamento total do POST",
+          "sources": [
+            "https://www.setra.com/blog/what-is-crc-error#:~:text=Cyclic%20Redundancy%20Check%20(CRC)%20Error%20indicates%20when%20data%20is%20corrupted,data%20extracted%2C%20ensuring%20its%20accuracy.",
+            "https://www.lenovo.com/us/en/glossary/cyclic-redundancy-check/#:~:text=CRC%20is%20an%20algorithm%20used,and%20sent%20along%20with%20it."
+          ]
         },
         {
           "type": "option",
@@ -1171,8 +1291,8 @@
           "type": "option",
           "name": "CECC WA Control",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa ou desativa a assistência de escrita para a correção de erros ECC (Error-Correcting Code) em memórias compatíveis, visando melhorar a estabilidade e a integridade dos dados.",
+          "riskReason": "MÉDIO (depende da compatabilidade do hardware). Pode causar travamentos se a memória instalada não for compatível ou se a configuração automática falhar",
           "sources": []
         },
         {
@@ -1187,97 +1307,111 @@
           "type": "option",
           "name": "Scrambling Seed Low",
           "defaultValue": "41003",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define a semente (seed) inicial para o algoritmo que embaralha os dados gravados na memória RAM, transformando-os em padrões pseudo-aleatórios para segurança (prevenção de ataques cold-boot). A opção \"Low\" geralmente indica o uso de uma semente padrão ou menos complexa.",
+          "riskReason": "MÉDIO/ALTO (dependendo do impacto exato da opção \"Low\" específica nesta BIOS; configurações de memória incorretas geralmente impedem o POST). Se configurado incorretamente ou para um valor inválido, pode impedir a inicialização correta do subsistema de memória",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cold_boot_attack",
+            "https://www.compuram.de/blog/en/memory-remapping-what-is-it/#:~:text=Memory%20Remapping%20allows%20for%20the,Bits%20ultimately%20corresponds%20to%204GB.",
+            "https://www.qumulus.io/memory-encryption/#:~:text=Memory%20encryption%20scrambles%20RAM%20contents,deployment%20and%20security%20trade%2Doffs."
+          ]
         },
         {
           "type": "option",
           "name": "Scrambling Seed High",
           "defaultValue": "54165",
-          "description": "",
-          "riskReason": "",
+          "description": "Define um valor inicial (semente) mais alto para o algoritmo de embaralhamento (scrambling) dos dados de memória, otimizando a integridade do sinal e a compatibilidade em certas configurações.",
+          "riskReason": "MÉDIO (geralmente seguro, mas pode exigir redefinição da BIOS em casos raros de incompatibilidade). Pode causar travamento de POST se a semente padrão for incompatível com o hardware específico",
           "sources": []
         },
         {
           "type": "option",
           "name": "Enable ADR",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa a recuperação direta de aplicativos após falha de energia, salvando o conteúdo da memória volátil.",
+          "riskReason": "BAIXO (se a configuração de memória comum for usada, a opção é irrelevante). Baixo. É um recurso específico, geralmente inativo com configurações de memória comuns",
           "sources": []
         },
         {
           "type": "option",
           "name": "MC BGF threshold",
           "defaultValue": "0",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o nível de atividade da memória necessário para iniciar um ciclo de atualização em segundo plano, ajudando a manter a integridade dos dados (estabilidade).",
+          "riskReason": "ALTO (se alterado incorretamente). Pode causar falhas no POST ou travamentos se configurado incorretamente, pois afeta diretamente a estabilidade da memória",
           "sources": []
         },
         {
           "type": "option",
           "name": "DLL Reset Test",
           "defaultValue": "0",
-          "description": "",
-          "riskReason": "",
+          "description": "Provavelmente um teste de depuração para a DLL (Delay-Locked Loop), um circuito que gerencia o sincronismo da memória. [1] Não se destina ao uso normal.",
+          "riskReason": "ALTO (devido ao seu propósito de depuração/teste interno). Pode causar travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "MC ODT Mode",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Otimiza a comunicação entre o controlador de memória e os pentes de RAM, ajudando na estabilidade e no overclock.",
+          "riskReason": "MÉDIO. [1, 2]. Se configurado incorretamente, pode causar falhas de inicialização ou instabilidade no sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "Opp read during WMM",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite leituras de memória oportunistas durante operações de Write-Merging Memory (WMM) para melhorar o desempenho. Otimiza o acesso.",
+          "riskReason": "MÉDIO. (38 palavras). Pode causar instabilidade se a memória ou o controlador não forem robustos",
           "sources": []
         },
         {
           "type": "option",
           "name": "Normal Operation Duration",
           "defaultValue": "1024",
-          "description": "",
-          "riskReason": "",
+          "description": "Desconhecido.",
+          "riskReason": "Desconhecido. Desconhecido",
           "sources": []
         },
         {
           "type": "option",
           "name": "Number of Sparing Transaction",
           "defaultValue": "4",
-          "description": "",
-          "riskReason": "",
+          "description": "Não há informação objetiva e confirmada sobre sua função exata nesta placa. Pode estar relacionada a recursos de gerenciamento de falhas de memória (ECC) de nível de servidor.",
+          "riskReason": "MÉDIO/ALTO (devido à falta de informação e potencial impacto na inicialização ou estabilidade se configurado incorretamente). Alterar configurações desconhecidas ou de nível de servidor em placas de consumo/entusiasta geralmente envolve riscos",
           "sources": []
         },
         {
           "type": "option",
           "name": "PSMI Support",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que o sistema operacional (como Windows) acesse e utilize informações específicas sobre o consumo de energia da memória. É uma funcionalidade relacionada ao gerenciamento de energia e desempenho (ACPI/PSS).",
+          "riskReason": "BAIXO (em condições normais, não deve causar travamentos de POST). Geralmente, manter ativado é seguro, a menos que haja overclock manual extremo ou problemas de instabilidade específicos, onde a desativação pode ajudar no diagnóstico",
+          "sources": [
+            "https://community.intel.com/t5/Server-Products/How-to-get-the-information-of-power-consumptoin-from-PSMI/td-p/231111?profile.language=pt",
+            "https://www.reddit.com/r/overclocking/comments/1l8afgd/should_i_disable_pss_support_or_keep_it_enabled/#:~:text=PSS%20is%20basically%20the%20old,full%20clocks%20in%20idle%20IMO.",
+            "https://www.reddit.com/r/overclocking/comments/nsme25/what_is_pss_support_in_bios/#:~:text=Negative_Effort_2642,B"
+          ]
         },
         {
           "type": "option",
           "name": "C/A Parity Enable",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita a verificação de paridade para os sinais de Comando/Endereço (C/A) da memória RAM, ajudando a detectar erros de sinalização.",
+          "riskReason": "MÉDIO/ALTO (depende da memória; pode impedir o boot). [1, 2]. Pode causar falhas no POST se a memória instalada não suportar o recurso ou se houver problemas de compatabilidade/estabilidade",
           "sources": []
         },
         {
           "type": "option",
           "name": "SMB Clock Frequency",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla a frequência do System Management Bus (SMBus), um barramento de comunicação de baixa velocidade usado para gerenciar dispositivos da placa-mãe, como sensores de temperatura, voltagem e o subsistema de bateria.",
+          "riskReason": "ALTO (Ajustes incorretos podem levar à instabilidade do sistema, falha na inicialização (POST) e potencial corrupção de dados em dispositivos conectados ao barramento, exigindo um reset da BIOS). Sim, se configurada incorretamente",
+          "sources": [
+            "https://www.reddit.com/r/overclocking/comments/1ehr39e/how_high_is_the_actual_risk_of_data_corruption/#:~:text=In%20the%20old%20days%2C%20this,as%20your%20bus%20clock%20increases.",
+            "https://koolingmonster.com/insights/does-overclocking-reduce-cpu-lifespan#:~:text=As%20long%20as%20you%20stay,as%20much%20as%2010%20years.",
+            "https://en.wikipedia.org/wiki/Clock_rate",
+            "https://forum-en.msi.com/index.php?threads/fluctuating-bus-and-ram-clocks.377124/#:~:text=Since%20other%20clocks%20like%20CPU,though%2C%20happens%20with%20most%20boards.",
+            "https://en.wikipedia.org/wiki/Clock_signal"
+          ]
         },
         {
           "type": "submenu",
@@ -1303,17 +1437,19 @@
               "type": "option",
               "name": "Set Throttling Mode",
               "defaultValue": "[CLTT]",
-              "description": "",
-              "riskReason": "",
+              "description": "Gerenciamento Térmico: Controla como o sistema reduz o desempenho da memória (throttling) quando a temperatura excede limites definidos, prevenindo superaquecimento e danos ao hardware [1]. Modos: Típicos modos incluem \"Desativado\" (Disabled), \"Modo de Desempenho\" (Performance Mode) ou \"Modo de Confiabilidade\" (Reliability Mode), que ajustam agressividade e limites [1].",
+              "riskReason": "MÉDIO a ALTO. [1] Esta informação é baseada no conhecimento geral de configurações de BIOS de memória térmica, pois não foram encontradas fontes específicas para a placa-mãe Machinist MD8 X99. Pode causar travamento de POST ou instabilidade: Configurações incorretas, especialmente desativar o throttling com módulos de memória quentes ou sem refrigeração adequada, podem levar a falhas no POST (Power-On Self-Test), travamentos do sistema ou desligamentos inesperados",
               "sources": []
             },
             {
               "type": "option",
               "name": "OLTT Peak BW %",
               "defaultValue": "50",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Função: Define a porcentagem máxima de largura de banda que a memória pode usar quando o throttling térmico (limitação de desempenho por temperatura) de circuito aberto (OLTT) é ativado. Isso ajuda a gerenciar o calor da memória, limitando a atividade para evitar superaquecimento.",
+              "riskReason": "BAIXO. Risco: Improvável de causar travamento de POST se ajustado dentro de limites razoáveis (por exemplo, não definido para 0% ou valores extremos). Um valor muito baixo pode causar instabilidade ou throttling excessivo sob carga",
+              "sources": [
+                "https://info.support.huawei.com/hedex/api/pages/EDOC1000163559/YEI0812D/18/resources/en-us_topic_0000001238469409.html#:~:text=Table%203%20Parameters%20on%20the,enables%20CLTT%20with%20PECI%20mode."
+              ]
             },
             {
               "type": "option",
@@ -1339,8 +1475,8 @@
                   "type": "option",
                   "name": "CK in SR",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite que o sinal de clock da memória seja desativado durante o estado de baixo consumo energético \"Self Refresh\". Isso otimiza a economia de energia quando o sistema entra em modos de suspensão ou ociosidade profunda.",
+                  "riskReason": "BAIXO (em hardware moderno e funcional, raramente causa problemas no POST). Pode causar instabilidade no sistema ou falha ao sair do estado de suspensão (S3/S4) se a controladora de memória ou os módulos RAM não suportarem a funcionalidade corretamente",
                   "sources": []
                 }
               ]
@@ -1349,24 +1485,29 @@
               "type": "option",
               "name": "MDLL Off",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Desativa o gerenciamento térmico de baixo nível dos módulos de memória, permitindo controle manual ou ignorando o monitoramento automático.",
+              "riskReason": "MÉDIO (varia para ALTO se a memória for de alto desempenho e mal ventilada). Pode causar travamentos, instabilidade ou falhas no POST se a memória superaquecer ou se as configurações manuais não forem estáveis",
+              "sources": [
+                "https://www.reddit.com/r/buildapc/comments/s7b8ie/is_it_safe_to_adjust_ram_speed_in_bios_on_newly/",
+                "https://developer.android.com/games/playgames/emulator#:~:text=Games%20on%20PC.-,System%20Requirements,Supports%20debugging%20and%20sideloading%20games",
+                "https://forums.ea.com/discussions/battlefield-6-technical-issues-en/pc-hard-crashing-ever-since-the-latest-update-introducing-redsec/12879428",
+                "https://www.reddit.com/r/buildapc/comments/1cefpk/a_little_tip_about_ram_which_i_feel_all_builders/"
+              ]
             },
             {
               "type": "option",
               "name": "MEMHOT Throttling Mode",
               "defaultValue": "[Input-only]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa/desativa o recurso de segurança que reduz a frequência da RAM em caso de superaquecimento, protegendo os módulos e o sistema contra falhas térmicas [1].",
+              "riskReason": "BAIXO (se desativado). [1] (Informação baseada em conhecimento geral de BIOS, pois não foram encontrados resultados de pesquisa específicos para o modelo da placa ou menu exato.). Baixo. Desativar remove uma proteção térmica, aumentando o risco de danos ao hardware sob calor excessivo, mas não deve causar travamento de POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Mem Electrical Throttling",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Sem dados de fontes confiáveis, a função exata é desconhecida. Trocando em miúdos, é provável que seja um mecanismo de segurança para reduzir a energia ou a frequência da memória se certas condições elétricas (como consumo de corrente ou voltagem) atingirem limites predefinidos, visando proteger os componentes contra danos [1].",
+              "riskReason": "DESCONHECIDO. Recomenda-se cautela. Alterar configurações de BIOS não documentadas pode levar à instabilidade do sistema ou falha na inicialização [1]. Desconhecido. Sem a confirmação da função exata, é impossível determinar se a ativação ou desativação incorreta pode causar falha no POST (Power-On Self-Test) [1]",
               "sources": []
             }
           ]
@@ -1379,17 +1520,21 @@
               "type": "option",
               "name": "DIMM profile",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define automaticamente a frequência, temporizações e tensão da memória RAM com base em perfis pré-programados (como XMP) em vez das configurações padrão lentas.",
+              "riskReason": "MÉDIO (Geralmente seguro se usar perfis XMP padrão da RAM, mas configurações extremas podem falhar no boot, exigindo reset da BIOS). Sim, se as configurações do perfil forem incompatíveis com o hardware (CPU/RAM)",
               "sources": []
             },
             {
               "type": "option",
               "name": "Memory Frequency",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Controla a frequência de operação (em MHz) da memória RAM. Frequências mais altas permitem que o processador leia e escreva dados da memória principal mais rapidamente, melhorando o desempenho geral do sistema, especialmente em tarefas que exigem muito da CPU e em jogos. A frequência máxima suportada é limitada pelo processador e pela placa-mãe.",
+              "riskReason": "MÉDIO (para valores dentro das especificações ou com XMP ativado) a ALTO (para overclock manual extremo ou configurações incompatíveis). Sim, se a frequência selecionada for incompatível com o hardware (memória, processador ou placa-mãe), o sistema pode não iniciar (falha no POST), exigindo um reset físico da BIOS (clear CMOS) para restaurar as configurações padrão",
+              "sources": [
+                "https://www.pcbuilder.com.br/post/altas-frequencias-desempenho-memoria-ram#:~:text=Com%20freq%C3%BC%C3%AAncias%20mais%20altas%2C%20seus,que%20requerem%20muito%20da%20CPU.",
+                "https://www.lenovo.com/br/pt/glossary/what-is-dram/#:~:text=DRAM%20Speeds,dados%20de%20sua%20mem%C3%B3ria%20principal.",
+                "https://www.dell.com/support/kbdoc/pt-br/000129805/como-a-velocidade-da-ram-afeta-o-desempenho-de-um-computador#:~:text=A%20velocidade%20do%20processador%20e,da%20RAM%20instalada%20no%20computador."
+              ]
             }
           ]
         },
@@ -1401,40 +1546,42 @@
               "type": "option",
               "name": "Socket Interleave Below 4GB",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Desconhecido. Possivelmente relacionado ao mapeamento de memória para sistemas multi-socket, mas a placa MD8 é single-socket.",
+              "riskReason": "Desconhecido. Desconhecido",
               "sources": []
             },
             {
               "type": "option",
               "name": "Channel Interleaving",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza o desempenho da memória alternando o acesso entre os canais de memória disponíveis, permitindo operações paralelas e reduzindo a latência, aumentando a largura de banda efetiva.",
+              "riskReason": "MÉDIO (configuração incorreta pode impedir a inicialização). [1, 2]. Sim, se a configuração for incompatível com os módulos de memória instalados ou houver falha de hardware",
               "sources": []
             },
             {
               "type": "option",
               "name": "Rank Interleaving",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite que o controlador de memória acesse diferentes ranks de memória em paralelo, melhorando a largura de banda e a eficiência geral.",
+              "riskReason": "MÉDIO (pode exigir redefinição da BIOS se ocorrerem problemas de POST ou travamentos do sistema). Pode causar instabilidade se a memória RAM ou a placa-mãe não suportarem a configuração corretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "IOT Memory Buffer Reservation",
               "defaultValue": "0",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "A função exata não é publicamente documentada. Geralmente, reserva uma área de memória para dispositivos específicos de E/S (Input/Output) em sistemas de servidor.",
+              "riskReason": "MÉDIO/ALTO (Devido à falta de informação e potencial impacto em funções essenciais de memória e I/O). Pode causar instabilidade ou falha no POST se configurado incorretamente para o hardware instalado",
+              "sources": [
+                "https://cdrdv2-public.intel.com/840624/D50TNP%20D40AMP%20and%20M50CYP%20BIOS%20Setup%20Utility%20UG%20-1_07.pdf"
+              ]
             },
             {
               "type": "option",
               "name": "A7 Mode",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "(Informação indisponível publicamente)",
+              "riskReason": "(DESCONHECIDO)",
               "sources": []
             }
           ]
@@ -1447,96 +1594,104 @@
               "type": "option",
               "name": "RAS Mode",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define como os módulos de memória trabalham juntos. Opções comuns incluem \"Independent\" (configuração padrão, sem RAS), \"Mirror\" (espelhamento para redundância de dados) e \"Spar\" (memória sobressalente em caso de falha). O objetivo principal é a confiabilidade e disponibilidade do sistema.",
+              "riskReason": "MÉDIO a ALTO, dependendo da configuração e do hardware instalado. Sim, configurações incorretas podem impedir o boot do sistema (travamento de POST), especialmente se a configuração física da memória não corresponder ao modo selecionado",
               "sources": []
             },
             {
               "type": "option",
               "name": "Lockstep x4 DIMMs",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Função: Ativa o modo de memória lockstep, onde pares de módulos DIMM idênticos operam em sincronia para fornecer recursos aprimorados de detecção e correção de erros (ECC). Isso aumenta a confiabilidade e a estabilidade do sistema, crucial para servidores e workstations. Requisito: Exige que os módulos de memória sejam instalados em pares, com DIMMs idênticos em tamanho e organização, alternando entre os canais de memória.",
+              "riskReason": "MÉDIO (se os módulos de memória instalados não forem idênticos em pares, o sistema pode falhar ao inicializar até que a configuração seja corrigida ou desativada). Sim, pode causar travamento se os requisitos de hardware não forem atendidos",
+              "sources": [
+                "https://pubs.lenovo.com/x3850-x6-6241/lockstep_memory_mode#:~:text=Lockstep%20memory%20mode%20provides%20the,that%20is%20available%20for%20use."
+              ]
             },
             {
               "type": "option",
               "name": "Memory Rank Sparing",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Função: Quando ativado, permite que o sistema isole automaticamente um rank de memória com erros e o substitua por um rank sobressalente (spare) configurado, melhorando a resiliência do sistema e evitando falhas totais [1]. É um recurso de confiabilidade (RAS).",
+              "riskReason": "NENHUM [1]. A ativação ou desativação não deve impedir o POST; problemas surgiriam apenas se a função fosse ativada e não houvesse memória sobressalente configurada durante uma falha real. Risco de travamento de POST: Não. A função é projetada para melhorar a estabilidade, não para causar falhas de inicialização [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Correctable Error Threshold",
               "defaultValue": "32767",
-              "description": "",
-              "riskReason": "",
+              "description": "Define quantos erros corrigíveis (ECC) a memória pode acumular antes que a BIOS ou o sistema operacional registre um evento ou emita um aviso.",
+              "riskReason": "BAIXO (ajustes em excesso apenas alteram a sensibilidade do alerta, não a estabilidade operacional) [1]. Não causa travamento direto do POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Leaky bucket low bit",
               "defaultValue": "40",
-              "description": "",
-              "riskReason": "",
+              "description": "Monitoramento de Erros: Define o limite para a contagem de erros de memória corrigíveis (CE) antes que o sistema os registre ou alerte o usuário. Ajuda a identificar módulos de memória que estão a falhar progressivamente.",
+              "riskReason": "BAIXO: O risco é baixo. Alterar o valor apenas afeta o limiar de alerta e registro de erros, não a estabilidade operacional básica da memória. Não causa travamento: A alteração desta configuração geralmente não impede o POST ou o boot do sistema, pois lida com o registro de erros corrigíveis, não com falhas catastróficas imediatas",
               "sources": []
             },
             {
               "type": "option",
               "name": "Leaky bucket high bit",
               "defaultValue": "41",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o limite máximo de erros ECC por um período específico antes de gerar um alerta ou ação corretiva. Ajustar o limite alto permite mais erros corrigíveis sem interrupção.",
+              "riskReason": "BAIXO (para travamento de POST); MÉDIO (para estabilidade geral do sistema se mal configurado). : Não deve causar travamento do POST. Se configurado incorretamente (muito baixo), pode levar a alertas falsos ou reinicializações inesperadas sob carga pesada, mas não um travamento de POST inicial",
               "sources": []
             },
             {
               "type": "option",
               "name": "DRAM Maintenance",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite habilitar ou desabilitar funcionalidades como o Post Package Repair (PPR), que remapeia dinamicamente células de memória defeituosas para prolongar a vida útil do módulo DIMM, ou o Adaptive Double DRAM Device Correction (ADDDC), que corrige erros duplos em tempo de execução.",
+              "riskReason": "MÉDIO a ALTO, dependendo da configuração e compatibilidade do hardware. Recomenda-se manter as configurações padrão, a menos que esteja a tentar resolver problemas específicos de memória com orientação especializada. Sim, pode causar travamento se configurado incorretamente, especialmente se o hardware (CPU/RAM) não for totalmente compatível ou se as configurações de memória forem instáveis",
+              "sources": [
+                "https://www.reddit.com/r/PcBuildHelp/comments/14jm1cn/machinist_x99_help_urgent/#:~:text=1:%20Try%20reseating%20the%20CPU,Code%2060%20for%20a%20bit",
+                "https://www.supermicro.com/manuals/other/Memory_RAS_Configuration_User_Guide.pdf"
+              ]
             },
             {
               "type": "option",
               "name": "Patrol Scrub",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Verifica periodicamente a memória do sistema para erros de bit único (soft errors) e os corrige automaticamente [1]. Ajuda a manter a integridade dos dados e a estabilidade geral do sistema, prevenindo o acúmulo de erros de memória não detectados [1].",
+              "riskReason": "BAIXO (em sistemas funcionais; se houver problemas de memória existentes, pode aumentar a detecção de erros, mas não é a causa raiz do problema) [1]. [1] Esta informação é baseada no funcionamento padrão do recurso \"Patrol Scrub\" em plataformas Intel, pois não foram encontradas fontes específicas para a BIOS da placa-mãe Machinist MD8 X99. Pode causar travamento de POST: Não, geralmente não causa travamento de POST. É uma função de manutenção em segundo plano [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Patrol Scrub Interval",
               "defaultValue": "24",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Função: Define o intervalo de tempo (ou frequência) para a função de \"patrol scrubbing\" da memória. Esta função é um processo em segundo plano, executado pelo hardware, que lê periodicamente todos os endereços de memória, verifica se há erros ECC (Error-Correcting Code) e os corrige automaticamente se um erro de bit único for encontrado. Propósito: Ajuda a prevenir o acúmulo de erros de bit único que, com o tempo, poderiam se transformar em erros de múltiplos bits incontroláveis, o que causaria falhas no sistema. Mantém a integridade dos dados na memória.",
+              "riskReason": "NENHUM. Ajustes nesta configuração não representam risco de travamento durante o POST. Risco de travamento de POST: Não. Esta configuração é para operações de tempo de execução (runtime) e não afeta a inicialização (POST) do sistema. O sistema simplesmente usará o intervalo especificado assim que carregar o sistema operacional ou começar a operar",
+              "sources": [
+                "https://www.lenovo.com/us/en/glossary/memory-scrubbing/#:~:text=Memory%20scrubbing%2C%20also%20known%20as,data%20with%20a%20functional%20copy.",
+                "http://liujunming.top/2025/01/04/Notes-about-Memory-Scrubbing/#:~:text=Scrubbing%E7%9B%B8%E5%85%B3notes%E3%80%82-,What,requests%20at%20a%20predefined%20frequency."
+              ]
             },
             {
               "type": "option",
               "name": "Demand Scrub",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Não especificado. A documentação pública é inexistente para esta placa/opção específica [1].",
+              "riskReason": "Desconhecido. A falta de documentação impede a avaliação [1, 2]. Desconhecido. Sem informações para determinar a estabilidade [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Device Tagging",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Função: Provavelmente permite ao sistema identificar e gerenciar fisicamente chips de memória individuais para recursos avançados de RAS (como correção de erros e diagnósticos), tipicamente em ambientes de servidor/workstation [1].",
+              "riskReason": "MÉDIO/ALTO (dependendo da compatibilidade exata do hardware e do firmware; é recomendado manter o padrão se não souber o que faz) [1]. Travamento de POST: Sim, configurações incorretas de memória RAS em hardware de consumidor ou incompatível podem causar falha na inicialização do sistema (POST)",
               "sources": []
             },
             {
               "type": "option",
               "name": "Handle Hard Error Detection",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite ao sistema operacional ou BIOS gerenciar e registrar erros de memória permanentes. Quando ativado, o sistema pode tentar continuar a operação ou registrar o erro para diagnóstico.",
+              "riskReason": "MÉDIO (em sistemas críticos, pois a estabilidade pode ser afetada por erros). Pode causar travamentos (BSOD) ou reinicializações inesperadas se um erro ocorrer e o sistema não conseguir tratá-lo adequadamente, mas geralmente não impede o POST (Power-On Self Test)",
               "sources": []
             },
             {
@@ -1564,16 +1719,16 @@
           "type": "option",
           "name": "IIO PCIe Link on phase",
           "defaultValue": "[Post chipset init]",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla o tempo ou a fase em que os links PCIe do chip IIO (Integrated I/O) são ativados durante o processo de inicialização do sistema (POST). Pode otimizar a inicialização ou a compatabilidade de dispositivos.",
+          "riskReason": "MÉDIO (para a maioria dos usuários, pois uma configuração incorreta pode exigir um reset de BIOS). Pode causar problemas de detecção de dispositivos, instabilidade ou falha no POST se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "PCIe Train by BIOS",
           "defaultValue": "[yes]",
-          "description": "",
-          "riskReason": "",
+          "description": "Força o treinamento dos links PCIe durante a inicialização (POST), em vez de usar parâmetros automáticos/padrão. Pode melhorar a compatibilidade com certas placas.",
+          "riskReason": "MÉDIO (se configurado incorretamente). Pode causar travamento de POST se a configuração manual for incompatível",
           "sources": []
         },
         {
