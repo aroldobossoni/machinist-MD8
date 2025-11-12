@@ -108,32 +108,34 @@
               "type": "option",
               "name": "Cpu Fan Mode",
               "defaultValue": "[SmartFan TM IV Mode]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite escolher entre controle de velocidade por Voltagem (DC) ou por PWM (4 pinos). Garante o controle adequado da ventoinha da CPU para refrigeração e ruído. [1]",
+              "riskReason": "MÉDIO (Se configurado para o tipo errado de ventoinha, impede o boot até a correção). [1]. Sim, pode. Se configurado incorretamente (ex: PWM para uma ventoinha de 3 pinos), a ventoinha pode não girar ou ser detectada incorretamente, causando um erro de \"CPU Fan Error\" e travando o POST (Power-On Self-Test) por segurança. [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "CPU Fan Full Speed Temp",
               "defaultValue": "70",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define a temperatura exata na qual a ventoinha da CPU atingirá sua velocidade máxima (100%). Permite personalizar a curva de ventilação para garantir resfriamento eficiente sob carga.",
+              "riskReason": "NENHUM (para o funcionamento do sistema). Ajustar incorretamente (para uma temperatura muito baixa, por exemplo) pode resultar em ruído excessivo. Não causa travamento de POST",
+              "sources": [
+                "https://device.report/manual/12235159"
+              ]
             },
             {
               "type": "option",
               "name": "CPU Fan Start Temp Value",
               "defaultValue": "35",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o limiar de temperatura para iniciar a operação da ventoinha do processador, permitindo que ela permaneça desligada em temperaturas muito baixas para reduzir o ruído.",
+              "riskReason": "BAIXO (se valores padrão ou sensatos forem usados), ALTO (se configurado para um valor de temperatura perigosamente alto que permita o superaquecimento inicial). Sim, se configurado incorretamente (por exemplo, muito alto), o sistema pode superaquecer rapidamente e desligar antes do POST. No entanto, um valor padrão ou sensato não causa travamento de POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "CPU Fan Start PWM Value",
               "defaultValue": "120",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a potência mínima de partida: Especifica a porcentagem mínima de potência (ciclo de trabalho PWM) aplicada à ventoinha da CPU no momento da inicialização para garantir que ela tenha energia suficiente para começar a girar, superando a inércia e o atrito inicial.",
+              "riskReason": "BAIXO a MÉDIO (depende do valor definido; valores muito baixos aumentam o risco). Pode causar travamento de POST se configurado incorretamente (muito baixo), pois a BIOS detectará uma falha na ventoinha (CPU Fan Error), impedindo a inicialização para proteger o processador contra superaquecimento",
               "sources": []
             },
             {
@@ -233,9 +235,13 @@
           "type": "option",
           "name": "Wakeup By RTC",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite ligar automaticamente o computador a partir do estado de desligado (S5) ou hibernação (S4) em um horário e data específicos programados. Utiliza o relógio de tempo real (RTC) da placa-mãe.",
+          "riskReason": "BAIXO. Muito improvável de causar travamento do POST. O máximo que pode ocorrer é a função não funcionar se mal configurada ou se houver conflito com o \"Fast Startup\" do Windows",
+          "sources": [
+            "https://superuser.com/questions/949540/how-do-wake-timers-work#:~:text=This%20is%20done%20via%20the,and%20the%20NMI%20Enable%20Bit",
+            "https://en.wikipedia.org/wiki/Real-time_clock_alarm#:~:text=A%20real%20time%20clock%20alarm,computer%20to%20run%20this%20task'.",
+            "https://superuser.com/questions/1048742/bios-wake-by-alarm-what-happens-if-computer-is-already-on#:~:text=1%20Answer,daily%20wake%2Dup%2C%20though."
+          ]
         }
       ]
     },
@@ -375,72 +381,97 @@
           "type": "option",
           "name": "PCI Latency Timer",
           "defaultValue": "[32 PCI Bus Clocks]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o tempo que um dispositivo PCI mantém controle do barramento para transferir dados, otimizando a alocação de largura de banda [1].",
+          "riskReason": "BAIXO (Ajustes padrão geralmente são seguros e recomendados) [1]. Baixo, mas valores extremos podem causar instabilidade ou problemas de desempenho com certos dispositivos",
           "sources": []
         },
         {
           "type": "option",
           "name": "PCI-X Latency Timer",
           "defaultValue": "[64 PCI Bus Clocks]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla o tempo máximo (em ciclos de clock) que um dispositivo PCI pode reter o barramento antes de cedê-lo a outro dispositivo, otimizando o compartilhamento de largura de banda.",
+          "riskReason": "MÉDIO. Pode causar instabilidade, como falhas de áudio ou travamentos, se configurado incorretamente, especialmente com valores muito altos ou baixos",
+          "sources": [
+            "https://forums.anandtech.com/threads/pci-latency.893823/#:~:text=I%20haven't%20noticed%20any,J",
+            "https://support.creative.com/kb/ShowArticle.aspx?sid=46913#:~:text=The%20PCI%20Latency%20Timer%20is,can%20hold%20the%20PCI%20bus.",
+            "https://forum-en.msi.com/index.php?threads/a-figure-about-pci-latency.61629/#:~:text=From:%20adriansrojakpot.com,other%20devices%20on%20the%20bus."
+          ]
         },
         {
           "type": "option",
           "name": "VGA Palette Snoop",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que placas de vídeo PCI/PCIe capturem informações da paleta de cores de uma placa VGA ISA legada, garantindo compatibilidade visual em sistemas híbridos antigos.",
+          "riskReason": "BAIXO (Desabilitar geralmente é seguro em sistemas modernos sem hardware ISA; habilitar em placas-mãe modernas sem suporte ISA real não deve causar problemas de POST, pois a função não será utilizada)",
           "sources": []
         },
         {
           "type": "option",
           "name": "PERR# Generation",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite ou desabilita que um dispositivo PCI (Peripheral Component Interconnect) gere o sinal PERR# (Parity Error), que reporta erros de paridade de dados durante transações no barramento PCI. É um mecanismo de detecção de erros para confiabilidade do sistema.",
+          "riskReason": "MÉDIO (se houver um problema de hardware subjacente, desabilitar oculta o sintoma, mas não resolve a causa). Se ocorrer um erro de hardware real, desabilitar pode impedir o registro do erro, potencialmente causando perda de dados ou instabilidade (travamentos/congelamentos) em vez de um desligamento controlado",
+          "sources": [
+            "https://www.reddit.com/r/techsupport/comments/wz66vl/pci_serr_generation/#:~:text=Comments%20Section,OP%20%E2%80%A2%203y%20ago",
+            "https://www.reddit.com/r/techsupport/comments/wz66vl/pci_serr_generation/#:~:text=So%20I%20was%20getting%20Parity,get%20a%20new%20video%20card.",
+            "https://fit-pc.com/wiki/index.php?title=Fitlet_BIOS_guide&mobileaction=toggle_view_desktop#:~:text=PCI%20Latency%20Timer:%20Value%20to,to%20select%20the%20value%20automatically."
+          ]
         },
         {
           "type": "option",
           "name": "SERR# Generation",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite (ou desabilita) que dispositivos PCI/PCIe gerem sinais de Erro de Sistema (SERR#) para notificar o sistema sobre falhas críticas de hardware. Isso é um mecanismo de segurança e registro de erros.",
+          "riskReason": "BAIXO (se o hardware estiver saudável, não haverá problema; se houver falha, a instabilidade será pior). Desabilitar esta função pode fazer com que erros críticos de hardware passem despercebidos, resultando em potencial corrupção de dados ou travamentos inesperados (BSOD) em vez de um desligamento controlado",
+          "sources": [
+            "https://forums.fedoraforum.org/showthread.php?330805-PCIe-card-not-recognized-Need-a-strategy-to-figure-out-why#:~:text=Allow%20PCIe/PCI%20SERR%23%20Interrupt,they%20are%20set%20to%20enabled.",
+            "https://www.reddit.com/r/techsupport/comments/wz66vl/pci_serr_generation/#:~:text=So%20I%20was%20getting%20Parity,get%20a%20new%20video%20card."
+          ]
         },
         {
           "type": "option",
           "name": "Above 4G Decoding",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite o endereçamento de memória de dispositivos PCIe (especialmente GPUs com mais de 4GB VRAM) acima do espaço de 4GB, o que é essencial para tecnologias como Resizable BAR/SAM, melhorando o desempenho em jogos compatíveis.",
+          "riskReason": "MÉDIO (o problema é contornável limpando o CMOS ou ajustando outras configurações, mas pode ocorrer). Sim, pode causar tela preta ou lentidão no POST/boot se o sistema operacional não suportar endereçamento de 64 bits (necessita de instalação UEFI/GPT, não MBR) ou se o CSM não for desabilitado",
+          "sources": [
+            "https://github.com/xCuri0/ReBarUEFI/issues/218#:~:text=Enabling%20Above%204G%20Decoding%20makes,boot%20process%20very%20very%20slow.",
+            "https://forums.flightsimulator.com/t/bios-setting-4g-encoding-enabled/402361#:~:text=it%20is%20required%20to%20be%20enabled%20if,don't%20much%2C%20or%20even%20suffer%20mild%20regression.",
+            "https://www.reddit.com/r/pcmasterrace/comments/1b4sy75/what_is_above_4g_decoding_resize_bar_support/#:~:text=yflhx,I%20didn't%20know%20that",
+            "https://www.reddit.com/r/buildapc/comments/1n01m78/enabling_above_4g_decoding_bricks_my_computer/#:~:text=edit:%20I%20was%20an%20idiot,Problem%20solved!",
+            "https://www.reddit.com/r/gigabyte/comments/pot847/black_screen_after_enabling_above_4g_decoding_and/"
+          ]
         },
         {
           "type": "option",
           "name": "Re-Size BAR Support",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que a CPU acesse toda a memória da placa de vídeo (VRAM) de uma vez, otimizando recursos e podendo melhorar o desempenho em jogos compatíveis.",
+          "riskReason": "BAIXO (em hardware moderno e compatível, o risco é mínimo). Pode, em casos raros e dependendo do hardware específico (BIOS, GPU, drivers), causar instabilidade, travamentos ou falha no POST",
+          "sources": [
+            "https://www.intel.com/content/www/us/en/support/articles/000090831/graphics.html#:~:text=Resizable%20BAR%20(Base%20Address%20Register,result%20in%20a%20performance%20improvement.",
+            "https://www.rockpapershotgun.com/what-is-resizable-bar-and-should-you-use-it#:~:text=So%20long%20as%20we're,effects%20on%20GeForces%20and%20Radeons.",
+            "https://www.intel.com/content/www/us/en/support/articles/000090831/graphics.html#:~:text=Resizable%20BAR%20(Base%20Address%20Register,size%20to%20optimize%20system%20resources.",
+            "https://www.techradar.com/computing/gpu/what-is-resizable-bar#:~:text=Performance%20Degradation:%20In%20certain%20games,reduced%20performance%20or%20increased%20stuttering."
+          ]
         },
         {
           "type": "option",
           "name": "SR-IOV Support",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita a Virtualização de E/S de Raiz Única (SR-IOV), permitindo que um único dispositivo PCIe seja compartilhado eficientemente entre múltiplas máquinas virtuais, reduzindo a sobrecarga da CPU e melhorando a performance.",
+          "riskReason": "BAIXO (se ativado sem o hardware ou software compatível, pode causar problemas no sistema operacional, mas não um travamento de POST irrecuperável). Não há risco direto de travamento do POST apenas por habilitar a opção na BIOS. O sistema pode não funcionar corretamente se o restante do hardware/software não for compatível, mas isso não deve travar o POST",
+          "sources": [
+            "https://www.reddit.com/r/pcmasterrace/comments/1ev04hq/should_i_enable_sriov_support/?tl=pt-br#:~:text=Devo%20ativar%20o%20suporte%20SR%2DIOV?%20:%20r/pcmasterrace",
+            "https://docs.redhat.com/pt-br/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/managing-sr-iov-devices_managing-virtual-devices"
+          ]
         },
         {
           "type": "option",
           "name": "BME DMA Mitigation",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita uma mitigação de segurança para prevenir ataques que exploram vulnerabilidades de DMA por meio de dispositivos PCI.",
+          "riskReason": "BAIXO (travamentos são improváveis, mas a incompatabilidade é possível). Pode causar problemas de compatabilidade com alguns dispositivos PCI ou placas de expansão específicas",
           "sources": []
         },
         {
@@ -456,32 +487,34 @@
               "type": "option",
               "name": "Relaxed Ordering",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite reordenamento de transações PCI Express para otimizar a largura de banda e o desempenho do sistema.",
+              "riskReason": "BAIXO. [1]. Muito improvável de causar travamento do POST em sistemas modernos e compatíveis",
               "sources": []
             },
             {
               "type": "option",
               "name": "Extended Tag",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite endereçamento de transações PCIe expandido para dispositivos de alto desempenho.",
+              "riskReason": "BAIXO. [1, 2, 3, 4] Fontes utilizadas para compreensão técnica geral do recurso, pois informações específicas para a placa Machinist MD8 X99 não foram encontradas. Em sistemas modernos, o risco é mínimo. Pode haver incompatibilidade com dispositivos PCIe muito antigos",
+              "sources": [
+                "https://olhardigital.com.br/2024/09/05/reviews/o-que-e-pci-express-pcie/#:~:text=Outro%20ponto%20importante%20do%20PCIe%20(%20PCI,usados%20com%20vers%C3%B5es%20mais%20recentes%20do%20barramento."
+              ]
             },
             {
               "type": "option",
               "name": "No Snoop",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza a comunicação direta entre dispositivos PCI Express e a CPU, ignorando checagens de cache para melhorar a performance.",
+              "riskReason": "BAIXO (travamentos de POST são improváveis, mas instabilidades após o boot são possíveis). Pode causar instabilidade com alguns dispositivos ou sistemas operacionais específicos",
               "sources": []
             },
             {
               "type": "option",
               "name": "Maximum Payload",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tamanho máximo do pacote de dados permitido nas comunicações PCIe (tipicamente 128 a 512 bytes). Ajustar isso pode melhorar o desempenho ou a compatabilidade de dispositivos específicos, como placas de vídeo ou de rede, otimizando a eficiência da transferência de dados.",
+              "riskReason": "MÉDIO/ALTO (depende do hardware; o padrão costuma ser o mais estável). Pode causar instabilidade, falhas de inicialização (POST) ou travamentos se um dispositivo não suportar o tamanho de pacote configurado",
               "sources": []
             },
             {
@@ -493,32 +526,32 @@
               "type": "option",
               "name": "Extended Synch",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Controla a sincronização de sinais dentro da interface PCIe, podendo afetar a estabilidade ou o consumo de energia da placa de vídeo e outros dispositivos.",
+              "riskReason": "MÉDIO (depende muito do hardware específico). Pode causar instabilidade, falhas de inicialização (POST) ou problemas de compatibilidade se configurada incorretamente para o hardware específico",
               "sources": []
             },
             {
               "type": "option",
               "name": "Link Training Retry",
               "defaultValue": "[5]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o número de vezes que a BIOS tentará renegociar a conexão (treinamento de link) com um dispositivo PCI Express se a tentativa inicial falhar. Ajuda a garantir a detecção correta de placas de expansão.",
+              "riskReason": "BAIXO (para configurações padrão/automáticas); MÉDIO (se alterado manualmente para valores muito restritivos). Pode causar travamento do POST se configurado incorretamente, especialmente com valores muito baixos para hardware instável",
               "sources": []
             },
             {
               "type": "option",
               "name": "Link Training Timeout (uS)",
               "defaultValue": "[1000]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tempo máximo de espera para a negociação de link PCI Express entre a CPU e o dispositivo (ex: GPU, SSD).",
+              "riskReason": "MÉDIO (Recuperável via Clear CMOS). (40 palavras no total). Pode causar travamento no POST (Power-On Self-Test) se o tempo for insuficiente para o dispositivo",
               "sources": []
             },
             {
               "type": "option",
               "name": "Restore PCIE Registers",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Restaura os registradores do controlador PCI Express para os valores padrão de fábrica ou otimizados, reconfigurando o barramento PCIe durante o boot. [1]",
+              "riskReason": "MÉDIO (O ajuste incorreto ou incompatibilidade pode exigir um reset da CMOS para restaurar o acesso). [1]. Sim, há um risco, especialmente se a configuração padrão não for compatível com algum dispositivo instalado. [1]",
               "sources": []
             }
           ]
@@ -537,65 +570,69 @@
           "type": "option",
           "name": "Completion Timeout",
           "defaultValue": "[Default]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o tempo que o sistema aguarda a resposta de dispositivos PCI-E antes de reportar um erro [1].",
+          "riskReason": "BAIXO [1]. Pode causar instabilidade ou erros de dispositivo se configurado incorretamente. Não deve causar travamento do POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "ARI Forwarding",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite o encaminhamento de IDs de função PCI alternativas, otimizando o endereçamento de dispositivos em sistemas com muitos periféricos PCI Express, melhorando a compatibilidade e a eficiência da comunicação.",
+          "riskReason": "MÉDIO [1, 2]. (40 palavras no total). Pode causar travamentos se o sistema operacional ou os dispositivos PCI conectados não suportarem o recurso adequadamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "AtomicOp Requester Enable",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que dispositivos PCI Express utilizem operações atômicas, melhorando a eficiência da comunicação direta entre dispositivos (peer-to-peer), como GPUs e SSDs NVMe modernos, resultando em melhor desempenho em certas cargas de trabalho.",
+          "riskReason": "BAIXO (em sistemas modernos compatíveis). Pode causar incompatibilidade com dispositivos PCIe antigos que não suportam a funcionalidade",
           "sources": []
         },
         {
           "type": "option",
           "name": "AtomicOp Egress Blocking",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla se certas operações atômicas (requisições de leitura/escrita simultâneas) dos dispositivos PCIe podem sair (egressar) do root complex. Geralmente, deve ficar desabilitada para compatibilidade [1].",
+          "riskReason": "MÉDIO (dependendo dos dispositivos instalados, pode impedir o POST ou a inicialização correta do sistema). Pode causar travamentos e problemas de compatibilidade com dispositivos que esperam que essas operações sejam permitidas",
+          "sources": [
+            "https://www.reddit.com/r/VFIO/comments/z2aowr/any_downside_to_enabling_pcie_aer_and_acs/#:~:text=ACS%20is%20the%20system%20that,%2Dpl@kamp.de/"
+          ]
         },
         {
           "type": "option",
           "name": "IDO Request Enable",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Função desconhecida devido à nomenclatura não padrão. Possivelmente relacionada a pedidos internos do sistema (como \"Initial Display Output\" ou \"Intelligent Data Object\", se for sigla) dentro do subsistema PCI.",
+          "riskReason": "MÉDIO (devido à incerteza da função e potencial impacto no POST). Desconhecido. Alterar configurações de subsistema PCI sem saber a função exata pode impactar a inicialização",
           "sources": []
         },
         {
           "type": "option",
           "name": "IDO Completion Enable",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla a capacidade de um dispositivo PCI ou PCIe de reportar a conclusão de uma transação de E/S (Entrada/Saída) de forma assíncrona. Isso pode melhorar ligeiramente o desempenho de E/S ou a compatibilidade com certos dispositivos, permitindo que a CPU prossiga com outras tarefas sem esperar ativamente pela confirmação imediata.",
+          "riskReason": "MÉDIO. Nota: Mantenha a opção em seu valor padrão (geralmente \"Desabilitado\" ou \"Habilitado\", dependendo do padrão de fábrica) a menos que esteja tentando resolver um problema de compatibilidade específico com um dispositivo PCI/PCIe. Sim, pode. A incompatibilidade com placas de expansão ou outros componentes PCIe específicos pode levar a falhas no POST (Power-On Self Test) ou instabilidade do sistema",
           "sources": []
         },
         {
           "type": "option",
           "name": "LTR Mechanism Enable",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que dispositivos PCIe informem ao sistema a latência tolerável para transferências de dados. Isso otimiza o gerenciamento de energia e melhora a eficiência [1, 2].",
+          "riskReason": "BAIXO (problemas geralmente limitados a hardware muito específico ou desatualizado) [1]. Pode causar problemas de compatibilidade com dispositivos PCIe mais antigos [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "End-End TLP Prefix Blocking",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção permite (habilita) ou bloqueia (desabilita) o uso de prefixos (informações extras de cabeçalho) em pacotes de dados PCIe (TLPs) que viajam do dispositivo de origem ao destino final (End-to-End). Isso pode ser usado para funcionalidades avançadas como controle de acesso (ACS) ou segurança.",
+          "riskReason": "BAIXO (para sistemas padrão); MÉDIO (se houver hardware incompatível). Baixo/Médio (depende do hardware e software). A maioria dos sistemas funciona sem isso. Habilitar pode causar problemas de compatibilidade se um dispositivo PCIe não suportar ou necessitar de prefixos",
+          "sources": [
+            "https://pievcore.com/questions/discuss-the-role-of-the-pcie-tlp-prefix-in-optimizing-data-transfers#:~:text=Discuss%20the%20role%20of%20the,overhead%20and%20improving%20packet%20prioritization."
+          ]
         },
         {
           "type": "section",
@@ -606,8 +643,8 @@
           "type": "option",
           "name": "Clock Power Management",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Gerencia a economia de energia do clock do barramento PCI. Pode ser ativada ou desativada.",
+          "riskReason": "BAIXO (na maioria dos sistemas modernos). [1] (Embora a pesquisa não tenha encontrado fontes diretas para este modelo específico de placa-mãe, este é o comportamento padrão para essa configuração de BIOS em geral). Pode causar instabilidade em sistemas que não suportam bem o recurso",
           "sources": []
         },
         {
@@ -622,16 +659,16 @@
           "type": "option",
           "name": "Hardware Autonomous Width",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite negociação automática da largura da interface PCIe pelo hardware.",
+          "riskReason": "BAIXO. BAIXO. Geralmente seguro, mas incompatibilidades raras podem ocorrer",
           "sources": []
         },
         {
           "type": "option",
           "name": "Hardware Autonomous Speed",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite ao dispositivo PCI Express ajustar automaticamente sua própria velocidade (largura de banda) com base na carga de trabalho.",
+          "riskReason": "BAIXO (geralmente, o padrão automático funciona corretamente). Sim, se o hardware tiver problemas ao negociar a velocidade ou se houver incompatibilidade",
           "sources": []
         }
       ]
@@ -644,9 +681,11 @@
           "type": "option",
           "name": "Network Stack",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite habilitar/desabilitar o suporte de rede (PXE/HTTP) durante o boot, necessário para iniciar o sistema operacional via rede local (boot de rede/instalação remota).",
+          "riskReason": "BAIXO (para usuários comuns que não usam boot de rede). Pode impedir o boot via rede se desativado, mas geralmente não causa travamento do POST",
+          "sources": [
+            "https://techmatterglobal.com/what-is-network-stack-in-bios#:~:text=If%20a%20network%2Dbootable%20device,recovery%2C%20this%20could%20be%20helpful."
+          ]
         }
       ]
     },
@@ -658,40 +697,49 @@
           "type": "option",
           "name": "CSM Support",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que sistemas modernos com UEFI emulem o BIOS tradicional. Isso é necessário para inicializar sistemas operacionais antigos (como Windows 7) ou usar dispositivos de hardware que não suportam o modo de inicialização UEFI (usam partição MBR).",
+          "riskReason": "MÉDIO (pode causar problemas de boot se as configurações/hardware forem incompatíveis, mas é reversível reativando a opção). Sim, se o sistema operacional ou a placa de vídeo instalada for moderno e configurado para UEFI/GPT, desativar o CSM pode impedir o boot correto, resultando em tela preta ou loop no POST",
+          "sources": [
+            "https://www.wikihow.com/Csm-Support#:~:text=Download%20Article-,1,System32%20folder.%20X%20Research%20source%20)",
+            "https://computertechnicians.au/what-is-csm-support-how-to-enable-or-disable-this-boot-option/#:~:text=Let's%20break%20it%20down%20in,can't%20handle%20UEFI%20boot.",
+            "https://www.reddit.com/r/pcmasterrace/comments/tg36oj/should_you_disable_csm_in_bios/#:~:text=D3ADW07F,11%20you%20could%20disable%20it."
+          ]
         },
         {
           "type": "option",
           "name": "Boot option filter",
           "defaultValue": "[UEFI and Legacy]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define quais tipos de dispositivos de armazenamento e placas de expansão podem ser detectados e listados como opções de inicialização (UEFI, Legacy OPROM ou ambos).",
+          "riskReason": "MÉDIO (se configurado de forma incompatível com seu hardware e sistema operacional). Pode impedir a detecção de dispositivos de inicialização, causando falha no POST (Power-On Self-Test) se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "Option ROM execution",
           "defaultValue": "[Do not launch]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define se Option ROMs de dispositivos de armazenamento e vídeo serão carregadas e executadas. Necessário para dispositivos legados (non-UEFI) funcionarem durante o boot [1].",
+          "riskReason": "MÉDIO (configuração incorreta pode impedir o boot até que seja reajustada) [1]. Pode causar falha no POST se configurado incorretamente para dispositivos que não possuem o tipo de ROM selecionado (ex: forçar \"UEFI only\" em um dispositivo legado) [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Network",
           "defaultValue": "[Legacy]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite ou desabilita a capacidade de inicializar o computador através da rede local (boot via LAN/PXE) usando métodos de BIOS legados, para instalação de sistemas operacionais ou recuperação.",
+          "riskReason": "BAIXO (recomenda-se manter desabilitado a menos que o boot via rede legado seja necessário). Não causa travamento do POST por si só, a menos que esteja tentando inicializar de um dispositivo de rede legado que não existe ou esteja configurado incorretamente",
+          "sources": [
+            "https://networkboot.org/fundamentals/#:~:text=Network%20booting%2C%20or%20booting%20from,USB%20stick%20or%20hard%20drive.",
+            "https://www.wikihow.com/Csm-Support#:~:text=CSM%20stands%20for%20%22compatibility%20support%20module%22%20and%20is%20used%20for,to%20leave%20it%20enabled%2C%20too.",
+            "https://techmatterglobal.com/what-is-network-stack-in-bios#:~:text=If%20a%20network%2Dbootable%20device,recovery%2C%20this%20could%20be%20helpful.",
+            "https://docs.oracle.com/en/servers/x86/x9-2/exa-database/network-stack-configuration.html#:~:text=Enables%20(default)%20the%20UEFI%20network,not%20use%20the%20network%20interface."
+          ]
         },
         {
           "type": "option",
           "name": "Storage",
           "defaultValue": "[Legacy]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita ou desabilita o suporte de hardware legado (via CSM) para dispositivos de armazenamento SATA/NVMe/etc., permitindo que sistemas operacionais mais antigos os reconheçam durante a inicialização.",
+          "riskReason": "MÉDIO (depende da sua configuração de hardware/SO). [1, 2, 3]. Sim. Configurações incorretas (ex: desabilitar se necessário para um SO legado) podem impedir o reconhecimento de discos de boot ou causar falha no POST/inicialização",
           "sources": []
         },
         {

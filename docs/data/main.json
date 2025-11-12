@@ -82,7 +82,7 @@
       "name": "System Time",
       "defaultValue": "[HH:MM:SS]",
       "description": "Permite visualizar e ajustar manualmente a hora do sistema (RTC). Essa hora é usada pelo sistema operacional para registrar eventos, carimbos de data/hora de arquivos e sincronização de rede, mantida pela bateria CMOS.",
-      "riskReason": "(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE)) A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização. GRAU DE RISCO: NENHUM (para o hardware/POST).. (se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE)) A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização.",
+      "riskReason": "A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização. GRAU DE RISCO: NENHUM (para o hardware/POST).. (se pode causar travamento de POST e o GRAU DE RISCO:A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização.",
       "sources": [
         "https://www.computerhope.com/issues/ch000554.htm#:~:text=Setting%20the%20date%20and%20time%20in%20BIOS,key%20to%20Save%20and%20Exit%20the%20BIOS.",
         "https://support.hp.com/us-en/document/ish_6904096-6904147-16#:~:text=Real%2DTime%20Clock%20Power%20Loss,administrator%20or%20HP%20Customer%20Support."

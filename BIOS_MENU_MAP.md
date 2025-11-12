@@ -723,10 +723,6 @@ Aptio Setup Utility
 │   Boot Configuration
 │     - Boot Option #1: [Device Name]
 │     - Boot Option #2: [Device Name]
-│     - Boot Option #3: [Device Name]
-│     - Boot Option #4: [Device Name]
-│     - Boot Option #5: [Device Name]
-│     - Boot Option #6: [Device Name]
 │
 └── Save & Exit
     │
