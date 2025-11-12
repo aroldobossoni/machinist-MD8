@@ -152,57 +152,47 @@ def fetch_google_ai_response(prompt, page, retry_count=3):
                 if attempt < retry_count - 1:
                     continue
             
-            # Extrair texto da resposta
-            html = page.content()
-            soup = BeautifulSoup(html, 'html.parser')
-            
-            # Estratégia de extração:
-            # 1. Buscar por elementos com texto longo que contenham marcadores esperados
-            # 2. Nota: Seletores específicos devem ser atualizados após analyze_google_ai.py
-            
+            # Extrair texto da resposta usando seletor CSS específico
             response_text = ""
             sources = []
             
-            # Buscar por marcadores esperados na resposta
-            has_markers = 'DESCRIÇÃO' in html or 'descrição' in html.lower() or 'RISCO' in html
+            try:
+                # Tentar usar seletor CSS para extrair apenas resposta da IA
+                ai_container = page.query_selector('.pWvJNd')
+                if ai_container:
+                    response_text = ai_container.inner_text()
+                    print(f"[OK] Resposta extraida via seletor CSS")
+                else:
+                    print(f"[AVISO] Seletor CSS nao encontrou container, usando fallback")
+            except Exception as e:
+                print(f"[AVISO] Erro ao usar seletor CSS: {e}, usando fallback")
             
-            if has_markers:
-                # Tentar encontrar container principal da resposta
-                # Estratégias múltiplas:
+            # Fallback: extrair de todo HTML se seletor CSS falhou
+            if not response_text or len(response_text) < 50:
+                html = page.content()
+                soup = BeautifulSoup(html, 'html.parser')
                 
-                # 1. Buscar por divs com muito texto
-                main_containers = soup.find_all(['div', 'section', 'article'], 
-                                                class_=lambda x: x and ('answer' in str(x).lower() or 
-                                                                       'response' in str(x).lower() or
-                                                                       'ai' in str(x).lower()))
+                # Remover scripts e styles
+                for script in soup(["script", "style", "nav", "header", "footer"]):
+                    script.decompose()
                 
-                if not main_containers:
-                    # 2. Buscar por elementos com texto que contém marcadores
-                    for element in soup.find_all(['p', 'div', 'span', 'li']):
-                        text = element.get_text(separator=' ', strip=True)
-                        if text and len(text) > 100:
-                            if 'DESCRIÇÃO' in text or 'descrição' in text.lower() or 'RISCO' in text:
-                                response_text += text + "\n\n"
+                # Pegar texto principal
+                body = soup.find('body')
+                if body:
+                    response_text = body.get_text(separator='\n', strip=True)
                 
-                # 3. Se ainda não encontrou, pegar todo texto visível da página
-                if not response_text:
-                    # Remover scripts e styles
-                    for script in soup(["script", "style", "nav", "header", "footer"]):
-                        script.decompose()
-                    
-                    # Pegar texto principal
-                    body = soup.find('body')
-                    if body:
-                        response_text = body.get_text(separator='\n', strip=True)
-                
-                # Buscar links de referência (fontes)
+                print(f"[OK] Resposta extraida via fallback")
+            
+            # Buscar links de referência (fontes) no HTML completo
+            if not sources:
+                html = page.content()
+                soup = BeautifulSoup(html, 'html.parser')
                 for link in soup.find_all('a', href=True):
                     href = link.get('href', '')
-                    # Filtrar links do Google e manter apenas externos
                     if (href.startswith('http') and 
                         'google.com' not in href and 
                         'youtube.com' not in href and
-                        len(href) < 200):  # Evitar URLs muito longas
+                        len(href) < 200):
                         sources.append(href)
             
             if response_text:
@@ -240,90 +230,46 @@ def parse_ai_response(full_text):
     if not full_text:
         return None
     
-    # Limpar texto: remover textos da UI do Google
-    text = full_text
-    
-    # Remover textos antes da resposta real (tudo antes de "DESCRIÇÃO")
-    desc_start = text.find('DESCRIÇÃO')
+    # Remover textos antes de "DESCRIÇÃO"
+    desc_start = full_text.find('DESCRIÇÃO')
     if desc_start == -1:
-        desc_start = text.lower().find('descrição')
+        return None
     
-    if desc_start != -1:
-        text = text[desc_start:]
+    # Remover textos após "A IA pode cometer erros"
+    end_idx = full_text.find('A IA pode cometer erros')
+    if end_idx == -1:
+        end_idx = len(full_text)
     
-    # Remover textos após a resposta (texto de rodapé do Google)
-    end_markers = [
-        'A IA pode cometer erros',
-        'Agradecemos a colaboração',
-        ' sites BIOS',  # Quando começa a aparecer links
-        'Mostrar tudo',
-        'Dispensar'
-    ]
+    text = full_text[desc_start:end_idx].strip()
     
-    for marker in end_markers:
-        idx = text.find(marker)
-        if idx != -1:
-            text = text[:idx]
-            break
-    
-    # Normalizar: remover bullets (•) e normalizar espaços
-    text = text.replace('•', '')
-    text = ' '.join(text.split())
-    
-    # Extrair DESCRIÇÃO - captura até encontrar "RISCO"
-    # Padrão: DESCRIÇÃO (texto dentro de parênteses): CONTEÚDO_AQUI RISCO
-    desc_pattern = r'DESCRIÇÃO\s*\([^)]+\)\s*:\s*(.+?)(?=\s+RISCO\s*\(|$)'
+    # Extrair DESCRIÇÃO (linha após "DESCRIÇÃO (...):")
+    desc_pattern = r'DESCRIÇÃO\s*\([^)]+\)\s*:\s*([^\n]+(?:\n(?!RISCO)[^\n]+)*)'
     desc_match = re.search(desc_pattern, text, re.IGNORECASE)
     
     if not desc_match:
-        print(f"[DEBUG] Nao encontrou DESCRIÇAO no texto limpo")
-        print(f"[DEBUG] Primeiros 200 chars: {text[:200]}")
         return None
     
     description = desc_match.group(1).strip()
     
-    # Extrair RISCO - captura até encontrar "GRAU DE RISCO"
-    risk_pattern = r'RISCO\s*\([^)]+\)\s*:\s*(.+?)(?=\s+GRAU\s+DE\s+RISCO|$)'
+    # Extrair RISCO (linha após "RISCO (...):")
+    risk_pattern = r'RISCO\s*\([^)]+\)\s*:\s*([^\n]+(?:\n(?!GRAU\s+DE\s+RISCO)[^\n]+)*)'
     risk_match = re.search(risk_pattern, text, re.IGNORECASE)
     
-    risk_text = ""
-    if risk_match:
-        risk_text = risk_match.group(1).strip()
+    risk_text = risk_match.group(1).strip() if risk_match else ""
     
-    # Extrair GRAU DE RISCO - pode ter dois formatos:
-    # 1. "GRAU DE RISCO: BAIXO (explicação)"
-    # 2. "GRAU DE RISCO: BAIXO"
-    grade_pattern = r'GRAU\s+DE\s+RISCO\s*:\s*(\w+)(?:\s*\(([^)]+)\))?'
+    # Extrair GRAU DE RISCO (linha após "GRAU DE RISCO:")
+    grade_pattern = r'GRAU\s+DE\s+RISCO\s*:\s*([^\n]+(?:\n(?!A\s+IA)[^\n]+)*)'
     grade_match = re.search(grade_pattern, text, re.IGNORECASE)
     
-    grade_text = ""
-    if grade_match:
-        # Pegar o grau (BAIXO, MÉDIO, ALTO, etc)
-        grade_level = grade_match.group(1).strip().upper()
-        # Pegar explicação opcional entre parênteses
-        grade_explanation = grade_match.group(2).strip() if grade_match.group(2) else ""
-        
-        if grade_explanation:
-            grade_text = f"{grade_level} ({grade_explanation})"
-        else:
-            grade_text = grade_level
+    grade_text = grade_match.group(1).strip() if grade_match else ""
     
-    # Combinar GRAU DE RISCO e RISCO em riskReason
-    risk_reason = ""
-    if grade_text:
-        risk_reason = f"GRAU DE RISCO: {grade_text}"
-        if risk_text:
-            risk_reason += f". RISCO: {risk_text}"
-    elif risk_text:
-        risk_reason = f"RISCO: {risk_text}"
-    
-    # Limpar espaços extras e normalizar
+    # Limpar espaços extras
     description = ' '.join(description.split())
-    risk_reason = ' '.join(risk_reason.split())
+    risk_text = ' '.join(risk_text.split())
+    grade_text = ' '.join(grade_text.split())
     
-    # Limitar tamanho se necessário (remover se ficar muito longo)
-    if len(description) > 500:
-        description = description[:497] + '...'
+    # Montar riskReason
+    risk_reason = f"{grade_text}. {risk_text}" if grade_text and risk_text else (grade_text or risk_text)
     
     return {
         'description': description,
@@ -541,6 +487,11 @@ def main():
                 # Parse
                 print("\n[PARSE] Extraindo dados...")
                 parsed = parse_ai_response(response['full_text'])
+                
+                # No modo --test, sempre salvar raw response para análise
+                if args.test:
+                    raw_file = save_raw_response(option['option'], response['full_text'])
+                    print(f"[DEBUG] Resposta bruta salva em: {raw_file}")
                 
                 if not parsed:
                     print("[ERRO] Falha no parsing!")
