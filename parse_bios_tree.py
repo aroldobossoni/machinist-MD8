@@ -3,7 +3,8 @@
 import re
 import json
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any, Optional
+
 
 class BIOSTreeParser:
     def __init__(self, md_file: str = "BIOS_MENU_MAP.md"):
