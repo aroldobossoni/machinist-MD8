@@ -61,25 +61,32 @@
       "type": "option",
       "name": "System Language",
       "defaultValue": "[English]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define o idioma de exibição do menu de configuração da BIOS/UEFI. Não afeta o sistema operacional.",
+      "riskReason": "BAIXO (reversível, exige apenas atenção visual para reverter).. Pode dificultar a navegação se um idioma desconhecido for selecionado acidentalmente.",
+      "sources": [
+        "https://consumer.huawei.com/en/support/content/en-us15883569/#:~:text=When%20your%20computer%20is%20starting,save%20the%20settings%20and%20exit."
+      ]
     },
     {
       "type": "option",
       "name": "System Date",
       "defaultValue": "[MM/DD/YYYY]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define a data do relógio de tempo real (RTC) do sistema. Crucial para o funcionamento do sistema operacional e aplicativos, não afeta o POST.",
+      "riskReason": "NENHUM.. Nenhum. Mudar a data não impede o POST ou o boot do sistema.",
+      "sources": [
+        "https://manuals.plus/giada/ib3-281-3-5-inch-sbc-embedded-motherboard-manual"
+      ]
     },
     {
       "type": "option",
       "name": "System Time",
       "defaultValue": "[HH:MM:SS]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Permite visualizar e ajustar manualmente a hora do sistema (RTC). Essa hora é usada pelo sistema operacional para registrar eventos, carimbos de data/hora de arquivos e sincronização de rede, mantida pela bateria CMOS.",
+      "riskReason": "(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE)) A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização. GRAU DE RISCO: NENHUM (para o hardware/POST).. (se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE)) A alteração da hora não causa falha no POST, mas a hora incorreta pode afetar a funcionalidade de software e a sincronização.",
+      "sources": [
+        "https://www.computerhope.com/issues/ch000554.htm#:~:text=Setting%20the%20date%20and%20time%20in%20BIOS,key%20to%20Save%20and%20Exit%20the%20BIOS.",
+        "https://support.hp.com/us-en/document/ish_6904096-6904147-16#:~:text=Real%2DTime%20Clock%20Power%20Loss,administrator%20or%20HP%20Customer%20Support."
+      ]
     }
   ]
 }

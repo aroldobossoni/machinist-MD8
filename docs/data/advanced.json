@@ -10,17 +10,20 @@
           "type": "option",
           "name": "Enable ACPI Auto Configuration",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que a BIOS configure automaticamente os recursos ACPI (Advanced Configuration and Power Interface) para o sistema operacional, gerenciando energia e dispositivos (PnP). [1]",
+          "riskReason": "BAIXO O texto acima possui 40 palavras.. Baixo. Geralmente seguro. Problemas podem ocorrer com sistemas operacionais muito antigos ou específicos, mas é raro.",
           "sources": []
         },
         {
           "type": "option",
           "name": "Enable Hibernation",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite ao sistema operacional utilizar o modo de hibernação (estado ACPI S4), que salva o conteúdo da memória RAM no disco rígido e desliga o computador, permitindo um retorno rápido ao estado anterior.",
+          "riskReason": "NENHUM (para o POST).. Não há risco direto de travamento do POST (Power-On Self-Test). O risco maior é de o sistema operacional não conseguir entrar ou sair corretamente do modo de hibernação (retornando a um reboot), o que é um problema de software, não de hardware/BIOS em si.",
+          "sources": [
+            "https://learn.microsoft.com/pt-br/answers/questions/3214272/pc-liga-automaticamente-ap-s-entrar-em-hiberna-o-o?page=4",
+            "https://learn.microsoft.com/pt-br/answers/questions/3171141/como-ativar-a-hiberna-o-problema-com-host-protegid?forum=windows-all&referrer=answers"
+          ]
         },
         {
           "type": "option",
