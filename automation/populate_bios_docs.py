@@ -170,12 +170,14 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
                         print(f"\n⚠️  CAPTCHA detectado! Screenshot: {screenshot_path}")
                         print(f"[INFO] Resolva o CAPTCHA no navegador")
                         print(f"[INFO] O script aguardara automaticamente a resposta aparecer...")
-                        beep_alert()
                     else:
-                        # CAPTCHA ainda ativo - verificar se passou 60s desde último beep
+                        # CAPTCHA ainda ativo - verificar se passou 60s desde detecção inicial
                         current_time = time.time()
-                        if current_time - last_beep_time >= 60:
-                            print(f"\n🔔 ALERTA: CAPTCHA ainda não resolvido ({int(current_time - captcha_start_time)}s aguardando)")
+                        elapsed_since_start = current_time - captcha_start_time
+                        
+                        # Só emitir beep se já passou 60s desde a detecção inicial
+                        if elapsed_since_start >= 60 and (current_time - last_beep_time) >= 60:
+                            print(f"\n🔔 ALERTA: CAPTCHA ainda não resolvido ({int(elapsed_since_start)}s aguardando)")
                             beep_alert()
                             last_beep_time = current_time
                     
