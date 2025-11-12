@@ -915,6 +915,17 @@
                 </select>
             </div>
             <div class="filter-group">
+                <label>Risco</label>
+                <select id="riskFilter">
+                    <option value="all">Todos</option>
+                    <option value="none">Nenhum</option>
+                    <option value="low">Baixo</option>
+                    <option value="medium">Médio</option>
+                    <option value="high">Alto</option>
+                    <option value="critical">Certamente</option>
+                </select>
+            </div>
+            <div class="filter-group">
                 <label>Buscar opção</label>
                 <input type="text" id="searchFilter" placeholder="Digite o nome da opção...">
             </div>
@@ -1006,6 +1017,7 @@
         // Current filters
         let currentFilters = {
             menu: 'all',
+            risk: 'all',
             search: ''
         };
 
@@ -1346,6 +1358,11 @@
         // Event listeners
         document.getElementById('menuFilter').addEventListener('change', (e) => {
             currentFilters.menu = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('riskFilter').addEventListener('change', (e) => {
+            currentFilters.risk = e.target.value;
             applyFilters();
         });
 
