@@ -986,7 +986,39 @@
             risk: 'all'
         };
 
-        // Load BIOS options from JSON
+        // Flatten hierarchical structure to flat array
+        function flattenHierarchy(node, menu = "", submenu = "") {
+            const items = [];
+            
+            if (node.type === 'option') {
+                items.push({
+                    menu: menu,
+                    submenu: submenu || null,
+                    option: node.name,
+                    defaultValue: node.defaultValue,
+                    description: node.description || '',
+                    risk: node.risk || 'none',
+                    riskReason: node.riskReason || ''
+                });
+            }
+            
+            // Recursively process children
+            for (const child of (node.children || [])) {
+                if (child.type === 'submenu') {
+                    const newSubmenu = submenu ? `${submenu} > ${child.name}` : child.name;
+                    items.push(...flattenHierarchy(child, menu, newSubmenu));
+                } else if (child.type === 'section') {
+                    // Sections don't add to submenu path, just recurse
+                    items.push(...flattenHierarchy(child, menu, submenu));
+                } else {
+                    items.push(...flattenHierarchy(child, menu, submenu));
+                }
+            }
+            
+            return items;
+        }
+
+        // Load BIOS options from JSON (hierarchical structure)
         async function loadBIOSOptions() {
             try {
                 // Carregar índice de arquivos
@@ -1002,11 +1034,19 @@
                     fetch(`data/${fileInfo.file}`).then(r => r.json())
                 );
                 
-                const dataArrays = await Promise.all(dataPromises);
+                const hierarchicalData = await Promise.all(dataPromises);
                 
-                // Mesclar todos os arrays em um único array
-                biosOptions = dataArrays.flat();
+                // Flatten cada menu hierárquico e mesclar
+                biosOptions = [];
+                hierarchicalData.forEach(menuData => {
+                    const menuName = menuData.name;
+                    const flatOptions = flattenHierarchy(menuData, menuName, "");
+                    biosOptions.push(...flatOptions);
+                });
+                
                 filteredOptions = [...biosOptions];
+                
+                console.log(`[INFO] Carregados ${biosOptions.length} opções de ${hierarchicalData.length} menus`);
                 
                 renderTable();
                 renderMobileCards();

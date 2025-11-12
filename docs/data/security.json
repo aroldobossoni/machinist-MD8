@@ -1,20 +1,67 @@
-[
-  {
-    "menu": "Security",
-    "submenu": null,
-    "option": "Administrator Password",
-    "defaultValue": "(Set/Change)",
-    "description": "Define ou altera a senha de administrador da BIOS. Quando configurada, a senha é solicitada apenas ao entrar na BIOS Setup. Não bloqueia o boot do sistema. Se esquecida, requer reset de CMOS (remover bateria ou jumper) para recuperar acesso. Mínimo 3 caracteres, máximo 20 caracteres.",
-    "risk": "high",
-    "riskReason": "Senha esquecida bloqueia acesso à BIOS; requer reset físico (CMOS clear) para recuperar"
-  },
-  {
-    "menu": "Security",
-    "submenu": null,
-    "option": "User Password",
-    "defaultValue": "(Set/Change)",
-    "description": "Define ou altera a senha de usuário da BIOS. Quando configurada, a senha é solicitada ANTES do boot do sistema operacional (power-on password). Usuário tem privilégios de administrador dentro da BIOS Setup. Se esquecida, impede boot completo do sistema. Mínimo 3 caracteres, máximo 20 caracteres.",
-    "risk": "high",
-    "riskReason": "Senha esquecida impede boot do sistema; requer reset físico (CMOS clear) para recuperar"
-  }
-]
+{
+  "type": "submenu",
+  "name": "Security",
+  "children": [
+    {
+      "type": "section",
+      "name": "Password Description",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "If ONLY the Administrator's password is set, then this only limits",
+      "content": "If ONLY the Administrator's password is set, then this only limits"
+    },
+    {
+      "type": "section",
+      "name": "access to Setup and is only asked for when entering Setup.",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "If ONLY the User's password is set, then this is a power on password",
+      "content": "If ONLY the User's password is set, then this is a power on password"
+    },
+    {
+      "type": "section",
+      "name": "and must be entered to boot or enter Setup. In Setup the User will",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "have Administrator rights.",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "Password Length Range",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "Minimum length: 3",
+      "content": "Minimum length: 3"
+    },
+    {
+      "type": "info",
+      "name": "Maximum length: 20",
+      "content": "Maximum length: 20"
+    },
+    {
+      "type": "option",
+      "name": "Administrator Password",
+      "defaultValue": null,
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "User Password",
+      "defaultValue": null,
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    }
+  ]
+}

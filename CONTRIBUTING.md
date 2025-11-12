@@ -61,34 +61,59 @@ Exemplos:
 
 ### 3. Editando os Arquivos JSON
 
-Os dados estão em `docs/data/`:
+Os dados estão em `docs/data/` em **estrutura hierárquica**:
 - `main.json` - Menu Main
 - `advanced.json` - Menu Advanced
 - `intelrcsetup.json` - IntelRCSetup
 - `security.json` - Security
 - `boot.json` - Boot
+- `saveexit.json` - Save & Exit
 
-**Estrutura de cada entrada:**
+**⚠️ IMPORTANTE**: Os JSONs agora usam estrutura hierárquica de árvore, não mais lista flat!
+
+**Estrutura hierárquica:**
 ```json
 {
-  "menu": "Advanced",
-  "submenu": "PCI Subsystem Settings",
-  "option": "Above 4G Decoding",
-  "defaultValue": "[Disabled]",
-  "description": "Descrição técnica completa...",
-  "risk": "high",
-  "riskReason": "Explicação do risco específico (se risk != none)"
+  "type": "submenu",
+  "name": "Advanced",
+  "children": [
+    {
+      "type": "submenu",
+      "name": "PCI Subsystem Settings",
+      "children": [
+        {
+          "type": "option",
+          "name": "Above 4G Decoding",
+          "defaultValue": "[Disabled]",
+          "description": "Descrição técnica completa...",
+          "risk": "high",
+          "riskReason": "Explicação do risco específico (se risk != none)"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+**Navegação na árvore:**
+- Menus principais são `type: "submenu"` no nível raiz
+- Submenus também são `type: "submenu"` dentro de `children`
+- Opções configuráveis são `type: "option"`
+- Seções descritivas são `type: "section"`
+- Informações read-only são `type: "info"`
 
 ### 4. Adicionando Novas Opções
 
 Se encontrou uma opção da BIOS que não está documentada:
 
 1. Verifique em `BIOS_MENU_MAP.md` se a opção existe
-2. Adicione no arquivo JSON correspondente ao menu
-3. Siga o padrão de descrição e classificação de risco
-4. Mantenha ordem alfabética dentro de cada submenu (se possível)
+2. **Regenere os JSONs** usando o script parser:
+   ```bash
+   python parse_bios_tree.py
+   ```
+   (Isso garante que a estrutura hierárquica esteja correta)
+3. **Edite manualmente** o JSON hierárquico para adicionar/melhorar `description`, `risk` e `riskReason`
+4. Navegue pela árvore até encontrar o `type: "option"` correto
 5. Valide o JSON após editar
 
 ### 5. Correções e Melhorias

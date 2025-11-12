@@ -1,434 +1,3211 @@
-[
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Hyper-Threading [ALL]",
-    "defaultValue": "[Enable]",
-    "description": "Habilita Hyper-Threading Technology (HTT) em todos os cores do processador, permitindo que cada core físico execute dois threads simultaneamente. Melhora significativamente performance em aplicações multi-threaded e multitarefa. Desabilitar reduz performance em ~30-40% em workloads paralelos, mas pode melhorar performance single-threaded em alguns casos raros. Recomendado: Enable para maioria dos casos de uso.",
-    "risk": "low",
-    "riskReason": "Desabilitar reduz performance multi-threaded em ~30-40%; pode afetar aplicações paralelas"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Check CPU BIST Result",
-    "defaultValue": "[Disabled]",
-    "description": "Verifica resultado do Built-In Self-Test da CPU.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Monitor/Mwait",
-    "defaultValue": "[Enable]",
-    "description": "Habilita instruções MONITOR/MWAIT para gerenciamento de energia.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Execute Disable Bit",
-    "defaultValue": "[Enable]",
-    "description": "NX bit (No-Execute) / DEP (Data Execution Prevention) protege contra execução de código malicioso em áreas de memória marcadas como dados. Desabilitar remove proteção crítica contra exploits de buffer overflow e malware. Windows DEP e Linux NX dependem desta opção. Desabilitar expõe sistema a vulnerabilidades graves de segurança. Deve permanecer habilitado em produção.",
-    "risk": "high",
-    "riskReason": "Desabilitar remove proteção DEP/NX; expõe sistema a exploits de buffer overflow e malware"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Enable Intel TXT Support",
-    "defaultValue": "[Disable]",
-    "description": "Intel Trusted Execution Technology (TXT) fornece verificação de integridade do sistema durante boot e proteção contra rootkits de baixo nível. Requer TPM (Trusted Platform Module) e suporte do sistema operacional. Habilitar sem TPM ou suporte do OS pode causar problemas de boot ou incompatibilidade. Usado principalmente em ambientes corporativos com requisitos de segurança rigorosos.",
-    "risk": "low",
-    "riskReason": "Habilitar sem TPM ou suporte do OS pode causar problemas de boot ou incompatibilidade"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "VMX",
-    "defaultValue": "[Enable]",
-    "description": "Intel Virtualization Technology (VT-x) permite que o processador execute múltiplas máquinas virtuais simultaneamente. Desabilitar quebra completamente funcionalidades de virtualização: Hyper-V, VMware, VirtualBox, KVM, WSL2, Docker Desktop, containers. Essencial para servidores virtualizados e desenvolvimento. Desabilitar em sistema que usa VMs impede boot de máquinas virtuais.",
-    "risk": "high",
-    "riskReason": "Desabilitar quebra completamente VMs, Hyper-V, WSL2, Docker, containers; impede virtualização"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Enable SMX",
-    "defaultValue": "[Disable]",
-    "description": "Habilita Intel Safer Mode Extensions.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Lock Chipset",
-    "defaultValue": "[Enable]",
-    "description": "Bloqueia modificação de configurações críticas do chipset após POST para segurança. Desabilitar permite alteração de configurações sensíveis do chipset durante runtime, aumentando risco de ataques de firmware e modificação não autorizada. Recomendado: Enable para segurança em produção. Desabilitar apenas para debugging avançado.",
-    "risk": "high",
-    "riskReason": "Desabilitar permite modificação não autorizada de configurações críticas do chipset; risco de segurança"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "MSR Lock Control",
-    "defaultValue": "[Enable]",
-    "description": "Bloqueia Model-Specific Registers para segurança.",
-    "risk": "high",
-    "riskReason": "Desabilitar remove proteção de segurança; permite ataques de ring 0"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "PPIN Control",
-    "defaultValue": "[Unlock/Enable]",
-    "description": "Controle do Protected Processor Identification Number.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "DEBUG INTERFACE",
-    "defaultValue": "[Disable]",
-    "description": "Interface de debug do processador. Deve permanecer desabilitada em produção.",
-    "risk": "high",
-    "riskReason": "Habilitar expõe interface de debug; grave risco de segurança"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Hardware Prefetcher",
-    "defaultValue": "[Enable]",
-    "description": "Prefetcher de hardware prevê e carrega dados na cache L2 antes que sejam solicitados, melhorando performance em workloads sequenciais. Desabilitar pode reduzir performance em até 10-15% em aplicações que acessam memória sequencialmente. Pode melhorar performance em alguns workloads aleatórios específicos, mas geralmente reduz performance geral.",
-    "risk": "low",
-    "riskReason": "Desabilitar pode reduzir performance em até 10-15% em workloads sequenciais"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Adjacent Cache Prefetch",
-    "defaultValue": "[Enable]",
-    "description": "Prefetching de cache adjacente.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "DCU Streamer Prefetcher",
-    "defaultValue": "[Enable]",
-    "description": "Prefetcher de streamer DCU.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "DCU IP Prefetcher",
-    "defaultValue": "[Enable]",
-    "description": "Prefetcher de IP DCU.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "DCU Mode",
-    "defaultValue": "[32KB 8Way Without ECC]",
-    "description": "Modo do Data Cache Unit.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Direct Cache Access (DCA)",
-    "defaultValue": "[Auto]",
-    "description": "Acesso direto ao cache para melhor performance de I/O.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "DCA Prefetch Delay",
-    "defaultValue": "32",
-    "description": "Atraso de prefetch para DCA.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "X2APIC",
-    "defaultValue": "[Disable]",
-    "description": "Advanced Programmable Interrupt Controller versão 2 (x2APIC) suporta até 64.000 processadores lógicos vs 256 do APIC tradicional. Necessário para sistemas com muitos cores/threads e para virtualização avançada. Desabilitar pode limitar escalabilidade em sistemas com muitos cores. Habilitar pode causar incompatibilidade com sistemas operacionais antigos ou hypervisors que não suportam x2APIC.",
-    "risk": "low",
-    "riskReason": "Habilitar pode causar incompatibilidade com OSes antigos ou hypervisors sem suporte x2APIC"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "AES-NI",
-    "defaultValue": "[Enable]",
-    "description": "AES New Instructions são instruções de hardware dedicadas para acelerar criptografia AES (Advanced Encryption Standard). Desabilitar reduz drasticamente performance de operações criptográficas (até 10x mais lento), afetando SSL/TLS, VPNs, criptografia de disco (BitLocker, LUKS), e aplicações que usam AES. Essencial para segurança e performance em servidores e sistemas que usam criptografia.",
-    "risk": "low",
-    "riskReason": "Desabilitar reduz performance de criptografia AES em até 10x; afeta SSL/TLS, VPNs, BitLocker"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Down Stream PECI",
-    "defaultValue": "[Enable]",
-    "description": "Platform Environment Control Interface downstream.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "SMM Save State",
-    "defaultValue": "[Disable]",
-    "description": "Salva estado do System Management Mode.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Processor Configuration",
-    "option": "Targeted Smi",
-    "defaultValue": "[Disable]",
-    "description": "System Management Interrupt direcionado.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration",
-    "option": "Power Technology",
-    "defaultValue": "[Custom]",
-    "description": "Tecnologia de gerenciamento de energia.",
-    "risk": "low",
-    "riskReason": "Pode afetar gerenciamento de energia"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration",
-    "option": "Config TDP",
-    "defaultValue": "[Disable]",
-    "description": "Configuração de TDP (Thermal Design Power).",
-    "risk": "high",
-    "riskReason": "Alterar TDP pode causar superaquecimento ou throttling excessivo"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration",
-    "option": "IOTG Setting",
-    "defaultValue": "[Disable]",
-    "description": "Configuração IOTG (Internet of Things Gateway).",
-    "risk": "low",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration",
-    "option": "Uncore CLR Freq OVRD",
-    "defaultValue": "[Auto]",
-    "description": "Override de frequência do Uncore.",
-    "risk": "high",
-    "riskReason": "Override incorreto causa instabilidade do sistema e possível corrupção"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "EIST (P-states)",
-    "defaultValue": "[Enable]",
-    "description": "Enhanced Intel SpeedStep Technology permite que o processador ajuste dinamicamente frequência e voltagem baseado na carga de trabalho (P-states). Desabilitar força CPU a operar sempre na frequência máxima, aumentando consumo de energia e temperatura desnecessariamente. Essencial para laptops e servidores que priorizam eficiência energética. Desabilitar apenas para benchmarking ou quando overclocking extremo.",
-    "risk": "low",
-    "riskReason": "Desabilitar aumenta consumo de energia e temperatura; reduz eficiência energética"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "Turbo Mode",
-    "defaultValue": "[Enable]",
-    "description": "Intel Turbo Boost Technology permite que cores individuais operem acima da frequência base quando há headroom térmico e elétrico disponível. Desabilitar limita CPU à frequência base, reduzindo performance single-threaded e multi-threaded em até 20-40% dependendo do modelo. Essencial para performance máxima. Desabilitar apenas se causar instabilidade ou para reduzir temperatura máxima.",
-    "risk": "low",
-    "riskReason": "Desabilitar reduz performance em até 20-40%; limita CPU à frequência base"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "P-state coordination",
-    "defaultValue": "[HW_ALL]",
-    "description": "Coordenação de estados P entre cores.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "SPD",
-    "defaultValue": "[Disable]",
-    "description": "Speed Step P-State Demotion.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "PL2_SAFETY_NET_ENABLE",
-    "defaultValue": "[Enable]",
-    "description": "Habilita rede de segurança PL2.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU P State Control",
-    "option": "Boot performance mode",
-    "defaultValue": "[Max Performance]",
-    "description": "Modo de performance durante o boot.",
-    "risk": "low",
-    "riskReason": "Mudança pode afetar ordem de boot"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU HWPM State Control",
-    "option": "Enable CPU HWPM",
-    "defaultValue": "[Disable]",
-    "description": "Habilita Hardware Power Management da CPU.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU HWPM State Control",
-    "option": "Enable CPU Autonomous Cstate",
-    "defaultValue": "[Disable]",
-    "description": "Habilita estados C autônomos da CPU.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU C State Control",
-    "option": "Package C State limit",
-    "defaultValue": "[C0/C1 state]",
-    "description": "Limite de estado C do pacote do processador.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU C State Control",
-    "option": "CPU C3 report",
-    "defaultValue": "[Enable]",
-    "description": "Reporta estado C3 da CPU ao sistema operacional.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU C State Control",
-    "option": "CPU C6 report",
-    "defaultValue": "[Enable]",
-    "description": "Reporta estado C6 da CPU ao sistema operacional.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Advanced Power Management Configuration > CPU T State Control",
-    "option": "ACPI T-States",
-    "defaultValue": "[Enable]",
-    "description": "Estados de throttling ACPI.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Common RefCode Configuration",
-    "option": "MMIOHBase",
-    "defaultValue": "[56T]",
-    "description": "Define a base de endereçamento MMIO (Memory-Mapped I/O) High para dispositivos PCIe acima de 4GB. Valor em hexadecimals (T = Terabytes). Alterar incorretamente pode causar conflitos de endereçamento, falha de inicialização de dispositivos PCIe, ou boot failure completo. Requer conhecimento avançado de arquitetura de memória. Não alterar a menos que necessário para configurações específicas de servidor.",
-    "risk": "high",
-    "riskReason": "Valor incorreto causa conflitos de endereçamento PCIe, falha de boot ou dispositivos não inicializam"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Common RefCode Configuration",
-    "option": "MMIO High Size",
-    "defaultValue": "[256G]",
-    "description": "Define o tamanho da região MMIO High disponível para dispositivos PCIe acima de 4GB. Valor em gigabytes. Deve ser suficiente para acomodar todos os dispositivos PCIe do sistema. Valor muito pequeno pode impedir inicialização de GPUs modernas ou múltiplos dispositivos PCIe. Valor muito grande pode causar conflitos ou reduzir memória disponível para o sistema operacional.",
-    "risk": "high",
-    "riskReason": "Valor incompatível impede inicialização de dispositivos PCIe ou causa falha de boot"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Common RefCode Configuration",
-    "option": "Isoc Mode",
-    "defaultValue": "[Auto]",
-    "description": "Modo Isoc.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Common RefCode Configuration",
-    "option": "MeSeg Mode",
-    "defaultValue": "[Auto]",
-    "description": "Modo MeSeg.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Common RefCode Configuration",
-    "option": "Numa",
-    "defaultValue": "[Enable]",
-    "description": "Non-Uniform Memory Access habilita sistema operacional a otimizar acesso à memória em sistemas multi-socket, onde memória local ao socket é mais rápida que memória remota. Desabilitar em sistemas multi-socket reduz performance significativamente (até 30-50%) em workloads que dependem de acesso eficiente à memória. Em sistemas single-socket tem impacto mínimo. Recomendado: Enable em sistemas multi-socket.",
-    "risk": "low",
-    "riskReason": "Desabilitar em sistemas multi-socket reduz performance em até 30-50% em workloads intensivos de memória"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Memory Configuration",
-    "option": "Memory Frequency",
-    "defaultValue": "[Auto]",
-    "description": "Define a frequência de operação da memória RAM. Auto detecta automaticamente a frequência máxima suportada pelo módulo e CPU. Overclock manual pode causar instabilidade, corrupção de dados, crashes, ou em casos extremos, danos físicos aos módulos. Requer conhecimento de timings, voltagem e compatibilidade. Valores incorretos podem impedir POST ou causar boot loops.",
-    "risk": "high",
-    "riskReason": "Overclock incorreto causa crashes, corrupção de dados, boot loops ou danos físicos aos módulos"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Memory Configuration",
-    "option": "Enforce POR",
-    "defaultValue": "[Disabled]",
-    "description": "Força Power-On Reset.",
-    "risk": "high",
-    "riskReason": "Pode causar loops de boot ou falha completa de inicialização"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Memory Configuration",
-    "option": "PPR Type",
-    "defaultValue": "[PPR Disabled]",
-    "description": "Tipo de Post Package Repair.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "IntelRCSetup",
-    "submenu": "Memory Configuration",
-    "option": "Memory Type",
-    "defaultValue": "[UDIMMs and RDIMMs]",
-    "description": "Define o tipo de módulos de memória suportados: UDIMM (Unbuffered, desktop), RDIMM (Registered, servidor), ou ambos. Configurar apenas UDIMM em servidor com RDIMMs instalados impede detecção da memória. Configurar apenas RDIMM em desktop com UDIMMs impede detecção. Deve corresponder ao tipo físico dos módulos instalados. Mudança incorreta pode causar não-detecção de memória ou boot failure.",
-    "risk": "high",
-    "riskReason": "Tipo incompatível com módulos instalados impede detecção de memória ou causa boot failure"
-  }
-]
+{
+  "type": "submenu",
+  "name": "IntelRCSetup",
+  "children": [
+    {
+      "type": "section",
+      "name": "RC Revision: 04.04.00",
+      "children": []
+    },
+    {
+      "type": "submenu",
+      "name": "Processor Configuration",
+      "children": [
+        {
+          "type": "submenu",
+          "name": "Per-Socket Configuration",
+          "children": [
+            {
+              "type": "section",
+              "name": "Socket 0 (Detected CPU)",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "Processor Socket: (populated/empty)",
+              "content": "Processor Socket: (populated/empty)"
+            },
+            {
+              "type": "info",
+              "name": "Processor ID: XXXXXXXX",
+              "content": "Processor ID: XXXXXXXX"
+            },
+            {
+              "type": "info",
+              "name": "Processor Frequency: X.XXX GHz",
+              "content": "Processor Frequency: X.XXX GHz"
+            },
+            {
+              "type": "info",
+              "name": "Processor Max Ratio: XXH",
+              "content": "Processor Max Ratio: XXH"
+            },
+            {
+              "type": "info",
+              "name": "Processor Min Ratio: XXH",
+              "content": "Processor Min Ratio: XXH"
+            },
+            {
+              "type": "info",
+              "name": "Microcode Revision: XXXXXXXX",
+              "content": "Microcode Revision: XXXXXXXX"
+            },
+            {
+              "type": "info",
+              "name": "L1 Cache RAM: XXX KB",
+              "content": "L1 Cache RAM: XXX KB"
+            },
+            {
+              "type": "info",
+              "name": "L2 Cache RAM: XXXX KB",
+              "content": "L2 Cache RAM: XXXX KB"
+            },
+            {
+              "type": "info",
+              "name": "L3 Cache RAM: XXXXX KB",
+              "content": "L3 Cache RAM: XXXXX KB"
+            },
+            {
+              "type": "section",
+              "name": "Socket 1",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "Processor 1 Version: Not Present",
+              "content": "Processor 1 Version: Not Present"
+            }
+          ]
+        },
+        {
+          "type": "option",
+          "name": "Hyper-Threading [ALL]",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Check CPU BIST Result",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Monitor/Mwait",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Execute Disable Bit",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enable Intel TXT Support",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "VMX",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enable SMX",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Lock Chipset",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MSR Lock Control",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PPIN Control",
+          "defaultValue": "[Unlock/Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DEBUG INTERFACE",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Hardware Prefetcher",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Adjacent Cache Prefetch",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DCU Streamer Prefetcher",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DCU IP Prefetcher",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DCU Mode",
+          "defaultValue": "[32KB 8Way Without ECC]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Direct Cache Access (DCA)",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DCA Prefetch Delay",
+          "defaultValue": "[32]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "X2APIC",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "AES-NI",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Down Stream PECI",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IIO LLC Ways [19",
+          "defaultValue": "0] (Hex): 0",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "QLRU Config [63",
+          "defaultValue": "32] (Hex): 0",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "QLRU Config [31",
+          "defaultValue": "0] (Hex): 0",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SMM Save State",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Targeted Smi",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Advanced Power Management Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "Power Technology",
+          "defaultValue": "[Custom]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Config TDP",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IOTG Setting",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Uncore CLR Freq OVRD",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "CPU P State Control",
+          "children": [
+            {
+              "type": "option",
+              "name": "EIST (P-states)",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Turbo Mode",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "P-state coordination",
+              "defaultValue": "[HW_ALL]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SPD",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "PL2_SAFETY_NET_ENABLE",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Boot performance mode",
+              "defaultValue": "[Max Performance]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU HWPM State Control",
+          "children": [
+            {
+              "type": "option",
+              "name": "Enable CPU HWPM",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Enable CPU Autonomous Cstate",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU C State Control",
+          "children": [
+            {
+              "type": "option",
+              "name": "C2C3TT",
+              "defaultValue": "0",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Package C State limit",
+              "defaultValue": "[C0/C1 state]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "CPU C3 report",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "CPU C6 report",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU T State Control",
+          "children": [
+            {
+              "type": "option",
+              "name": "ACPI T-States",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU - Advanced PM Tuning",
+          "children": [
+            {
+              "type": "submenu",
+              "name": "Energy Perf BIAS",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "SOCKET RAPL Config",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "DRAM RAPL Configuration",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "DRAM RAPL Baseline",
+          "defaultValue": "[DRAM RAPL Mode 1]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Override BW_LIMIT_TF",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DRAM RAPL Extended Range",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Common RefCode Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "MMIOHBase",
+          "defaultValue": "[56T]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MMIO High Size",
+          "defaultValue": "[256G]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Isoc Mode",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MeSeg Mode",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Numa",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "QPI Configuration",
+      "children": [
+        {
+          "type": "submenu",
+          "name": "QPI General Configuration",
+          "children": [
+            {
+              "type": "section",
+              "name": "QPI Status",
+              "children": [
+                {
+                  "type": "section",
+                  "name": "QPI Status Information",
+                  "children": []
+                },
+                {
+                  "type": "info",
+                  "name": "Number of CPU: (detected)",
+                  "content": "Number of CPU: (detected)"
+                },
+                {
+                  "type": "info",
+                  "name": "Number of IIO: (detected)",
+                  "content": "Number of IIO: (detected)"
+                },
+                {
+                  "type": "info",
+                  "name": "Current QPI Link Speed: (current speed)",
+                  "content": "Current QPI Link Speed: (current speed)"
+                },
+                {
+                  "type": "info",
+                  "name": "Current QPI Link Frequency: (frequency)",
+                  "content": "Current QPI Link Frequency: (frequency)"
+                },
+                {
+                  "type": "info",
+                  "name": "QPI Global MMIO Low Base / Limit: (address range)",
+                  "content": "QPI Global MMIO Low Base / Limit: (address range)"
+                },
+                {
+                  "type": "info",
+                  "name": "QPI Global MMIO High Base / Limit: (address range)",
+                  "content": "QPI Global MMIO High Base / Limit: (address range)"
+                },
+                {
+                  "type": "info",
+                  "name": "QPI Pci-e Configuration Base / Size: (address/size)",
+                  "content": "QPI Pci-e Configuration Base / Size: (address/size)"
+                }
+              ]
+            },
+            {
+              "type": "option",
+              "name": "Degrade Precedence",
+              "defaultValue": "[Topology Precedence]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Link Frequency Select",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Link L0p Enable",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Link L1 Enable",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Legacy VGA Socket",
+              "defaultValue": "0",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "MMIO P2P Disable",
+              "defaultValue": "[no]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "E2E Parity Enable",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "COD Enable",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Early Snoop",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Home Dir Snoop with IVT-Style OSB",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "QPI Debug Print Level",
+              "defaultValue": "[All]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "QPI Per Socket Configuration",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "CPU 0",
+          "children": [
+            {
+              "type": "option",
+              "name": "Bus Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IO Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "MMIOL Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IIO Disable",
+              "defaultValue": "[no]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU 1",
+          "children": [
+            {
+              "type": "option",
+              "name": "Bus Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IO Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "MMIOL Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IIO Disable",
+              "defaultValue": "[no]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU 2",
+          "children": [
+            {
+              "type": "option",
+              "name": "Bus Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IO Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "MMIOL Resources Allocation Ratio",
+              "defaultValue": "1",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IIO Disable",
+              "defaultValue": "[no]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "CPU 3",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Bus Resources Allocation Ratio",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IO Resources Allocation Ratio",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MMIOL Resources Allocation Ratio",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IIO Disable",
+          "defaultValue": "[no]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Memory Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "Integrated Memory Controller (IMC)",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Enforce POR",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PPR Type",
+          "defaultValue": "[PPR Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PPR Error Injection test",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Memory Frequency",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MRC Promote Warnings",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Promote Warnings",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Halt on mem Training Error",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Multi-Threaded MRC",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enforce Timeout",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enhanced Log Parsing",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "BSSA Module Loader",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Backside RMT",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Rank Multiplication",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "LRDIMM Module Delay",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MemTest",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MemTestLoops",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Test",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Test Direction",
+          "defaultValue": "[UP Direction]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Test Invertion",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Test Repetitions",
+          "defaultValue": "3",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Test Interation o",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Swizzle enabling",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Dram Maintenance Refresh enabling",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Memory Type",
+          "defaultValue": "[UDIMMs and RDIMMs]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "CECC WA CH Mask",
+          "defaultValue": "10",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Rank Margin Tool",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "RMT Pattern Length",
+          "defaultValue": "32767",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "CMD Pattern Length",
+          "defaultValue": "1",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Per Bit Margin",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Training Result Offset Config",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Attempt Fast Boot",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Attempt Fast Cold Boot",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MemTest On Fast Boot",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "RMT On Cold Fast Boot",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "BDAT",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Data Scrambling",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Allow SBE during training",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "WR CRC feature Control",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Platform type input for SPD page s",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "CECC WA Control",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "CAP ERR FLOW feature Control",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Scrambling Seed Low",
+          "defaultValue": "41003",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Scrambling Seed High",
+          "defaultValue": "54165",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enable ADR",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MC BGF threshold",
+          "defaultValue": "0",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DLL Reset Test",
+          "defaultValue": "0",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "MC ODT Mode",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Opp read during WMM",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Normal Operation Duration",
+          "defaultValue": "1024",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Number of Sparing Transaction",
+          "defaultValue": "4",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PSMI Support",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "C/A Parity Enable",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SMB Clock Frequency",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "Memory Topology",
+          "children": [
+            {
+              "type": "section",
+              "name": "Detected DIMMs",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "Socket0.ChX.DimmX: (DIMM information when installed)",
+              "content": "Socket0.ChX.DimmX: (DIMM information when installed)"
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "Memory Thermal",
+          "children": [
+            {
+              "type": "option",
+              "name": "Set Throttling Mode",
+              "defaultValue": "[CLTT]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "OLTT Peak BW %",
+              "defaultValue": "50",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Phase Shedding",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Memory Power Savings Mode",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "submenu",
+              "name": "Memory Power Savings Advanced Options",
+              "children": [
+                {
+                  "type": "option",
+                  "name": "CK in SR",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                }
+              ]
+            },
+            {
+              "type": "option",
+              "name": "MDLL Off",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "MEMHOT Throttling Mode",
+              "defaultValue": "[Input-only]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Mem Electrical Throttling",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "Memory Timings & Voltage Override",
+          "children": [
+            {
+              "type": "option",
+              "name": "DIMM profile",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Memory Frequency",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "Memory Map",
+          "children": [
+            {
+              "type": "option",
+              "name": "Socket Interleave Below 4GB",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Channel Interleaving",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Rank Interleaving",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOT Memory Buffer Reservation",
+              "defaultValue": "0",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "A7 Mode",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "Memory RAS Configuration",
+          "children": [
+            {
+              "type": "option",
+              "name": "RAS Mode",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Lockstep x4 DIMMs",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Memory Rank Sparing",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Correctable Error Threshold",
+              "defaultValue": "32767",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Leaky bucket low bit",
+              "defaultValue": "40",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Leaky bucket high bit",
+              "defaultValue": "41",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "DRAM Maintenance",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Patrol Scrub",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Patrol Scrub Interval",
+              "defaultValue": "24",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Demand Scrub",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Device Tagging",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Handle Hard Error Detection",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Memory Power Management",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "DIMM Rank Enable Mask: [Disabled]",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "IIO Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "IIO PCIe Link on phase",
+          "defaultValue": "[Post chipset init]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCIe Train by BIOS",
+          "defaultValue": "[yes]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCIe Hot Plug",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCIe ACPI Hot Plug",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "EV DFX Features",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "IIOO Configuration",
+          "children": [
+            {
+              "type": "section",
+              "name": "IIO O",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "IIO IOAPIC",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "IOAT Configuration",
+          "children": [
+            {
+              "type": "option",
+              "name": "Enable IOAT",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "No Snoop",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Disable TPH",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Relaxed Ordering",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Apply BDX CBDMA ECO",
+              "defaultValue": "[no]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "IIO General Configuration",
+          "children": [
+            {
+              "type": "section",
+              "name": "PCI Express Global Options",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "TX EQ WA",
+              "defaultValue": "[Enable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "DMI Vc1 Control",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "DMI Vcp Control",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "DMI Vcm Control",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "VCO No-Snoop Configuration",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Gen3 Phase3 Loop Count",
+              "defaultValue": "[16]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Skip Halt On DMI Degradation",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Power down unused ports",
+              "defaultValue": "[yes]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SLD WA Revision",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Rx Clock WA",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "PCI-E ASPM (Global)",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "PCIE Stop & Scream Support",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Snoop Response Hold Off",
+              "defaultValue": "6",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "section",
+              "name": "PCIe Port Bifurcation Options",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "IOU2 (IIO PCIe Port 1)",
+              "defaultValue": "[x4x4]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOU0 (IIO PCIe Port 2)",
+              "defaultValue": "[x8x8]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOU1 (IIO PCIe Port 3)",
+              "defaultValue": "[x16]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "No PCIe port active ECO",
+              "defaultValue": "[PCU Squelch exit ig...]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOU0 Non-Posted Prefetch",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOU1 Non-Posted Prefetch",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "IOU2 Non-Posted Prefetch",
+              "defaultValue": "[Disable]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD00F0 - Port 0/DMI",
+              "children": [
+                {
+                  "type": "option",
+                  "name": "Link Speed",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Override Max Link Width",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port DeEmphasis",
+                  "defaultValue": "[-6.0 dB]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Status",
+                  "defaultValue": null,
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Max",
+                  "defaultValue": null,
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Speed",
+                  "defaultValue": null,
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E ASPM",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Fatal Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Non-Fatal Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Corr Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "LOs Support",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                }
+              ]
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD01F0 - Port 1A",
+              "children": [
+                {
+                  "type": "option",
+                  "name": "PCI-E Port",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Hot Plug Capable",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Extra Bus Reserved",
+                  "defaultValue": "0",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Reserved Memory",
+                  "defaultValue": "10",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Reseved Memory Alignment",
+                  "defaultValue": "1",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Prefetchable Memory",
+                  "defaultValue": "10",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Prefetchable Memory Alignment",
+                  "defaultValue": "1",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Reserved I/O",
+                  "defaultValue": "0",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link",
+                  "defaultValue": "[Enable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Link Speed",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Override Max Link Width",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port DeEmphasis",
+                  "defaultValue": "[-6.0 dB]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Status",
+                  "defaultValue": "Link Did Not Train",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Max",
+                  "defaultValue": "Max Width x4",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Speed",
+                  "defaultValue": "Link Did Not Train",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E ASPM",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Fatal Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Non-Fatal Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Corr Err Over",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "LOs Support",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "PM ACPI Mode",
+                  "defaultValue": "[Disable]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 Eq Mode",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 Spec Mode",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 Phase2 Mode",
+                  "defaultValue": "[Hardware Adaptive]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 DN TX Preset",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 DN Rx Preset Hint",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Gen3 UP Tx Preset",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Hide Port?",
+                  "defaultValue": "[no]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                },
+                {
+                  "type": "option",
+                  "name": "Pcie Ecrc",
+                  "defaultValue": "[Auto]",
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                }
+              ]
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD01F1 - Port 1B",
+              "children": [
+                {
+                  "type": "info",
+                  "name": "(Same options as Port 1A)",
+                  "content": "(Same options as Port 1A)"
+                }
+              ]
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD02F0 - Port 2A",
+              "children": [
+                {
+                  "type": "info",
+                  "name": "(Same options as Port 1A)",
+                  "content": "(Same options as Port 1A)"
+                }
+              ]
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD02F2 - Port 2C",
+              "children": [
+                {
+                  "type": "info",
+                  "name": "(Same options as Port 1A)",
+                  "content": "(Same options as Port 1A)"
+                },
+                {
+                  "type": "option",
+                  "name": "PCI-E Port Link Status",
+                  "defaultValue": null,
+                  "description": "",
+                  "risk": "none",
+                  "riskReason": ""
+                }
+              ]
+            },
+            {
+              "type": "submenu",
+              "name": "Socket 0 PcieD03F0 - Port 3A",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "(All Port 1A options)",
+              "content": "(All Port 1A options)"
+            },
+            {
+              "type": "option",
+              "name": "PCI-E Port Link Status",
+              "defaultValue": null,
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "PCI-E Port Link Speed",
+              "defaultValue": null,
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Non-Transparent Bridge PCIe Port D",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Enable NTB BARS",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Enable SPLIT BARS",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Primary BAR 23 Size",
+              "defaultValue": "22",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Primary BAR 4 Size",
+              "defaultValue": "20",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Primary BAR 5 Size",
+              "defaultValue": "20",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Secondary BAR 23 Size",
+              "defaultValue": "20",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "Intel VT for Directed I/O (VT-d)",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "VTd Azalea VCp Optimizations",
+          "defaultValue": "[Disable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Intel VT for Directed I/O (VT-d)",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "ACS Control",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Interrupt Remapping",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Coherency Support (Non-Isoch)",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Coherency Support (Isoch)",
+          "defaultValue": "[Enable]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "PCH Configuration",
+      "children": []
+    },
+    {
+      "type": "submenu",
+      "name": "PCH Devices",
+      "children": [
+        {
+          "type": "option",
+          "name": "Board Capability",
+          "defaultValue": "[DeepSx]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "DeepSx Power Policies",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "GP27 Wake From DeepSx",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SMBUS Device",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCH Server Error Reporting Mode (S)",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCH Display",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Serial IRQ Mode",
+          "defaultValue": "[Continuous]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "External SSC Enable - CK420",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCH state after G3",
+          "defaultValue": "[Off]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCH CRID",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "PCH sSATA Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "sSATA Controller",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Configure sSATA as",
+          "defaultValue": "[AHCI]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SATA test mode",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "- SATA Mode options",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "sSATA Mode options",
+          "defaultValue": null,
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "sSATA AHCI LPM",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "sSATA AHCI ALPM",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 0",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 0: (Detected Device)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 1",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 1: (Detected Device)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 2",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 2: (Detected Device)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 3",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 3: (Not Installed)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 4",
+          "children": [
+            {
+              "type": "section",
+              "name": "Software Preserve: [Not Installed]",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "sSATA Port 5",
+          "children": [
+            {
+              "type": "section",
+              "name": "Software Preserve: [Not Installed]",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "sSATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "option",
+          "name": "SATA HDD Unlock",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SATA Led locate",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "PCH SATA Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "SATA Controller",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Configure SATA as",
+          "defaultValue": "[AHCI]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SATA test mode",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "- SATA Mode options",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "SATA AHCI LPM",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SATA AHCI ALPM",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "section",
+          "name": "SATA Port 0",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 0: (Detected Device)",
+              "children": []
+            },
+            {
+              "type": "section",
+              "name": "Software Preserve: (Status)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Port 0",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configured as eSATA",
+              "defaultValue": "Hot Plug supported",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "SATA Port 1",
+          "children": [
+            {
+              "type": "section",
+              "name": "Port 1: (Detected Device)",
+              "children": []
+            },
+            {
+              "type": "section",
+              "name": "Software Preserve: (Status)",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Port 1",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configured as eSATA",
+              "defaultValue": "Hot Plug supported",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "SATA Port 3",
+          "children": [
+            {
+              "type": "section",
+              "name": "Software Preserve: [Not Installed]",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "SATA Port 4",
+          "children": [
+            {
+              "type": "section",
+              "name": "Software Preserve: [Not Installed]",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "SATA Port 5",
+          "children": [
+            {
+              "type": "section",
+              "name": "Software Preserve: [Not Installed]",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Hot Plug",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Configure as eSATA",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Spin Up Device",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "SATA Device Type",
+              "defaultValue": "[Hard Disk Drive]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "option",
+          "name": "SATA Led locate",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "USB Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "USB Precondition",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "XHCI Mode",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Trunk Clock Gating (BTCG)",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "USB Ports Per-Port Disable Control",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "XHCI Idle L1",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "USB XHCI s755 WA",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Security Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "GPIO Lockdown",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "RTC Lock",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "BIOS Lock",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Host Flash Lock-Down",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Gbe Flash Lock-Down",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "option",
+      "name": "Onboard LAN1 Control",
+      "defaultValue": "[Enabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "Onboard LAN2 Control",
+      "defaultValue": "[Enabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    }
+  ]
+}

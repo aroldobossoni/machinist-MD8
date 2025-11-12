@@ -1,380 +1,799 @@
-[
-  {
-    "menu": "Advanced",
-    "submenu": "ACPI Settings",
-    "option": "Enable ACPI Auto Configuration",
-    "defaultValue": "[Disabled]",
-    "description": "Permite que a BIOS configure automaticamente as tabelas ACPI (Advanced Configuration and Power Interface) do sistema operacional. Quando habilitado, a BIOS ajusta automaticamente configurações de energia, gerenciamento térmico e recursos de hardware. Desabilitado (padrão) permite controle manual. Habilitar pode resolver problemas de gerenciamento de energia, mas pode causar incompatibilidades com alguns sistemas operacionais antigos.",
-    "risk": "low",
-    "riskReason": "Configuração automática pode causar incompatibilidade com sistemas operacionais antigos ou configurações customizadas"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "ACPI Settings",
-    "option": "Enable Hibernation",
-    "defaultValue": "[Enabled]",
-    "description": "Controla se o sistema operacional pode usar o modo de hibernação (S4). Requer espaço em disco igual ao tamanho da RAM instalada.",
-    "risk": "low",
-    "riskReason": "Requer espaço em disco; falha pode causar perda de dados"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "ACPI Settings",
-    "option": "Lock Legacy Resources",
-    "defaultValue": "[Disabled]",
-    "description": "Bloqueia recursos legados para evitar conflitos com dispositivos modernos.",
-    "risk": "low",
-    "riskReason": "Pode causar incompatibilidade com hardware legado"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "NCT5532D Super IO Configuration > Serial Port 1 Configuration",
-    "option": "Serial Port",
-    "defaultValue": "[Enabled]",
-    "description": "Habilita ou desabilita a porta serial COM1 (RS-232). Usada para console serial, debugging remoto, e comunicação com equipamentos industriais. Desabilitar pode afetar sistemas que dependem de console serial para troubleshooting ou acesso remoto via serial-over-LAN.",
-    "risk": "low",
-    "riskReason": "Desabilitar pode afetar console serial para troubleshooting e acesso remoto"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "NCT5532D Super IO Configuration > Serial Port 1 Configuration",
-    "option": "Change Settings",
-    "defaultValue": "[Auto]",
-    "description": "Define configurações automáticas ou manuais para a porta serial.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode impedir comunicação serial"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Hardware Monitor > Pc Health Status",
-    "option": "Smart Fan Function",
-    "defaultValue": "[Enabled]",
-    "description": "Habilita controle automático de velocidade dos coolers baseado em temperatura (PWM). Desabilitar faz coolers operarem em velocidade fixa (máxima ou mínima). Desabilitar sem configuração adequada pode causar superaquecimento (se velocidade baixa) ou ruído excessivo (se velocidade alta). Recomendado: Enabled para balanceamento automático.",
-    "risk": "low",
-    "riskReason": "Desabilitar sem configuração adequada pode causar superaquecimento ou ruído excessivo"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
-    "option": "Cpu Fan Mode",
-    "defaultValue": "[SmartFan TM IV Mode]",
-    "description": "Define o modo de controle do cooler da CPU.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar resfriamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
-    "option": "CPU Fan Full Speed Temp",
-    "defaultValue": "70",
-    "description": "Temperatura em que o cooler da CPU opera em velocidade máxima.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar resfriamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
-    "option": "CPU Fan Start Temp Value",
-    "defaultValue": "35",
-    "description": "Temperatura mínima para iniciar o cooler da CPU.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar resfriamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Hardware Monitor > Pc Health Status > Smart Fan Mode Configuration",
-    "option": "CPU Fan Start PWM Value",
-    "defaultValue": "120",
-    "description": "Valor PWM inicial do cooler da CPU.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar resfriamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "RTC Wakeup Configuration",
-    "option": "Wakeup By RTC",
-    "defaultValue": "[Disabled]",
-    "description": "Permite que o sistema seja acordado por alarme do relógio em tempo real (RTC).",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "Network Stack Configuration",
-    "option": "Network Stack",
-    "defaultValue": "[Disabled]",
-    "description": "Habilita a pilha de rede UEFI para boot via rede (PXE).",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "CSM Support",
-    "defaultValue": "[Enabled]",
-    "description": "Compatibility Support Module permite boot de sistemas operacionais legados (MBR/DOS) em firmware UEFI. Desabilitar força boot apenas UEFI/GPT. Windows instalado em MBR não iniciará se desabilitado. Necessário para dual boot com OSes antigos ou instalações legacy. Mudança incorreta pode impedir boot de sistemas já instalados.",
-    "risk": "high",
-    "riskReason": "Desabilitar impede boot de Windows/Linux instalados em modo MBR/Legacy; pode causar não-boot"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "Boot option filter",
-    "defaultValue": "[UEFI and Legacy]",
-    "description": "Define quais tipos de boot são permitidos: UEFI only, Legacy only, ou ambos. Restringir a apenas UEFI pode impedir boot de instalações legacy existentes. Restringir a apenas Legacy desabilita recursos UEFI como Secure Boot e boot rápido.",
-    "risk": "high",
-    "riskReason": "Mudança pode impedir boot de sistemas instalados em modo diferente do selecionado"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "Option ROM execution",
-    "defaultValue": "[Do not launch]",
-    "description": "Controla a execução de ROMs de opção de dispositivos PCI.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "Network",
-    "defaultValue": "[Legacy]",
-    "description": "Modo de boot de rede (Legacy ou UEFI).",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "Storage",
-    "defaultValue": "[Legacy]",
-    "description": "Modo de boot de armazenamento: Legacy (MBR) ou UEFI (GPT). Mudar de Legacy para UEFI pode impedir boot de discos MBR. Mudar de UEFI para Legacy pode impedir boot de discos GPT. Deve corresponder ao tipo de partição do disco de boot.",
-    "risk": "high",
-    "riskReason": "Mudança incompatível com tipo de partição do disco impede boot do sistema"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "CSM Configuration",
-    "option": "Video",
-    "defaultValue": "[Legacy]",
-    "description": "Modo de inicialização de vídeo: Legacy (VGA BIOS) ou UEFI (GOP). Legacy necessário para GPUs antigas sem suporte UEFI. UEFI necessário para Secure Boot e boot rápido. Mudança pode causar tela preta durante boot se GPU não suportar modo selecionado.",
-    "risk": "low",
-    "riskReason": "Modo incompatível com GPU pode causar tela preta durante boot"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "Legacy USB Support",
-    "defaultValue": "[Enabled]",
-    "description": "Habilita suporte para dispositivos USB legados durante boot e na BIOS. Necessário para teclados/mouses USB antigos funcionarem na BIOS Setup. Desabilitar pode impedir uso de teclado/mouse durante configuração da BIOS, especialmente em sistemas sem PS/2. Recomendado: Enabled para máxima compatibilidade.",
-    "risk": "low",
-    "riskReason": "Desabilitar pode impedir uso de teclado/mouse USB durante boot e configuração da BIOS"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "XHCI Hand-off",
-    "defaultValue": "[Enabled]",
-    "description": "Transfere controle do USB 3.0 do BIOS para o sistema operacional. Recomendado: Enabled para Windows 10/11 e Linux moderno.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "EHCI Hand-off",
-    "defaultValue": "[Disabled]",
-    "description": "Transfere controle do USB 2.0 do BIOS para o sistema operacional.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "USB Mass Storage Driver Support",
-    "defaultValue": "[Enabled]",
-    "description": "Habilita suporte para dispositivos de armazenamento USB (pen drives, HDs externos) durante boot e na BIOS. Necessário para boot via USB e instalação de sistemas operacionais. Desabilitar impede uso de dispositivos USB como mídia de boot e pode afetar instalação de OS.",
-    "risk": "low",
-    "riskReason": "Desabilitar impede boot via USB e uso de dispositivos USB como mídia de instalação"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "USB transfer time-out",
-    "defaultValue": "[20 sec]",
-    "description": "Timeout para transferências USB.",
-    "risk": "low",
-    "riskReason": "Pode afetar funcionamento de dispositivos USB"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "Device reset time-out",
-    "defaultValue": "[20 sec]",
-    "description": "Timeout para reset de dispositivos USB.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "USB Configuration",
-    "option": "Device power-up delay",
-    "defaultValue": "[Auto]",
-    "description": "Atraso na inicialização de dispositivos USB.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "PCI Latency Timer",
-    "defaultValue": "[32 PCI Bus Clocks]",
-    "description": "Timer de latência do barramento PCI.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "PCI-X Latency Timer",
-    "defaultValue": "[64 PCI Bus Clocks]",
-    "description": "Timer de latência do barramento PCI-X.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "VGA Palette Snoop",
-    "defaultValue": "[Disabled]",
-    "description": "Habilita snooping da paleta VGA para compatibilidade com placas antigas.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "PERR# Generation",
-    "defaultValue": "[Disabled]",
-    "description": "Geração de sinal de erro de paridade PCI.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "SERR# Generation",
-    "defaultValue": "[Disabled]",
-    "description": "Geração de sinal de erro de sistema PCI.",
-    "risk": "none",
-    "riskReason": null
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "Above 4G Decoding",
-    "defaultValue": "[Disabled]",
-    "description": "Permite que dispositivos PCIe sejam mapeados acima do limite de 4GB de endereçamento, necessário para GPUs modernas com >4GB VRAM e para sistemas com muitos dispositivos PCIe. Requer SO 64-bit e suporte UEFI. Essencial para GPU passthrough em virtualização. Incompatível com boot legacy/MBR. Habilitar em sistema legacy pode causar falha de boot.",
-    "risk": "high",
-    "riskReason": "Incompatível com boot legacy/MBR; habilitar em sistema legacy pode impedir boot"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "Re-Size BAR Support",
-    "defaultValue": "[Disabled]",
-    "description": "Suporte para redimensionamento de BAR (Base Address Register) em GPUs modernas.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "SR-IOV Support",
-    "defaultValue": "[Disabled]",
-    "description": "Single Root I/O Virtualization permite que múltiplas VMs compartilhem um único dispositivo físico PCIe (ex: placa de rede, GPU). Necessário para virtualização de rede de alta performance e GPU virtualization. Desabilitar quebra funcionalidades de virtualização que dependem de SR-IOV. Requer VT-d habilitado e suporte do hardware.",
-    "risk": "high",
-    "riskReason": "Desabilitar quebra virtualização de rede/GPU que depende de SR-IOV; requer VT-d"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings",
-    "option": "BME DMA Mitigation",
-    "defaultValue": "[Disabled]",
-    "description": "Mitigação de segurança para DMA (Direct Memory Access).",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Relaxed Ordering",
-    "defaultValue": "[Disabled]",
-    "description": "Permite ordenação relaxada de transações PCIe.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Extended Tag",
-    "defaultValue": "[Disabled]",
-    "description": "Habilita tags estendidos para transações PCIe.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "No Snoop",
-    "defaultValue": "[Enabled]",
-    "description": "Desabilita snooping de cache para melhor performance em alguns cenários.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Maximum Payload",
-    "defaultValue": "[Auto]",
-    "description": "Tamanho máximo de payload para transações PCIe.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Extended Synch",
-    "defaultValue": "[Disabled]",
-    "description": "Sincronização estendida para links PCIe.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Link Training Retry",
-    "defaultValue": "5",
-    "description": "Número de tentativas de treinamento de link PCIe.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Link Training Timeout (uS)",
-    "defaultValue": "1000",
-    "description": "Timeout para treinamento de link PCIe em microsegundos.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar funcionamento"
-  },
-  {
-    "menu": "Advanced",
-    "submenu": "PCI Subsystem Settings > PCI Express Settings",
-    "option": "Restore PCIE Registers",
-    "defaultValue": "[Disabled]",
-    "description": "Restaura registradores PCIe ao reiniciar.",
-    "risk": "low",
-    "riskReason": "Configuração incorreta pode afetar dispositivos PCIe"
-  }
-]
+{
+  "type": "submenu",
+  "name": "Advanced",
+  "children": [
+    {
+      "type": "submenu",
+      "name": "ACPI Settings",
+      "children": [
+        {
+          "type": "option",
+          "name": "Enable ACPI Auto Configuration",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Enable Hibernation",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Lock Legacy Resources",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "NCT5532D Super IO Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "Super IO Chip: NCT5532D",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Serial Port 1 Configuration",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Serial Port",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Device Settings",
+          "defaultValue": "IO=3F8h; IRQ=4;",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Change Settings",
+          "defaultValue": "[Auto]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Hardware Monitor",
+      "children": [
+        {
+          "type": "section",
+          "name": "Pc Health Status",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Smart Fan Function",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "Smart Fan Mode Configuration",
+          "children": [
+            {
+              "type": "option",
+              "name": "Cpu Fan Mode",
+              "defaultValue": "[SmartFan TM IV Mode]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Full Speed Temp",
+              "defaultValue": "70",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Start Temp Value",
+              "defaultValue": "35",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "CPU Fan Start PWM Value",
+              "defaultValue": "120",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "section",
+              "name": "Smart Fan IV mode",
+              "children": []
+            },
+            {
+              "type": "info",
+              "name": "T1:35 Duty:100/255",
+              "content": "T1:35 Duty:100/255"
+            },
+            {
+              "type": "info",
+              "name": "T2:45 Duty:160/255",
+              "content": "T2:45 Duty:160/255"
+            },
+            {
+              "type": "info",
+              "name": "T3:55 Duty:200/255",
+              "content": "T3:55 Duty:200/255"
+            },
+            {
+              "type": "info",
+              "name": "T4:65 Duty:230/255",
+              "content": "T4:65 Duty:230/255"
+            },
+            {
+              "type": "info",
+              "name": "Critical:70 Duty:100%",
+              "content": "Critical:70 Duty:100%"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "name": "Sensors (readings)",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "CPU Temperature: (current value)",
+          "content": "CPU Temperature: (current value)"
+        },
+        {
+          "type": "info",
+          "name": "CPU Fan1 Speed: (current RPM)",
+          "content": "CPU Fan1 Speed: (current RPM)"
+        },
+        {
+          "type": "info",
+          "name": "CPU Fan2 Speed: (current RPM)",
+          "content": "CPU Fan2 Speed: (current RPM)"
+        },
+        {
+          "type": "info",
+          "name": "VDIMM: (current voltage)",
+          "content": "VDIMM: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "+12V: (current voltage)",
+          "content": "+12V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VCC3V: (current voltage)",
+          "content": "VCC3V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VSB3V: (current voltage)",
+          "content": "VSB3V: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VBAT: (current voltage)",
+          "content": "VBAT: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "VTT: (current voltage)",
+          "content": "VTT: (current voltage)"
+        },
+        {
+          "type": "info",
+          "name": "AVCC: (current voltage)",
+          "content": "AVCC: (current voltage)"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "RTC Wakeup Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "Wakeup By RTC",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "iSCSI Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "iSCSI Initiator Name: (IQN)",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Add an Attempt",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Delete Attempts",
+          "children": []
+        },
+        {
+          "type": "submenu",
+          "name": "Change Attempt Order",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Realtek PCIe GBE Family Controller 1",
+      "children": [
+        {
+          "type": "section",
+          "name": "Driver Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Driver Name: Realtek UEFI UNDI Driver",
+          "content": "Driver Name: Realtek UEFI UNDI Driver"
+        },
+        {
+          "type": "info",
+          "name": "Driver Version: X.XXX",
+          "content": "Driver Version: X.XXX"
+        },
+        {
+          "type": "info",
+          "name": "Driver Released Date: (Date)",
+          "content": "Driver Released Date: (Date)"
+        },
+        {
+          "type": "section",
+          "name": "Device Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Device Name: Realtek PCIe GBE Family",
+          "content": "Device Name: Realtek PCIe GBE Family"
+        },
+        {
+          "type": "info",
+          "name": "PCI Slot: XX:XX:XX",
+          "content": "PCI Slot: XX:XX:XX"
+        },
+        {
+          "type": "info",
+          "name": "MAC Address: XX:XX:XX:XX:XX:XX",
+          "content": "MAC Address: XX:XX:XX:XX:XX:XX"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Realtek PCIe GBE Family Controller 2",
+      "children": [
+        {
+          "type": "section",
+          "name": "Driver Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Driver Name: Realtek UEFI UNDI Driver",
+          "content": "Driver Name: Realtek UEFI UNDI Driver"
+        },
+        {
+          "type": "info",
+          "name": "Driver Version: X.XXX",
+          "content": "Driver Version: X.XXX"
+        },
+        {
+          "type": "info",
+          "name": "Driver Released Date: (Date)",
+          "content": "Driver Released Date: (Date)"
+        },
+        {
+          "type": "section",
+          "name": "Device Information",
+          "children": []
+        },
+        {
+          "type": "info",
+          "name": "Device Name: Realtek PCIe GBE Family",
+          "content": "Device Name: Realtek PCIe GBE Family"
+        },
+        {
+          "type": "info",
+          "name": "PCI Slot: XX:XX:XX",
+          "content": "PCI Slot: XX:XX:XX"
+        },
+        {
+          "type": "info",
+          "name": "MAC Address: XX:XX:XX:XX:XX:XX",
+          "content": "MAC Address: XX:XX:XX:XX:XX:XX"
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "PCI Subsystem Settings",
+      "children": [
+        {
+          "type": "section",
+          "name": "PCI Bus Driver Version: (version)",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "PCI Devices Common Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "PCI Latency Timer",
+          "defaultValue": "[32 PCI Bus Clocks]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PCI-X Latency Timer",
+          "defaultValue": "[64 PCI Bus Clocks]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "VGA Palette Snoop",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "PERR# Generation",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SERR# Generation",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Above 4G Decoding",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Re-Size BAR Support",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "SR-IOV Support",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "BME DMA Mitigation",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "submenu",
+          "name": "PCI Express Settings",
+          "children": [
+            {
+              "type": "section",
+              "name": "PCI Express Device Register Settings",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Relaxed Ordering",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Extended Tag",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "No Snoop",
+              "defaultValue": "[Enabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Maximum Payload",
+              "defaultValue": "[Auto]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "section",
+              "name": "PCI Express Link Register Settings",
+              "children": []
+            },
+            {
+              "type": "option",
+              "name": "Extended Synch",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Link Training Retry",
+              "defaultValue": "[5]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Link Training Timeout (uS)",
+              "defaultValue": "[1000]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            },
+            {
+              "type": "option",
+              "name": "Restore PCIE Registers",
+              "defaultValue": "[Disabled]",
+              "description": "",
+              "risk": "none",
+              "riskReason": ""
+            }
+          ]
+        },
+        {
+          "type": "submenu",
+          "name": "PCI Express GEN 2 Settings",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "PCI Express GEN2 Device Register Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Completion Timeout",
+          "defaultValue": "[Default]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "ARI Forwarding",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "AtomicOp Requester Enable",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "AtomicOp Egress Blocking",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IDO Request Enable",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "IDO Completion Enable",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "LTR Mechanism Enable",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "End-End TLP Prefix Blocking",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "section",
+          "name": "PCI Express GEN2 Link Register Settings",
+          "children": []
+        },
+        {
+          "type": "option",
+          "name": "Clock Power Management",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Compliance SOS",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Hardware Autonomous Width",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Hardware Autonomous Speed",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "Network Stack Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "Network Stack",
+          "defaultValue": "[Disabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "CSM Configuration",
+      "children": [
+        {
+          "type": "option",
+          "name": "CSM Support",
+          "defaultValue": "[Enabled]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Boot option filter",
+          "defaultValue": "[UEFI and Legacy]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Option ROM execution",
+          "defaultValue": "[Do not launch]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Network",
+          "defaultValue": "[Legacy]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Storage",
+          "defaultValue": "[Legacy]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        },
+        {
+          "type": "option",
+          "name": "Video",
+          "defaultValue": "[Legacy]",
+          "description": "",
+          "risk": "none",
+          "riskReason": ""
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "NVMe Configuration",
+      "children": [
+        {
+          "type": "section",
+          "name": "NVMe controller and Drive information",
+          "children": []
+        },
+        {
+          "type": "section",
+          "name": "(displays connected NVMe devices)",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "name": "USB Configuration",
+      "children": []
+    },
+    {
+      "type": "section",
+      "name": "USB Information",
+      "children": []
+    },
+    {
+      "type": "info",
+      "name": "USB Module Version: 11",
+      "content": "USB Module Version: 11"
+    },
+    {
+      "type": "info",
+      "name": "USB Controllers: 2 EHCIs, 1 XHCI",
+      "content": "USB Controllers: 2 EHCIs, 1 XHCI"
+    },
+    {
+      "type": "info",
+      "name": "USB Devices: (detected devices)",
+      "content": "USB Devices: (detected devices)"
+    },
+    {
+      "type": "option",
+      "name": "Legacy USB Support",
+      "defaultValue": "[Enabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "XHCI Hand-off",
+      "defaultValue": "[Enabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "EHCI Hand-off",
+      "defaultValue": "[Disabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "USB Mass Storage Driver Support",
+      "defaultValue": "[Enabled]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "section",
+      "name": "USB hardware delays and time-outs",
+      "children": []
+    },
+    {
+      "type": "option",
+      "name": "USB transfer time-out",
+      "defaultValue": "[20 sec]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "Device reset time-out",
+      "defaultValue": "[20 sec]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    },
+    {
+      "type": "option",
+      "name": "Device power-up delay",
+      "defaultValue": "[Auto]",
+      "description": "",
+      "risk": "none",
+      "riskReason": ""
+    }
+  ]
+}
