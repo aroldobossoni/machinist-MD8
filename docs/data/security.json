@@ -52,16 +52,16 @@
       "name": "Administrator Password",
       "defaultValue": null,
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "User Password",
       "defaultValue": null,
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     }
   ]
 }

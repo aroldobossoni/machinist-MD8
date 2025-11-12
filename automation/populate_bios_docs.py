@@ -21,7 +21,7 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 
 # Configurações
-PROMPT_TEMPLATE = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NEHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))'
+PROMPT_TEMPLATE = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))'
 
 DELAY_MIN = 3
 DELAY_MAX = 8
@@ -252,17 +252,17 @@ def parse_ai_response(full_text):
     
     text = full_text[desc_start:end_idx].strip()
     
-    # Extrair DESCRIÇÃO (linha após "DESCRIÇÃO (...):")
-    desc_pattern = r'DESCRIÇÃO\s*\([^)]+\)\s*:\s*([^\n]+(?:\n(?!RISCO)[^\n]+)*)'
+    # Extrair DESCRIÇÃO (aceita com ou sem parênteses)
+    desc_pattern = r'DESCRIÇÃO(?:\s*\([^)]+\))?\s*:\s*([^\n]+(?:\n(?!RISCO)[^\n]+)*)'
     desc_match = re.search(desc_pattern, text, re.IGNORECASE)
-    
+
     if not desc_match:
         return None
     
     description = desc_match.group(1).strip()
     
-    # Extrair RISCO (linha após "RISCO (...):")
-    risk_pattern = r'RISCO\s*\([^)]+\)\s*:\s*([^\n]+(?:\n(?!GRAU\s+DE\s+RISCO)[^\n]+)*)'
+    # Extrair RISCO (aceita com ou sem parênteses)
+    risk_pattern = r'RISCO(?:\s*\([^)]+\))?\s*:\s*([^\n]+(?:\n(?!GRAU\s+DE\s+RISCO)[^\n]+)*)'
     risk_match = re.search(risk_pattern, text, re.IGNORECASE)
     
     risk_text = risk_match.group(1).strip() if risk_match else ""

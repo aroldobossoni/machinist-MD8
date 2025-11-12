@@ -11,24 +11,24 @@
           "name": "Enable ACPI Auto Configuration",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enable Hibernation",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Lock Legacy Resources",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -51,24 +51,24 @@
           "name": "Serial Port",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Device Settings",
           "defaultValue": "IO=3F8h; IRQ=4;",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Change Settings",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -86,8 +86,8 @@
           "name": "Smart Fan Function",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -98,32 +98,32 @@
               "name": "Cpu Fan Mode",
               "defaultValue": "[SmartFan TM IV Mode]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "CPU Fan Full Speed Temp",
               "defaultValue": "70",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "CPU Fan Start Temp Value",
               "defaultValue": "35",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "CPU Fan Start PWM Value",
               "defaultValue": "120",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "section",
@@ -223,8 +223,8 @@
           "name": "Wakeup By RTC",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -365,72 +365,72 @@
           "name": "PCI Latency Timer",
           "defaultValue": "[32 PCI Bus Clocks]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCI-X Latency Timer",
           "defaultValue": "[64 PCI Bus Clocks]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "VGA Palette Snoop",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PERR# Generation",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SERR# Generation",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Above 4G Decoding",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Re-Size BAR Support",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SR-IOV Support",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "BME DMA Mitigation",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -446,32 +446,32 @@
               "name": "Relaxed Ordering",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Extended Tag",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "No Snoop",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Maximum Payload",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "section",
@@ -483,32 +483,32 @@
               "name": "Extended Synch",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Link Training Retry",
               "defaultValue": "[5]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Link Training Timeout (uS)",
               "defaultValue": "[1000]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Restore PCIE Registers",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -527,64 +527,64 @@
           "name": "Completion Timeout",
           "defaultValue": "[Default]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "ARI Forwarding",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "AtomicOp Requester Enable",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "AtomicOp Egress Blocking",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IDO Request Enable",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IDO Completion Enable",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "LTR Mechanism Enable",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "End-End TLP Prefix Blocking",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "section",
@@ -596,32 +596,32 @@
           "name": "Clock Power Management",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Compliance SOS",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Hardware Autonomous Width",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Hardware Autonomous Speed",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -634,8 +634,8 @@
           "name": "Network Stack",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -648,48 +648,48 @@
           "name": "CSM Support",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Boot option filter",
           "defaultValue": "[UEFI and Legacy]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Option ROM execution",
           "defaultValue": "[Do not launch]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Network",
           "defaultValue": "[Legacy]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Storage",
           "defaultValue": "[Legacy]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Video",
           "defaultValue": "[Legacy]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -739,32 +739,32 @@
       "name": "Legacy USB Support",
       "defaultValue": "[Enabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "XHCI Hand-off",
       "defaultValue": "[Enabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "EHCI Hand-off",
       "defaultValue": "[Disabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "USB Mass Storage Driver Support",
       "defaultValue": "[Enabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "section",
@@ -776,24 +776,24 @@
       "name": "USB transfer time-out",
       "defaultValue": "[20 sec]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "Device reset time-out",
       "defaultValue": "[20 sec]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "Device power-up delay",
       "defaultValue": "[Auto]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     }
   ]
 }

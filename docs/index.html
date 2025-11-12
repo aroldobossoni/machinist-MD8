@@ -378,24 +378,6 @@
             text-transform: uppercase;
         }
 
-        .risk-none {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: var(--success-color);
-        }
-
-        .risk-low {
-            background-color: rgba(255, 193, 7, 0.2);
-            color: var(--warning-color);
-        }
-
-        .risk-high {
-            background-color: rgba(220, 53, 69, 0.2);
-            color: var(--danger-color);
-        }
-
-        .risk-medium {
-            color: var(--warning-color);
-        }
 
         .risk-reason {
             margin-top: 0.5rem;
@@ -408,21 +390,6 @@
             overflow-wrap: break-word;
         }
 
-        .risk-reason.risk-high {
-            color: var(--danger-color);
-        }
-
-        .risk-reason.risk-medium {
-            color: var(--warning-color);
-        }
-
-        .risk-reason.risk-low {
-            color: var(--warning-color);
-        }
-
-        .risk-reason.risk-none {
-            color: var(--text-tertiary);
-        }
 
         /* Risk Keywords Highlighting */
         .risk-keyword {
@@ -471,9 +438,6 @@
             text-decoration: underline;
         }
         
-        .risk-badge {
-            white-space: nowrap;
-        }
 
         /* AI Button */
         .ai-btn {
@@ -1066,7 +1030,6 @@
                     option: node.name,
                     defaultValue: node.defaultValue,
                     description: node.description || '',
-                    risk: node.risk || 'none',
                     riskReason: node.riskReason || '',
                     sources: node.sources || []
                 });
@@ -1206,9 +1169,11 @@
                     : option.menu;
 
                 // Build risk cell HTML
-                let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
+                let riskHtml = '';
                 if (option.riskReason) {
-                    riskHtml += `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
+                    riskHtml = `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
+                } else {
+                    riskHtml = '<div class="risk-reason">Sem informação de risco.</div>';
                 }
 
                 // Build sources HTML
@@ -1273,9 +1238,11 @@
                     : option.menu;
 
                 // Build risk HTML
-                let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
+                let riskHtml = '';
                 if (option.riskReason) {
-                    riskHtml += `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
+                    riskHtml = `<div class="risk-reason">${highlightRiskKeywords(option.riskReason)}</div>`;
+                } else {
+                    riskHtml = '<div class="risk-reason">Sem informação de risco.</div>';
                 }
 
                 // Build sources HTML
@@ -1329,15 +1296,6 @@
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
-        }
-
-        function getRiskLabel(risk) {
-            const labels = {
-                'none': 'Nenhum',
-                'low': 'Baixo',
-                'high': 'Alto'
-            };
-            return labels[risk] || 'Nenhum';
         }
 
         function highlightRiskKeywords(text) {

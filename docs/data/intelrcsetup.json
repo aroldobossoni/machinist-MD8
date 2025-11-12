@@ -82,208 +82,208 @@
           "name": "Hyper-Threading [ALL]",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Check CPU BIST Result",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Monitor/Mwait",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Execute Disable Bit",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enable Intel TXT Support",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "VMX",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enable SMX",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Lock Chipset",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MSR Lock Control",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PPIN Control",
           "defaultValue": "[Unlock/Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DEBUG INTERFACE",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Hardware Prefetcher",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Adjacent Cache Prefetch",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DCU Streamer Prefetcher",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DCU IP Prefetcher",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DCU Mode",
           "defaultValue": "[32KB 8Way Without ECC]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Direct Cache Access (DCA)",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DCA Prefetch Delay",
           "defaultValue": "[32]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "X2APIC",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "AES-NI",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Down Stream PECI",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IIO LLC Ways [19",
           "defaultValue": "0] (Hex): 0",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "QLRU Config [63",
           "defaultValue": "32] (Hex): 0",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "QLRU Config [31",
           "defaultValue": "0] (Hex): 0",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SMM Save State",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Targeted Smi",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -296,32 +296,32 @@
           "name": "Power Technology",
           "defaultValue": "[Custom]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Config TDP",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IOTG Setting",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Uncore CLR Freq OVRD",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -332,48 +332,48 @@
               "name": "EIST (P-states)",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Turbo Mode",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "P-state coordination",
               "defaultValue": "[HW_ALL]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SPD",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "PL2_SAFETY_NET_ENABLE",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Boot performance mode",
               "defaultValue": "[Max Performance]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -386,16 +386,16 @@
               "name": "Enable CPU HWPM",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Enable CPU Autonomous Cstate",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -408,32 +408,32 @@
               "name": "C2C3TT",
               "defaultValue": "0",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Package C State limit",
               "defaultValue": "[C0/C1 state]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "CPU C3 report",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "CPU C6 report",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -446,8 +446,8 @@
               "name": "ACPI T-States",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -477,24 +477,24 @@
           "name": "DRAM RAPL Baseline",
           "defaultValue": "[DRAM RAPL Mode 1]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Override BW_LIMIT_TF",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DRAM RAPL Extended Range",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -507,40 +507,40 @@
           "name": "MMIOHBase",
           "defaultValue": "[56T]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MMIO High Size",
           "defaultValue": "[256G]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Isoc Mode",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MeSeg Mode",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Numa",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -603,88 +603,88 @@
               "name": "Degrade Precedence",
               "defaultValue": "[Topology Precedence]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Link Frequency Select",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Link L0p Enable",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Link L1 Enable",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Legacy VGA Socket",
               "defaultValue": "0",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "MMIO P2P Disable",
               "defaultValue": "[no]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "E2E Parity Enable",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "COD Enable",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Early Snoop",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Home Dir Snoop with IVT-Style OSB",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "QPI Debug Print Level",
               "defaultValue": "[All]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -702,32 +702,32 @@
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -740,32 +740,32 @@
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -778,32 +778,32 @@
               "name": "Bus Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IO Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "MMIOL Resources Allocation Ratio",
               "defaultValue": "1",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IIO Disable",
               "defaultValue": "[no]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -817,32 +817,32 @@
           "name": "Bus Resources Allocation Ratio",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IO Resources Allocation Ratio",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MMIOL Resources Allocation Ratio",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "IIO Disable",
           "defaultValue": "[no]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -860,424 +860,424 @@
           "name": "Enforce POR",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PPR Type",
           "defaultValue": "[PPR Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PPR Error Injection test",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Memory Frequency",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MRC Promote Warnings",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Promote Warnings",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Halt on mem Training Error",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Multi-Threaded MRC",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enforce Timeout",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enhanced Log Parsing",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "BSSA Module Loader",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Backside RMT",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Rank Multiplication",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "LRDIMM Module Delay",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MemTest",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MemTestLoops",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Direction",
           "defaultValue": "[UP Direction]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Invertion",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Repetitions",
           "defaultValue": "3",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Test Interation o",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Swizzle enabling",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Dram Maintenance Refresh enabling",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Memory Type",
           "defaultValue": "[UDIMMs and RDIMMs]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "CECC WA CH Mask",
           "defaultValue": "10",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Rank Margin Tool",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "RMT Pattern Length",
           "defaultValue": "32767",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "CMD Pattern Length",
           "defaultValue": "1",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Per Bit Margin",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Training Result Offset Config",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Attempt Fast Boot",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Attempt Fast Cold Boot",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MemTest On Fast Boot",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "RMT On Cold Fast Boot",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "BDAT",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Data Scrambling",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Allow SBE during training",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "WR CRC feature Control",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Platform type input for SPD page s",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "CECC WA Control",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "CAP ERR FLOW feature Control",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Scrambling Seed Low",
           "defaultValue": "41003",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Scrambling Seed High",
           "defaultValue": "54165",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Enable ADR",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MC BGF threshold",
           "defaultValue": "0",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DLL Reset Test",
           "defaultValue": "0",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "MC ODT Mode",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Opp read during WMM",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Normal Operation Duration",
           "defaultValue": "1024",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Number of Sparing Transaction",
           "defaultValue": "4",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PSMI Support",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "C/A Parity Enable",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SMB Clock Frequency",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -1304,32 +1304,32 @@
               "name": "Set Throttling Mode",
               "defaultValue": "[CLTT]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "OLTT Peak BW %",
               "defaultValue": "50",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Phase Shedding",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Memory Power Savings Mode",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "submenu",
@@ -1340,8 +1340,8 @@
                   "name": "CK in SR",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 }
               ]
             },
@@ -1350,24 +1350,24 @@
               "name": "MDLL Off",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "MEMHOT Throttling Mode",
               "defaultValue": "[Input-only]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Mem Electrical Throttling",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1380,16 +1380,16 @@
               "name": "DIMM profile",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Memory Frequency",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1402,40 +1402,40 @@
               "name": "Socket Interleave Below 4GB",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Channel Interleaving",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Rank Interleaving",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOT Memory Buffer Reservation",
               "defaultValue": "0",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "A7 Mode",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1448,104 +1448,104 @@
               "name": "RAS Mode",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Lockstep x4 DIMMs",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Memory Rank Sparing",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Correctable Error Threshold",
               "defaultValue": "32767",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Leaky bucket low bit",
               "defaultValue": "40",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Leaky bucket high bit",
               "defaultValue": "41",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "DRAM Maintenance",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Patrol Scrub",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Patrol Scrub Interval",
               "defaultValue": "24",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Demand Scrub",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Device Tagging",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Handle Hard Error Detection",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Memory Power Management",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1565,40 +1565,40 @@
           "name": "IIO PCIe Link on phase",
           "defaultValue": "[Post chipset init]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCIe Train by BIOS",
           "defaultValue": "[yes]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCIe Hot Plug",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCIe ACPI Hot Plug",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "EV DFX Features",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -1614,8 +1614,8 @@
               "name": "IIO IOAPIC",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1628,40 +1628,40 @@
               "name": "Enable IOAT",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "No Snoop",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Disable TPH",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Relaxed Ordering",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Apply BDX CBDMA ECO",
               "defaultValue": "[no]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -1679,104 +1679,104 @@
               "name": "TX EQ WA",
               "defaultValue": "[Enable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "DMI Vc1 Control",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "DMI Vcp Control",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "DMI Vcm Control",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "VCO No-Snoop Configuration",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Gen3 Phase3 Loop Count",
               "defaultValue": "[16]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Skip Halt On DMI Degradation",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Power down unused ports",
               "defaultValue": "[yes]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SLD WA Revision",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Rx Clock WA",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "PCI-E ASPM (Global)",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "PCIE Stop & Scream Support",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Snoop Response Hold Off",
               "defaultValue": "6",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "section",
@@ -1788,56 +1788,56 @@
               "name": "IOU2 (IIO PCIe Port 1)",
               "defaultValue": "[x4x4]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOU0 (IIO PCIe Port 2)",
               "defaultValue": "[x8x8]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOU1 (IIO PCIe Port 3)",
               "defaultValue": "[x16]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "No PCIe port active ECO",
               "defaultValue": "[PCU Squelch exit ig...]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOU0 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOU1 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "IOU2 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "submenu",
@@ -1848,88 +1848,88 @@
                   "name": "Link Speed",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Override Max Link Width",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port DeEmphasis",
                   "defaultValue": "[-6.0 dB]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Status",
                   "defaultValue": null,
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Max",
                   "defaultValue": null,
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Speed",
                   "defaultValue": null,
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E ASPM",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Fatal Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Non-Fatal Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Corr Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "LOs Support",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 }
               ]
             },
@@ -1942,232 +1942,232 @@
                   "name": "PCI-E Port",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Hot Plug Capable",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Extra Bus Reserved",
                   "defaultValue": "0",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Reserved Memory",
                   "defaultValue": "10",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Reseved Memory Alignment",
                   "defaultValue": "1",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Prefetchable Memory",
                   "defaultValue": "10",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Prefetchable Memory Alignment",
                   "defaultValue": "1",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Reserved I/O",
                   "defaultValue": "0",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link",
                   "defaultValue": "[Enable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Link Speed",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Override Max Link Width",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port DeEmphasis",
                   "defaultValue": "[-6.0 dB]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Status",
                   "defaultValue": "Link Did Not Train",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Max",
                   "defaultValue": "Max Width x4",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Speed",
                   "defaultValue": "Link Did Not Train",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E ASPM",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Fatal Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Non-Fatal Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Corr Err Over",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "LOs Support",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PM ACPI Mode",
                   "defaultValue": "[Disable]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Eq Mode",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Spec Mode",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Phase2 Mode",
                   "defaultValue": "[Hardware Adaptive]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 DN TX Preset",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 DN Rx Preset Hint",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 UP Tx Preset",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Hide Port?",
                   "defaultValue": "[no]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Pcie Ecrc",
                   "defaultValue": "[Auto]",
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 }
               ]
             },
@@ -2207,8 +2207,8 @@
                   "name": "PCI-E Port Link Status",
                   "defaultValue": null,
                   "description": "",
-                  "risk": "none",
-                  "riskReason": ""
+                  "riskReason": "",
+                  "sources": []
                 }
               ]
             },
@@ -2227,72 +2227,72 @@
               "name": "PCI-E Port Link Status",
               "defaultValue": null,
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "PCI-E Port Link Speed",
               "defaultValue": null,
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Non-Transparent Bridge PCIe Port D",
               "defaultValue": "[Auto]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Enable NTB BARS",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Enable SPLIT BARS",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Primary BAR 23 Size",
               "defaultValue": "22",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Primary BAR 4 Size",
               "defaultValue": "20",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Primary BAR 5 Size",
               "defaultValue": "20",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Secondary BAR 23 Size",
               "defaultValue": "20",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2306,48 +2306,48 @@
           "name": "VTd Azalea VCp Optimizations",
           "defaultValue": "[Disable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Intel VT for Directed I/O (VT-d)",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "ACS Control",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Interrupt Remapping",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Coherency Support (Non-Isoch)",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Coherency Support (Isoch)",
           "defaultValue": "[Enable]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -2365,80 +2365,80 @@
           "name": "Board Capability",
           "defaultValue": "[DeepSx]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "DeepSx Power Policies",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "GP27 Wake From DeepSx",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SMBUS Device",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCH Server Error Reporting Mode (S)",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCH Display",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Serial IRQ Mode",
           "defaultValue": "[Continuous]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "External SSC Enable - CK420",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCH state after G3",
           "defaultValue": "[Off]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "PCH CRID",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -2451,24 +2451,24 @@
           "name": "sSATA Controller",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Configure sSATA as",
           "defaultValue": "[AHCI]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SATA test mode",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -2480,24 +2480,24 @@
           "name": "sSATA Mode options",
           "defaultValue": null,
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "sSATA AHCI LPM",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "sSATA AHCI ALPM",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "section",
@@ -2513,32 +2513,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2556,32 +2556,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2599,32 +2599,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2642,32 +2642,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2685,32 +2685,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2728,32 +2728,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2762,16 +2762,16 @@
           "name": "SATA HDD Unlock",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SATA Led locate",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -2784,24 +2784,24 @@
           "name": "SATA Controller",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Configure SATA as",
           "defaultValue": "[AHCI]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SATA test mode",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "submenu",
@@ -2813,16 +2813,16 @@
           "name": "SATA AHCI LPM",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "SATA AHCI ALPM",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "section",
@@ -2843,48 +2843,48 @@
               "name": "Port 0",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configured as eSATA",
               "defaultValue": "Hot Plug supported",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2907,48 +2907,48 @@
               "name": "Port 1",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configured as eSATA",
               "defaultValue": "Hot Plug supported",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -2966,32 +2966,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -3009,32 +3009,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -3052,32 +3052,32 @@
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
               "description": "",
-              "risk": "none",
-              "riskReason": ""
+              "riskReason": "",
+              "sources": []
             }
           ]
         },
@@ -3086,8 +3086,8 @@
           "name": "SATA Led locate",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -3100,48 +3100,48 @@
           "name": "USB Precondition",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "XHCI Mode",
           "defaultValue": "[Auto]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Trunk Clock Gating (BTCG)",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "USB Ports Per-Port Disable Control",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "XHCI Idle L1",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "USB XHCI s755 WA",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -3154,40 +3154,40 @@
           "name": "GPIO Lockdown",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "RTC Lock",
           "defaultValue": "[Enabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "BIOS Lock",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Host Flash Lock-Down",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         },
         {
           "type": "option",
           "name": "Gbe Flash Lock-Down",
           "defaultValue": "[Disabled]",
           "description": "",
-          "risk": "none",
-          "riskReason": ""
+          "riskReason": "",
+          "sources": []
         }
       ]
     },
@@ -3196,16 +3196,16 @@
       "name": "Onboard LAN1 Control",
       "defaultValue": "[Enabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     },
     {
       "type": "option",
       "name": "Onboard LAN2 Control",
       "defaultValue": "[Enabled]",
       "description": "",
-      "risk": "none",
-      "riskReason": ""
+      "riskReason": "",
+      "sources": []
     }
   ]
 }

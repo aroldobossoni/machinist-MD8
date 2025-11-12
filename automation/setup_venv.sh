@@ -22,7 +22,7 @@ echo "[2/4] Criando ambiente virtual..."
 if [ -d "venv" ]; then
     echo "  Ambiente virtual ja existe, pulando criacao"
 else
-    python3 -m venv venv
+python3 -m venv venv
     echo "  OK: Ambiente virtual criado"
 fi
 
