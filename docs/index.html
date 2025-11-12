@@ -1092,7 +1092,8 @@
                     option: 'Enable ACPI Auto Configuration',
                     defaultValue: '[Disabled]',
                     description: 'Permite que a BIOS configure automaticamente as tabelas ACPI do sistema operacional.',
-                    risk: 'none'
+                    riskReason: 'NENHUM. Não afeta POST.',
+                    sources: []
                 },
                 {
                     menu: 'Advanced',
@@ -1100,7 +1101,8 @@
                     option: 'Enable Hibernation',
                     defaultValue: '[Enabled]',
                     description: 'Controla se o sistema operacional pode usar o modo de hibernação (S4). Requer espaço em disco igual ao tamanho da RAM instalada.',
-                    risk: 'low'
+                    riskReason: 'BAIXO. Não afeta POST.',
+                    sources: []
                 },
                 {
                     menu: 'Advanced',
@@ -1108,7 +1110,8 @@
                     option: 'Above 4G Decoding',
                     defaultValue: '[Disabled]',
                     description: 'Permite que dispositivos PCIe acessem mais de 4GB de memória. Necessário para GPUs modernas com muita VRAM.',
-                    risk: 'low'
+                    riskReason: 'BAIXO. Pode impedir boot em sistemas muito antigos.',
+                    sources: []
                 },
                 {
                     menu: 'Advanced',
@@ -1116,7 +1119,8 @@
                     option: 'XHCI Hand-off',
                     defaultValue: '[Enabled]',
                     description: 'Transfere controle do USB 3.0 do BIOS para o sistema operacional. Recomendado: Enabled para Windows 10/11 e Linux moderno.',
-                    risk: 'none'
+                    riskReason: 'NENHUM. Não afeta POST.',
+                    sources: []
                 },
                 {
                     menu: 'IntelRCSetup',
@@ -1124,7 +1128,8 @@
                     option: 'Hyper-Threading [ALL]',
                     defaultValue: '[Enable]',
                     description: 'Habilita Hyper-Threading em todos os cores do processador. Melhora performance em aplicações multi-threaded.',
-                    risk: 'none'
+                    riskReason: 'NENHUM. Não afeta POST.',
+                    sources: []
                 },
                 {
                     menu: 'IntelRCSetup',
@@ -1132,7 +1137,8 @@
                     option: 'Memory Frequency',
                     defaultValue: '[Auto]',
                     description: 'Define a frequência de operação da memória RAM. Alterar manualmente pode causar instabilidade se não compatível com o hardware.',
-                    risk: 'high'
+                    riskReason: 'ALTO. Pode causar travamento de POST se configurado fora das especificações da RAM.',
+                    sources: []
                 }
             ];
         }
