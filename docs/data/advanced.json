@@ -29,9 +29,12 @@
           "type": "option",
           "name": "Lock Legacy Resources",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Esta opção, quando ativada, impede que o sistema operacional (como o Windows) altere automaticamente as configurações de recursos de dispositivos legados (como portas seriais e paralelas). Mantém os recursos alocados pelo BIOS fixos, prevenindo conflitos.",
+          "riskReason": "MÉDIO (se configurado incorretamente, especialmente com hardware ou software incompatível). Sim, há um risco, pois configurações incorretas ou incompatibilidades com sistemas operacionais modernos podem levar a problemas de inicialização ou conflitos de hardware",
+          "sources": [
+            "https://www.tenforums.com/general-support/209199-startup-menu-how-enter-bios-menu-remove-password-2.html#:~:text=Allows%20to%20set%20and%20enable,Options%20without%20entering%20setup%20password).",
+            "https://product-help.schneider-electric.com/Machine%20Expert/V1.1/en/RackiPC/RackiPC/iPC_-_Configuration_of_the_BIOS/iPC_-_Configuration_of_the_BIOS-4.htm"
+          ]
         }
       ]
     },
@@ -53,25 +56,30 @@
           "type": "option",
           "name": "Serial Port",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita/desabilita a porta serial (COM) integrada, usada para comunicação com dispositivos externos antigos ou gerenciamento remoto.",
+          "riskReason": "NENHUM (a menos que um dispositivo incompatível esteja conectado, o que é raro). Não causa travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "Device Settings",
           "defaultValue": "IO=3F8h; IRQ=4;",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Controla e configura interfaces de hardware de baixa largura de banda, como portas seriais (COM) e paralelas, além de monitorar o hardware (temperaturas, ventoinhas e voltagens).",
+          "riskReason": "MÉDIO (se alterar as configurações padrão, como I/O Base/IRQ, sem conhecimento). Pode causar travamento se configurado incorretamente",
+          "sources": [
+            "https://datasheet.lcsc.com/lcsc/2204151000_Nuvoton-Tech-NCT5532D_C249430.pdf"
+          ]
         },
         {
           "type": "option",
           "name": "Change Settings",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite alterar parâmetros de periféricos legados e monitoramento do sistema (ex: ventoinhas, portas COM).",
+          "riskReason": "MÉDIO (Configurações incorretas podem exigir um reset de BIOS/CMOS para recuperação). Pode causar travamento se configurado incorretamente, impedindo o reconhecimento de hardware essencial",
+          "sources": [
+            "https://www.lenovo.com/us/en/glossary/system-properties/#:~:text=How%20can%20I%20access%20system,open%20the%20system%20properties%20window.",
+            "https://en.wikipedia.org/wiki/Control_Panel_(Windows)#:~:text=Control%20Panel%20is%20a%20component,options%2C%20and%20accessing%20networking%20settings."
+          ]
         }
       ]
     },
@@ -88,8 +96,8 @@
           "type": "option",
           "name": "Smart Fan Function",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla automaticamente a velocidade das ventoinhas (CPU e/ou gabinete) com base nas temperaturas monitoradas na BIOS, visando eficiência e menor ruído.",
+          "riskReason": "BAIXO (se usada a configuração padrão, é NENHUM; o risco ocorre apenas com ajustes manuais extremos). Baixo. Se configurado incorretamente (ex: temperaturas mínimas muito baixas, limites de velocidade errados), pode haver superaquecimento ou falha no POST devido a erro de ventoinha",
           "sources": []
         },
         {
