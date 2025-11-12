@@ -21,6 +21,13 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 import threading
 
+# Import para alerta sonoro
+try:
+    import winsound
+    SOUND_AVAILABLE = True
+except ImportError:
+    SOUND_AVAILABLE = False
+
 # Configurações
 PROMPT_TEMPLATE = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))'
 
@@ -54,6 +61,18 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # Criar diretórios se não existirem
 RAW_RESPONSES_DIR.mkdir(exist_ok=True)
 ERROR_SCREENSHOTS_DIR.mkdir(exist_ok=True)
+
+
+def beep_alert():
+    """Emite alerta sonoro"""
+    if SOUND_AVAILABLE:
+        try:
+            # Beep de 800Hz por 500ms (Windows)
+            winsound.Beep(800, 500)
+        except:
+            print('\a')  # Fallback: beep do sistema
+    else:
+        print('\a')  # Fallback: beep do sistema
 
 
 def input_with_timeout(prompt, timeout=10, default='s'):
@@ -129,7 +148,9 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
             wait_interval = 2  # Verificar a cada 2 segundos
             waited = 0
             response_ready = False
-            captcha_resolved = False
+            captcha_detected = False
+            captcha_start_time = None
+            last_beep_time = None
             
             while waited < max_wait and not response_ready:
                 time.sleep(wait_interval)
@@ -140,20 +161,30 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
                 
                 # Verificar CAPTCHA primeiro
                 if 'captcha' in html.lower() or 'unusual traffic' in html.lower() or 'recaptcha' in html.lower():
-                    if not captcha_resolved:
+                    if not captcha_detected:
+                        captcha_detected = True
+                        captcha_start_time = time.time()
+                        last_beep_time = captcha_start_time
                         screenshot_path = ERROR_SCREENSHOTS_DIR / f'captcha_{int(time.time())}.png'
                         page.screenshot(path=str(screenshot_path))
                         print(f"\n⚠️  CAPTCHA detectado! Screenshot: {screenshot_path}")
                         print(f"[INFO] Resolva o CAPTCHA no navegador")
                         print(f"[INFO] O script aguardara automaticamente a resposta aparecer...")
-                        captcha_resolved = True
+                        beep_alert()
+                    else:
+                        # CAPTCHA ainda ativo - verificar se passou 60s desde último beep
+                        current_time = time.time()
+                        if current_time - last_beep_time >= 60:
+                            print(f"\n🔔 ALERTA: CAPTCHA ainda não resolvido ({int(current_time - captcha_start_time)}s aguardando)")
+                            beep_alert()
+                            last_beep_time = current_time
+                    
                     time.sleep(3)
                     # Continuar verificando
                     continue
                 
                 # Se estava em CAPTCHA e agora não está mais, foi resolvido
-                if captcha_resolved == False and 'captcha' not in html.lower():
-                    captcha_resolved = True
+                if captcha_detected and 'captcha' not in html.lower():
                     print(f"[OK] CAPTCHA resolvido! Aguardando redirecionamento e resposta...")
                     time.sleep(5)  # Aguardar redirecionamento
                     continue
