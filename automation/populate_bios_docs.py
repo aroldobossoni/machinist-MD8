@@ -301,6 +301,10 @@ def parse_ai_response(full_text):
     grade_text = ' '.join(grade_text.split()).strip()
     grade_text = grade_text.rstrip('.')
     
+    # VALIDAÇÃO: Se não encontrou descrição, retorna None (parsing falhou)
+    if not description:
+        return None
+    
     # Montar riskReason
     if grade_text and risk_text:
         risk_reason = f"{grade_text}. {risk_text}"
