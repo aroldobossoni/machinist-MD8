@@ -577,7 +577,7 @@ def main():
                 else:
                     elapsed = time.time() - session_start
                     avg_time = elapsed / (idx - 1)
-                    remaining = len(pending_options) - (idx - 1)
+                    remaining = len(pending_options) - idx
                     eta_seconds = avg_time * remaining
                     eta_label = f"[ETA {format_eta(eta_seconds)}] "
                 print(f"{eta_label}OPÇÃO #{idx}/{len(pending_options)}: {option['option']}")
