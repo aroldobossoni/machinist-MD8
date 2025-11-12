@@ -197,7 +197,7 @@ def main():
     parser = BIOSTreeParser()
     parser.save_json_files()
     print("\n[INFO] Arquivos JSON hierarquicos gerados com sucesso!")
-    print("[INFO] Cada opcao inclui campos: description, risk, riskReason (vazios para preenchimento futuro)")
+    print("[INFO] Cada opcao inclui campos: description, riskReason, sources (vazios para preenchimento futuro)")
 
 
 if __name__ == "__main__":
