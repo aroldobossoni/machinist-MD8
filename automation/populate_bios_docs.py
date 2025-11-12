@@ -122,11 +122,10 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
                         screenshot_path = ERROR_SCREENSHOTS_DIR / f'captcha_{int(time.time())}.png'
                         page.screenshot(path=str(screenshot_path))
                         print(f"\n⚠️  CAPTCHA detectado! Screenshot: {screenshot_path}")
-                        print(f"[INFO] Resolva o CAPTCHA no navegador e aguarde a resposta aparecer...")
-                        print(f"[INFO] O script continuara verificando automaticamente apos resolver")
-                        input("Quando a resposta da IA aparecer, pressione ENTER para continuar verificacao...")
-                    captcha_resolved = True
-                    time.sleep(3)  # Aguardar após resolver
+                        print(f"[INFO] Resolva o CAPTCHA no navegador")
+                        print(f"[INFO] O script aguardara automaticamente a resposta aparecer...")
+                        captcha_resolved = True
+                    time.sleep(3)
                     # Continuar verificando
                     continue
                 
