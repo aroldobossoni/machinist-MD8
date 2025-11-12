@@ -32,6 +32,10 @@ class BIOSTreeParser:
         """Calcula nível de indentação baseado em caracteres ASCII"""
         # Conta ocorrências de │ (vertical bar) que indicam níveis de profundidade
         vertical_bars = line.count('│')
+        # Se não há barras verticais, usa espaços de indentação (cada 4 espaços = 1 nível)
+        if vertical_bars == 0:
+            leading_spaces = len(line) - len(line.lstrip())
+            return leading_spaces // 4
         return vertical_bars
     
     def parse_line(self, line: str) -> Optional[Dict[str, Any]]:

@@ -1,5 +1,59 @@
 {
   "type": "submenu",
-  "name": "Boot Override",
-  "children": []
+  "name": "Boot",
+  "children": [
+    {
+      "type": "section",
+      "name": "Boot Configuration",
+      "children": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #1",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #2",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #3",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #4",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #5",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    },
+    {
+      "type": "option",
+      "name": "Boot Option #6",
+      "defaultValue": "[Device Name]",
+      "description": "",
+      "riskReason": "",
+      "sources": []
+    }
+  ]
 }
