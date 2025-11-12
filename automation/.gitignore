@@ -1,0 +1,20 @@
+# Arquivos gerados automaticamente
+progress.json
+errors.log
+*.png
+*.html
+
+# Diretórios gerados
+raw_responses/
+error_screenshots/
+
+# Manter apenas estrutura vazia
+!raw_responses/.gitkeep
+!error_screenshots/.gitkeep
+
+# Ambiente virtual Python
+venv/
+env/
+.venv/
+.env/
+

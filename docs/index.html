@@ -391,6 +391,10 @@
             color: var(--danger-color);
         }
 
+        .risk-medium {
+            color: var(--warning-color);
+        }
+
         .risk-reason {
             margin-top: 0.5rem;
             font-size: 0.8rem;
@@ -400,6 +404,44 @@
             white-space: normal;
             word-wrap: break-word;
             overflow-wrap: break-word;
+        }
+
+        .risk-reason.risk-high {
+            color: var(--danger-color);
+        }
+
+        .risk-reason.risk-medium {
+            color: var(--warning-color);
+        }
+
+        .risk-reason.risk-low {
+            color: var(--warning-color);
+        }
+
+        .risk-reason.risk-none {
+            color: var(--text-tertiary);
+        }
+
+        /* Sources / Referências */
+        .sources {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .sources-icon {
+            margin-right: 0.25rem;
+        }
+
+        .source-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 0.5rem;
+            word-break: break-all;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
         }
         
         .risk-badge {
@@ -998,7 +1040,8 @@
                     defaultValue: node.defaultValue,
                     description: node.description || '',
                     risk: node.risk || 'none',
-                    riskReason: node.riskReason || ''
+                    riskReason: node.riskReason || '',
+                    sources: node.sources || []
                 });
             }
             
@@ -1138,7 +1181,18 @@
                 // Build risk cell HTML
                 let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
                 if (option.riskReason) {
-                    riskHtml += `<div class="risk-reason">${option.riskReason}</div>`;
+                    const riskColorClass = getRiskColorClass(option.riskReason);
+                    riskHtml += `<div class="risk-reason ${riskColorClass}">${option.riskReason}</div>`;
+                }
+
+                // Build sources HTML
+                let sourcesHtml = '';
+                if (option.sources && option.sources.length > 0) {
+                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>';
+                    option.sources.forEach(url => {
+                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+                    });
+                    sourcesHtml += '</div>';
                 }
 
                 tr.innerHTML = `
@@ -1151,6 +1205,7 @@
                     </td>
                     <td>
                         <div class="description">${option.description || 'Sem descrição disponível.'}</div>
+                        ${sourcesHtml}
                     </td>
                     <td>
                         ${riskHtml}
@@ -1194,7 +1249,18 @@
                 // Build risk HTML
                 let riskHtml = `<span class="risk-badge risk-${option.risk || 'none'}">${getRiskLabel(option.risk)}</span>`;
                 if (option.riskReason) {
-                    riskHtml += `<div class="risk-reason">${option.riskReason}</div>`;
+                    const riskColorClass = getRiskColorClass(option.riskReason);
+                    riskHtml += `<div class="risk-reason ${riskColorClass}">${option.riskReason}</div>`;
+                }
+
+                // Build sources HTML
+                let sourcesHtml = '';
+                if (option.sources && option.sources.length > 0) {
+                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>';
+                    option.sources.forEach(url => {
+                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+                    });
+                    sourcesHtml += '</div>';
                 }
 
                 card.innerHTML = `
@@ -1206,6 +1272,7 @@
                     <div class="mobile-card-body">
                         <div class="mobile-card-label">Descrição</div>
                         <div class="mobile-card-description">${option.description || 'Sem descrição disponível.'}</div>
+                        ${sourcesHtml}
                     </div>
                     <div class="mobile-card-footer">
                         <div class="mobile-card-risk">
@@ -1246,6 +1313,18 @@
                 'high': 'Alto'
             };
             return labels[risk] || 'Nenhum';
+        }
+
+        function getRiskColorClass(riskReasonText) {
+            if (!riskReasonText) return 'risk-none';
+            const lower = riskReasonText.toLowerCase();
+            if (lower.includes('alto') || lower.includes('certamente')) 
+                return 'risk-high';
+            if (lower.includes('médio') || lower.includes('medio')) 
+                return 'risk-medium';
+            if (lower.includes('baixo')) 
+                return 'risk-low';
+            return 'risk-none';
         }
 
         // Filter functions
@@ -1315,7 +1394,7 @@
         // Google AI - Popup direto
         
         // Template padrão de pergunta
-        let promptTemplate = 'Explique em 25 palavras o que é a opção "{option}" na BIOS da placa mãe Machinist MD8.';
+        let promptTemplate = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NEHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))';
 
         function openGoogleAIDirectly(optionName, menuPath, defaultValue) {
             // Gerar pergunta usando template

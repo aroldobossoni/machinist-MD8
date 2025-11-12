@@ -129,6 +129,7 @@ class BIOSTreeParser:
                 node['description'] = ''
                 node['risk'] = 'none'
                 node['riskReason'] = ''
+                node['sources'] = []
             
             if item['type'] == 'info':
                 node['content'] = item['content']
