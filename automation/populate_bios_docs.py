@@ -402,10 +402,11 @@ def main():
             # Filtrar opções já processadas
             found_last = False
             for opt in all_options:
-                processed.add((opt['file'], opt['option']))
                 if opt['file'] == last.get('file') and opt['option'] == last.get('option'):
                     found_last = True
+                    processed.add((opt['file'], opt['option']))  # Adicionar a última também
                     break
+                processed.add((opt['file'], opt['option']))  # Adicionar apenas opções anteriores
             
             if not found_last:
                 print(f"  [AVISO] Opcao '{last.get('option')}' nao encontrada na lista atual")
