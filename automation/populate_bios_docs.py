@@ -269,6 +269,8 @@ def fetch_google_ai_response(prompt, context, retry_count=3):
                 }
             
             # Se não encontrou resposta, tentar novamente
+            if page:
+                page.close()
             if attempt < retry_count - 1:
                 delay = [5, 10, 20][attempt]
                 print(f"[RETRY] Tentativa {attempt + 1}/{retry_count}, resposta nao encontrada, aguardando {delay}s...")
