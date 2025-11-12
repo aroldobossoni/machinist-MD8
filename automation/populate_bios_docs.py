@@ -19,6 +19,7 @@ from urllib.parse import quote_plus
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
+import threading
 
 # Configurações
 PROMPT_TEMPLATE = 'Explique de forma objetiva em 40 palavras a opção "{option}" em "{menu}" na BIOS da placa mãe Machinist MD8 X99 em tópicos: DESCRIÇÃO(para que serve, o que faz):, RISCO:(se pode causar travamento de POST e o GRAU DE RISCO:(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE))'
@@ -53,6 +54,27 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # Criar diretórios se não existirem
 RAW_RESPONSES_DIR.mkdir(exist_ok=True)
 ERROR_SCREENSHOTS_DIR.mkdir(exist_ok=True)
+
+
+def input_with_timeout(prompt, timeout=10, default='s'):
+    """Input com timeout. Retorna default se timeout expirar."""
+    result = [None]
+    
+    def get_input():
+        try:
+            result[0] = input(prompt)
+        except:
+            pass
+    
+    thread = threading.Thread(target=get_input, daemon=True)
+    thread.start()
+    thread.join(timeout)
+    
+    if result[0] is None:
+        print(f"\n[TIMEOUT] Sem resposta em {timeout}s. Auto-skip.")
+        return default
+    
+    return result[0]
 
 
 def load_hierarchical_json(file_path):
@@ -554,7 +576,7 @@ def main():
                     raw_file = save_raw_response(option['option'], response['full_text'])
                     print(f"[INFO] Resposta bruta salva em: {raw_file}")
                     
-                    choice = input("[r]etry fetch / [m]anual edit / [s]kip / [q]uit: ").lower()
+                    choice = input_with_timeout("[r]etry fetch / [m]anual edit / [s]kip / [q]uit: ", timeout=10, default='s').lower()
                     if choice == 'r':
                         continue
                     elif choice == 'm':
