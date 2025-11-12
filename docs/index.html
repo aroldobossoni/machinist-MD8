@@ -1186,9 +1186,10 @@
                 // Build sources HTML
                 let sourcesHtml = '';
                 if (option.sources && option.sources.length > 0) {
-                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>';
-                    option.sources.forEach(url => {
-                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>Referências: ';
+                    option.sources.forEach((url, index) => {
+                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer" title="${escapeHtml(url)}">[${index + 1}]</a>`;
+                        if (index < option.sources.length - 1) sourcesHtml += ' ';
                     });
                     sourcesHtml += '</div>';
                 }
@@ -1254,9 +1255,10 @@
                 // Build sources HTML
                 let sourcesHtml = '';
                 if (option.sources && option.sources.length > 0) {
-                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>';
-                    option.sources.forEach(url => {
-                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer">${escapeHtml(url)}</a>`;
+                    sourcesHtml = '<div class="sources"><span class="sources-icon">🔗</span>Referências: ';
+                    option.sources.forEach((url, index) => {
+                        sourcesHtml += `<a href="${escapeHtml(url)}" target="_blank" class="source-link" rel="noopener noreferrer" title="${escapeHtml(url)}">[${index + 1}]</a>`;
+                        if (index < option.sources.length - 1) sourcesHtml += ' ';
                     });
                     sourcesHtml += '</div>';
                 }
