@@ -61,9 +61,12 @@
       "type": "option",
       "name": "System Language",
       "defaultValue": "[English]",
-      "description": "",
+      "description": "Define o idioma de exibição do menu da BIOS (UEFI/Setup) para o utilizador navegar e configurar as opções do sistema. Não afeta o sistema operacional ou o software após a inicialização.",
       "risk": "none",
-      "riskReason": ""
+      "riskReason": "NENHUM (para o hardware/POST) / BAIXO (para usabilidade, se um idioma desconhecido for selecionado). Não causa travamento do POST. O único risco é selecionar acidentalmente um idioma desconhecido, o que pode dificultar a navegação para reverter a configuração.",
+      "sources": [
+        "https://consumer.huawei.com/en/support/content/en-us15883569/#:~:text=When%20your%20computer%20is%20starting,save%20the%20settings%20and%20exit."
+      ]
     },
     {
       "type": "option",
