@@ -51,17 +51,27 @@
       "type": "option",
       "name": "Administrator Password",
       "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define uma senha para proteger o acesso às configurações da BIOS. A senha é necessária para entrar e modificar as configurações, impedindo alterações não autorizadas. O computador geralmente inicializa normalmente, mas o acesso ao setup é restrito.",
+      "riskReason": "ALTO (em caso de esquecimento, pois o acesso é bloqueado, exigindo um procedimento de clear CMOS — que apaga todas as configurações e a senha — para recuperar o acesso). Se a senha for esquecida, o usuário fica impedido de acessar ou modificar as configurações da BIOS",
+      "sources": [
+        "https://www.intel.com/content/www/us/en/support/articles/000025368/processors.html",
+        "https://www.dell.com/support/kbdoc/en-in/000132226/dell-system-prompts-for-a-hard-drive-hdd-or-bios-password#:~:text=Admin%20Password%20(Setup%20Password),entering%20the%20admin%20password%20first.",
+        "https://www.asus.com/support/faq/1051688/#:~:text=This%20password%20is%20used%20to,BIOS%20and%20modify%20the%20settings.",
+        "https://blog.jonsdocs.org.uk/2024/08/30/bios-passwords-do-we-still-need-them/#:~:text=Setting%20a%20user%20password%20might,enter%20the%20password%20will%20vary."
+      ]
     },
     {
       "type": "option",
       "name": "User Password",
       "defaultValue": null,
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define uma senha necessária para iniciar o sistema (se configurado para tal) ou para impedir o acesso de usuários não autorizados às configurações da BIOS. É um nível de privilégio inferior ao \"Supervisor Password\".",
+      "riskReason": "ALTO (se a senha for esquecida, pode exigir um reset de hardware, como remover a bateria CMOS, para recuperar o acesso). Sim, se a opção \"Password Check\" for definida como \"Always\", a senha será solicitada na inicialização. Esquecê-la bloqueará o acesso ao sistema",
+      "sources": [
+        "https://www.csk.gov.in/documents/Desktop_security.pdf",
+        "https://blog.jonsdocs.org.uk/2024/08/30/bios-passwords-do-we-still-need-them/#:~:text=What%20is%20a%20BIOS%20password,password%20varies%20between%20BIOS%20manufacturers.",
+        "https://www.techtarget.com/searchenterprisedesktop/definition/BIOS-password#:~:text=A%20BIOS%20password%20helps%20prevent,computer%20won't%20boot%20up.",
+        "https://www.intel.com/content/www/us/en/support/articles/000025368/processors.html"
+      ]
     }
   ]
 }

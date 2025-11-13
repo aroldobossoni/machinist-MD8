@@ -1283,8 +1283,8 @@
           "type": "option",
           "name": "Platform type input for SPD page s",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "A função exata é indeterminada devido à escassez de informações online. É provável que esteja relacionada a configurações internas para compatibilidade de módulos de memória (SPD) com a plataforma Intel X99, talvez automatizando a detecção do tipo de plataforma para leitura correta dos dados da memória [1].",
+          "riskReason": "DESCONHECIDO (Potencialmente MÉDIO a ALTO se a configuração padrão estiver incorreta ou se uma alteração manual for incompatível) [1]. Desconhecido. Modificar configurações de memória não documentadas pode, teoricamente, causar falha no POST (Power-On Self-Test), exigindo um reset da BIOS (clear CMOS) para recuperação [1]",
           "sources": []
         },
         {
@@ -1299,8 +1299,8 @@
           "type": "option",
           "name": "CAP ERR FLOW feature Control",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite configurar como o sistema reage a certos erros de memória (CAP), podendo impactar a estabilidade.",
+          "riskReason": "MÉDIO (configuração inadequada pode levar a falhas no POST ou travamentos do sistema operacional). [1, 2, 3] [1] Informações baseadas em comportamentos gerais de configurações avançadas de BIOS relacionadas a tratamento de erros. [2] A falta de documentação específica para a placa-mãe Machinist MD8 X99 impede uma resposta exata, mas o termo refere-se a controle de fluxo de erros. [3] Configurações de tratamento de erros de memória geralmente são sensíveis. Pode causar instabilidade se configurado incorretamente",
           "sources": []
         },
         {
@@ -1455,16 +1455,18 @@
               "type": "option",
               "name": "Phase Shedding",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Reduz o número de fases de energia para o controlador de memória durante baixas cargas, economizando energia. Aumenta as fases sob carga pesada para garantir estabilidade e desempenho.",
+              "riskReason": "MÉDIO (depende da qualidade da implementação da BIOS e do hardware). Pode causar instabilidade se a transição de fases for ineficaz, resultando em travamentos. O ajuste incorreto do gerenciamento de energia dos VRMs pode levar a falhas no POST",
+              "sources": [
+                "https://www.eetimes.com/designing-multi-phase-converters-for-high-current-applications/#:~:text=Introduction,using%20multi%2Dphase%20power%20solutions."
+              ]
             },
             {
               "type": "option",
               "name": "Memory Power Savings Mode",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Reduz a voltagem e a frequência da memória RAM ou ajusta os tempos (timings) em momentos de pouca utilização para economizar energia [1].",
+              "riskReason": "MÉDIO (depende da qualidade e especificações da sua memória RAM e da implementação da BIOS) [1]. Sim, pode causar travamento de POST se as configurações automáticas de voltagem ou tempo forem muito agressivas para os módulos de memória instalados [1]",
               "sources": []
             },
             {
@@ -1698,8 +1700,8 @@
               "type": "option",
               "name": "Memory Power Management",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Função e comportamento indeterminados para este modelo específico de placa-mãe. Geralmente, gerencia o consumo de energia da RAM.",
+              "riskReason": "(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE): Indeterminado. : Desconhecido, pois depende da implementação exata da BIOS",
               "sources": []
             }
           ]
@@ -1735,24 +1737,29 @@
           "type": "option",
           "name": "PCIe Hot Plug",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite a adição ou remoção segura de dispositivos PCIe (como placas de expansão, GPUs, SSDs NVMe em adaptadores) enquanto o sistema está ligado, sem a necessidade de reiniciar. É um recurso focado em servidores para garantir alta disponibilidade (RAS - Reliability, Availability, and Serviceability).",
+          "riskReason": "MÉDIO/ALTO em sistemas desktop/domésticos, pois pode levar a falhas de inicialização ou boot loops se mal configurado ou com hardware incompatível. Sim, pode causar problemas se o dispositivo instalado não suportar a função ou se a configuração não for compatível com o sistema operacional",
+          "sources": [
+            "https://forum.proxmox.com/threads/pci-passthrough-device-causes-hotplug-event-on-host-and-disappears-from-vm.166519/#:~:text=I%20have%20a%20Hailo%20AI,plugged%20into%20a%20PCIE%20adapter).",
+            "https://www.szyunze.com/pcie-hot-plug-explained-clearly-in-one-expert-guide/#:~:text=What%20is%20PCIe%20Hot%20Plug,cut%20power%20before%20full%20disconnection.",
+            "https://forums.tomshardware.com/threads/pcie-sata-iii-card-causes-computer-to-go-into-boot-up-loop.3711645/#:~:text=%239-,rocktalkrock%20said:,card%20has%20to%20support%20UEFI.",
+            "https://www.techtarget.com/searchstorage/definition/hot-plug#:~:text=Hot%20plugging%20is%20the%20addition,running%2C%20such%20as%20a%20server."
+          ]
         },
         {
           "type": "option",
           "name": "PCIe ACPI Hot Plug",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita o \"Hot-Plug\" (conexão/desconexão a quente) de dispositivos PCIe através da interface ACPI, permitindo a gestão dinâmica de hardware sem reiniciar o sistema. [1, 2]",
+          "riskReason": "MÉDIO/ALTO (dependendo do hardware/software). [1, 2]. Pode causar travamento ou instabilidade se o hardware ou o sistema operacional não suportarem o recurso adequadamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "EV DFX Features",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa configurações experimentais/depuração da Intel. Para usuários comuns, não tem função prática e deve ser mantida desativada (Disabled).",
+          "riskReason": "ALTO [1, 2]. (40 palavras). Sim, pode causar travamento do POST",
           "sources": []
         },
         {
@@ -1768,8 +1775,8 @@
               "type": "option",
               "name": "IIO IOAPIC",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita/desabilita o roteamento de interrupções de dispositivos periféricos (I/O) para os núcleos da CPU através do controlador IOAPIC. Essencial para o funcionamento correto de placas de expansão e periféricos.",
+              "riskReason": "MÉDIO (se alterado sem conhecimento, pode exigir um reset da BIOS). Pode causar travamento de POST se configurado incorretamente, impedindo o reconhecimento de dispositivos",
               "sources": []
             }
           ]
@@ -1782,40 +1789,44 @@
               "type": "option",
               "name": "Enable IOAT",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Ativa um motor DMA embutido que descarrega operações de cópia de memória (especialmente tráfego de rede) da CPU principal, reduzindo a utilização do processador e melhorando a eficiência e o throughput de E/S. Requer suporte do sistema operacional e drivers compatíveis.",
+              "riskReason": "MÉDIO (em sistemas operacionais modernos ou não-servidor sem drivers específicos, pode causar instabilidade). Pode causar problemas de estabilidade ou até mesmo boot loops em certas configurações, especialmente com sistemas operacionais cliente (como Windows 8 em diante) ou drivers incompatíveis. O Linux desativou o recurso em kernels mais recentes devido a potenciais corrupções de dados em algumas situações",
+              "sources": [
+                "https://www.broadberry.fr/pdf/intel_10gbe/IOAT_tech_brief.pdf",
+                "https://en.wikipedia.org/wiki/I/O_Acceleration_Technology#:~:text=I/O%20Acceleration%20Technology%20%2D%20Wikipedia,Accelerating%20Network%20Receive%20Processing.",
+                "https://www.intel.com/content/www/us/en/support/articles/000006921/ethernet-products.html#:~:text=What%20is%20the%20problem?,Ethernet%20Server%20Adapter%20I350%2DF4"
+              ]
             },
             {
               "type": "option",
               "name": "No Snoop",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza o DMA da tecnologia IOAT, permitindo que dispositivos de E/S gravem diretamente na memória principal sem verificar a coerência do cache da CPU, reduzindo latência.",
+              "riskReason": "MÉDIO (pode causar instabilidade ou travamento dependendo da configuração e hardware). Se implementado incorretamente, pode levar à inconsistência de dados ou falhas no sistema",
               "sources": []
             },
             {
               "type": "option",
               "name": "Disable TPH",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Desativa sugestões de processamento de transação (TPH), que visam melhorar a eficiência do cache para dispositivos de E/S.",
+              "riskReason": "MÉDIO (devido à falta de documentação clara e potencial impacto na estabilidade do sistema). [1]. Pode afetar a estabilidade ou desempenho da E/S",
               "sources": []
             },
             {
               "type": "option",
               "name": "Relaxed Ordering",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite reordenamento de transações PCI Express (como escritas de memória) para otimizar a largura de banda e latência, melhorando o desempenho geral do sistema ao permitir que certas operações passem à frente de outras que não são estritamente dependentes da ordem.",
+              "riskReason": "BAIXO. Baixo. Geralmente seguro em sistemas modernos e compatíveis. Pode causar instabilidade em sistemas muito antigos ou com drivers problemáticos, mas é improvável que cause travamento de POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Apply BDX CBDMA ECO",
               "defaultValue": "[no]",
-              "description": "",
-              "riskReason": "",
+              "description": "Sem informações públicas. Provavelmente uma otimização específica do processador Broadwell-DE (BDX) para o mecanismo de Acesso Direto à Memória (DMA) do IOAT.",
+              "riskReason": "DESCONHECIDO (proceda com cautela, pois configurações IIO/IOAT incorretas podem impedir o POST). Desconhecido, mas geralmente configurações ECO são correções ou otimizações",
               "sources": []
             }
           ]
@@ -1833,104 +1844,115 @@
               "type": "option",
               "name": "TX EQ WA",
               "defaultValue": "[Enable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Ajusta a amplitude de escrita do equalizador do transmissor (TX EQ) para otimizar a integridade do sinal em conexões de alta velocidade, como a interface PCI Express, melhorando a comunicação entre a CPU e dispositivos IIO (Integrated I/O).",
+              "riskReason": "MÉDIO/ALTO (dependendo dos valores ajustados). Recomenda-se manter no modo automático, a menos que esteja a depurar problemas de conectividade específicos. Pode causar instabilidade no sistema ou falha ao iniciar (POST) se configurado incorretamente",
+              "sources": [
+                "https://www.intel.com/content/www/us/en/docs/programmable/683872/23-3-4-6-0/tx-equalizer-settings.html",
+                "https://www.intel.com/content/www/us/en/docs/programmable/683133/22-1-19-2-1/tx-eq-settings.html#:~:text=Modifying%20the%20Reconfiguration%20Router,10%20GX%20Devices%207.1.2.7.",
+                "https://www.intel.com/content/www/us/en/gaming/resources/turbo-boost.html#:~:text=Though%20you%20can%20also%20disable,%C2%AE%20Turbo%20Boost%20Technology%20enabled."
+              ]
             },
             {
               "type": "option",
               "name": "DMI Vc1 Control",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ajusta o controle de fluxo para o tráfego DMI. Geralmente deve permanecer ativado (Enabled) para garantir a estabilidade da comunicação.",
+              "riskReason": "MÉDIO. Recomenda-se não alterar se o sistema estiver estável. Alterações podem causar instabilidade no sistema ou falhas de inicialização (POST)",
               "sources": []
             },
             {
               "type": "option",
               "name": "DMI Vcp Control",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Função desconhecida publicamente; provavelmente relacionada a protocolos de canal virtual da interface DMI (ligação CPU-PCH).",
+              "riskReason": "MÉDIO (por ser uma configuração de baixo nível sem documentação clara). (48 palavras). Desconhecido. Alterar configurações de DMI sem conhecimento técnico pode impactar a comunicação essencial do sistema",
               "sources": []
             },
             {
               "type": "option",
               "name": "DMI Vcm Control",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Controla a gestão de canais virtuais na interface DMI para priorização de tráfego de dados.",
+              "riskReason": "MÉDIO. Pode causar instabilidade no sistema ou falha na inicialização se configurado incorretamente",
+              "sources": [
+                "https://brainly.com/question/32244388#:~:text=Explanation-,The%20purpose%20of%20adjusting%20the%20clock%20speed%20within%20the%20BIOS,slower%2C%20depending%20on%20your%20needs.",
+                "https://firmguard.com/bios-management-what-is-it-and-why-should-you-care/#:~:text=BIOS%20Management%20is%20the%20process,of%20your%20IT%20infrastructure%20vulnerable."
+              ]
             },
             {
               "type": "option",
               "name": "VCO No-Snoop Configuration",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza a coerência de cache entre a CPU e dispositivos PCIe (como GPUs/SSDs NVMe), permitindo que certos tráfegos ignorem verificações de \"snoop\" (espionagem de cache) para reduzir latência e melhorar o desempenho de E/S.",
+              "riskReason": "MÉDIO. Nota: A eficácia e o risco variam conforme o hardware específico. Pode causar instabilidade no sistema ou falhas intermitentes com certas configurações de hardware",
               "sources": []
             },
             {
               "type": "option",
               "name": "Gen3 Phase3 Loop Count",
               "defaultValue": "[16]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define o número máximo de tentativas (loops) que o sistema fará para estabelecer a conexão e o treinamento do link PCIe Gen3 (3ª geração) durante o processo de inicialização (POST). Ajuda na compatibilidade com dispositivos PCIe.",
+              "riskReason": "MÉDIO. (Total de palavras: 39). Pode causar travamento do POST se configurado incorretamente, especialmente com hardware incompatível ou instável",
+              "sources": [
+                "https://recoverit.wondershare.com/computer-problems/pc-is-stuck-on-bios-screen.html#:~:text=There%20can%20be%20several%20reasons,a%20failed%20Windows%20boot%20process."
+              ]
             },
             {
               "type": "option",
               "name": "Skip Halt On DMI Degradation",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite que o sistema continue inicializando mesmo se a interface DMI (ligação entre CPU e chipset) estiver degradada, ignorando o erro.",
+              "riskReason": "MÉDIO (pode resultar em instabilidade ou falhas operacionais). Pode mascarar problemas reais de hardware",
               "sources": []
             },
             {
               "type": "option",
               "name": "Power down unused ports",
               "defaultValue": "[yes]",
-              "description": "",
-              "riskReason": "",
+              "description": "Desativa fisicamente portas/interfaces não utilizadas (como slots PCIe vazios) para economizar energia e reduzir o consumo.",
+              "riskReason": "BAIXO a MÉDIO (depende da configuração do usuário; em uma configuração padrão com poucos dispositivos, o risco é menor). Sim, se uma porta necessária (como um slot onde um dispositivo está conectado, mesmo que não imediatamente óbvio) for desligada, pode haver problemas no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "SLD WA Revision",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a revisão do workaround (WA) para uma possível falha (SLD) do processador. É uma configuração de depuração/engenharia.",
+              "riskReason": "MÉDIO a ALTO. Recomenda-se manter no padrão automático ou \"Disabled\", a menos que instruído por um técnico qualificado. Alterar esta configuração pode levar a travamentos, instabilidade do sistema ou falha no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Rx Clock WA",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ajuste interno relacionado à sincronização de clock do receptor (Rx) na interface IIO (controlador de E/S integrado), visando compatibilidade.",
+              "riskReason": "MÉDIO (potencial para falha de boot). Pode causar instabilidade ou falha de POST se configurado incorretamente. Recomenda-se manter no valor padrão (Auto/Desabilitado) a menos que explicitamente necessário",
               "sources": []
             },
             {
               "type": "option",
               "name": "PCI-E ASPM (Global)",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "O \"PCI-E ASPM (Global)\" (Active-State Power Management) permite que a BIOS ou o sistema operacional coloque os links PCI Express em estados de baixa energia (L0s, L1) quando inativos, reduzindo o consumo de energia.",
+              "riskReason": "(NENHUM, BAIXO, MÉDIO, ALTO, CERTAMENTE): MÉDIO (depende da compatibilidade dos dispositivos instalados). : Sim, se o hardware PCIe instalado não for totalmente compatível com ASPM, pode causar instabilidade, problemas de inicialização ou travamentos",
+              "sources": [
+                "http://www.spec.org/cpu2017/flags/Fujitsu-Platform-Settings-V1.0.2-CFL-RevB.2019-11-01.html#:~:text=Native%20ASPM,Default%20setting%20is%20%22Enabled%22."
+              ]
             },
             {
               "type": "option",
               "name": "PCIE Stop & Scream Support",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Uma funcionalidade de depuração que interrompe o sistema (Stop) e gera um log de erro (Scream) se ocorrer um erro de barramento PCI Express (como um link corrompido ou dispositivo ausente). [1]",
+              "riskReason": "MÉDIO (para uso normal, deve ser mantido desabilitado). [1] (Informação baseada em contexto comum de BIOS e configurações IntelRCSetup, pois não há documentação oficial pública detalhada para esta configuração específica em placas Machinist). Pode causar travamentos se um erro de PCIe esperado durante o boot for interpretado como crítico",
               "sources": []
             },
             {
               "type": "option",
               "name": "Snoop Response Hold Off",
               "defaultValue": "6",
-              "description": "",
-              "riskReason": "",
+              "description": "Controla temporizações de sinalização entre componentes (CPU/dispositivos PCIe) durante operações de coerência de cache (snoop), podendo reduzir latências.",
+              "riskReason": "MÉDIO/ALTO (dependendo do hardware específico). [1]. Sim, pode causar instabilidade ou falha no POST se a temporização não for compatível com os dispositivos instalados. [1]",
               "sources": []
             },
             {
@@ -1942,56 +1964,61 @@
               "type": "option",
               "name": "IOU2 (IIO PCIe Port 1)",
               "defaultValue": "[x4x4]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Controla as configurações de bifurcação (subdivisão) das pistas PCIe para o controlador de E/S Integrado (IIO) do processador (Porta 1, IOU2), permitindo dividir um slot físico em múltiplas conexões lógicas (ex: x16 em x8x8 ou x4x4x4x4) para usar adaptadores multi-dispositivos (como placas com vários SSDs NVMe).",
+              "riskReason": "BAIXO (se você souber o que está fazendo e tiver hardware compatível)/MÉDIO (se configurado incorretamente para o hardware instalado). Baixo a Médio. A alteração incorreta das configurações para dispositivos não compatíveis pode impedir o reconhecimento do dispositivo ou causar problemas de inicialização (POST)",
+              "sources": [
+                "https://winraid.level1techs.com/t/guide-pcie-bifurcation-mapping-iio-iou-to-pcie-slot/39821#:~:text=A:%20BIOS%20has%20four%20IIO,PCIe%20Port2)%E2%80%9D%20on%20CPU1.",
+                "https://forums.servethehome.com/index.php?threads/iio-1-pcie-port-bifurcation-control-greyed-out-x9srl-f-motherboard.39963/#:~:text=The%202%2Dport%20NVMe%20adapter,it%20into%20two%20x4%20lanes.",
+                "https://www.supermicro.com/support/faqs/faq.cfm?faq=24609#:~:text=We%20have%20X10DRi%2DT%20onhand,Was%20this%20FAQ%20helpful?",
+                "https://global.icydock.com/resources/icy_tips_1462.html#:~:text=What%20is%20PCIe%20Bifurcation?&text=WHERE%20TO%20BUY-,What%20is%20PCIe%20Bifurcation?,enter%20the%20BIOS/UEFI%20setup."
+              ]
             },
             {
               "type": "option",
               "name": "IOU0 (IIO PCIe Port 2)",
               "defaultValue": "[x8x8]",
-              "description": "",
-              "riskReason": "",
+              "description": "Controla como as pistas PCIe são distribuídas para o slot ou porta específica, permitindo configurar a largura de banda conforme o hardware instalado.",
+              "riskReason": "MÉDIO/ALTO (depende do hardware e da configuração selecionada). Sim, configurações incorretas para o hardware presente podem impedir o reconhecimento de dispositivos ou causar falha na inicialização (POST)",
               "sources": []
             },
             {
               "type": "option",
               "name": "IOU1 (IIO PCIe Port 3)",
               "defaultValue": "[x16]",
-              "description": "",
-              "riskReason": "",
+              "description": "Controla o mapeamento da hierarquia da Interconexão de Entrada/Saída Integrada (IIO) para o terceiro link/porta PCIe, definindo como os recursos do sistema são alocados aos dispositivos conectados [1].",
+              "riskReason": "MÉDIO (o sistema pode não iniciar, mas geralmente é recuperável redefinindo a BIOS). Pode causar travamento do POST/falha na inicialização se configurado incorretamente para o hardware presente",
               "sources": []
             },
             {
               "type": "option",
               "name": "No PCIe port active ECO",
               "defaultValue": "[PCU Squelch exit ig...]",
-              "description": "",
-              "riskReason": "",
+              "description": "Indisponível sem informação específica do fabricante. A função exata e o que faz são desconhecidos [1, 2].",
+              "riskReason": "DESCONHECIDO. Recomenda-se não alterar sem orientação. Desconhecido. Sem saber a função, o impacto é incerto",
               "sources": []
             },
             {
               "type": "option",
               "name": "IOU0 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza o desempenho de dispositivos PCIe (como GPUs ou placas de rede) ao permitir que a CPU busque dados de forma proativa antes que sejam explicitamente solicitados, melhorando a eficiência da comunicação.",
+              "riskReason": "MÉDIO. (Geralmente seguro em configurações padrão, mas pode requerer ajuste fino). Sim, há um risco. Dependendo dos dispositivos instalados e da controladora, a configuração incorreta pode causar instabilidade no sistema ou falhas na inicialização (POST)",
               "sources": []
             },
             {
               "type": "option",
               "name": "IOU1 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Otimiza a latência e o desempenho de dispositivos PCIe (como GPUs ou placas de rede) ao permitir que o sistema inicie o processamento dessas solicitações mais cedo.",
+              "riskReason": "BAIXO (para hardware moderno e compatível); MÉDIO (para dispositivos legados/incompatíveis). Se o dispositivo PCIe não suportar corretamente esse recurso, pode haver instabilidade no sistema",
               "sources": []
             },
             {
               "type": "option",
               "name": "IOU2 Non-Posted Prefetch",
               "defaultValue": "[Disable]",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita o pré-carregamento de leituras não postadas para o IOU2, visando reduzir a latência de E/S e otimizar o desempenho geral do sistema [1].",
+              "riskReason": "MÉDIO (configuração avançada que exige conhecimento; para a maioria dos usuários, o padrão é o recomendado). (Total de palavras: 54, ligeiramente acima do limite para inclusão de tópicos e informações essenciais). Pode causar instabilidade no sistema ou travamentos, dependendo da configuração e dos dispositivos de E/S conectados",
               "sources": []
             },
             {
@@ -2002,88 +2029,91 @@
                   "type": "option",
                   "name": "Link Speed",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a geração (Gen1/2/3) do link DMI/PCIe. Garante compatibilidade e estabilidade na comunicação.",
+                  "riskReason": "MÉDIO (pode impedir o POST se configurado incorretamente, exigindo reset da BIOS). Alterar para uma velocidade não suportada pelo hardware",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Override Max Link Width",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Força o link a operar em uma largura específica (ex: x16, x8), em vez de permitir que o sistema determine o máximo suportado.",
+                  "riskReason": "MÉDIO (depende do valor escolhido e da compatabilidade do hardware). Sim, se configurado para um valor que o hardware não suporta",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port DeEmphasis",
                   "defaultValue": "[-6.0 dB]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Ajusta a força do sinal (attenuation level) dos pinos de transmissão do slot PCIe para compensar a degradação do sinal em longas distâncias ou cabos \"riser\" de baixa qualidade, garantindo a integridade dos dados (signal integrity).",
+                  "riskReason": "MÉDIO (se alterado incorretamente). Pode causar travamento (falha no POST ou instabilidade no sistema) se o ajuste estiver incorreto para o seu hardware específico",
+                  "sources": [
+                    "https://forum.asrock.com/forum_posts.asp?TID=3283&title=question-about-pcie-gen-setting#:~:text=I%20have%20Thermaltake%20P5%20case,R9%20390X%20and%20GTX%201070).",
+                    "https://www.reddit.com/r/Amd/comments/uqc90x/is_it_normal_to_manually_set_pcie_modes_for_the/"
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Status",
                   "defaultValue": null,
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Controla a habilitação/desabilitação da interface física do link PCIe/DMI para o dispositivo conectado. Se desabilitado, a porta fica inativa.",
+                  "riskReason": "MÉDIO (depende do dispositivo conectado à porta). Pode impedir o reconhecimento do dispositivo conectado (como GPU ou SSD), potencialmente causando um travamento no POST se o sistema esperar por um dispositivo de inicialização que não é detectado",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Max",
                   "defaultValue": null,
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define o limite máximo de velocidade (Gen 1/2/3) da porta PCIe.",
+                  "riskReason": "MÉDIO. Pode causar instabilidade ou falha de inicialização (POST) se definida incorretamente para um dispositivo incompatível",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Speed",
                   "defaultValue": null,
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a velocidade de operação da porta PCI-E/DMI (ex: Gen 1, Gen 2, Gen 3). Controla a largura de banda para dispositivos conectados e comunicação com a CPU.",
+                  "riskReason": "MÉDIO/ALTO (depende do hardware). Se configurado incorretamente (acima do suportado pelo hardware), pode impedir o reconhecimento de dispositivos ou causar falha no POST",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E ASPM",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Reduz o consumo de energia da interface PCI Express. [1]",
+                  "riskReason": "BAIXO a MÉDIO. [1]. Baixo a Médio, pois pode causar instabilidade ou problemas de compatibilidade com alguns dispositivos. [1]",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Fatal Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite à BIOS ignorar ou mascarar certos erros fatais de hardware reportados pelo dispositivo PCIe/DMI, potencialmente permitindo que o sistema continue a inicializar em vez de travar imediatamente.",
+                  "riskReason": "MÉDIO (pode impedir a inicialização se um erro real estiver presente e for mascarado incorretamente, ou causar instabilidade posterior). Pode causar travamentos, instabilidade do sistema ou falhas inesperadas, pois erros críticos de hardware não estão sendo devidamente tratados",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Non-Fatal Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite a substituição do tratamento padrão de erros não fatais (como certos erros PCIe ou DMI). Quando ativada/configurada, pode alterar como o sistema reporta ou reage a esses erros, potencialmente continuando a operação em vez de parar [1].",
+                  "riskReason": "MÉDIO (configurações inadequadas podem levar a comportamento imprevisível do sistema ou falhas intermitentes, mas um travamento direto no POST é menos provável do que com opções de hardware mais críticas) [1]. Pode causar instabilidade se configurada incorretamente ou se mascarar erros reais que exigem atenção",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Corr Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define se o sistema deve ignorar (overlook/override) ou reportar o transbordamento de contadores de erros corrigíveis da porta PCIe/DMI. Tentar otimizar a contagem ou o registro desses erros.",
+                  "riskReason": "MÉDIO. (Pode causar instabilidade ou impedir o registro de diagnósticos críticos, potencialmente levando a travamentos se o gerenciamento de erros for desativado incorretamente). Pode interferir na capacidade do sistema de registrar ou gerenciar corretamente erros de hardware corrigíveis",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "LOs Support",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite que o link PCIe entre no estado de baixa potência \"L0s\" quando ocioso, melhorando a eficiência energética do sistema ao custo de uma ligeira latência na recuperação para o estado ativo.",
+                  "riskReason": "BAIXO (problemas são raros, mas possíveis). Pode causar problemas de compatibilidade com alguns dispositivos PCIe ou sistemas operacionais [1]",
                   "sources": []
                 }
               ]
@@ -2096,233 +2126,249 @@
                   "type": "option",
                   "name": "PCI-E Port",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Define a configuração da porta PCI Express (PCI-E), como sua velocidade (Gen 1/2/3) e largura de banda (x16, x8, etc.), para o dispositivo instalado (ex: placa de vídeo). Permite ajustar o funcionamento do slot físico.",
+                  "riskReason": "BAIXO. Baixo. Alterações incorretas podem impedir a inicialização (POST) se o dispositivo não for detectado corretamente. O código 99 ou códigos na faixa de 92-99 indicam problemas com dispositivos PCI-E",
+                  "sources": [
+                    "https://www.reddit.com/r/ASUS/comments/1d5bo7m/x99_wcode_99/?tl=pt-br#:~:text=O%20c%C3%B3digo%20Q99%20%C3%A9%20chamado,placa%2Dm%C3%A3e%20antes%20de%20inicializar.",
+                    "https://www.asrock.com/support/QA/TSDQA-102.pt.pdf#:~:text=92%20%2D%2099%20Problema%20relacionado%20ao%20dispositivo,PCI%2DE%20ou%20tente%20utilizar%20outra%20placa%20VGA."
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "Hot Plug Capable",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Permite conectar/desconectar dispositivos PCI Express (ex: SSDs, placas de rede) no slot correspondente (Port 1A) com o computador ligado, sem reiniciar o sistema. Recurso típico de servidores para manutenção e expansão flexível.",
+                  "riskReason": "BAIXO (se não for utilizado, a função permanece inativa; se for utilizado incorretamente, o risco é alto). Não deve causar travamento do POST. O risco está na manipulação inadequada do hardware com o sistema em funcionamento (curto-circuito, perda de dados)",
+                  "sources": [
+                    "https://www.dell.com/support/kbdoc/pt-br/000127508/diferen%C3%A7a-entre-o-modo-ahci-e-o-modo-sata#:~:text=Hot%2Dplugging%20%C3%A9%20um%20recurso,computador;%20Como%20uma%20unidade%20flash."
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "Extra Bus Reserved",
                   "defaultValue": "0",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Finalidade: Reserva IDs de barramento PCI Express adicionais para garantir que todos os dispositivos conectados, especialmente em configurações de expansão, recebam endereçamento de sistema exclusivo e adequado [1]. Essencial para estabilidade em sistemas com muitas placas ou expansores.",
+                  "riskReason": "MÉDIO (se alterado incorretamente de sua configuração padrão) [1]. Risco de travamento de POST: Sim, pode causar problemas se configurado incorretamente (por exemplo, reservando muito ou pouco) [1]. A configuração padrão geralmente é segura",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Reserved Memory",
                   "defaultValue": "10",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Reserva uma porção de memória para dispositivos PCI Express específicos, como placas de vídeo ou outros periféricos, garantindo alocação de recursos dedicada.",
+                  "riskReason": "MÉDIO. [1, 2]. Pode causar travamento no POST se configurado incorretamente, dependendo dos dispositivos instalados e da configuração do sistema",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Reseved Memory Alignment",
                   "defaultValue": "1",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Alinha o endereçamento de memória reservada (MMIO) para dispositivos PCIe, otimizando compatibilidade.",
+                  "riskReason": "MÉDIO. [1]. Alterações incorretas podem impedir o reconhecimento de dispositivos ou causar falhas na inicialização (POST)",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Prefetchable Memory",
                   "defaultValue": "10",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite alocar um bloco maior e contíguo de memória para dispositivos PCI, otimizando o acesso ao reservar memória que a CPU pode buscar (prefetch) antecipadamente. Melhora o desempenho de dispositivos que se beneficiam de grandes transferências de dados.",
+                  "riskReason": "MÉDIO/ALTO (depende da configuração e hardware instalado). Esta explicação tem aproximadamente 50 palavras, um pouco acima do limite de 40 solicitado para ser completa e objetiva. Sim, pode causar travamento do POST ou instabilidade. Se a alocação de memória solicitada for excessiva e não houver memória contígua suficiente disponível, o sistema pode falhar ao iniciar",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Prefetchable Memory Alignment",
                   "defaultValue": "1",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Alinha o endereçamento de memória pré-carregável para dispositivos PCIe, otimizando o mapeamento de recursos do sistema e potencialmente melhorando a compatabilidade e o desempenho de certas placas.",
+                  "riskReason": "MÉDIO. Pode causar falha no POST ou instabilidade caso o dispositivo PCIe não suporte o alinhamento configurado",
+                  "sources": [
+                    "https://edc.intel.com/content/www/id/id/design/publications/14th-generation-core-processors-ioe-p-registers/pci-express-pcie-configuration-d1-f0-registers/"
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "Reserved I/O",
                   "defaultValue": "0",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Controla se o firmware da BIOS aloca ou reserva proativamente blocos de endereços de I/O para compatibilidade com dispositivos herdados ou específicos que possam não solicitar recursos explicitamente, garantindo que o sistema operacional não os sobrescreva.",
+                  "riskReason": "MÉDIO. Sim, se um dispositivo necessário depender desses recursos e eles forem desabilitados/configurados incorretamente, pode ocorrer falha no POST ou instabilidade",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link",
                   "defaultValue": "[Enable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Ativa ou desativa a comunicação do barramento PCI Express para a porta/slot especificado. Define se o sistema tentará estabelecer um link com qualquer dispositivo conectado ali.",
+                  "riskReason": "MÉDIO (depende do uso do slot). [1]. Sim, se o slot estiver em uso por um dispositivo essencial (como uma placa de vídeo), a desativação pode impedir o boot",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Link Speed",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a velocidade máxima de comunicação da porta (ex: Gen 1, Gen 2, Gen 3). Garante compatibilidade com o dispositivo instalado.",
+                  "riskReason": "MÉDIO (se configurado incorretamente). Pode causar travamento de POST se a velocidade for incompatível com o dispositivo",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Override Max Link Width",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a largura máxima (ex: x16, x8) que o slot PCIe usará, ignorando a detecção automática [1].",
+                  "riskReason": "MÉDIO (se configurado incorretamente) [1]. Pode causar travamentos se o valor for incompatível com o hardware instalado",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port DeEmphasis",
                   "defaultValue": "[-6.0 dB]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Ajusta a intensidade do sinal do transmissor (Tx) para compensar a perda de sinal em canais PCIe longos ou complexos, melhorando a integridade do sinal e a qualidade da comunicação em altas frequências.",
+                  "riskReason": "MÉDIO (se alterado sem conhecimento técnico, pois o ajuste incorreto pode impedir o funcionamento do dispositivo PCIe). Pode causar travamento do POST ou instabilidade se configurado incorretamente para o dispositivo ou slot específico",
+                  "sources": [
+                    "https://helpfiles.keysight.com/scopes/FlexDCA-UG/Content/Topics/Jitter-Mode/Meas-Toolbar/deemphasis.htm#:~:text=De%2Demphasis%20is%20a%20deliberatly,PCI%20Express%20Gen%203%20definition.",
+                    "https://pcisig.com/faq?page=1#:~:text=De%2Demphasis%20reduces%20the%20low,for%20the%20most%20common%20topologies."
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Status",
                   "defaultValue": "Link Did Not Train",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Monitora a conectividade do dispositivo PCI-E, auxiliando no diagnóstico de problemas de hardware.",
+                  "riskReason": "BAIXO (se configurado incorretamente para uma porta em uso, mas recuperável via reset da BIOS). Pode causar travamento se configurado incorretamente, impedindo o reconhecimento do dispositivo",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Max",
                   "defaultValue": "Max Width x4",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a velocidade máxima (geração) do link PCI Express (ex: Gen 1, 2, 3) para a porta específica. Controla a largura de banda disponível para o dispositivo instalado, como uma placa de vídeo ou SSD. A configuração automática é o padrão, mas forçar uma geração específica pode ajudar na compatabilidade ou estabilidade.",
+                  "riskReason": "BAIXO (se configurado incorretamente, geralmente é fácil reverter limpando a CMOS ou usando o modo de segurança). Pode causar travamento do POST ou instabilidade se a configuração manual for incompatível com o dispositivo ou a placa-mãe",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E Port Link Speed",
                   "defaultValue": "Link Did Not Train",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Controla a velocidade de comunicação (largura de banda) do slot PCI-E. Ajustes incorretos podem reduzir a performance do dispositivo instalado ou impedir seu funcionamento.",
+                  "riskReason": "MÉDIO (se configurado incorretamente para uma velocidade não suportada pelo dispositivo ou pela placa-mãe). Sim",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PCI-E ASPM",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "Gerenciamento de energia em estado ativo para dispositivos PCIe. Reduz o consumo de energia do link mesmo quando o dispositivo está ativo, alternando para estados de menor consumo (L0s/L1) quando o link está ocioso.",
+                  "riskReason": "MÉDIO (devido a possíveis incompatibilidades de hardware, especialmente comum em placas X99 de marcas menos conhecidas). Sim, pode causar instabilidade no sistema, falhas no log ou problemas de compatibilidade com certos dispositivos (como algumas placas de rede ou GPUs), resultando em travamentos ou códigos de erro",
+                  "sources": [
+                    "https://support.lenovo.com/br/pt/solutions/ht104102-pcie-aspm-failures-appear-in-the-system-log-thinkserver",
+                    "https://docs.redhat.com/pt-br/documentation/red_hat_enterprise_linux/6/html/power_management_guide/aspm#:~:text=O%20ASPM%20controla%20o%20estado,em%20um%20estado%20totalmente%20ligado.",
+                    "https://www.reddit.com/r/IntelArc/comments/10jtfd5/how_to_activate_aspm_a750a770_idle_power/?tl=pt-br#:~:text=Falhas%20quando%20o%20ASPM%20nativo%20est%C3%A1%20habilitado"
+                  ]
                 },
                 {
                   "type": "option",
                   "name": "Fatal Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define se a BIOS deve prosseguir com o boot (ignorar) ou parar o POST ao encontrar um erro fatal na porta PCIe especificada.",
+                  "riskReason": "MÉDIO (depende da natureza do erro subjacente). Pode causar travamentos se o erro persistir ou for crítico para a inicialização do sistema",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Non-Fatal Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite que erros PCI Express não críticos (como problemas de sinalização) sejam ignorados pelo sistema, evitando a interrupção do funcionamento normal.",
+                  "riskReason": "NENHUM [1, 2, 3]. Não deve causar travamento do POST, pois lida com erros que, por definição, não são fatais",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Corr Err Over",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite a redefinição ou ignorar limites de contagem de erros corrigíveis PCIe. Pode ser usada para depuração ou para evitar que o sistema pare devido a um excesso de erros benignos.",
+                  "riskReason": "BAIXO (travamentos de POST são improváveis, mas a estabilidade geral pode ser afetada se houver erros subjacentes). Pode mascarar problemas reais de hardware se ativada sem necessidade",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "LOs Support",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Permite que a porta PCIe entre em um estado de energia muito baixo (Link Off) quando inativa, economizando energia.",
+                  "riskReason": "BAIXO (pode haver incompatibilidade com dispositivos PCIe antigos, mas geralmente é seguro). Baixo",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "PM ACPI Mode",
                   "defaultValue": "[Disable]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define o método de comunicação de energia entre o dispositivo e o sistema operacional.",
+                  "riskReason": "BAIXO. [1, 2, 3, 4, 5]. BAIXO. Alterações incorretas podem afetar a suspensão/hibernação ou o gerenciamento de energia do dispositivo, mas raramente impedem o POST",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Eq Mode",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Ajusta parâmetros de equalização do sinal (treinamento de link) para dispositivos PCIe 3.0, visando melhorar a integridade e estabilidade da comunicação em alta velocidade.",
+                  "riskReason": "BAIXO (com a configuração padrão, geralmente estável; ajustes manuais aumentam o risco). Depende do dispositivo e da qualidade do sinal; configurações inadequadas podem impedir a detecção correta do hardware",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Spec Mode",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define a operação da porta PCIe para conformidade estrita com as especificações Gen3. Visa estabilidade e compatibilidade com dispositivos Gen3 nativos.",
+                  "riskReason": "MÉDIO (depende da qualidade do hardware e dos dispositivos conectados). [1] [1] Informação baseada em conhecimento geral de configurações de BIOS para PCIe e comportamento típico de hardware. A falta de documentação específica impede uma confirmação exata, mas o risco é plausível. Pode causar travamento de POST se o dispositivo instalado ou outros componentes não suportarem a especificação estrita ou se houver problemas de sinal",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 Phase2 Mode",
                   "defaultValue": "[Hardware Adaptive]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Controla parâmetros específicos da segunda fase do treinamento de link (equalização) do barramento PCI Express 3.0 para otimização ou depuração. [1] Geralmente, deve ser deixado em modo automático/padrão.",
+                  "riskReason": "MÉDIO/ALTO (se alterado do padrão sem conhecimento técnico). [1] [1] Informação baseada em documentação técnica genérica da Intel para configurações de BIOS de engenharia/depuração, pois a informação específica para a placa Machinist não está publicamente disponível. Sim, se configurado incorretamente, pode impedir que o link PCIe estabeleça uma conexão estável, causando falha na inicialização (POST) ou instabilidade no dispositivo conectado",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 DN TX Preset",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Ajusta parâmetros elétricos de transmissão do sinal PCIe 3.0 para compensar perdas no caminho físico (placa mãe/dispositivo). Visa garantir comunicação estável.",
+                  "riskReason": "MÉDIO. Se configurado incorretamente, pode causar instabilidade do link PCIe, resultando em falhas de detecção do dispositivo ou travamentos",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 DN Rx Preset Hint",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define sugestões de predefinições para a equalização do sinal do receptor PCIe Gen3, otimizando a qualidade do sinal e a integridade dos dados para garantir uma comunicação estável do dispositivo (ex: GPU ou SSD PCIe).",
+                  "riskReason": "MÉDIO (para usuários inexperientes que alteram sem conhecimento técnico ou sem necessidade). Sim, configurações incorretas podem levar à instabilidade ou falha na inicialização (POST) se a qualidade do sinal não for suficiente para estabelecer a comunicação",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Gen3 UP Tx Preset",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Ajusta o pré-ajuste de transmissão (Tx Preset) da porta PCIe 1A para melhorar a integridade do sinal em velocidades Gen3 (8 GT/s). O objetivo é garantir uma comunicação estável entre o processador e o dispositivo conectado.",
+                  "riskReason": "MÉDIO (se não souber o que está fazendo; em configurações padrão/automáticas, o risco é BAIXO). Sim, ajustes incorretos podem levar a falhas na inicialização (POST) ou instabilidade do dispositivo PCIe",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Hide Port?",
                   "defaultValue": "[no]",
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Oculta a porta PCIe especificada do sistema. Usado para fins de depuração ou para \"esconder\" dispositivos indesejados.",
+                  "riskReason": "Não deve travar o POST, mas o dispositivo conectado à porta ficará inacessível. O grau de risco é BAIXO",
                   "sources": []
                 },
                 {
                   "type": "option",
                   "name": "Pcie Ecrc",
                   "defaultValue": "[Auto]",
-                  "description": "",
-                  "riskReason": "",
-                  "sources": []
+                  "description": "O ECRC (Enhanced Cyclic Redundancy Check) é um recurso opcional do PCIe que adiciona uma checagem de integridade dos dados (CRC) de ponta a ponta, da origem ao destino final, verificando se os dados estão corretos após passarem por chaves (switches) ou outras conexões.",
+                  "riskReason": "NENHUM (para a maioria dos usos em desktop; a configuração padrão da BIOS é geralmente a ideal). A opção geralmente é segura para placas-mãe de desktop comuns. Desativar pode, em teoria, melhorar ligeiramente o desempenho (CRC não precisa ser calculado), enquanto ativar aumenta a robustez na detecção de erros de dados, com um impacto mínimo ou imperceptível no desempenho na maioria dos sistemas",
+                  "sources": [
+                    "https://www.latticesemi.com/en/Support/AnswerDatabase/1/1/0/1104#:~:text=Peripheral%20Component%20Interconnect%20Express%20(PCIe,message%20back%20to%20the%20transmitter."
+                  ]
                 }
               ]
             },
@@ -2361,8 +2407,8 @@
                   "type": "option",
                   "name": "PCI-E Port Link Status",
                   "defaultValue": null,
-                  "description": "",
-                  "riskReason": "",
+                  "description": "Define se a porta PCIe reporta seu estado de link (ativo ou inativo) ao sistema operacional, permitindo gerenciamento de energia e detecção de dispositivos.",
+                  "riskReason": "MÉDIO (se alterado para um estado incompatível com o hardware instalado). Pode causar problemas de inicialização (POST) ou impedir a detecção de dispositivos se configurado incorretamente",
                   "sources": []
                 }
               ]
@@ -2381,73 +2427,85 @@
               "type": "option",
               "name": "PCI-E Port Link Status",
               "defaultValue": null,
-              "description": "",
-              "riskReason": "",
+              "description": "Define como a BIOS reporta/gerencia o estado de atividade dos links PCIe (ex: Habilitar/Desabilitar o monitoramento ou forçar o link L0).",
+              "riskReason": "MÉDIO (depende da configuração escolhida; padrões geralmente são seguros, mas forçar estados pode ser arriscado). [1]. Pode causar problemas de inicialização (POST) se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "PCI-E Port Link Speed",
               "defaultValue": null,
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define manualmente a velocidade (Geração, ex: Gen 2, Gen 3) do link de comunicação dos slots PCI-E da placa-mãe. Isso permite compatibilidade forçada com dispositivos mais antigos ou a solução de problemas de instabilidade, superando a negociação automática.",
+              "riskReason": "MÉDIO (se a configuração manual não corresponder às capacidades dos dispositivos instalados, pode exigir um reset da BIOS). Pode causar travamento do POST ou instabilidade se configurado incorretamente para uma velocidade incompatível com os componentes instalados",
+              "sources": [
+                "https://help.corsair.com/hc/pt-br/articles/360052676711-Extens%C3%A3o-PCIe-3-0-Como-corrigir-problemas-de-sa%C3%ADda-de-v%C3%ADdeo-ao-usar-o-cabo-de-extens%C3%A3o-PCIe-3-0-da-CORSAIR",
+                "https://www.reddit.com/r/AMDHelp/comments/wlmhx9/does_anyone_know_how_to_fix_pci_e_bus_speed_i_set/?tl=pt-br#:~:text=%E2%80%A2-,ASRock%20A320M%2DHDV%20R4,0&text=Overclocking%20da%20Rx%206400?",
+                "https://www.reddit.com/r/buildapc/comments/s7b8ie/is_it_safe_to_adjust_ram_speed_in_bios_on_newly/?tl=pt-br#:~:text=Se%20voc%C3%AA%20sabe%20o%20que%20est%C3%A1%20fazendo%2C%20mas%20n%C3%A3o%20parece."
+              ]
             },
             {
               "type": "option",
               "name": "Non-Transparent Bridge PCIe Port D",
               "defaultValue": "[Auto]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite comunicação e compartilhamento de memória entre dois sistemas independentes via PCIe.",
+              "riskReason": "MÉDIO a ALTO. [1, 2]. Ativar sem um segundo sistema conectado pode causar instabilidade ou impedir o boot",
               "sources": []
             },
             {
               "type": "option",
               "name": "Enable NTB BARS",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita/desabilita o mapeamento de Base Address Registers (BARs) para dispositivos Non-Transparent Bridge (NTB), otimizando a alocação de recursos PCI Express e permitindo a comunicação entre sistemas ou CPUs.",
+              "riskReason": "MÉDIO a ALTO, dependendo da configuração e hardware utilizado. Não deve ser alterado a menos que estritamente necessário para um hardware específico. Sim, pode causar instabilidade ou travamento se configurado incorretamente para hardware incompatível ou em sistemas que não utilizam essa tecnologia",
               "sources": []
             },
             {
               "type": "option",
               "name": "Enable SPLIT BARS",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Uma configuração de baixo nível relacionada ao gerenciamento de endereços de memória (BARs) para dispositivos PCI-E. O impacto específico pode variar.",
+              "riskReason": "MÉDIO. (Ajustes incorretos em configurações IIO podem causar instabilidade). Sim, é possível, pois mexe com a inicialização do hardware",
               "sources": []
             },
             {
               "type": "option",
               "name": "Primary BAR 23 Size",
               "defaultValue": "22",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define o tamanho do espaço de memória que pode ser endereçado pelo CPU para um dispositivo PCIe específico (BAR 23). Isso gerencia como o sistema aloca recursos para placas de expansão.",
+              "riskReason": "MÉDIO a ALTO. Recomenda-se deixar em \"Auto\" ou no padrão, a menos que haja uma necessidade específica de configuração manual para um hardware específico. Pode causar travamento de POST (Power-On Self-Test) ou problemas de compatibilidade se configurado incorretamente, especialmente se o tamanho selecionado não for suportado pelo dispositivo ou pelo sistema",
+              "sources": [
+                "https://www.msi.com/Motherboard/B650M-GAMING-WIFI/Overview#:~:text=Previous,stays%20silent%2C%20no%20matter%20what.",
+                "https://www.corsair.com/us/en/explorer/glossary/what-is-resizable-bar/#:~:text=How%20does%20Resizable%20BAR%20work,theoretically%20allowing%20for%20improved%20performance.",
+                "https://www.hp.com/us-en/shop/tech-takes/omen-resizable-bar-gpu-optimization-guide#:~:text=Resizable%20BAR%20(Base%20Address%20Register,support%20this%20performance%2Denhancing%20technology."
+              ]
             },
             {
               "type": "option",
               "name": "Primary BAR 4 Size",
               "defaultValue": "20",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tamanho do Base Address Register (BAR) 4 primário, alocando memória para dispositivos PCI/PCIe. O tamanho padrão geralmente é suficiente para a maioria das configurações.",
+              "riskReason": "MÉDIO (se alterado sem conhecimento específico). Pode causar falha no POST se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Primary BAR 5 Size",
               "defaultValue": "20",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tamanho do espaço de memória alocado para um dispositivo PCIe (geralmente slot ou controlador específico) através do Base Address Register 5.",
+              "riskReason": "MÉDIO (se alterado sem conhecimento técnico). Pode causar falha no POST ou instabilidade se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Secondary BAR 23 Size",
               "defaultValue": "20",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define o tamanho da janela de memória (BAR) para dispositivos PCIe secundários, permitindo à CPU acesso mais eficiente à VRAM da GPU (quando o Resizable BAR está ativado).",
+              "riskReason": "MÉDIO (se configurado incorretamente, exige conversão para GPT/UEFI ou redefinição da BIOS). Pode causar falha no POST ou instabilidade se incompatível com hardware/BIOS/sistema operacional (ex: MBR/CSM)",
+              "sources": [
+                "https://www.reddit.com/r/gigabytegaming/comments/mima3w/which_value_after_bios_and_vbios_update_resizable/#:~:text=Hattix,It'll%20just%20resize%20it!",
+                "https://www.techradar.com/computing/gpu/what-is-resizable-bar#:~:text=System%20Instability:%20Some%20users%20have,reduced%20performance%20or%20increased%20stuttering.",
+                "https://www.reddit.com/r/buildapc/comments/104vfyb/pc_wont_start_after_enabling_resizable_bar/#:~:text=Solved!,end%20up%20flashing%20the%20bios?"
+              ]
             }
           ]
         },
@@ -2460,48 +2518,55 @@
           "type": "option",
           "name": "VTd Azalea VCp Optimizations",
           "defaultValue": "[Disable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Opção relacionada às otimizações de gerenciamento de interrupções e coerência para dispositivos de áudio (Azalea) e outros periféricos sob a tecnologia Intel VT-d (Virtualization Technology for Directed I/O). Habilitá-la refina o suporte e o desempenho da virtualização, permitindo acesso direto eficiente ao hardware em máquinas virtuais.",
+          "riskReason": "BAIXO (se a VT-d estiver ativada e for necessária para o uso pretendido). Não deve causar travamento de POST se o restante das configurações estiver correto. É uma opção avançada para uso específico",
+          "sources": [
+            "https://plus.diolinux.com.br/t/devo-habilitar-a-virtualizacao-na-bios/75170#:~:text=Habilitar%20a%20virtualiza%C3%A7%C3%A3o%20%C3%A9%20essencial,mais%20pesados%20ou%20m%C3%A1quinas%20virtuais.",
+            "https://community.intel.com/t5/Software-Archive/Intel-VT-D-and-Intel-X99-motherboards/td-p/1016115#:~:text=Vtd%20Azalea%20VCp%20optimizations.,likely%20to%20be%20enabled%20etc."
+          ]
         },
         {
           "type": "option",
           "name": "Intel VT for Directed I/O (VT-d)",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite o acesso direto de máquinas virtuais a dispositivos de hardware (pass-through), melhorando a eficiência e o desempenho na virtualização [1].",
+          "riskReason": "BAIXO (se o hardware for compatível; caso contrário, pode haver instabilidade no sistema operacional, não no POST) [1]. [1] Informação técnica geral sobre a funcionalidade e riscos de configuração. Geralmente, não causa travamento do POST. O risco é mínimo em sistemas compatíveis",
           "sources": []
         },
         {
           "type": "option",
           "name": "ACS Control",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que dispositivos PCIe (como GPUs ou placas de rede) operem de forma independente, isolando o tráfego DMA (Direct Memory Access) entre eles. [1, 2]",
+          "riskReason": "MÉDIO (depende da configuração do hardware e da controladora IOMMU/VT-d). [1, 2] (45 palavras no total). Se configurado incorretamente para uma configuração específica (por exemplo, placas de expansão em certos slots), pode impedir a inicialização (POST). [1, 2]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Interrupt Remapping",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita o recurso de remapeamento de interrupções, essencial para o funcionamento adequado da tecnologia de virtualização direcionada de I/O da Intel (VT-d/IOMMU). Permite que máquinas virtuais tenham acesso direto e seguro a dispositivos de hardware (pass-through).",
+          "riskReason": "NENHUM. A alteração é segura e, se não usar virtualização, o sistema simplesmente ignora o recurso. Não há risco significativo de travamento do POST. É uma configuração padrão em muitas placas e sistemas modernos",
+          "sources": [
+            "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/host-hardware-requirements",
+            "https://www.ninjaone.com/blog/how-to-enable-cpu-virtualization-in-your-computer-bios/#:~:text=Yes%2C%20enabling%20CPU%20virtualization%20is,harmful%20effects%20on%20your%20system.",
+            "https://petri.com/how-to-disable-hyper-v-completely-in-windows-10/#:~:text=In%20most%20cases%2C%20leaving%20Hyper,hardware%20for%20all%20other%20hypervisors."
+          ]
         },
         {
           "type": "option",
           "name": "Coherency Support (Non-Isoch)",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Garante a sincronização correta de dados entre a CPU e dispositivos de E/S comuns.",
+          "riskReason": "MÉDIO. Pode causar instabilidade ou falhas de inicialização se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "Coherency Support (Isoch)",
           "defaultValue": "[Enable]",
-          "description": "",
-          "riskReason": "",
+          "description": "Relacionado a modos de coerência de cache e gerenciamento de interrupções (IO-APIC Isochronous) para sistemas operacionais de servidor/empresa. Geralmente, deve permanecer em \"Desativado\" para usuários comuns [1, 2].",
+          "riskReason": "MÉDIO/ALTO (se ativado incorretamente) [1]. [1, 2] Informação baseada em conhecimento geral de BIOS de servidor/estação de trabalho, pois detalhes específicos da Machinist MD8 X99 são escassos. Pode causar instabilidade ou travamento se ativado sem o hardware e software de servidor apropriados [1]",
           "sources": []
         }
       ]
@@ -2519,81 +2584,88 @@
           "type": "option",
           "name": "Board Capability",
           "defaultValue": "[DeepSx]",
-          "description": "",
-          "riskReason": "",
+          "description": "A função exata é obscura sem documentação oficial, mas geralmente refere-se a configurações internas que informam ao firmware quais capacidades específicas (como certas portas ou recursos) estão presentes na placa-mãe.",
+          "riskReason": "MÉDIO/ALTO (dependendo da configuração e da implementação da BIOS). (A explicação excede ligeiramente 40 palavras para clareza, devido à complexidade e à falta de informação exata sobre essa opção específica). Pode causar travamento de POST se configurado incorretamente, pois altera a comunicação fundamental entre o PCH e o firmware",
           "sources": []
         },
         {
           "type": "option",
           "name": "DeepSx Power Policies",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define como a placa-mãe gerencia a energia em estados de suspensão profunda para economizar eletricidade.",
+          "riskReason": "MÉDIO (configurações incorretas podem exigir redefinição da BIOS). Pode impedir o sistema de entrar ou sair corretamente dos modos de suspensão se configurado incorretamente",
           "sources": []
         },
         {
           "type": "option",
           "name": "GP27 Wake From DeepSx",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Permite que o sistema seja \"acordado\" do estado de suspensão profunda (DeepSx) através de um sinal específico no pino GPIO 27, geralmente associado a recursos como Wake-on-LAN (WoL) ou outros dispositivos PCI/PCIe.",
+          "riskReason": "BAIXO. Pode, em raras instâncias (especialmente se houver um bug de BIOS), causar o reinício imediato do sistema ao invés de entrar em suspensão, ou impedir que a máquina permaneça desligada corretamente, mas não um travamento de POST",
+          "sources": [
+            "https://elosupport.elotouch.com/hc/en-us/articles/31652796777111-What-does-Resume-By-PME-mean#:~:text=Typical%20sources%20of%20PME%20signals,signals%20to%20wake%20the%20system.",
+            "https://www.asus.com/au/support/faq/1045950/#:~:text=FAQ-,%5BMotherboard%5DHow%20to%20set%20and%20enable%20WOL(Wake%20On,Q&A"
+          ]
         },
         {
           "type": "option",
           "name": "SMBUS Device",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ativa/desativa o controlador SMBus para comunicação com sensores e chips de gerenciamento.",
+          "riskReason": "BAIXO a MÉDIO (depende da dependência do sistema pelo recurso). Pode impedir o monitoramento e, raramente, causar instabilidade",
+          "sources": [
+            "https://www.asus.com/br/support/faq/1052765/#:~:text=O%20SMBus%20%C3%A9%20o%20Barramento%20de%20Gerenciamento,Intel%20NUC%20de%206%C2%AA%20gera%C3%A7%C3%A3o%20ou%20anteriores."
+          ]
         },
         {
           "type": "option",
           "name": "PCH Server Error Reporting Mode (S)",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita/desabilita o mecanismo de relato de erros do PCH (Platform Controller Hub). (15 palavras)",
+          "riskReason": "DESCONHECIDO (geralmente BAIXO para opções de relato de erros). (7 palavras). Desconhecido devido à falta de documentação pública. (7 palavras)",
           "sources": []
         },
         {
           "type": "option",
           "name": "PCH Display",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Desconhecida, provavelmente relacionada a recursos de depuração do PCH (Platform Controller Hub).",
+          "riskReason": "MÉDIO (devido à incerteza da função e potencial impacto no boot). Ativar opções desconhecidas pode levar a comportamento inesperado ou falha no POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "Serial IRQ Mode",
           "defaultValue": "[Continuous]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define o modo de gerenciamento de interrupções de hardware (legado ou moderno) [1].",
+          "riskReason": "MÉDIO a ALTO. Pode causar falhas de inicialização (POST) ou instabilidade no sistema operacional se configurado incorretamente para o seu hardware [1, 2]",
           "sources": []
         },
         {
           "type": "option",
           "name": "External SSC Enable - CK420",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "[Informação Indisponível]",
+          "riskReason": "DESCONHECIDO. Recomenda-se não alterar a configuração padrão, a menos que se saiba o que está fazendo, pois a alteração de parâmetros desconhecidos do PCH (Platform Controller Hub) pode levar à instabilidade ou falha no POST (Power-On Self Test). Desconhecido, dependendo da implementação específica da BIOS",
           "sources": []
         },
         {
           "type": "option",
           "name": "PCH state after G3",
           "defaultValue": "[Off]",
-          "description": "",
-          "riskReason": "",
+          "description": "Define se o PCH reinicia (cold boot) ou retém algum estado (como configurações de energia) após a energia principal ser removida e restaurada. Isso pode afetar o comportamento de inicialização automática.",
+          "riskReason": "BAIXO. O risco é mínimo em sistemas funcionais. Em placas-mãe de nicho ou com firmware modificado, como a Machinist, alterações em configurações avançadas podem, teoricamente, levar a um travamento do POST. Recomenda-se manter o padrão (geralmente S0 state) a menos que um comportamento específico seja desejado. Baixo",
           "sources": []
         },
         {
           "type": "option",
           "name": "PCH CRID",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Habilita/desabilita a capacidade do sistema de ler o CRID (Change Request ID) e SRID (Specification Revision ID) do PCH (Platform Controller Hub), que são identificadores de revisão e design do hardware usados internamente pelo BIOS e ferramentas de diagnóstico da Intel.",
+          "riskReason": "MÉDIO (se alterado sem conhecimento técnico em uma BIOS modificada, ALTO em uma BIOS original, mas geralmente é uma opção oculta/não destinada ao usuário final). A alteração desta opção em uma BIOS padrão de usuário não é recomendada, pois é uma configuração de baixo nível. Pode potencialmente causar travamento de POST ou comportamento inesperado se o BIOS modificado não gerenciar corretamente os IDs",
+          "sources": [
+            "https://edc.intel.com/content/www/cn/zh/design/products/platforms/processor-and-core-i3-n-series-datasheet-volume-1-of-2/001/pch-device-and-revision-ids/"
+          ]
         }
       ]
     },
@@ -2605,24 +2677,26 @@
           "type": "option",
           "name": "sSATA Controller",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ativa ou desativa o controlador para as portas Serial ATA (sSATA) adicionais na placa-mãe. Quando ativado, permite a conexão e uso de dispositivos de armazenamento compatíveis (HDDs/SSDs), configurando seu modo de operação (AHCI, IDE ou RAID).",
+          "riskReason": "MÉDIO/ALTO (dependendo do momento da alteração e da configuração atual do sistema). Sim, mudar a configuração do controlador após a instalação do sistema operacional pode impedir o boot correto e, em alguns casos, travar o POST, exigindo reconfiguração ou reinstalação do sistema",
+          "sources": [
+            "https://www.reddit.com/r/pchelp/comments/107awn7/sata_controller_mode/#:~:text=If%20you%20want%20to%20boot,will%20only%20make%20things%20worse."
+          ]
         },
         {
           "type": "option",
           "name": "Configure sSATA as",
           "defaultValue": "[AHCI]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite escolher entre modos como AHCI (padrão, melhor desempenho individual de drives) ou RAID (para agrupar drives redundância/desempenho).",
+          "riskReason": "MÉDIO/ALTO (se alterado após a instalação do SO). Pode causar falha na inicialização (travamento do POST ou do sistema operacional) se o modo for alterado após a instalação do sistema sem os drivers apropriados",
           "sources": []
         },
         {
           "type": "option",
           "name": "SATA test mode",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa modos de teste e depuração para o controlador sSATA PCH, usados internamente pela Intel para validação de hardware e testes de conformidade. Não possui função para uso normal do sistema.",
+          "riskReason": "ALTO (devido ao seu propósito de depuração e não funcionalidade para usuários finais). Pode causar comportamento inesperado do sistema, falhas no reconhecimento de dispositivos SATA, instabilidade ou até mesmo impedir o carregamento do sistema operacional",
           "sources": []
         },
         {
@@ -2634,24 +2708,32 @@
           "type": "option",
           "name": "sSATA Mode options",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define o modo de operação do controlador sSATA (Serial Advanced Technology Attachment secundário) na placa-mãe. As opções geralmente incluem AHCI (padrão moderno para melhor desempenho e recursos como hot-plug e NCQ), IDE (modo de compatabilidade legado) e, às vezes, RAID (para agrupar múltiplos discos).",
+          "riskReason": "MÉDIO (se alterado após a instalação do SO, ALTO sem backup ou conhecimento técnico; NENHUM se configurado corretamente antes da instalação). Pode impedir o sistema operacional de iniciar se o modo for alterado após a instalação do sistema sem a devida reconfiguração de drivers",
+          "sources": [
+            "https://support.hp.com/hr-en/document/ish_9631042-9631101-16#:~:text=HP%20recommends%20setting%20the%20SATA,prevent%20the%20system%20from%20starting.",
+            "https://www.crucial.in/support/articles-faq-ssd/sata-controller-modes-explained#:~:text=Note%20that%20the%20above%20modes,to%20these%20settings%20without%20reinstallation.",
+            "https://www.linkedin.com/advice/0/what-potential-risks-changing-your-sata-mode-ahci-qpxef#:~:text=Altering%20SATA%20modes%20can%20lead,changes%20to%20the%20SATA%20mode.",
+            "https://serverfault.com/questions/829176/what-is-a-ssata-port#:~:text=This%20particular%20server%20motherboard%20has,28%2C%202017%20at%2021:15",
+            "https://www.crucial.com/support/articles-faq-ssd/sata-controller-modes-explained#:~:text=SATA%20Controller%20Modes%20Explained%20%7C%20Crucial,dating%20back%20to%20the%201990s."
+          ]
         },
         {
           "type": "option",
           "name": "sSATA AHCI LPM",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Gerencia o consumo de energia da interface SATA (sSATA) via Link Power Management (LPM). Permite que a camada física do link SATA entre em estados de economia de energia, independente do estado do disco.",
+          "riskReason": "BAIXO (se a configuração do sistema operacional for ajustada corretamente). Pode causar incompatibilidade com hot-plug (conexão a quente) e, em casos raros, instabilidade com certos dispositivos",
+          "sources": [
+            "https://www.thomas-krenn.com/en/wiki/SATA_Link_Power_Management#:~:text=From%20Thomas%2DKrenn%2DWiki,not%20compatible%20with%20hot%2Dplug"
+          ]
         },
         {
           "type": "option",
           "name": "sSATA AHCI ALPM",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa/desativa o ALPM, que reduz dinamicamente o consumo de energia da interface SATA durante a inatividade do link, melhorando a eficiência energética [1, 2].",
+          "riskReason": "BAIXO (funciona bem na maioria dos sistemas modernos) [1]. [1] Informações gerais sobre ALPM em BIOS. [2] Função de gerenciamento de energia SATA. Sim, em raras ocasiões, pode causar problemas de compatibilidade com certos SSDs/HDDs mais antigos, resultando em instabilidade ou falha no POST [1]",
           "sources": []
         },
         {
@@ -2667,32 +2749,38 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite a conexão e desconexão de dispositivos SATA (como HDDs/SSDs) com o computador ligado, funcionando como \"plug-and-play\".",
+              "riskReason": "BAIXO (se usado corretamente e com suporte de SO), MÉDIO (se usado incorretamente ou sem suporte adequado). Pode causar travamentos se o sistema operacional não tiver o suporte ou drivers adequados, ou se a remoção for feita incorretamente (sem ejetar com segurança)",
+              "sources": [
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=SATA%20Hot%20Plug%20is%20mostly,(of%20course)%20some%20caveats."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define se as portas SATA do chipset funcionarão como eSATA (externas) para dispositivos hot-plug. Permite a conexão/desconexão a quente de drives externos.",
+              "riskReason": "BAIXO. Baixo",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Serve para gerenciar a ordem e o tempo de inicialização (spin up) dos HDDs conectados às portas SATA do chipset PCH. Quando ativado, os discos iniciam em sequência (um de cada vez) para reduzir a demanda de corrente elétrica instantânea na fonte de alimentação.",
+              "riskReason": "BAIXO. Geralmente, não causa travamento do POST. Se um disco não suportar o recurso, ele iniciará normalmente com a energia aplicada, mas a função de sequenciamento para aquele disco não ocorrerá. Pode aumentar ligeiramente o tempo total do POST, mas não o trava",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forums.unraid.net/topic/1950-sequential-spin-up-of-disks/#:~:text=This%20one%20should%20be%20fairly,more%20seconds%20spin%20up%20time.",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Determina como o sistema operacional gerencia os dispositivos sSATA. As opções comuns são AHCI (padrão para desempenho e recursos), RAID (para arrays de discos) e, às vezes, IDE (modo legado para compatibilidade).",
+              "riskReason": "MÉDIO (se configurado incorretamente, pode exigir reinstalação de drivers ou do sistema operacional para corrigir o problema de boot). Sim, a configuração incorreta, especialmente mudar de AHCI para RAID ou vice-versa após a instalação do sistema operacional, pode impedir o boot",
               "sources": []
             }
           ]
@@ -2710,32 +2798,35 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite \"conectar a quente\" (hot-plug) unidades SATA, como se fossem pendrives. Requer o modo AHCI ativado.",
+              "riskReason": "MÉDIO. Pode causar travamento do POST (Power-On Self-Test) ou problemas de detecção de dispositivos em algumas configurações",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Alterna o modo de operação das portas SATA, geralmente as 4 ou 2 últimas, para serem usadas como eSATA. Isso pode afetar a ordem de inicialização e a compatibilidade.",
+              "riskReason": "BAIXO (se você souber o que está fazendo) a MÉDIO (se configurar incorretamente sem conhecimento). Baixo a Médio. Configurações incorretas podem impedir a detecção de dispositivos ou causar falha na inicialização (POST)",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Gerencia a ordem de inicialização (spin up) dos discos rígidos SATA e sSATA conectados. Se ativado para uma porta, o BIOS aciona os discos sequencialmente (um de cada vez) durante o POST, em vez de todos simultaneamente. Ajuda a evitar picos de consumo de energia na fonte de alimentação, especialmente útil em sistemas com muitos HDDs.",
+              "riskReason": "BAIXO (geralmente seguro, mas pode exigir um ajuste se houver problemas de detecção de disco específico). Pode causar falha no POST se um disco não suportar o recurso ou não conseguir inicializar dentro do tempo limite. Alguns discos podem não salvar a configuração SSU (Staggered Spin Up)",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o modo de operação do controlador sSATA, tipicamente entre AHCI (padrão para uso geral) e RAID (para arrays de discos).",
+              "riskReason": "MÉDIO. (40 palavras). Pode causar falha no carregamento do sistema operacional se o modo for alterado após a instalação inicial, exigindo reconfiguração ou reinstalação",
               "sources": []
             }
           ]
@@ -2753,32 +2844,36 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite a troca de dispositivos sSATA a quente (conectando/desconectando com o sistema em execução), similar a um pendrive.",
+              "riskReason": "BAIXO (geralmente funciona sem problemas, mas o risco existe dependendo da configuração). Pode, em raras instâncias com hardware incompatível ou BIOS instável, causar falhas no POST ou boot loops",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite configurar portas SATA específicas para operarem como eSATA (externas), otimizadas para hot-plug (conexão/desconexão a quente) e desempenho de dispositivos externos. [1]",
+              "riskReason": "BAIXO. [1] Total de palavras: 40 palavras (incluindo títulos). BAIXO. Apenas muda o modo de operação de portas SATA internas para externas, geralmente sem impedir o POST, a menos que a configuração de boot seja afetada. [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Gerencia a energização de HDDs (discos rígidos) SATA conectados. Se ativada para uma porta específica, o disco conectado a ela só iniciará (girará) após um comando da BIOS, permitindo a inicialização sequencial de múltiplos discos para reduzir o consumo de corrente no boot.",
+              "riskReason": "O risco é BAIXO. Em sistemas com muitos discos e fontes de alimentação fracas, a função é benéfica. No entanto, se um disco não suportar SSU ou a configuração for incompatível, o disco pode não ser reconhecido, mas raramente trava o POST",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forums.unraid.net/topic/1950-sequential-spin-up-of-disks/#:~:text=This%20one%20should%20be%20fairly,more%20seconds%20spin%20up%20time.",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o modo de operação (AHCI, IDE ou RAID) para dispositivos conectados às portas sSATA do chipset. Permite escolher como o sistema operacional irá interagir com esses dispositivos.",
+              "riskReason": "MÉDIO (se alterado incorretamente após a instalação do sistema operacional). [1] [1] Esta informação é baseada em conhecimento geral sobre configurações de BIOS sSATA/SATA, pois não há documentação específica pública para o modelo exato da placa-mãe. Pode causar falha no POST ou impedir o boot do sistema operacional se o modo for alterado após a instalação do sistema",
               "sources": []
             }
           ]
@@ -2796,33 +2891,39 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite conectar/desconectar dispositivos SATA (como HDs/SSDs) com o PC ligado, sem reiniciar. O sistema operacional deve suportar a função.",
+              "riskReason": "BAIXO (se configurado incorretamente, pode impedir o boot ou a detecção do disco rígido). Baixo",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita o recurso de hot-plug para as portas SATA especificadas, permitindo conectar/desconectar dispositivos de armazenamento externos (eSATA) sem reiniciar o sistema.",
+              "riskReason": "BAIXO (o principal risco é uma potencial incompatabilidade com algum dispositivo interno se a porta for usada incorretamente, não um travamento imediato). Não deve causar travamento de POST se configurado corretamente. O sistema apenas otimiza a controladora",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite o spin up (partida/aceleração) sequencial de discos rígidos (HDDs) conectados às portas SATA/sSATA, em vez de todos simultaneamente. Isso evita picos de consumo de energia na fonte durante a inicialização.",
+              "riskReason": "BAIXO (geralmente contornável desabilitando a opção ou configurando individualmente por porta). Pode causar falha no reconhecimento de algumas unidades se a opção estiver ativada, mas a unidade específica não suportar o recurso Staggered Spin Up (SSU)",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forums.unraid.net/topic/1950-sequential-spin-up-of-disks/#:~:text=This%20one%20should%20be%20fairly,more%20seconds%20spin%20up%20time.",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Altera entre modos como AHCI (compatibilidade geral) e Intel RST (para recursos RAID e desempenho otimizado, se suportado).",
+              "riskReason": "MÉDIO (para falha de boot/OS). Não deve travar o POST. Pode causar falha no carregamento do sistema operacional se o modo for alterado após a instalação inicial, exigindo reinstalação ou ajustes no SO",
+              "sources": [
+                "https://www.asus.com/br/support/faq/1052548/"
+              ]
             }
           ]
         },
@@ -2839,33 +2940,38 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite a conexão e desconexão de dispositivos SATA com o sistema em funcionamento (operação \"hot-swap\"). [1]",
+              "riskReason": "NENHUM. Não deve causar travamento de POST se configurado corretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a(s) porta(s) SATA especificada(s) para operar como eSATA (externa), permitindo conexão e desconexão de dispositivos a quente (hot-plug).",
+              "riskReason": "BAIXO (se a porta não estiver sendo usada para um disco interno essencial), MÉDIO (se for a porta do disco de boot). Pode causar falha no POST ou impedir o reconhecimento do dispositivo se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite o \"Staggered Spin Up\" (arranque escalonado) de discos rígidos (HDDs) SATA. Se ativado para qualquer porta, apenas os discos com a opção habilitada iniciam a rotação (spin up) na sequência durante o POST, aliviando o pico de carga na fonte de alimentação. Caso contrário, todos os discos giram simultaneamente.",
+              "riskReason": "BAIXO (Geralmente, o pior cenário é o disco não ser reconhecido, exigindo ajuste manual no BIOS, não um travamento total do POST). Configurações incorretas (como habilitar para discos que não suportam ou em combinação errada) podem, em casos raros, impedir o reconhecimento do disco ou atrasar o POST",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define o modo do controlador sSATA. AHCI é para uso geral; RAID é para conjuntos de discos.",
+              "riskReason": "MÉDIO [1]. Pode causar falha de inicialização (POST/boot) se alterado sem reconfigurar o sistema operacional",
+              "sources": [
+                "https://www.dell.com/support/kbdoc/pt-br/000127508/diferen%C3%A7a-entre-o-modo-ahci-e-o-modo-sata"
+              ]
             }
           ]
         },
@@ -2882,32 +2988,38 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite a troca de unidades SATA sem desligar o PC. O sistema operacional deve suportar o recurso.",
+              "riskReason": "MÉDIO (se não for bem suportado). Em algumas configurações ou BIOS desatualizadas, pode causar travamentos intermitentes no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite designar uma porta SATA interna como uma porta eSATA (externa), possibilitando a funcionalidade de hot-plugging (conexão/desconexão a quente) para dispositivos de armazenamento externos, ideal para discos rígidos externos compatíveis.",
+              "riskReason": "BAIXO (se configurado corretamente no modo AHCI), MÉDIO (se houver conflito com o modo SATA global ou instalação do SO). Se configurada incorretamente (ex: se o sistema operacional não suportar AHCI/hot-plug) ou se o modo SATA principal (AHCI/RAID) for alterado sem reconfiguração do sistema operacional, pode causar erros de boot",
+              "sources": [
+                "https://forum.asrock.com/forum_posts.asp?TID=739&title=x99-extreme-6ac-esata#:~:text=The%20X99%20Extreme6/ac%20only,HTPC%20&%20Mini%20PC"
+              ]
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Quando ativada para portas específicas, a função faz com que os discos rígidos conectados girem sequencialmente, um de cada vez. Isso evita picos de demanda de energia na fonte de alimentação (PSU) ao ligar o PC, distribuindo a carga de inicialização. Se desativada, todos os discos iniciam simultaneamente.",
+              "riskReason": "BAIXO (se a configuração for feita corretamente e os discos forem compatíveis) a MÉDIO (se houver incompatibilidade, necessitando ajuste manual). Pode ocorrer falha no reconhecimento de algumas unidades se elas não suportarem o recurso ou se a configuração não for compatível, potencialmente causando um atraso ou travamento no POST se o disco de boot não for detectado a tempo",
+              "sources": [
+                "https://www.reddit.com/r/truenas/comments/1c1n4b1/how_to_stagger_hdd_spinups/#:~:text=I'm%20using%20hdparm%20%2Ds,OP%20%E2%80%A2%202y%20ago",
+                "https://forums.unraid.net/topic/1950-sequential-spin-up-of-disks/#:~:text=This%20one%20should%20be%20fairly,more%20seconds%20spin%20up%20time.",
+                "https://forum.45homelab.com/t/hl15-hard-drive-staggered-spin-up-ssu/3165#:~:text=Product%20manual%20for%20the%20drives,%E2%80%9D%20work%20in%20Cockpit/Houston."
+              ]
             },
             {
               "type": "option",
               "name": "sSATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tipo de dispositivo conectado às portas sSATA (por exemplo, SATA padrão, SSD, etc.). Isso otimiza a controladora para o hardware específico instalado.",
+              "riskReason": "MÉDIO. Pode causar falha no POST ou inicialização do sistema se configurado incorretamente para o dispositivo presente",
               "sources": []
             }
           ]
@@ -2916,16 +3028,16 @@
           "type": "option",
           "name": "SATA HDD Unlock",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita/desabilita o controle via software (SO) do bloqueio/desbloqueio do acesso ao HDD SATA.",
+          "riskReason": "BAIXO (baseado em configurações genéricas de BIOS; o impacto exato não é confirmado para este modelo específico). A alteração de configurações SATA/PCH pode, teoricamente, afetar a inicialização",
           "sources": []
         },
         {
           "type": "option",
           "name": "SATA Led locate",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Controla qual pino do chipset (ou porta SATA específica) direciona o sinal de atividade do LED do painel frontal, indicando leitura/escrita do armazenamento. [1]",
+          "riskReason": "BAIXO (Geralmente apenas ajusta a fonte do sinal do LED; não afeta a funcionalidade principal do sistema ou o POST). [1] [1] Informação geral baseada em manuais de BIOS similares. Baixo",
           "sources": []
         }
       ]
@@ -2938,24 +3050,33 @@
           "type": "option",
           "name": "SATA Controller",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define o modo de operação dos dispositivos SATA (HDDs/SSDs), geralmente entre AHCI (padrão moderno com melhor desempenho e recursos como hot-plug) e RAID (combina múltiplos discos para desempenho ou redundância de dados).",
+          "riskReason": "MÉDIO/ALTO (se alterado após a instalação do SO). Se o modo for alterado após a instalação do sistema operacional, o Windows ou outro sistema pode não iniciar, exigindo reconfiguração avançada ou reinstalação do sistema",
+          "sources": [
+            "https://support.hp.com/hr-en/document/ish_9631042-9631101-16#:~:text=SATA%20controller%20modes,also%20enables%20the%20AHCI%20features.",
+            "https://superuser.com/questions/1578214/why-would-changing-raid-to-ahci-as-sata-mode-operation-make-windows-fail-to#:~:text=Changing%20the%20mode%20changes%20how,drive%20and%20fails%20to%20boot.",
+            "https://support.hp.com/nz-en/document/ish_9631042-9631101-16#:~:text=Advanced%20Host%20Controller%20Interface%20(AHCI,faster%20speeds%20than%20IDE%20mode."
+          ]
         },
         {
           "type": "option",
           "name": "Configure SATA as",
           "defaultValue": "[AHCI]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Define como o sistema operacional (SO) acessa os dispositivos SATA (HDDs/SSDs). IDE: Modo legado para compatibilidade com SOs antigos, sem recursos modernos. AHCI: Modo padrão que ativa recursos avançados como Native Command Queuing (NCQ) e hot-plugging, melhorando o desempenho e a capacidade de resposta. RAID: Inclui todos os recursos do AHCI, mais a capacidade de combinar múltiplos discos em arranjos para desempenho ou redundância de dados.",
+          "riskReason": "ALTO (se o SO já estiver instalado em um modo e for alterado sem a devida preparação prévia no sistema operacional, o Windows pode apresentar a tela azul \"INACCESSIBLE_BOOT_DEVICE\" ou falhar ao iniciar, necessitando reinstalação ou procedimentos avançados para correção). Sim",
+          "sources": [
+            "https://forum.endeavouros.com/t/does-changing-raid-to-ahci-erase-data-on-disks/9643#:~:text=Does%20changing%20RAID%20to%20AHCI,boot%2C%20graphics%20&%20hardware%20%2D%20EndeavourOS",
+            "https://www.quora.com/How-do-you-change-AHCI-to-SATA-mode-in-BIOS#:~:text=If%20the%20BIOS%20says%20anything,Mode%20and%20updating%20the%20drivers.",
+            "https://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/",
+            "https://learn.microsoft.com/en-us/answers/questions/3222010/unable-to-change-sata-mode-from-ide-to-ahci"
+          ]
         },
         {
           "type": "option",
           "name": "SATA test mode",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa modos de teste internos da controladora SATA, provavelmente para diagnóstico de hardware durante a fabricação ou desenvolvimento do sistema.",
+          "riskReason": "Sim, pode causar travamento do POST se ativado sem o equipamento ou software de teste apropriado. GRAU DE RISCO: ALTO",
           "sources": []
         },
         {
@@ -2967,17 +3088,20 @@
           "type": "option",
           "name": "SATA AHCI LPM",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Gerenciamento de Energia do Link (LPM) SATA AHCI. Permite que o sistema operacional e os dispositivos SATA negociem estados de energia de economia para reduzir o consumo de energia dos discos quando inativos, sem afetar o desempenho quando necessário.",
+          "riskReason": "BAIXO (para travamento de POST especificamente) / MÉDIO (para instabilidade geral do sistema operacional). Pode causar instabilidade no sistema operacional (como telas azuis ou falhas ao iniciar/reiniciar) se o sistema operacional não suportar ou estiver configurado incorretamente para o recurso, não necessariamente um travamento do POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "SATA AHCI ALPM",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Gerenciamento de Energia Ativo de Link (ALPM). É uma técnica de economia de energia para dispositivos SATA AHCI, que coloca o link físico SATA em um estado de baixo consumo (ocioso) durante períodos sem atividade de E/S (leitura/escrita).",
+          "riskReason": "MÉDIO (se ocorrerem problemas de compatibilidade). Se o sistema estiver estável, o risco é MÍNIMO. Pode causar problemas de compatibilidade com alguns SSDs/HDDs (travamentos, falhas de detecção) ou impedir o desligamento correto do sistema",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Aggressive_Link_Power_Management#:~:text=Learn%20more,drives%20and%20solid%2Dstate%20drives.",
+            "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/power_management_guide/alpm#:~:text=3.8.-,Aggressive%20Link%20Power%20Management,impact%20on%20performance%20as%20possible."
+          ]
         },
         {
           "type": "section",
@@ -2997,48 +3121,54 @@
               "type": "option",
               "name": "Port 0",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Define se a primeira porta SATA física (SATA0) do chipset PCH está ativada ou desativada. Controla a disponibilidade do primeiro dispositivo de armazenamento (SSD/HD/DVD) conectado a essa porta específica.",
+              "riskReason": "MÉDIO (se configurado incorretamente, pode impedir o boot, mas é reversível). Se um dispositivo de boot principal estiver conectado a essa porta e ela for desativada, o sistema não conseguirá encontrar o sistema operacional",
+              "sources": [
+                "https://smallbusiness.chron.com/bios-setting-disable-sata-70772.html#:~:text=Locate%20the%20SATA%20settings%20option,Restart%20your%20computer."
+              ]
             },
             {
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite conectar/desconectar drives SATA (HDDs/SSDs) com o computador ligado, sem reiniciar o sistema operacional (funciona como um pendrive). Requer baias compatíveis e o driver AHCI ativado.",
+              "riskReason": "BAIXO (se usado corretamente, seguindo os procedimentos de ejeção do sistema operacional) a ALTO (se removido incorretamente). Pode causar perda/corrupção de dados se o drive for removido abruptamente durante operações de leitura/escrita ou se o cache de gravação estiver ativo",
+              "sources": [
+                "https://www.reddit.com/r/MSI_Gaming/comments/q189d7/how_does_sata_hot_plug_avoid_data_loss/#:~:text=It%20either%20gets%20overwritten%20in,of%20small%20tiny%20look%20ups.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=even%20fan%20controllers.-,What%20SATA%20Hot%20Plug%20is%20and%20How%20to%20Use%20It,cannot%20maintain%20hot%20plug%20functionality.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=SATA%20Hot%20Plugging%20is%20a,have%20anything%20to%20worry%20about."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define se portas SATA específicas operarão como eSATA para dispositivos externos, habilitando ou desabilitando essa função.",
+              "riskReason": "BAIXO. Ajustes incorretos geralmente não impedem o POST, mas podem causar o não reconhecimento de dispositivos eSATA ou SATA internos conectados àquela porta específica. Baixo",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configured as eSATA",
               "defaultValue": "Hot Plug supported",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a porta SATA específica para uso externo, ativando o recurso de conexão/desconexão a quente (hot-plug).",
+              "riskReason": "BAIXO. Baixo. Se não houver dispositivo eSATA conectado, a porta simplesmente não será usada; não deve causar falha no POST",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa/desativa o atraso na inicialização (spin-up) de discos rígidos durante o boot, permitindo que o sistema aguarde a prontidão dos drives [1].",
+              "riskReason": "BAIXO (geralmente seguro, mas depende da compatabilidade do hardware) [1]. Sim, se o atraso for insuficiente ou mal configurado para certos discos",
               "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tipo de dispositivo SATA conectado à porta específica, auxiliando o sistema operacional e a BIOS a identificarem e gerenciarem corretamente o dispositivo (por exemplo, disco rígido para armazenamento, CDROM para mídia óptica) [1].",
+              "riskReason": "BAIXO (Geralmente fácil de corrigir redefinindo para a opção correta. Não costuma travar o POST, apenas impede o funcionamento adequado do dispositivo). Pode impedir o reconhecimento correto do dispositivo ou o boot do sistema operacional se configurado incorretamente para o dispositivo conectado [1]",
               "sources": []
             }
           ]
@@ -3061,48 +3191,52 @@
               "type": "option",
               "name": "Port 1",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite habilitar ou desabilitar o funcionamento da porta SATA 1. Se desabilitada, dispositivos conectados a essa porta não serão detectados [1].",
+              "riskReason": "BAIXO. Baixo. Desabilitar acidentalmente pode impedir a detecção de um dispositivo de armazenamento (como um SSD/HDD) conectado a essa porta, mas não deve causar travamento do POST, a menos que o sistema operacional esteja instalado nesse dispositivo específico e nenhuma outra opção de inicialização válida esteja disponível",
               "sources": []
             },
             {
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite conectar/desconectar drives SATA (HDDs/SSDs) com o PC ligado, sem reiniciar o sistema operacional (funciona como um pendrive). Requer gabinetes com baias hot-swap e drivers AHCI instalados.",
+              "riskReason": "BAIXO (se usado corretamente, com o procedimento de ejeção segura) a MÉDIO/ALTO (se removido incorretamente). Pode haver corrupção de dados ou danos ao hardware se o drive for removido abruptamente durante operações de leitura/escrita ou sem o procedimento de \"ejeção segura\" no sistema operacional",
+              "sources": [
+                "https://www.reddit.com/r/MSI_Gaming/comments/q189d7/how_does_sata_hot_plug_avoid_data_loss/#:~:text=It%20either%20gets%20overwritten%20in,of%20small%20tiny%20look%20ups.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=even%20fan%20controllers.-,What%20SATA%20Hot%20Plug%20is%20and%20How%20to%20Use%20It,cannot%20maintain%20hot%20plug%20functionality.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=SATA%20Hot%20Plugging%20is%20a,have%20anything%20to%20worry%20about."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Ativa a funcionalidade hot-plug para portas SATA específicas, tratando-as como portas externas (eSATA).",
+              "riskReason": "MÉDIO (se mal configurado). Pode causar problemas de inicialização (POST) se configurado incorretamente para um dispositivo interno",
               "sources": []
             },
             {
               "type": "option",
               "name": "Configured as eSATA",
               "defaultValue": "Hot Plug supported",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a porta SATA para funcionar como eSATA (externa), permitindo conexão e desconexão a quente (hot-plug) de dispositivos externos compatíveis.",
+              "riskReason": "BAIXO. BAIXO. Geralmente seguro, mas se o dispositivo interno não suportar eSATA ou hot-plug, pode não ser detectado corretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define se um dispositivo SATA deve girar (iniciar) junto com a inicialização do sistema ou se permanecerá desligado até ser acessado, útil para gerenciamento de energia.",
+              "riskReason": "MÉDIO [1]. Pode causar atrasos ou falhas no POST se o dispositivo for o disco de boot principal e não girar a tempo",
               "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tipo do dispositivo SATA conectado para auxiliar a BIOS a identificá-lo e configurá-lo corretamente.",
+              "riskReason": "BAIXO (geralmente fácil de corrigir). Pode impedir que o sistema operacional ou a BIOS reconheça o dispositivo se configurado incorretamente",
               "sources": []
             }
           ]
@@ -3120,32 +3254,36 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite conectar/desconectar drives SATA (HDDs/SSDs) com o sistema ligado, sem reiniciar, como um pendrive (requer AHCI e hardware compatível).",
+              "riskReason": "BAIXO (se usado corretamente, não causa travamento de POST). Pode corromper dados se o drive for removido durante leitura/escrita",
+              "sources": [
+                "https://www.reddit.com/r/MSI_Gaming/comments/q189d7/how_does_sata_hot_plug_avoid_data_loss/#:~:text=It%20either%20gets%20overwritten%20in,of%20small%20tiny%20look%20ups.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=even%20fan%20controllers.-,What%20SATA%20Hot%20Plug%20is%20and%20How%20to%20Use%20It,cannot%20maintain%20hot%20plug%20functionality.",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=SATA%20Hot%20Plugging%20is%20a,have%20anything%20to%20worry%20about."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Configura portas SATA para operação eSATA, permitindo, por exemplo, a conexão/desconexão de drives externos com o sistema ligado (hot-plugging). [1]",
+              "riskReason": "MÉDIO (se mal configurado, pode impedir o boot correto). [1]. Pode causar problemas de detecção de dispositivos ou inicialização se configurado incorretamente para um dispositivo interno. [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define a ordem/atraso para inicialização dos discos rígidos SATA, otimizando o consumo de energia na partida [1].",
+              "riskReason": "MÉDIO (se configurado de forma a impedir a detecção do disco de boot). [1]. Pode causar falhas na detecção de drives se configurado incorretamente",
               "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define o tipo de dispositivo conectado à porta SATA para garantir a correta inicialização e identificação pelo sistema.",
+              "riskReason": "BAIXO (facilmente reversível se o dispositivo estiver corretamente configurado). Pode impedir o reconhecimento do dispositivo, causando falha na inicialização do sistema operacional",
               "sources": []
             }
           ]
@@ -3163,32 +3301,35 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite a conexão e desconexão de unidades de disco SATA (HDDs/SSDs) com o computador ligado, sem a necessidade de reiniciar o sistema operacional. Funciona como um dispositivo Plug-and-Play para servidores ou baias de troca rápida (requer hardware de case compatível).",
+              "riskReason": "BAIXO (se usado corretamente, seguindo procedimentos de ejeção do sistema operacional) a MÉDIO (se removido incorretamente). Pode causar perda/corrupção de dados se o disco for removido abruptamente durante uma operação de leitura/escrita ou se o cache de gravação estiver ativo",
+              "sources": [
+                "https://www.reddit.com/r/MSI_Gaming/comments/q189d7/how_does_sata_hot_plug_avoid_data_loss/#:~:text=It%20either%20gets%20overwritten%20in,of%20small%20tiny%20look%20ups.",
+                "https://www.techtarget.com/searchstorage/definition/hot-plug#:~:text=Hot%20plugging%20is%20the%20addition,running%2C%20such%20as%20a%20server."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Permite configurar portas SATA específicas da placa-mãe (geralmente as portas 4 e 5) para operarem como eSATA (externas), suportando hot-plug (conexão/desconexão a quente) para discos rígidos externos. [1]",
+              "riskReason": "MÉDIO. [1]. Definir incorretamente, especialmente se essas portas não forem eSATA nativamente, pode causar instabilidade no sistema ou impedir o reconhecimento de dispositivos. [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define se os dispositivos SATA (como HDDs) devem girar (ligar) sequencialmente ou simultaneamente durante o POST. O objetivo é reduzir o pico de consumo de energia na inicialização.",
+              "riskReason": "BAIXO (não deve travar o POST, apenas atrasar a inicialização). Pode causar lentidão no boot se configurado incorretamente para o tipo de dispositivo",
               "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define ou informa o tipo de dispositivo conectado à porta SATA específica para melhor gerenciamento da BIOS/sistema operacional.",
+              "riskReason": "MÉDIO (depende da configuração escolhida e do hardware instalado). Pode impedir o reconhecimento correto do dispositivo se configurado incorretamente, causando falha na inicialização (POST)",
               "sources": []
             }
           ]
@@ -3206,32 +3347,37 @@
               "type": "option",
               "name": "Hot Plug",
               "defaultValue": "[Enabled]",
-              "description": "",
-              "riskReason": "",
-              "sources": []
+              "description": "Permite conectar ou desconectar unidades de disco SATA (HDDs/SSDs) com o computador ligado, sem reiniciar o sistema operacional. Funciona como um dispositivo Plug and Play.",
+              "riskReason": "NENHUM (se a ejeção for feita corretamente via sistema operacional antes da remoção física). Não",
+              "sources": [
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=SATA%20Hot%20Plugging%20is%20a,have%20anything%20to%20worry%20about.",
+                "https://www.reddit.com/r/gigabyte/comments/eqbojj/what_is_sata_hot_plug_on_gigabyte_x570_bios_can/#:~:text=When%20a%20port%20has%20hot,forgive%20my%20ignorance%20please).",
+                "https://www.cgdirector.com/what-is-sata-hot-plug/#:~:text=even%20fan%20controllers.-,What%20SATA%20Hot%20Plug%20is%20and%20How%20to%20Use%20It,cannot%20maintain%20hot%20plug%20functionality.",
+                "https://www.reddit.com/r/MSI_Gaming/comments/q189d7/how_does_sata_hot_plug_avoid_data_loss/#:~:text=It%20either%20gets%20overwritten%20in,of%20small%20tiny%20look%20ups."
+              ]
             },
             {
               "type": "option",
               "name": "Configure as eSATA",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define portas SATA específicas para operar no modo eSATA, permitindo conexão/desconexão a quente (hot-plug) de dispositivos externos. [1]",
+              "riskReason": "BAIXO. [1] Esta é uma explicação genérica da função eSATA em configurações de BIOS. Informações específicas da placa-mãe Machinist MD8 X99 não foram encontradas. Baixo. Se configurado incorretamente, pode impedir o reconhecimento do dispositivo na inicialização, mas raramente causa falha total de POST. [1]",
               "sources": []
             },
             {
               "type": "option",
               "name": "Spin Up Device",
               "defaultValue": "[Disabled]",
-              "description": "",
-              "riskReason": "",
+              "description": "Habilita/desabilita o atraso na inicialização de discos rígidos SATA para distribuir a demanda de energia.",
+              "riskReason": "BAIXO (se configurado adequadamente, é benéfico). (40 palavras). Sim, se desativado com muitos HDs, pode sobrecarregar a fonte e impedir o POST. Se ativado incorretamente, pode atrasar a inicialização",
               "sources": []
             },
             {
               "type": "option",
               "name": "SATA Device Type",
               "defaultValue": "[Hard Disk Drive]",
-              "description": "",
-              "riskReason": "",
+              "description": "Define manualmente o tipo de dispositivo conectado (ex: \"Hard Disk\" ou \"CDROM\") para auxiliar na correta detecção e inicialização do sistema. [1]",
+              "riskReason": "MÉDIO (O sistema pode não bootar, mas a configuração é reversível). [1]. Pode impedir o reconhecimento do dispositivo se configurado incorretamente",
               "sources": []
             }
           ]
@@ -3240,8 +3386,8 @@
           "type": "option",
           "name": "SATA Led locate",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita/desabilita o controle do LED de atividade SATA (geralmente no painel frontal do gabinete), permitindo que a BIOS pisque o LED para ajudar a identificar fisicamente uma porta SATA ou unidade específica.",
+          "riskReason": "Não causa travamento de POST. O grau de risco é NENHUM, pois é apenas um recurso visual de localização, sem impacto na funcionalidade básica do sistema",
           "sources": []
         }
       ]
@@ -3254,48 +3400,50 @@
           "type": "option",
           "name": "USB Precondition",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "(Não documentado publicamente para um propósito específico ou ajuste usual do usuário).",
+          "riskReason": "DESCONHECIDO. DESCONHECIDO (A alteração de opções não documentadas pode levar a comportamento inesperado ou instabilidade)",
           "sources": []
         },
         {
           "type": "option",
           "name": "XHCI Mode",
           "defaultValue": "[Auto]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita ou desabilita o modo XHCI (eXtensible Host Controller Interface), que é o controlador padrão para dispositivos USB 3.0 e superiores, permitindo velocidades de transferência mais rápidas.",
+          "riskReason": "BAIXO (geralmente pode ser reajustado facilmente na BIOS). O uso do modo incorreto para o sistema operacional instalado pode impedir o funcionamento correto dos dispositivos USB (teclado, mouse), dificultando a interação",
           "sources": []
         },
         {
           "type": "option",
           "name": "Trunk Clock Gating (BTCG)",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite o desligamento do clock (sinal de temporização) da interface USB quando inativa para reduzir o consumo de energia. [1]",
+          "riskReason": "MÉDIO. [1] (O recurso de economia de energia nem sempre é totalmente compatível ou estável em todas as configurações de hardware, podendo exigir que o usuário reconfigure a BIOS para desativá-lo, o que pode ser difícil sem um teclado funcional.). Pode causar falhas na inicialização (POST) ou impedir o funcionamento correto de dispositivos USB, como mouses e teclados, durante o boot. [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "USB Ports Per-Port Disable Control",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Permite que o usuário habilite ou desabilite seletivamente portas USB individuais (por exemplo, USB1, USB2) diretamente na BIOS [1.1, 1.2].",
+          "riskReason": "MÉDIO (se configurado incorretamente, requer um jumper Clear CMOS para reverter a configuração) [1.3]. Sim, pode causar travamento do POST ou impedir o acesso ao setup da BIOS se todas as portas USB, ou a porta onde o teclado/mouse está conectado, forem desabilitadas [1.2, 1.3]",
           "sources": []
         },
         {
           "type": "option",
           "name": "XHCI Idle L1",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ativa um estado de baixa energia (estado L1) para o controlador USB 3.0 (XHCI) quando inativo. Isso permite maior eficiência energética e pode reduzir o consumo geral de energia do sistema.",
+          "riskReason": "BAIXO (o padrão costuma ser ativado, mas se houver instabilidade com periféricos USB, deve-se desativar). Pode causar problemas de conectividade ou falhas no reconhecimento de dispositivos USB específicos, especialmente os mais antigos ou que não são totalmente compatíveis",
+          "sources": [
+            "https://www.reddit.com/r/AMDHelp/comments/pcp4fs/what_is_power_supply_idle_control_and_other_bios/"
+          ]
         },
         {
           "type": "option",
           "name": "USB XHCI s755 WA",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Ativa uma correção específica de firmware para compatibilidade com certas controladoras USB 3.0 XHCI.",
+          "riskReason": "MÉDIO. Recomenda-se manter desativado, a menos que haja problemas específicos de USB que exijam essa correção. Pode causar travamento do POST em sistemas onde a correção não é necessária, ou se houver incompatibilidade",
           "sources": []
         }
       ]
@@ -3308,41 +3456,47 @@
           "type": "option",
           "name": "GPIO Lockdown",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Impossibilita o acesso e a reconfiguração dos pinos GPIO (General Purpose Input/Output) por software, protegendo contra explorações maliciosas.",
+          "riskReason": "Não deve causar travamento de POST em configurações normais. O grau de risco é BAIXO (se a função não for necessária para inicialização específica, como boot via GPIO)",
           "sources": []
         },
         {
           "type": "option",
           "name": "RTC Lock",
           "defaultValue": "[Enabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Impede a alteração não autorizada do relógio do sistema e de certas configurações de hardware por software malicioso, aumentando a segurança.",
+          "riskReason": "NENHUM. : Não causa travamento de POST",
           "sources": []
         },
         {
           "type": "option",
           "name": "BIOS Lock",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Impede modificações não autorizadas nas configurações do BIOS/UEFI e na ordem de inicialização, geralmente exigindo uma senha de supervisor. Ajudar a proteger contra a execução de software malicioso durante o processo de boot.",
+          "riskReason": "BAIXO (se a senha for gerenciada). Total de palavras: 56. Nota: Não é possível reduzir o texto para exatamente 40 palavras, mantendo as informações e a formatação solicitada. Pode causar problemas de acesso se a senha for esquecida, mas não costuma travar o POST se configurado corretamente. O risco reside no esquecimento da senha, que dificulta o gerenciamento ou atualizações",
+          "sources": [
+            "https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-147.pdf",
+            "https://datarecovee.com/what-is-bios/#:~:text=Learn%20More-,Is%20BIOS%20Fully%20Secure?,built%20features%20like%20Secure%20Boot."
+          ]
         },
         {
           "type": "option",
           "name": "Host Flash Lock-Down",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Habilita um mecanismo de proteção que previne modificações não autorizadas na memória flash da BIOS (proteção contra escrita).",
+          "riskReason": "BAIXO (se usada corretamente; MÉDIO se uma atualização for tentada com ela ativada). [1]. Não deve causar travamento de POST em condições normais, a menos que uma atualização de BIOS legítima seja tentada sem desativar a função primeiro",
           "sources": []
         },
         {
           "type": "option",
           "name": "Gbe Flash Lock-Down",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Ativa um mecanismo de proteção para a região da controladora Ethernet (GbE) na memória SPI flash da BIOS. Isso previne modificações não autorizadas do firmware por software (como malware) em nível de sistema operacional, protegendo contra rootkits persistentes.",
+          "riskReason": "MÉDIO a ALTO. Habilitar a opção é seguro se o sistema estiver funcionando corretamente, mas alterações em configurações de segurança do firmware podem \"brickar\" (inutilizar) a placa se a proteção impedir futuras atualizações legítimas ou se houver um erro no processo. Sim, se a configuração for alterada incorretamente ou se o firmware já estiver corrompido, pode impedir o boot",
+          "sources": [
+            "https://eclypsium.com/blog/firmware-security-realizations-part-3-spi-write-protections/#:~:text=In%20this%20third%20(and%20final,previous%20articles%20in%20the%20series.",
+            "https://github.com/chipsec/chipsec/issues/329#:~:text=Graphics%20quality%20reduced%2C%20blocky%20blacks,to%20maintain%20root%20access%20eternally."
+          ]
         }
       ]
     },
@@ -3350,16 +3504,16 @@
       "type": "option",
       "name": "Onboard LAN1 Control",
       "defaultValue": "[Enabled]",
-      "description": "",
-      "riskReason": "",
+      "description": "Permite habilitar ou desabilitar o controlador de rede local (LAN) integrado na placa-mãe. Quando desabilitado, o sistema operacional não detecta o dispositivo de rede.",
+      "riskReason": "BAIXO (travamentos são raros, mas a desabilitação impede o uso da rede integrada). Pode causar travamento do POST se a configuração entrar em conflito com outros componentes ou se houver um erro de firmware",
       "sources": []
     },
     {
       "type": "option",
       "name": "Onboard LAN2 Control",
       "defaultValue": "[Enabled]",
-      "description": "",
-      "riskReason": "",
+      "description": "Liga/desliga o segundo chip de rede Ethernet da placa. Se desativado, o sistema operacional não o detectará.",
+      "riskReason": "BAIXO (não causa travamento de POST, apenas funcionalidade). [1]. Pode impedir o uso da segunda porta de rede se necessário",
       "sources": []
     }
   ]

@@ -11,49 +11,73 @@
       "type": "option",
       "name": "Boot Option #1",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
+      "description": "Define a prioridade máxima na sequência de inicialização. O BIOS busca o sistema operacional neste dispositivo primeiro.",
+      "riskReason": "MÉDIO (pode impedir o boot, mas é facilmente corrigível alterando a opção novamente). Configurar um dispositivo sem sistema operacional impede o carregamento do sistema",
       "sources": []
     },
     {
       "type": "option",
       "name": "Boot Option #2",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define a segunda prioridade de dispositivo (ex: SSD, HD, USB, DVD) a partir do qual o sistema tentará carregar o sistema operacional.",
+      "riskReason": "BAIXO (as configurações podem ser facilmente revertidas no BIOS). Pode causar falha de inicialização (tela preta ou \"boot loop\") se configurado incorretamente para um dispositivo não bootável ou sem sistema operacional",
+      "sources": [
+        "https://www.hp.com/us-en/shop/tech-takes/how-to-enter-bios-setup-windows-pcs#:~:text=BIOS%20is%20the%20built%2Din,before%20loading%20the%20operating%20system.",
+        "https://www.linkedin.com/advice/0/what-risks-benefits-changing-boot-order-your-dzokf",
+        "https://www.linkedin.com/advice/0/what-risks-improperly-setting-boot-priority-bios-iqjre#:~:text=Improperly%20setting%20the%20boot%20priority,unintentional%20data%20manipulation%20or%20loss."
+      ]
     },
     {
       "type": "option",
       "name": "Boot Option #3",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define a terceira prioridade na sequência de dispositivos a partir dos quais o sistema tentará carregar um sistema operacional. O usuário seleciona manualmente um dispositivo disponível na lista para esta posição.",
+      "riskReason": "BAIXO (se configurado incorretamente, apenas atrasa a inicialização ou faz o sistema tentar o próximo dispositivo na lista). Configurar uma opção inválida ou um dispositivo sem um sistema operacional pode atrasar o processo de inicialização (POST) enquanto a BIOS tenta encontrá-lo, mas geralmente não causa um travamento permanente",
+      "sources": [
+        "https://www.lifewire.com/change-the-boot-order-in-bios-2624528#:~:text=Step%203:%20Find%20the%20Boot,latest%20version%20and%20check%20again.",
+        "https://www.quora.com/What-is-the-purpose-of-changing-the-boot-order-in-BIOS#:~:text=What%20is%20the%20purpose%20of%20boot%20priority%20in%20BIOS%20configuration,to%20boot%20if%20the%20pr",
+        "https://www.quora.com/What-changes-do-you-need-for-a-BIOS-boot-order-for-a-dual-boot",
+        "https://www.quora.com/What-is-boot-priority-order-in-a-PC-What-are-some-recommended-settings-in-different-setups",
+        "https://support.hp.com/in-en/document/ish_3891464-2337914-16#:~:text=When%20the%20computer%20starts%2C%20the,through%20the%20BIOS%20setup%20menu."
+      ]
     },
     {
       "type": "option",
       "name": "Boot Option #4",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define o quarto dispositivo na sequência prioritária de inicialização do sistema. A função exata depende do dispositivo que o usuário atribui a ela.",
+      "riskReason": "BAIXO (as configurações de boot geralmente não impedem o POST, apenas a inicialização do SO, e podem ser facilmente redefinidas para os padrões de fábrica). Sim, se um dispositivo inválido ou não bootável for selecionado, o sistema pode demorar mais para inicializar ou não encontrar um sistema operacional",
+      "sources": [
+        "https://pt.scribd.com/document/721646946/manual-x99-p4-en-pt#:~:text=Manual%20da%20Placa%2Dm%C3%A3e%20X99%20P4%20%7C%20PDF%20%7C%20USB%20%7C%20BIOS",
+        "https://manuals.plus/pt/category/machinist#:~:text=Manual%20do%20usu%C3%A1rio%20da%20placa%2Dm%C3%A3e%20MACHINIST%20X99%2DK9%2C,bem%20como%20configura%C3%A7%C3%A3o%20do%20BIOS."
+      ]
     },
     {
       "type": "option",
       "name": "Boot Option #5",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define o quinto dispositivo na sequência que o computador tentará carregar um sistema operacional. Permite flexibilidade na ordem de prioridade de boot.",
+      "riskReason": "BAIXO (se configurado incorretamente, pode ser facilmente revertido no menu da BIOS). Baixo. Alterar a ordem pode impedir o carregamento do sistema operacional se o dispositivo principal for movido para baixo na lista ou se um dispositivo não bootável for selecionado",
+      "sources": [
+        "https://www.lenovo.com/us/en/glossary/boot-menu/#:~:text=How%20can%20I%20change%20the,time%20you%20start%20it%20up.",
+        "https://www.quora.com/What-is-boot-priority-order-in-a-PC-What-are-some-recommended-settings-in-different-setups#:~:text=All%20related%20(35),should%20remove%20the%20install%20media.",
+        "https://support.hp.com/ee-en/document/ish_3891464-2337914-16#:~:text=To%20boot%20to%20a%20DVD,in%20the%20hard%20drive%20group.",
+        "https://support.hp.com/lv-en/document/ish_3891464-2337914-16#:~:text=When%20the%20computer%20starts%2C%20the,UEFI%20boot%20order",
+        "https://www.asus.com/us/support/faq/1053205/#:~:text=When%20the%20computer%20starts%2C%20the,the%20boot%20priority%20and%20method?"
+      ]
     },
     {
       "type": "option",
       "name": "Boot Option #6",
       "defaultValue": "[Device Name]",
-      "description": "",
-      "riskReason": "",
-      "sources": []
+      "description": "Define o sexto dispositivo que o BIOS tentará carregar um sistema operacional. O dispositivo exato (ex: um tipo específico de SSD, USB, ou rede) é listado ao lado da opção.",
+      "riskReason": "BAIXO (facilmente corrigido reordenando as opções para o disco rígido principal). Redefinir a ordem sem um dispositivo de boot válido pode impedir o carregamento do sistema operacional",
+      "sources": [
+        "https://www.lifewire.com/what-is-a-boot-sequence-2625814#:~:text=What%20Boot%20Order%20Should%20I,depends%20on%20your%20specific%20situation.",
+        "https://www.lifewire.com/change-the-boot-order-in-bios-2624528#:~:text=Step%203:%20Find%20the%20Boot,latest%20version%20and%20check%20again.",
+        "https://www.lenovo.com/us/en/glossary/boot-menu/#:~:text=The%20boot%20order%20determines%20the,to%20change%20the%20boot%20order.",
+        "https://www.makeuseof.com/tag/the-bios-explained-boot-order-video-memory-saving-resets-and-optimum-defaults-si/#:~:text=1.,Network%20drive"
+      ]
     }
   ]
 }

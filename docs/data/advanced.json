@@ -651,8 +651,8 @@
           "type": "option",
           "name": "Compliance SOS",
           "defaultValue": "[Disabled]",
-          "description": "",
-          "riskReason": "",
+          "description": "Provavelmente relacionado a ajustes de conformidade para subsistemas PCI (como frequências ou voltagens), possivelmente para estabilidade ou compatibilidade em cenários específicos. O ajuste manual pode ter consequências desconhecidas.",
+          "riskReason": "MÉDIO a ALTO (devido à falta de documentação e à natureza sensível das configurações PCI). Recomenda-se não alterar a configuração a menos que instruído por um especialista ou pelo fabricante para um problema específico. Pode causar travamento do POST",
           "sources": []
         },
         {

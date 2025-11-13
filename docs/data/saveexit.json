@@ -10,48 +10,59 @@
           "type": "option",
           "name": "Save Changes and Exit",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Salva permanentemente todas as alterações de configuração feitas na BIOS (como ordem de boot, voltagens, frequências) na memória NVRAM e reinicia o computador para aplicar as novas configurações.",
+          "riskReason": "MÉDIO (O risco depende inteiramente da natureza das alterações feitas. Com configurações padrão, o risco é MÍNIMO). Pode causar um boot loop (travamento de POST) se as configurações salvas forem incompatíveis ou instáveis para o hardware (ex: overclock extremo, RAM incompatível)",
+          "sources": [
+            "https://www.asus.com/support/faq/1050047/#:~:text=Save%20the%20settings%20and%20exit,save%20your%20settings%20and%20exit.",
+            "https://www.hp.com/us-en/shop/tech-takes/how-to-reset-bios-settings-on-windows-pcs#:~:text=Resetting%20your%20BIOS%20is%20a,solve%20various%20hardware%20configuration%20problems."
+          ]
         },
         {
           "type": "option",
           "name": "Discard Changes and Exit",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Sai da configuração da BIOS sem salvar nenhuma das alterações feitas durante a sessão atual. Reinicia o sistema ou retorna ao sistema operacional com as configurações anteriores intocadas.",
+          "riskReason": "NENHUM. Não causa travamento de POST, pois reverte para um estado de configuração funcional previamente salvo",
+          "sources": [
+            "https://www.hp.com/us-en/shop/tech-takes/how-to-enter-bios-setup-windows-pcs#:~:text=Main:%20Basic%20system%20info%20like,discard%20changes%20and%20exit%20BIOS"
+          ]
         },
         {
           "type": "option",
           "name": "Save Changes and Reset",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
+          "description": "Salva todas as modificações feitas nas configurações da BIOS e reinicia o computador para que as novas configurações entrem em vigor [1].",
+          "riskReason": "BAIXO (para configurações padrão) a ALTO (para alterações avançadas instáveis). Pode causar travamento do POST se as configurações salvas forem incompatíveis (ex: overclock instável, RAM incorreta) [1]",
           "sources": []
         },
         {
           "type": "option",
           "name": "Discard Changes and Reset",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Cancela todas as modificações feitas na sessão atual da BIOS e reinicia o computador, restaurando as configurações anteriores.",
+          "riskReason": "NENHUM. Não causa travamento de POST, pois apenas reverte para configurações já estabelecidas e funcionais",
+          "sources": [
+            "https://www.reddit.com/r/techsupport/comments/bk1n54/what_does_the_bios_option_save_changes_reset_do/?tl=pt-br"
+          ]
         },
         {
           "type": "option",
           "name": "Save Changes",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Salva permanentemente todas as alterações feitas nas configurações atuais da BIOS (como ordem de boot, voltagens, frequências, etc.) na memória NVRAM e reinicia o computador para que as novas configurações entrem em vigor.",
+          "riskReason": "MÉDIO (depende inteiramente da natureza das alterações feitas; alterações em configurações básicas, como data/hora, têm risco NENHUM, enquanto alterações em voltagens ou frequências têm risco ALTO). Sim, pode causar travamento de POST (Power-On Self-Test) se as configurações salvas forem incorretas ou incompatíveis com o hardware (ex: overclock instável, voltagem errada, etc.)",
+          "sources": [
+            "https://learn.microsoft.com/en-us/answers/questions/610423/what-does-save-changes-and-reset-option-in-bios-ac#:~:text=Changes%20you%20make%20to%20BIOS,Discard%20Changes%20and%20Exit%20option.",
+            "https://www.ni.com/docs/en-US/bundle/ic-3121-feature/page/bios-save-exit-menu.html#:~:text=Save%20Changes%20and%20Reset%E2%80%94Any,exits%20and%20reboots%20the%20controller.",
+            "https://www.intel.com/content/www/us/en/gaming/resources/how-to-update-bios.html#:~:text=Motherboard%20manufacturers%20warn%20against%20updating,which%20could%20impact%20system%20stability."
+          ]
         },
         {
           "type": "option",
           "name": "Discard Changes",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
+          "description": "[1] Cancela todas as alterações feitas na sessão atual da BIOS e restaura as configurações anteriores salvas. O computador reinicia com as configurações que estavam ativas antes da última entrada na BIOS.",
+          "riskReason": "NENHUM. [1] Esta ação é segura, pois apenas evita que novas configurações sejam aplicadas, retornando a um estado de funcionamento conhecido. Não causa travamento de POST",
           "sources": []
         }
       ]
@@ -64,24 +75,26 @@
           "type": "option",
           "name": "Restore Defaults",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
-          "sources": []
+          "description": "Restaura todas as configurações da BIOS para os padrões de fábrica otimizados, desfazendo quaisquer alterações manuais. Isso serve para resolver problemas de inicialização ou instabilidade causados por configurações incorretas.",
+          "riskReason": "BAIXO (os problemas geralmente são de configuração e não causam danos permanentes, podendo ser resolvidos reconfigurando a BIOS ou resetando via jumper/bateria). Pode causar um POST (Power-On Self Test) incompleto ou ausência de vídeo (tela preta) se as configurações padrão forem incompatíveis com algum hardware específico (ex: ordem de boot, configurações de vídeo)",
+          "sources": [
+            "https://learn.microsoft.com/en-us/answers/questions/4173089/computer-boots-up-but-doesn-t-display-anything#:~:text=It%20also%20displays%20on%2Dscreen,affect%20your%20system's%20boot%20function."
+          ]
         },
         {
           "type": "option",
           "name": "Save as User Defaults",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
+          "description": "Salva as configurações atuais como um perfil padrão personalizado, que pode ser restaurado a qualquer momento.",
+          "riskReason": "NENHUM (se as configurações salvas estiverem operacionais). Não causa travamento de POST se as configurações salvas forem estáveis. Apenas restaura configurações previamente salvas",
           "sources": []
         },
         {
           "type": "option",
           "name": "Restore User Defaults",
           "defaultValue": null,
-          "description": "",
-          "riskReason": "",
+          "description": "Serve para restaurar todas as configurações da BIOS para os valores padrão de fábrica (otimizados ou seguros), desfazendo personalizações.",
+          "riskReason": "NENHUM. Não causa travamento; apenas redefine parâmetros para o estado original",
           "sources": []
         }
       ]
